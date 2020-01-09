@@ -4,6 +4,7 @@ python:
     - "3.7"
 
 install:
+    - pip install -r src/main/requirements.txt
     - pip install -r src/test/requirements.txt
 
 script:
