@@ -7,5 +7,8 @@ install:
     - pip install -r src/main/requirements.txt
     - pip install -r src/test/requirements.txt
 
+before_script:
+    - pylint src/
+
 script:
     - pytest
