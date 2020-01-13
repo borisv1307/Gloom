@@ -10,6 +10,7 @@ class TestFlask(unittest.TestCase):
     """ Flask test class """
 
     def test_index(self):
+        """ Test that index returns status_code 200 """
         handler = get_handler()
         tester = handler.app.test_client(self)
         response = tester.get('/', content_type='html/text')
