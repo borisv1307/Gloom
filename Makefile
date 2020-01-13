@@ -1,4 +1,4 @@
-.PHONY = build-test-image run-test-image
+.PHONY = build-test-image run-test-image debug-test-image
 
 build-test-image:
 	docker build \
@@ -8,3 +8,6 @@ build-test-image:
 
 run-test-image: build-test-image
 	docker run flask_test_image
+
+debug-test-image: build-test-image
+	docker run -it --entrypoint /bin/bash flask_test_image
