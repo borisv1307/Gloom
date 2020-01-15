@@ -4,7 +4,7 @@ import './App.css';
 
 class App extends Component {
     render() {
-        const hexagons = GridGenerator.parallelogram(-2, 3, -2, 1);
+        const hexagons = GridGenerator.orientedRectangle(4, 4);
 
         return (
             <div className="App">
