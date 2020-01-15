@@ -3,7 +3,7 @@
 """
 
 import unittest
-from src.main.flask.app import get_handler
+from backend.src.main.flask.app import get_handler
 
 
 class TestFlask(unittest.TestCase):
