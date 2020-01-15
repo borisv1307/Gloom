@@ -1,0 +1,25 @@
+dist: trusty
+language: python
+
+python:
+    - "3.6"
+
+addons:
+  sonarcloud:
+    organization: "borisv13-github" # the key of the org you chose at step #3
+    token:
+      secure: $SONAR_TOKEN # encrypted value of your token
+
+install:
+    - pip install -r src/main/requirements.txt
+    - pip install -r src/test/requirements.txt
+
+before_script:
+    - pylint src/
+
+script:
+    - pytest --cov-report term --cov=.
+    - coverage xml
+
+after_script:
+    - codecov

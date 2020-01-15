@@ -1,0 +1,16 @@
+FROM python:3.7.2-slim
+
+WORKDIR /usr/gloom
+
+# Install main requirements
+COPY src/main/requirements.txt src/main/requirements.txt
+RUN [ "pip", "install", "-r", "src/main/requirements.txt" ]
+
+# Install test requirements
+COPY src/test/requirements.txt src/test/requirements.txt
+RUN [ "pip", "install", "-r", "src/test/requirements.txt" ]
+
+# Copy whole directory
+COPY . .
+
+ENTRYPOINT [ "pytest" ]
