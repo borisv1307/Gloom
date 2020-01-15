@@ -1,14 +1,14 @@
-.PHONY = build-test run-test debug-test
+.PHONY = build run debug
 IMAGE_NAME=flask_test
 
-build-test:
+build:
 	docker build \
 		--file Dockerfile.test \
 		--tag $(IMAGE_NAME) \
 		.
 
-run-test: build-test
+run: build
 	docker run $(IMAGE_NAME)
 
-debug-test: build-test
+debug: build
 	docker run -it --entrypoint /bin/bash $(IMAGE_NAME)
