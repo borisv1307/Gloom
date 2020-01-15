@@ -24,3 +24,8 @@ script:
 
 after_script:
     - codecov
+
+# safelist
+branches:
+    only:
+        - master
