@@ -20,6 +20,7 @@ before_script:
 script:
     - pytest --cov-report term --cov=.
     - coverage xml
+    - sonar-scanner
 
 after_script:
     - codecov
