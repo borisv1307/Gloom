@@ -1,7 +1,8 @@
 dist: trusty
 language: python
 env:
-  - BACKEND_DIR='backend/src'
+  - BACKEND_DIR='backend/src' FRONTEND_DIR='web/app'
+
 python:
   - "3.6"
 
@@ -14,6 +15,7 @@ addons:
 install:
   - pip install -r $BACKEND_DIR/main/requirements.txt
   - pip install -r $BACKEND_DIR/test/requirements.txt
+  - npm --prefix $FRONTEND_DIR install
 
 before_script:
   - pylint $BACKEND_DIR/
@@ -21,6 +23,7 @@ before_script:
 script:
   - pytest --cov-report term --cov=.
   - coverage xml
+  - npm --prefix $FRONTEND_DIR test
   - sonar-scanner
 
 after_script:
