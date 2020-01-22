@@ -4,7 +4,7 @@
 
 import pytest
 
-from backend.src.main.room import room
+from backend.src.main.room import room, den
 from backend.src.main.room.room import DuplicateTileError
 
 
@@ -40,3 +40,8 @@ def test_no_duplicate_coordinates_in_room(test_room):
     test_room.add_tile(0, 5, 15)
     with pytest.raises(DuplicateTileError):
         test_room.add_tile(1, 5, 15)
+
+
+def test_den_can_be_instantiate():
+    current_room = den.Den()
+    assert current_room.name == "Den"
