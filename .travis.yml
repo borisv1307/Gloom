@@ -1,7 +1,7 @@
 dist: trusty
 language: python
 env:
-  - BACKEND_DIR='backend/src' FRONTEND_DIR='web/app'
+  - BACKEND_DIR='backend/src' FRONTEND_DIR='web/app' CI='true'
 
 python:
   - "3.6"
