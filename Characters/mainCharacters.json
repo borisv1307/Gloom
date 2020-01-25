@@ -1,0 +1,72 @@
+{
+  "mainCharacters": [
+    {
+      "name": "Brute",
+      "image": "../Images/Brute.png"
+    },
+    {
+      "name": "Cragheart",
+      "image": "../Images/Cragheart.png"
+    },
+    {
+      "name": "Mindthief",
+      "image": "../Images/Mindthief.png"
+    },
+    {
+      "name": "Scoundrel",
+      "image": "../Images/Scoundrel.png"
+    },
+    {
+      "name": "Spellweaver",
+      "image": "../Images/Spellweaver.png"
+    },
+    {
+      "name": "Tinkerer",
+      "image": "../Images/Tinkerer.png"
+    },
+   {
+      "name": "Beast Tyrant",
+      "image": "../Images/BeastTyrant.png"
+    },
+    {
+      "name": "Berserker",
+      "image": "../Images/Berserker.png"
+    },
+    {
+      "name": "Doomstalker",
+      "image": "../Images/Doomstalker.png"
+    },
+    {
+      "name": "Elementalist",
+      "image": "../Images/Elementalist.png"
+    },
+    {
+      "name": "Nightshroud",
+      "image": "../Images/Nightshroud.png"
+    },
+    {
+      "name": "Plagueherald",
+      "image": "../Images/Plagueherald.png"
+    },
+    {
+      "name": "Quartermaster",
+      "image": "../Images/Quartermaster.png"
+    },
+    {
+      "name": "Sawbones",
+      "image": "../Images/Sawbones.png"
+    },
+    {
+      "name": "Soothsinger",
+      "image": "../Images/Soothsinger.png"
+    },
+    {
+      "name": "Summoner",
+      "image": "../Images/Summoner.png"
+    },
+    {
+      "name": "Sunkeeper",
+      "image": "../Images/Sunkeeper.png"
+    }
+  ]
+}
