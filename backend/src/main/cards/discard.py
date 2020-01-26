@@ -1,3 +1,4 @@
+
 class Discard:
 
     def __init__(self):
@@ -5,3 +6,6 @@ class Discard:
 
     def add(self, card):
         self.cards.append(card)
+
+    def remove(self, card):
+        self.cards.remove(card)

@@ -5,3 +5,7 @@ class Lost:
 
     def add(self, card):
         self.cards.append(card)
+
+    def remove(self, card):
+        self.cards.remove(card)
+

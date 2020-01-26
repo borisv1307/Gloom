@@ -23,7 +23,11 @@ def test_remove_specific_card():
     hand.add(card_two)
     hand.add(card_three)
 
-    hand.remove("card2")
+    hand.remove(card_two)
     assert hand.cards.__len__() == 2
     assert hand.cards.__getitem__(0) == card_one
     assert hand.cards.__getitem__(1) == card_three
+
+    hand.remove(card_one)
+    assert hand.cards.__len__() == 1
+    assert hand.cards.__getitem__(0) == card_three
