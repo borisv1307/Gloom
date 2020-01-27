@@ -11,15 +11,16 @@ class AbstractRoomCard:  # pylint: disable=too-few-public-methods
 
     def __init__(self, name):
         self.name = name
-        self.hexes = {}
+        self.tiles = {}
 
     def add_tile(self, character_number, x_value, y_value):
         """This method adds tile to the room
         Inputs: Value, coordinates (x,y) of the tile
         """
         coordinates = (x_value, y_value)
-        if character_number in self.hexes.values() and character_number is not self.EMPTY_TILE:
+        if character_number in self.tiles.values() and character_number is not self.EMPTY_TILE:
             raise DuplicateTileError
-        if coordinates in self.hexes:
+        if coordinates in self.tiles:
             raise DuplicateTileError
-        self.hexes[coordinates] = character_number
+        self.tiles[coordinates] = character_number
+
