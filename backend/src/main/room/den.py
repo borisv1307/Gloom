@@ -1,9 +1,12 @@
+"""This class is for Room Den tile mapping"""
 from backend.src.main.room.room import AbstractRoomCard
 
 
-class Den(AbstractRoomCard):
+class Den(AbstractRoomCard):  # pylint: disable=too-few-public-methods
+    """Den inherits RoomCard"""
+
     def __init__(self):
-        super().__init__("Den")
+        AbstractRoomCard.__init__(self, "Den")
         self.add_tile(self.EMPTY_TILE, 0, 2)
         self.add_tile(2, 0, 4)
         self.add_tile(3, 0, 6)
