@@ -54,3 +54,10 @@ def test_den_can_be_instantiate():
     """A room Den can be instantiated"""
     current_room = den.Den()
     assert current_room.name == "Den"
+
+
+def test_get_tiles_on_den_returns_list_of_tiles():
+    """ Check that we get a list """
+    current_room = den.Den()
+    expected = current_room.get_tiles()
+    assert isinstance(expected, list)
