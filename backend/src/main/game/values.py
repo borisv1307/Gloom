@@ -4,7 +4,7 @@ Card Values
 from enum import Enum
 
 
-class RandomEnemyCardValues(Enum):
+class DungeonCardValues(Enum):
     """ Class for Random Enemy Card Values """
     MONSTER = 'monster'
     CHARACTER = 'character'

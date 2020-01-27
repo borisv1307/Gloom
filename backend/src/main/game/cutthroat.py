@@ -2,23 +2,23 @@
 Cutthroat
 """
 from backend.src.main.game.random_monster_card import RandomMonsterCard
-from backend.src.main.game.values import RandomEnemyCardValues
+from backend.src.main.game.values import DungeonCardValues
 
 
 class Cutthroat(RandomMonsterCard):  # pylint: disable=too-few-public-methods
     """ Class for Cutthroat Random Monster Card """
 
     def __init__(self):
-        map_values = {1: RandomEnemyCardValues.MONSTER,
-                      2: RandomEnemyCardValues.COIN,
-                      3: RandomEnemyCardValues.MONSTER,
-                      4: RandomEnemyCardValues.MONSTER,
-                      5: RandomEnemyCardValues.TRAPS,
-                      6: RandomEnemyCardValues.MONSTER,
-                      7: RandomEnemyCardValues.MONSTER,
-                      8: RandomEnemyCardValues.MONSTER,
-                      9: RandomEnemyCardValues.TRAPS,
-                      10: RandomEnemyCardValues.MONSTER,
-                      11: RandomEnemyCardValues.TRAPS,
-                      12: RandomEnemyCardValues.TREASURE}
+        map_values = {1: DungeonCardValues.MONSTER,
+                      2: DungeonCardValues.COIN,
+                      3: DungeonCardValues.MONSTER,
+                      4: DungeonCardValues.MONSTER,
+                      5: DungeonCardValues.TRAPS,
+                      6: DungeonCardValues.MONSTER,
+                      7: DungeonCardValues.MONSTER,
+                      8: DungeonCardValues.MONSTER,
+                      9: DungeonCardValues.TRAPS,
+                      10: DungeonCardValues.MONSTER,
+                      11: DungeonCardValues.TRAPS,
+                      12: DungeonCardValues.TREASURE}
         RandomMonsterCard.__init__(self, "Cutthroat", map_values)
