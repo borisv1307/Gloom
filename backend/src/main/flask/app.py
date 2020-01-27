@@ -4,7 +4,8 @@
 
 from flask import Flask
 
-class Handler: # pylint: disable=too-few-public-methods
+
+class Handler:  # pylint: disable=too-few-public-methods
     """ Class for flask app object """
     app = Flask(__name__)
 
