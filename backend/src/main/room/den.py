@@ -21,7 +21,7 @@ class Den(AbstractRoomCard):  # pylint: disable=too-few-public-methods
         self.add_tile(12, 2, 8)
         self.add_tile(8, 3, 1)
         self.add_tile(7, 3, 3)
-        self.add_tile(99, 3, 5)
+        self.add_tile(self.COIN_TILE, 3, 5)
         self.add_tile(1, 3, 7)
         self.add_tile(self.EMPTY_TILE, 4, 2)
         self.add_tile(4, 4, 4)
