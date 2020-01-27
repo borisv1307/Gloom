@@ -1,5 +1,5 @@
 """Random Monster Class:
-Creating Random Monster Card. Name and map"""
+Creating Random Monster Card. Name and value mapper"""
 from abc import ABC
 
 

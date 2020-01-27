@@ -5,7 +5,7 @@ from enum import Enum
 
 
 class RandomEnemyCardValues(Enum):
-    """ Class for Random Enemy Card Values"""
+    """ Class for Random Enemy Card Values """
     MONSTER = 'monster'
     CHARACTER = 'character'
     WALL = 'wall'

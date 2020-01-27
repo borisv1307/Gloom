@@ -1,5 +1,5 @@
 """ FILE: foo.py
-    DESC: Flask routing file. Contains the flask application object.
+    DESC: Flask routing file. Contains the flask application object
 """
 
 from flask import Flask

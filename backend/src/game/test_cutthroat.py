@@ -1,4 +1,4 @@
-"""Test case for Cutthroat Class:
+"""Test case for Cutthroat Monster Card Class:
 Test cases for Cutthroat Monster Card
 """
 import pytest
