@@ -21,6 +21,9 @@ class DungeonCardValues(Enum):
     ENTRANCE_B = 'entrance b'
     EXIT_A = 'exit a'
     EXIT_B = 'exit b'
+
+
+class NumberedRoomTileValues(Enum):
     ONE = '1'
     TWO = '2'
     THREE = '3'
@@ -31,5 +34,5 @@ class DungeonCardValues(Enum):
     EIGHT = '8'
     NINE = '9'
     TEN = '10'
+    ELEVEN = '11'
     TWELVE = '12'
-
