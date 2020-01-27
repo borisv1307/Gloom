@@ -3,14 +3,20 @@ Test cases for Cutthroat Monster Card
 """
 import pytest
 
-from game.cutthroat import Cutthroat
-from game.values import RandomEnemyCardValues
+from backend.src.main.game.cutthroat import Cutthroat
+from backend.src.main.game.values import RandomEnemyCardValues
 
 
 @pytest.fixture(autouse=True)
 def cutthroat():
     """Getting Cutthroat object"""
-    return Cutthroat()
+    cutthroat = Cutthroat()
+    return cutthroat
+
+
+def test_if_cutthroat_can_be_instantaited():
+    """ ABC """
+    cut_throat = Cutthroat()
 
 
 def test_cutthroat_node_1_is_monster(cutthroat):

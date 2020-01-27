@@ -1,8 +1,8 @@
 """Creating Random Monster Card Class:
 Cutthroat
 """
-from game.random_monster_card import RandomMonsterCard
-from game.values import RandomEnemyCardValues
+from backend.src.main.game.random_monster_card import RandomMonsterCard
+from backend.src.main.game.values import RandomEnemyCardValues
 
 
 class Cutthroat(RandomMonsterCard):  # pylint: disable=too-few-public-methods
