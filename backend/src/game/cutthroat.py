@@ -1,8 +1,13 @@
+"""Creating Random Monster Card Class:
+Cutthroat
+"""
 from game.random_monster_card import RandomMonsterCard
 from game.values import RandomEnemyCardValues
 
 
-class Cutthroat(RandomMonsterCard):
+class Cutthroat(RandomMonsterCard):  # pylint: disable=too-few-public-methods
+    """ Class for Cutthroat Random Monster Card """
+
     def __init__(self):
         map_values = {1: RandomEnemyCardValues.MONSTER,
                       2: RandomEnemyCardValues.COIN,
