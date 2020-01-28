@@ -4,10 +4,12 @@ from backend.src.main.cards.card import Card
 
 
 def test_discard_starts_empty():
+    """Test if discard starts empty."""
     assert Discard().cards.__len__() == 0
 
 
 def test_add_card_to_discard():
+    """Test adding cards to discard."""
     discard = Discard()
     card = Card("Name")
     discard.add(card)
@@ -16,6 +18,7 @@ def test_add_card_to_discard():
 
 
 def test_remove_specific_card():
+    """Test removing cards."""
     discard = Discard()
     card_one = Card("card1")
     card_two = Card("card2")

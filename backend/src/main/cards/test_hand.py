@@ -4,10 +4,12 @@ from backend.src.main.cards.card import Card
 
 
 def test_hand_starts_empty():
+    """Test if hand starts empty."""
     assert Hand().cards.__len__() == 0
 
 
 def test_add_card_to_hand():
+    """Test adding cards to hand."""
     hand = Hand()
     card = Card("Name")
     hand.add(card)
@@ -16,6 +18,7 @@ def test_add_card_to_hand():
 
 
 def test_remove_specific_card():
+    """Test removing cards from hand."""
     hand = Hand()
     card_one = Card("card1")
     card_two = Card("card2")

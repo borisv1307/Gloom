@@ -7,10 +7,12 @@ from backend.src.main.cards.deck import Deck
 
 
 def test_deck_starts_empty():
+    """Test if deck starts empty."""
     assert Deck().card_deck.__len__() == 0
 
 
 def test_hand_moves_to_discard():
+    """Test if hand moves to discard."""
     hand = Hand()
     discard = Discard()
     card_one = Card("card1")
@@ -25,6 +27,7 @@ def test_hand_moves_to_discard():
 
 
 def test_discard_moves_to_lost():
+    """Test if discard moves to lost."""
     lost = Lost()
     discard = Discard()
     card_one = Card("card1")
@@ -48,6 +51,7 @@ def test_discard_moves_to_lost():
 
 
 def test_discard_moves_to_hand():
+    """Test if discard moves to hand."""
     hand = Hand()
     discard = Discard()
     card_one = Card("card1")

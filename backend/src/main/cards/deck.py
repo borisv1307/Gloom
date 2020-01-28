@@ -1,3 +1,5 @@
+"""Deck class."""
+
 from backend.src.main.cards.card import Card
 from backend.src.main.cards.hand import Hand
 from backend.src.main.cards.discard import Discard
@@ -13,13 +15,16 @@ class Deck:
         self.lost = Lost.Card = []
 
     def hand_to_discard(self, card: Card):
+        """Move cards from hand to discard."""
         self.hand.remove(card.name)
         self.discard.append(card.name)
 
     def discard_to_lost(self, card: Card):
+        """Move cards from discard to lost."""
         self.discard.remove(card.name)
         self.lost.append(card.name)
 
     def discard_to_hand(self, card: Card):
+        """Move cards from discard to lost."""
         self.discard.remove(card.name)
         self.hand.append(card.name)

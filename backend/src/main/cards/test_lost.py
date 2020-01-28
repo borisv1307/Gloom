@@ -4,10 +4,12 @@ from backend.src.main.cards.lost import Lost
 
 
 def test_lost_starts_empty():
+    """Test if lost starts empty."""
     assert Lost().cards.__len__() == 0
 
 
 def test_add_card_to_lost():
+    """Test adding cards to lost."""
     lost = Lost()
     card = Card("Name")
     lost.add(card)
@@ -16,6 +18,7 @@ def test_add_card_to_lost():
 
 
 def test_remove_specific_card():
+    """Test removing cards by name."""
     lost = Lost()
     card_one = Card("card1")
     card_two = Card("card2")

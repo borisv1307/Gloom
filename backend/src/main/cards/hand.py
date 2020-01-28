@@ -4,8 +4,10 @@ class Hand:
         self.cards = []
 
     def add(self, card):
+        """Add cards to hand."""
         self.cards.append(card)
 
     def remove(self, card):
+        """Remove cards from hand."""
         self.cards.remove(card)
 
