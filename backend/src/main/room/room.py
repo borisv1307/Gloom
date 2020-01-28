@@ -7,7 +7,7 @@ from backend.src.main.room.room_card_exceptions import DuplicateTileError
 class AbstractRoomCard:  # pylint: disable=too-few-public-methods
     """This class outlines basic Room Card    """
     EMPTY_TILE = 0
-    COIN_TILE = 99
+    OBSTACLE_TILE = 99
 
     def __init__(self, name):
         self.name = name

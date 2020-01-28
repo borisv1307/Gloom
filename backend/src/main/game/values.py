@@ -24,6 +24,7 @@ class DungeonCardValues(Enum):
 
 
 class NumberedRoomTileValues(Enum):
+    """Class for Numbered Tiles in Room"""
     ONE = '1'
     TWO = '2'
     THREE = '3'
