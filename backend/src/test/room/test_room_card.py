@@ -19,7 +19,7 @@ def test_add_tile(_test_room):
     """
     current_tile = (5, 10)
     _test_room.add_tile(0, 5, 10)
-    assert current_tile in _test_room.hexes
+    assert current_tile in _test_room.tiles
 
 
 def test_can_have_multiple_empty_tiles(_test_room):
@@ -29,11 +29,11 @@ def test_can_have_multiple_empty_tiles(_test_room):
     tile_two = (5, 12)
     _test_room.add_tile(0, 5, 11)
     _test_room.add_tile(0, 5, 12)
-    assert tile_one in _test_room.hexes
-    assert tile_two in _test_room.hexes
+    assert tile_one in _test_room.tiles
+    assert tile_two in _test_room.tiles
 
 
-def test_no_duplicate_character_number_in_room_hexes(_test_room):
+def test_no_duplicate_character_number_in_room_tiles(_test_room):
     """No tile can have same character_number
     """
     _test_room.add_tile(1, 5, 13)
@@ -54,3 +54,10 @@ def test_den_can_be_instantiate():
     """A room Den can be instantiated"""
     current_room = den.Den()
     assert current_room.name == "Den"
+
+
+def test_get_tiles_on_den_returns_list_of_tiles():
+    """ Check that we get a list """
+    current_room = den.Den()
+    expected = current_room.get_tiles()
+    assert isinstance(expected, list)

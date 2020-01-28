@@ -4,7 +4,7 @@ Card Values
 from enum import Enum
 
 
-class RandomEnemyCardValues(Enum):
+class DungeonCardValues(Enum):
     """ Class for Random Enemy Card Values """
     MONSTER = 'monster'
     CHARACTER = 'character'
@@ -15,5 +15,24 @@ class RandomEnemyCardValues(Enum):
     DIFFICULT_TERRAIN = 'difficult terrain'
     WALL_LINE = 'wall line'
     EMPTY = 'empty'
-    COIN = '1'
+    COIN = 'coin'
     TREASURE = '5 gold'
+    ENTRANCE_A = 'entrance a'
+    ENTRANCE_B = 'entrance b'
+    EXIT_A = 'exit a'
+    EXIT_B = 'exit b'
+
+
+class NumberedRoomTileValues(Enum):
+    ONE = '1'
+    TWO = '2'
+    THREE = '3'
+    FOUR = '4'
+    FIVE = '5'
+    SIX = '6'
+    SEVEN = '7'
+    EIGHT = '8'
+    NINE = '9'
+    TEN = '10'
+    ELEVEN = '11'
+    TWELVE = '12'
