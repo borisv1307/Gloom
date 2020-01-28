@@ -1,0 +1,196 @@
+{
+  "monsters": [
+    {
+      "name": "Ancient Artillery",
+      "image": "../Images/Ancient-Artillery.png"
+    },
+    {
+      "name": "Bandit Archer",
+      "image": "../Images/Bandit-Archer.png"
+    },
+    {
+      "name": "Bandit Guard",
+      "image": "../Images/Bandit-Guard.png"
+    },
+    {
+      "name": "Bandit Leader",
+      "image": "../Images/Bandit-Leader.png"
+    },
+    {
+      "name": "Black Imp",
+      "image": "../Images/Black-Imp.png"
+    },
+    {
+      "name": "Cave Bear",
+      "image": "../Images/Cave-Bear.png"
+    },
+    {
+      "name": "City Archer",
+      "image": "../Images/City-Archer.png"
+    },
+    {
+      "name": "City Guard",
+      "image": "../Images/City-Guard.png"
+    },
+    {
+      "name": "Cultist",
+      "image": "../Images/Cultist.png"
+    },
+    {
+      "name": "Dark Rider small",
+      "image": "../Images/Dark-Rider-small.png"
+    },
+    {
+      "name": "Deep Terror",
+      "image": "../Images/Deep-Terror.png"
+    },
+    {
+      "name": "Bandit Leader",
+      "image": "../Images/Bandit-Leader.png"
+    },
+    {
+      "name": "Earth Demon",
+      "image": "../Images/Earth-Demon.png"
+    },
+    {
+      "name": "Elder-Drake",
+      "image": "../Images/Elder-Drake.png"
+    },
+    {
+      "name": "Flame Demon",
+      "image": "../Images/Flame-Demon.png"
+    },
+    {
+      "name": "Forest Sprite",
+      "image": "../Images/Forest-Sprite.png"
+    },
+    {
+      "name": "Frost Demon",
+      "image": "../Images/Frost-Demon.png"
+    },
+    {
+      "name": "Ghost",
+      "image": "../Images/Ghost.png"
+    },
+    {
+      "name": "Giant Viper",
+      "image": "../Images/Giant-Viper.png"
+    },
+    {
+      "name": "Guard Captain",
+      "image": "../Images/Guard-Captain.png"
+    },
+    {
+      "name": "Harrower Infester",
+      "image": "../Images/Harrower-Infester.png"
+    },
+    {
+      "name": "Hound",
+      "image": "../Images/Hound.png"
+    },
+    {
+      "name": "Inox Archer",
+      "image": "../Images/Inox-Archer.png"
+    },
+    {
+      "name": "Inox Bodyguard",
+      "image": "../Images/Inox-Bodyguard.png"
+    },
+    {
+      "name": "Inox Guard",
+      "image": "../Images/Inox-Guard.png"
+    },
+    {
+      "name": "Inox Shaman",
+      "image": "../Images/Inox-Shaman.png"
+    },
+    {
+      "name": "Jekserah",
+      "image": "../Images/Jekserah.png"
+    },
+    {
+      "name": "Lurker",
+      "image": "../Images/Lurker.png"
+    },
+    {
+      "name": "Merciless Overseer",
+      "image": "../Images/Merciless-Overseer.png"
+    },
+    {
+      "name": "Night Demon",
+      "image": "../Images/Night-Demon.png"
+    },
+    {
+      "name": "Ooze",
+      "image": "../Images/Ooze.png"
+    },
+    {
+      "name": "Prime Demon",
+      "image": "../Images/Prime-Demon.png"
+    },
+    {
+      "name": "Savvas Icestorm",
+      "image": "../Images/Savvas-Icestorm.png"
+    },
+    {
+      "name": "Savvas Lavaflow",
+      "image": "../Images/Savvas-Lavaflow.png"
+    },
+    {
+      "name": "Skeleton",
+      "image": "../Images/Skeleton.png"
+    },
+    {
+      "name": "Spitting Drake",
+      "image": "../Images/Spitting-Drake.png"
+    },
+    {
+      "name": "Stone Golem",
+      "image": "../Images/Stone-Golem.png"
+    },
+    {
+      "name": "Sun Demon",
+      "image": "../Images/Sun-Demon.png"
+    },
+    {
+      "name": "The Bertayer",
+      "image": "../Images/The-Bertayer.png"
+    },
+    {
+      "name": "The Colorless",
+      "image": "../Images/The-Colorless.png"
+    },
+    {
+      "name": "The Gloom",
+      "image": "../Images/The-Gloom.png"
+    },
+    {
+      "name": "The Sightless Eye",
+      "image": "../Images/The-Sightless-Eye.png"
+    },
+    {
+      "name": "Vermling Scout",
+      "image": "../Images/Vermling-Scout.png"
+    },
+    {
+      "name": "Vermling Shaman",
+      "image": "../Images/Vermling-Shaman.png"
+    },
+    {
+      "name": "Vicious Drake",
+      "image": "../Images/Vicious-Drake.png"
+    },
+    {
+      "name": "Wind Demon",
+      "image": "../Images/Wind-Demon.png"
+    },
+    {
+      "name": "Winged Horror",
+      "image": "../Images/Winged Horror.png"
+    },
+    {
+      "name": "Zombie",
+      "image": "../Images/Zombie.png"
+    }
+  ]
+}
