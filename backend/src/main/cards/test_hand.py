@@ -1,3 +1,4 @@
+"""Test for Hand card adding and removing cards."""
 from backend.src.main.cards.hand import Hand
 from backend.src.main.cards.card import Card
 

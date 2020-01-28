@@ -1,3 +1,4 @@
+"""Test for Discard card adding and removing cards."""
 from backend.src.main.cards.discard import Discard
 from backend.src.main.cards.card import Card
 

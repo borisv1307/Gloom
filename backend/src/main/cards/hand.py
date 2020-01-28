@@ -1,5 +1,5 @@
 class Hand:
-
+    """Hand class for Hand card pile."""
     def __init__(self):
         self.cards = []
 

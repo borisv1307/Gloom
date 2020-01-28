@@ -1,5 +1,5 @@
 class Lost:
-
+    """Lost class for Lost card pile."""
     def __init__(self):
         self.cards = []
 

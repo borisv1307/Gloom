@@ -1,5 +1,5 @@
 class Discard:
-
+    """Discard class for Discard card pile."""
     def __init__(self):
         self.cards = []
 

@@ -1,3 +1,4 @@
+"""Test for Lost card adding and removing cards."""
 from backend.src.main.cards.card import Card
 from backend.src.main.cards.lost import Lost
 

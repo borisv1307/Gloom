@@ -5,6 +5,7 @@ from backend.src.main.cards.lost import Lost
 
 
 class Deck:
+    """Deck class to handle the Hand, Discard, and Lost plies."""
     def __init__(self):
         self.card_deck = []
         self.hand = Hand.Card = []
