@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {HexGrid, Layout, Hexagon, GridGenerator} from 'react-hexgrid';
 import './App.css';
-import CardsOnHand from "./CardsOnHand";
 
 class SquareHexGrid extends Component {
     render() {
@@ -24,8 +23,6 @@ class App extends Component {
                 <h1>Basic example of HexGrid usage.</h1>
                 <SquareHexGrid />
 
-                <h2>Basic example of Cards</h2>
-                <CardsOnHand />
             </div>
         );
     }
