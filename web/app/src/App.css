@@ -1,47 +1,43 @@
-svg {
-
+body {
+    margin: 0;
+    padding: 0em 1em;
+    font-family: sans-serif;
+    background: #000000;
+    color: white;
+    text-align: center;
 }
 
-/*
-Russian blue pattern:
-#7be3f6
-#4499a9
-#276a76
-#133b43
-#03090a
-*/
-svg g {
-    fill: #4499a9;
-    fill-opacity: 0.6;
+p {
+    max-width: 80%;
+    margin: 10px auto;
 }
 
-svg g:hover {
-    fill: #7be3f6;
-    fill-opacity: 0.7;
+h1 {
+    font-size: 300%;
 }
 
-svg g:hover text {
-    fill-opacity: 1;
+[draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -moz-user-drag: element;
+    -webkit-user-drag: element;
+    -khtml-user-drag: element;
+    user-drag: element;
 }
 
-svg g polygon {
-    stroke: #7be3f6;
-    stroke-width: 0.2;
-    transition: fill-opacity .5s;
+.game {
+    position: absolute;
+    top: 0;
+    left: 1em;
+    border-right: 1px solid grey;
+    width: 49%;
 }
 
-svg g text {
-    font-size: 0.22em;
-    fill: white;
-    fill-opacity: 0.7;
-    transition: fill-opacity .5s;
-}
-
-svg path {
-    fill: none;
-    stroke: #7be3f6;
-    stroke-width: 0.2em;
-    stroke-opacity: 0.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.tiles {
+    position: absolute;
+    top: 0;
+    right: 1em;
+    width: 49%;
 }
