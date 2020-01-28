@@ -1,5 +1,9 @@
+"""Lost class."""
+
+
 class Lost:
     """Lost class for Lost card pile."""
+
     def __init__(self):
         self.cards = []
 
@@ -10,4 +14,3 @@ class Lost:
     def remove(self, card):
         """Remove cards from lost."""
         self.cards.remove(card)
-

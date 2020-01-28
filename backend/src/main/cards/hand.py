@@ -1,5 +1,9 @@
+"""Hand class."""
+
+
 class Hand:
     """Hand class for Hand card pile."""
+
     def __init__(self):
         self.cards = []
 
@@ -10,4 +14,3 @@ class Hand:
     def remove(self, card):
         """Remove cards from hand."""
         self.cards.remove(card)
-

@@ -3,6 +3,7 @@
 
 class Discard:
     """Discard class for Discard card pile."""
+
     def __init__(self):
         self.cards = []
 
@@ -13,4 +14,3 @@ class Discard:
     def remove(self, card):
         """Remove cards from discard."""
         self.cards.remove(card)
-
