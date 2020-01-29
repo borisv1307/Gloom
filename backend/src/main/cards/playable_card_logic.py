@@ -19,3 +19,4 @@ class PlayableCardLogic(Cards):
     def discard_to_hand(self, card: Card):
         self.discard.remove(card.name)
         self.hand.add(card.name)
+

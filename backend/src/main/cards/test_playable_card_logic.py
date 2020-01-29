@@ -64,3 +64,4 @@ def test_discard_moves_to_hand():
     assert discard.cards.__getitem__(0) == card_two
     assert discard.cards.__getitem__(1) == card_three
     assert hand.cards.__getitem__(0) == card_one
+

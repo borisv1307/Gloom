@@ -27,3 +27,4 @@ def test_remove_card_from_card_deck():
     assert cards.cards.__len__() == 2
     assert cards.cards.__getitem__(0) == card_one
     assert cards.cards.__getitem__(1) == card_three
+
