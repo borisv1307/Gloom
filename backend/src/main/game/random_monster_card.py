@@ -3,7 +3,7 @@ Creating Random Monster Card. Name and value mapper"""
 from abc import ABC
 
 
-class RandomMonsterCard(ABC):  # pylint: disable=too-few-public-methods
+class AbstractMonsterCard(ABC):  # pylint: disable=too-few-public-methods
     """ Class for Random Monster Card """
 
     def __init__(self, name, map_values):
