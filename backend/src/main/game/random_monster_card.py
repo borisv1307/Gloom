@@ -1,12 +1,12 @@
 """Random Monster Class:
 Creating Random Monster Card. Name and value mapper"""
 from abc import ABC
-from backend.src.main.game.values import NumberedRoomTileValues
+
 
 class RandomMonsterCard(ABC):  # pylint: disable=too-few-public-methods
     """ Class for Random Monster Card """
 
-    def __init__(self, name, map_values={}):
+    def __init__(self, name, map_values):
         self.map_values = map_values
         self.name = name
 
