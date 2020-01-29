@@ -38,4 +38,4 @@ def test_get_tiles_returns_no_instances_of_numbered_tiles():
     tiles = dungeon.get_tiles()
 
     for tile in tiles:
-        assert tile.character_number not in NumberedRoomTileValues
+        assert not isinstance(tile.character_number, NumberedRoomTileValues)

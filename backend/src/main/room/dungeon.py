@@ -24,4 +24,4 @@ class Dungeon:
 
     @staticmethod
     def is_tile_numbered_tile(tile):
-        return tile.character_number in NumberedRoomTileValues
+        return isinstance(tile.character_number, NumberedRoomTileValues)
