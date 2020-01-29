@@ -1,8 +1,7 @@
-
 from backend.src.main.game.values import NumberedRoomTileValues
 
 
-class Dungeon:
+class ConstructedRoom:
     def __init__(self, room_card, monster_card):
         self.room_card = room_card
         self.monster_card = monster_card
