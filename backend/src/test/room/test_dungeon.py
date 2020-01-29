@@ -11,7 +11,7 @@ def test_numbered_tile_is_numbered_tile():
     assert Dungeon.is_tile_numbered_tile(numbered_five_tile) is True
 
 
-def test_obstactle_tile_is_not_numbered_tile():
+def test_obstacle_tile_is_not_numbered_tile():
     obstacle_tile = Tile(0, 0, DungeonCardValues.OBSTACLE)
     assert Dungeon.is_tile_numbered_tile(obstacle_tile) is False
 
