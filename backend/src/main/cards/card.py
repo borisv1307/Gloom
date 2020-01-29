@@ -1,9 +1,7 @@
-"""Card class."""
 from abc import ABC
 
 
-class Card(ABC):
-    """Card class to init card."""
+class Card(ABC):  # pylint:disable=too-few-public-methods
 
     def __init__(self, name):
         self.name = name
