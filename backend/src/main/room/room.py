@@ -1,9 +1,9 @@
+from abc import ABC
 from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.room_card_exceptions import DuplicateTileError
 
 
-class AbstractRoomCard:  # pylint: disable=too-few-public-methods
-
+class AbstractRoomCard(ABC):  # pylint: disable=too-few-public-methods
     def __init__(self, name):
         self.name = name
         self.tiles = {}
