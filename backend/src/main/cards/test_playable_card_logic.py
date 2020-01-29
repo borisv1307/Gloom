@@ -1,20 +1,17 @@
-"""Test for deck card adding and removing cards between decks."""
-from backend.src.main.cards.hand import Hand
-from backend.src.main.cards.discard import Discard
-from backend.src.main.cards.lost import Lost
+from backend.src.main.cards.cards import Cards
 from backend.src.main.cards.card import Card
-from backend.src.main.cards.deck import Deck
+from backend.src.main.cards.playable_card_logic import PlayableCardLogic
 
 
-def test_deck_starts_empty():
-    """Test if deck starts empty."""
-    assert Deck().card_deck.__len__() == 0
+def test_hand_discard_lost_starts_empty():
+    assert PlayableCardLogic().hand.__len__() == 0
+    assert PlayableCardLogic().discard.__len__() == 0
+    assert PlayableCardLogic().lost.__len__() == 0
 
 
 def test_hand_moves_to_discard():
-    """Test if hand moves to discard."""
-    hand = Hand()
-    discard = Discard()
+    hand = Cards()
+    discard = Cards()
     card_one = Card("card1")
     hand.add(card_one)
     assert hand.cards.__len__() == 1
@@ -27,9 +24,8 @@ def test_hand_moves_to_discard():
 
 
 def test_discard_moves_to_lost():
-    """Test if discard moves to lost."""
-    lost = Lost()
-    discard = Discard()
+    lost = Cards()
+    discard = Cards()
     card_one = Card("card1")
     card_two = Card("card2")
     discard.add(card_two)
@@ -51,9 +47,8 @@ def test_discard_moves_to_lost():
 
 
 def test_discard_moves_to_hand():
-    """Test if discard moves to hand."""
-    hand = Hand()
-    discard = Discard()
+    hand = Cards()
+    discard = Cards()
     card_one = Card("card1")
     card_two = Card("card2")
     card_three = Card("card3")
