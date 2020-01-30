@@ -13,11 +13,11 @@ def test_hand_moves_to_discard():
     hand = Cards()
     discard = Cards()
     card_one = Card("card1")
-    hand.add(card_one)
+    hand.append(card_one)
     assert hand.cards.__len__() == 1
 
     hand.remove(card_one)
-    discard.add(card_one)
+    discard.append(card_one)
     assert hand.cards.__len__() == 0
     assert discard.cards.__len__() == 1
     assert discard.cards.__getitem__(0) == card_one
@@ -28,19 +28,19 @@ def test_discard_moves_to_lost():
     discard = Cards()
     card_one = Card("card1")
     card_two = Card("card2")
-    discard.add(card_two)
-    discard.add(card_one)
+    discard.append(card_two)
+    discard.append(card_one)
     assert discard.cards.__len__() == 2
 
     discard.remove(card_one)
-    lost.add(card_one)
+    lost.append(card_one)
     assert discard.cards.__len__() == 1
     assert lost.cards.__len__() == 1
     assert discard.cards.__getitem__(0) == card_two
     assert lost.cards.__getitem__(0) == card_one
 
     discard.remove(card_two)
-    lost.add(card_two)
+    lost.append(card_two)
     assert discard.cards.__len__() == 0
     assert lost.cards.__len__() == 2
     assert lost.cards.__getitem__(1) == card_two
@@ -52,13 +52,13 @@ def test_discard_moves_to_hand():
     card_one = Card("card1")
     card_two = Card("card2")
     card_three = Card("card3")
-    discard.add(card_two)
-    discard.add(card_one)
-    discard.add(card_three)
+    discard.append(card_two)
+    discard.append(card_one)
+    discard.append(card_three)
     assert discard.cards.__len__() == 3
 
     discard.remove(card_one)
-    hand.add(card_one)
+    hand.append(card_one)
     assert discard.cards.__len__() == 2
     assert hand.cards.__len__() == 1
     assert discard.cards.__getitem__(0) == card_two

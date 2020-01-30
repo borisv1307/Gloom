@@ -4,7 +4,7 @@ class Cards:
     def __init__(self):
         self.cards = []
 
-    def add(self, card):
+    def append(self, card):
         self.cards.append(card)
 
     def remove(self, card):
