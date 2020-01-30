@@ -1,10 +1,8 @@
-"""This class is for Room Den tile mapping"""
 from backend.src.main.game.values import NumberedRoomTileValues, DungeonCardValues
 from backend.src.main.room.room import AbstractRoomCard
 
 
 class Den(AbstractRoomCard):  # pylint: disable=too-few-public-methods
-    """Den inherits RoomCard"""
 
     def __init__(self):
         AbstractRoomCard.__init__(self, "Den")

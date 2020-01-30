@@ -1,11 +1,7 @@
-"""Values for Enemy Card Values:
-Card Values
-"""
 from enum import Enum
 
 
 class DungeonCardValues(Enum):
-    """ Class for Random Enemy Card Values """
     MONSTER = 'monster'
     CHARACTER = 'character'
     WALL = 'wall'
@@ -24,7 +20,6 @@ class DungeonCardValues(Enum):
 
 
 class NumberedRoomTileValues(Enum):
-    """Class for Numbered Tiles in Room"""
     ONE = '1'
     TWO = '2'
     THREE = '3'

@@ -1,10 +1,8 @@
-"""This class is for Room Den tile mapping"""
 from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
 from backend.src.main.room.room import AbstractRoomCard
 
 
 class Burrow(AbstractRoomCard):  # pylint: disable=too-few-public-methods
-    """Burrow inherits RoomCard - Orient-Flat"""
 
     def __init__(self):
         AbstractRoomCard.__init__(self, "Burrow")
