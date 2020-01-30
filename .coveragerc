@@ -7,4 +7,5 @@ exclude_lines =
     if __name__ == .__main__.:
 
 omit = *\__init__.py
-        backend\src\test\*
+        backend\src\test
+        backend\src\main\room\concrete_room_cards*

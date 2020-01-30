@@ -3,7 +3,8 @@
 """
 
 import unittest
-from backend.src.main.flask.app import get_handler
+
+from backend.src.main.flask.app import get_handler  # pylint: disable=no-name-in-module
 
 
 class TestFlask(unittest.TestCase):

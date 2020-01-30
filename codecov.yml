@@ -1,0 +1,2 @@
+ignore:
+  - backend/src/main/room/concrete_room_cards/*.py
