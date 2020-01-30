@@ -1,8 +1,7 @@
 from backend.src.main.cards.card import Card
-from backend.src.main.cards.cards import Cards
 
 
-class PlayableCardLogic(Cards):
+class PlayableCardLogic:
     def __init__(self):
         self.hand = []
         self.discard = []

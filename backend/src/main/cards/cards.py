@@ -1,7 +1,5 @@
-from backend.src.main.cards.card import Card
 
-
-class Cards(Card):
+class Cards:
 
     def __init__(self):
         self.cards = []
