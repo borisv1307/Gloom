@@ -16,21 +16,35 @@ class EntityLayout extends Component {
             hazard: "Hazardous Terrain",
             dangerous: "Dangerous Terrain"
         });
-        // TODO: Initialize hexagons with enums, currently all the entities are called temp with no images
+// TODO: Fix color fill issue, currently the value is a string field that doesn't get parsed right for the library
+        const EntityImageEnum = Object.freeze({
+            character: "#9a2132",
+            monster: "#9a2132",
+            wall: "#9a2132",
+            obstacle: "#9a2132",
+            trap: "#9a2132",
+            empty: "#9a2132",
+            hazard: "#9a2132",
+            dangerous: "#9a2132"
+        });
+
+        var name_vals = Object.values(EntityEnum);
+        var image_vals = Object.values(EntityImageEnum);
+
         const hexagons = GridGenerator.parallelogram(-1, 1, -1, 2).map((hexagon, index) => {
                 return Object.assign({}, hexagon, {
-                        text: "Temp"
+                        text: name_vals[index],
+                        image: image_vals[index]
                     }
                 );
             }
-        )
+        );
         this.state = {hexagons};
     }
 
     onDrop(event, source, targetProps) {
         const {hexagons} = this.state;
         const hexes = hexagons.map(hex => {
-            // When hexagon is dropped on this hexagon, copy it's image and text
             if (HexUtils.equals(source.state.hex, hex)) {
                 hex.image = targetProps.data.image;
                 hex.text = targetProps.data.text;
@@ -41,34 +55,27 @@ class EntityLayout extends Component {
     }
 
     onDragStart(event, source) {
-        // Could do something on onDragStart as well, if you wish
+
     }
 
-// Decide here if you want to allow drop to this node
     onDragOver(event, source) {
-        // Find blocked hexagons by their 'blocked' attribute
         const blockedHexes = this.state.hexagons.filter(h => h.blocked);
-        // Find if this hexagon is listed in blocked ones
         const blocked = blockedHexes.find(blockedHex => {
             return HexUtils.equals(source.state.hex, blockedHex);
         });
 
         const {text} = source.props.data;
-        // Allow drop, if not blocked and there's no content already
         if (!blocked && !text) {
-            // Call preventDefault if you want to allow drop
             event.preventDefault();
         }
     }
 
-// onDragEnd you can do some logic, e.g. to clean up hexagon if drop was success
     onDragEnd(event, source, success) {
         if (!success) {
             return;
         }
         const {hexagons} = this.state;
-        // TODO Drop the whole hex from array, currently somethings wrong with the patterns
-        // const hexas = hexagons.filter(hex => !HexUtils.equals(targetHex, hex));
+
         const hexas = hexagons.map(hex => {
             if (HexUtils.equals(source.state.hex, hex)) {
                 hex.text = null;
