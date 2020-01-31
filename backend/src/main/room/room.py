@@ -1,6 +1,7 @@
 from abc import ABC
 from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.room_card_exceptions import DuplicateTileError
+from backend.src.main.room.tile import Tile
 
 
 class AbstractRoomCard(ABC):  # pylint: disable=too-few-public-methods
@@ -24,10 +25,3 @@ class AbstractRoomCard(ABC):  # pylint: disable=too-few-public-methods
             current_tile = Tile(coordinate[0], coordinate[1], value)
             output_tiles.append(current_tile)
         return output_tiles
-
-
-class Tile:  # pylint: disable=too-few-public-methods
-    def __init__(self, x, y, character_number):
-        self.x_coordinate = x
-        self.y_coordinate = y
-        self.character_number = character_number
