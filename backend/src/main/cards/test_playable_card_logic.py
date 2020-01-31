@@ -10,57 +10,60 @@ def test_hand_discard_lost_starts_empty():
 
 
 def test_hand_moves_to_discard():
-    hand = Cards()
-    discard = Cards()
-    card_one = Card("card1")
-    hand.append(card_one)
-    assert hand.cards.__len__() == 1
+    card = Card
+    PlayableCardLogic.hand = Cards()
+    PlayableCardLogic.discard = Cards()
+    card_one = card("card1")
+    PlayableCardLogic.hand.append(card_one)
+    assert PlayableCardLogic.hand.cards.__len__() == 1
 
-    hand.remove(card_one)
-    discard.append(card_one)
-    assert hand.cards.__len__() == 0
-    assert discard.cards.__len__() == 1
-    assert discard.cards.__getitem__(0) == card_one
+    PlayableCardLogic.hand.remove(card_one)
+    PlayableCardLogic.discard.append(card_one)
+    assert PlayableCardLogic.hand.cards.__len__() == 0
+    assert PlayableCardLogic.discard.cards.__len__() == 1
+    assert PlayableCardLogic.discard.cards.__getitem__(0) == card_one
 
 
 def test_discard_moves_to_lost():
-    lost = Cards()
-    discard = Cards()
-    card_one = Card("card1")
-    card_two = Card("card2")
-    discard.append(card_two)
-    discard.append(card_one)
-    assert discard.cards.__len__() == 2
+    card = Card
+    PlayableCardLogic.lost = Cards()
+    PlayableCardLogic.discard = Cards()
+    card_one = card("card1")
+    card_two = card("card2")
+    PlayableCardLogic.discard.append(card_two)
+    PlayableCardLogic.discard.append(card_one)
+    assert PlayableCardLogic.discard.cards.__len__() == 2
 
-    discard.remove(card_one)
-    lost.append(card_one)
-    assert discard.cards.__len__() == 1
-    assert lost.cards.__len__() == 1
-    assert discard.cards.__getitem__(0) == card_two
-    assert lost.cards.__getitem__(0) == card_one
+    PlayableCardLogic.discard.remove(card_one)
+    PlayableCardLogic.lost.append(card_one)
+    assert PlayableCardLogic.discard.cards.__len__() == 1
+    assert PlayableCardLogic.lost.cards.__len__() == 1
+    assert PlayableCardLogic.discard.cards.__getitem__(0) == card_two
+    assert PlayableCardLogic.lost.cards.__getitem__(0) == card_one
 
-    discard.remove(card_two)
-    lost.append(card_two)
-    assert discard.cards.__len__() == 0
-    assert lost.cards.__len__() == 2
-    assert lost.cards.__getitem__(1) == card_two
+    PlayableCardLogic.discard.remove(card_two)
+    PlayableCardLogic.lost.append(card_two)
+    assert PlayableCardLogic.discard.cards.__len__() == 0
+    assert PlayableCardLogic.lost.cards.__len__() == 2
+    assert PlayableCardLogic.lost.cards.__getitem__(1) == card_two
 
 
 def test_discard_moves_to_hand():
-    hand = Cards()
-    discard = Cards()
-    card_one = Card("card1")
-    card_two = Card("card2")
-    card_three = Card("card3")
-    discard.append(card_two)
-    discard.append(card_one)
-    discard.append(card_three)
-    assert discard.cards.__len__() == 3
+    card = Card
+    PlayableCardLogic.hand = Cards()
+    PlayableCardLogic.discard = Cards()
+    card_one = card("card1")
+    card_two = card("card2")
+    card_three = card("card3")
+    PlayableCardLogic.discard.append(card_two)
+    PlayableCardLogic.discard.append(card_one)
+    PlayableCardLogic.discard.append(card_three)
+    assert PlayableCardLogic.discard.cards.__len__() == 3
 
-    discard.remove(card_one)
-    hand.append(card_one)
-    assert discard.cards.__len__() == 2
-    assert hand.cards.__len__() == 1
-    assert discard.cards.__getitem__(0) == card_two
-    assert discard.cards.__getitem__(1) == card_three
-    assert hand.cards.__getitem__(0) == card_one
+    PlayableCardLogic.discard.remove(card_one)
+    PlayableCardLogic.hand.append(card_one)
+    assert PlayableCardLogic.discard.cards.__len__() == 2
+    assert PlayableCardLogic.hand.cards.__len__() == 1
+    assert PlayableCardLogic.discard.cards.__getitem__(0) == card_two
+    assert PlayableCardLogic.discard.cards.__getitem__(1) == card_three
+    assert PlayableCardLogic.hand.cards.__getitem__(0) == card_one
