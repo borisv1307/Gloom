@@ -3,6 +3,7 @@ from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.concrete_room_cards.burrow import Burrow
 from backend.src.main.room.concrete_room_cards.hovel import Hovel
 from backend.src.main.room.concrete_room_cards.trail import Trail
+from backend.src.main.room.concrete_room_cards.tunnel import Tunnel
 from backend.src.main.tile.tile import Tile
 from backend.src.main.tile.tile_geometry import TileGeometry
 
@@ -165,3 +166,47 @@ def test_center_burrow_on_entrance_b(tile_geometry):
     tile = tile_geometry.get_entrance_b(actual)
     assert tile == Tile(0, 0, DungeonCardValues.ENTRANCE_B)
     assert isinstance(actual, Burrow)
+
+
+def test_center_room_on_tile_type_that_room_does_not_have_raises_value_error(tile_geometry):
+    room = Burrow()
+    assert not tile_geometry.has_entrance_a(room)
+    with pytest.raises(ValueError):
+        tile_geometry.center_room_on_tile_type(room, DungeonCardValues.ENTRANCE_A)
+
+
+def test_get_exit_b_on_burrow(tile_geometry):
+    room = Burrow()
+    actual = tile_geometry.get_exit_b(room)
+    assert actual == Tile(-1, -4, DungeonCardValues.EXIT_B)
+
+
+def test_recenter_room_on_tile(tile_geometry):
+    room = Burrow()
+    tile = tile_geometry.get_entrance_b(room)
+    actual = tile_geometry.center_room_on_tile(room, tile)
+
+    assert tile_geometry.get_entrance_b(actual) == Tile(0, 0, DungeonCardValues.ENTRANCE_B)
+
+
+def test_center_on_entrance_b_causes_entrance_to_have_coordinate_0_0(tile_geometry):
+    room = Tunnel()
+    new_room = tile_geometry.center_on_entrance_b(room)
+    actual = tile_geometry.get_entrance_b(new_room)
+
+    assert actual == Tile(0, 0, DungeonCardValues.ENTRANCE_B)
+    assert actual.get_x() == 0
+    assert actual.get_y() == 0
+
+# def test_center_tunnel_on_top_of_burrow_on_waypoint_a_causes_waypoint_to_match_coordinates(tile_geometry):
+#     room_one = Burrow()
+#     room_two = Tunnel()
+#
+#     moved_room = tile_geometry.center_room_a_on_room_b_by_waypoint_b(room_one, room_two)
+#
+#     exit_waypoint = tile_geometry.get_entrance_b(room_one)
+#     entry_waypoint = tile_geometry.get_entrance_b(moved_room)
+#
+#     assert exit_waypoint.get_x() == entry_waypoint.get_x()
+#     assert exit_waypoint.get_y() == entry_waypoint.get_y()
+#
