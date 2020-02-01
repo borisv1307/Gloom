@@ -10,7 +10,7 @@ def test_tile_with_same_attributes_are_equal():
 def test_tile_and_dog_object_are_not_equal():
     tile = Tile(0, 0, None)
 
-    class Dog:
+    class Dog:  # pylint: disable=too-few-public-methods
         pass
 
     assert Dog() != tile
@@ -20,5 +20,3 @@ def test_tiles_with_different_attributes_are_not_equal():
     tile_one = Tile(1, 2, 3)
     tile_two = Tile(4, 5, 6)
     assert tile_one != tile_two
-
-
