@@ -19,3 +19,7 @@ class Tile:  # pylint: disable=too-few-public-methods
         return other.y_coordinate == self.y_coordinate and \
             other.x_coordinate == self.x_coordinate and \
             other.character_number == self.character_number
+
+    def __repr__(self):
+        return "{} {} {}".format(self.x_coordinate, self.y_coordinate, self.character_number)
+

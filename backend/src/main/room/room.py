@@ -1,5 +1,5 @@
 from abc import ABC
-from backend.src.main.game.values import DungeonCardValues
+from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
 from backend.src.main.room.room_card_exceptions import DuplicateTileError
 from backend.src.main.room.tile import Tile
 
@@ -11,8 +11,8 @@ class AbstractRoomCard(ABC):  # pylint: disable=too-few-public-methods
 
     def add_tile(self, character_number, x_value, y_value):
         coordinates = (x_value, y_value)
-        if character_number in self.tiles.values() \
-                and character_number is not DungeonCardValues.EMPTY:
+        if isinstance(character_number, NumberedRoomTileValues) \
+                and character_number in self.tiles.values():
             raise DuplicateTileError
         if coordinates in self.tiles:
             raise DuplicateTileError

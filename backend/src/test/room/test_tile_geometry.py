@@ -1,4 +1,7 @@
 from backend.src.main.game.values import DungeonCardValues
+from backend.src.main.room.concrete_room_cards.burrow import Burrow
+from backend.src.main.room.concrete_room_cards.hovel import Hovel
+from backend.src.main.room.concrete_room_cards.trail import Trail
 from backend.src.main.room.tile import Tile
 from backend.src.main.room.tile_geometry import TileGeometry
 
@@ -69,3 +72,87 @@ def test_recenters_list_of_tiles_around_a_tile():
     assert new_tile_one.get_y() == expected_tile_one_y
     assert new_tile_two.get_x() == expected_tile_two_x
     assert new_tile_two.get_y() == expected_tile_two_y
+
+
+def test_is_entrance_a_on_tile_returns_true():
+    tile = Tile(0, 0, DungeonCardValues.ENTRANCE_A)
+    actual = TileGeometry.is_entrance_a(tile)
+    expected = True
+    assert actual == expected
+
+
+def test_is_entrance_a_on_non_entrance_return_false():
+    tile = Tile(0, 0, DungeonCardValues.ENTRANCE_B)
+    actual = TileGeometry.is_entrance_a(tile)
+    expected = False
+    assert actual == expected
+
+
+def test_is_entrance_b_on_tile_returns_true():
+    tile = Tile(0, 0, DungeonCardValues.ENTRANCE_B)
+    actual = TileGeometry.is_entrance_b(tile)
+    expected = True
+    assert actual == expected
+
+
+def test_is_entrance_b_on_non_entrance_return_false():
+    tile = Tile(0, 0, DungeonCardValues.ENTRANCE_A)
+    actual = TileGeometry.is_entrance_b(tile)
+    expected = False
+    assert actual == expected
+
+
+def test_has_entrance_b_on_trail_returns_false():
+    room = Trail()
+    tile_geometry = TileGeometry()
+    actual = tile_geometry.has_entrance_b(room)
+    expected = False
+    assert actual == expected
+
+
+def test_has_entrance_b_on_hovel_returns_true():
+    room = Hovel()
+    tile_geometry = TileGeometry()
+    actual = tile_geometry.has_entrance_b(room)
+    expected = True
+    assert actual == expected
+
+
+def test_has_entrance_a_on_trail_returns_true():
+    room = Trail()
+    tile_geometry = TileGeometry()
+    actual = tile_geometry.has_entrance_a(room)
+    expected = True
+    assert actual == expected
+
+
+def test_has_entrance_a_on_burrow_returns_false():
+    room = Burrow()
+    tile_geometry = TileGeometry()
+    actual = tile_geometry.has_entrance_a(room)
+    expected = False
+    assert actual == expected
+
+
+def test_get_entrance_a_on_trail_returns_entrance_tile():
+    room = Trail()
+    tile_geometry = TileGeometry()
+    actual = tile_geometry.get_entrance_a(room)
+    expected = Tile(-2, 5, DungeonCardValues.ENTRANCE_A)
+    assert actual == expected
+
+
+def test_get_entrance_b_on_hovel_returns_entrance_tile():
+    room = Hovel()
+    tile_geometry = TileGeometry()
+    actual = tile_geometry.get_entrance_b(room)
+    expected = Tile(0, 3, DungeonCardValues.ENTRANCE_B)
+    assert actual == expected
+
+
+# def test_center_burrow_on_entrance_a():
+#     room = Burrow()
+#     tile_geometry = TileGeometry()
+#     actual = tile_geometry.center_on_entrance_a(room)
+#     tile = tile_geometry.get_entrance_a(actual)
+#     assert tile == Tile(0, 0, DungeonCardValues.ENTRANCE_A)
