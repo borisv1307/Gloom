@@ -1,4 +1,4 @@
-from backend.src.main.room.tile import Tile
+from backend.src.main.tile.tile import Tile
 from backend.src.main.room.concrete_room_cards.den import Den
 from backend.src.main.game.values import NumberedRoomTileValues, DungeonCardValues
 from backend.src.main.room.constructed_room import ConstructedRoom

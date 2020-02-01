@@ -2,8 +2,8 @@ from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.concrete_room_cards.burrow import Burrow
 from backend.src.main.room.concrete_room_cards.hovel import Hovel
 from backend.src.main.room.concrete_room_cards.trail import Trail
-from backend.src.main.room.tile import Tile
-from backend.src.main.room.tile_geometry import TileGeometry
+from backend.src.main.tile.tile import Tile
+from backend.src.main.tile.tile_geometry import TileGeometry
 
 
 def test_recentering_tile_0_0_returns_tile_with_coordinates_0_0():

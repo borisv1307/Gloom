@@ -1,5 +1,5 @@
 from backend.src.main.game.values import DungeonCardValues
-from backend.src.main.room.tile import Tile
+from backend.src.main.tile.tile import Tile
 
 
 class TileGeometry:

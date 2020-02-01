@@ -1,4 +1,4 @@
-from backend.src.main.room.tile import Tile
+from backend.src.main.tile.tile import Tile
 
 
 def test_tile_with_same_attributes_are_equal():

@@ -1,7 +1,7 @@
 from abc import ABC
 from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
 from backend.src.main.room.room_card_exceptions import DuplicateTileError
-from backend.src.main.room.tile import Tile
+from backend.src.main.tile.tile import Tile
 
 
 class AbstractRoomCard(ABC):  # pylint: disable=too-few-public-methods
