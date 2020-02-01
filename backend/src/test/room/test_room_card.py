@@ -5,6 +5,7 @@ from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValu
 from backend.src.main.room import room
 from backend.src.main.room.concrete_room_cards import den
 from backend.src.main.room.room_card_exceptions import DuplicateTileError
+from backend.src.main.tile.tile import Tile
 
 
 @pytest.fixture
@@ -13,14 +14,14 @@ def _test_room():
 
 
 def test_add_tile(_test_room):
-    current_tile = (5, 10)
+    current_tile = Tile(5, 10, DungeonCardValues.EMPTY)
     _test_room.add_tile(DungeonCardValues.EMPTY, 5, 10)
     assert current_tile in _test_room.tiles
 
 
 def test_can_have_multiple_empty_tiles(_test_room):
-    tile_one = (5, 11)
-    tile_two = (5, 12)
+    tile_one = Tile(5, 11, DungeonCardValues.EMPTY)
+    tile_two = Tile(5, 12, DungeonCardValues.EMPTY)
     _test_room.add_tile(DungeonCardValues.EMPTY, 5, 11)
     _test_room.add_tile(DungeonCardValues.EMPTY, 5, 12)
     assert tile_one in _test_room.tiles

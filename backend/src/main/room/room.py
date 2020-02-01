@@ -7,21 +7,23 @@ from backend.src.main.tile.tile import Tile
 class AbstractRoomCard(ABC):  # pylint: disable=too-few-public-methods
     def __init__(self, name):
         self.name = name
-        self.tiles = {}
+        self.tiles = []
 
     def add_tile(self, character_number, x_value, y_value):
+        new_tile = Tile(x_value, y_value, character_number)
         coordinates = (x_value, y_value)
+        coordinates_in_tile_list = ((tile.get_x(), tile.get_y()) for tile in self.tiles)
+        attributes = (tile.get_character_number() for tile in self.tiles)
+
         if isinstance(character_number, NumberedRoomTileValues) \
-                and character_number in self.tiles.values():
+                and character_number in attributes:
             raise DuplicateTileError
-        if coordinates in self.tiles:
+        if coordinates in coordinates_in_tile_list:
             raise DuplicateTileError
-        self.tiles[coordinates] = character_number
+        self.tiles.append(new_tile)
 
     def get_tiles(self):
-        output_tiles = []
-        for coordinate in self.tiles:
-            value = self.tiles[coordinate]
-            current_tile = Tile(coordinate[0], coordinate[1], value)
-            output_tiles.append(current_tile)
-        return output_tiles
+        return self.tiles
+
+    def get_name(self):
+        return self.name
