@@ -27,3 +27,6 @@ class AbstractRoomCard(ABC):  # pylint: disable=too-few-public-methods
 
     def get_name(self):
         return self.name
+
+    def set_tiles(self, new_tiles):
+        self.tiles = new_tiles
