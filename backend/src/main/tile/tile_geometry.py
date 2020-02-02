@@ -5,6 +5,16 @@ from backend.src.main.tile.tile import Tile
 
 
 class TileGeometry:
+    def overlay_room_a_on_room_b_by_waypoint_b(self, room_a, room_b):
+        current_room_b = room_b
+        for i in range(6):
+            new_room_b = self.center_room_a_on_room_b_by_waypoint_b(room_a, current_room_b)
+            new_room_b = self.remove_tile_by_type(new_room_b, DungeonCardValues.ENTRANCE_B)
+            if not self.do_rooms_overlap(room_a, new_room_b):
+                return new_room_b
+            current_room_b = current_room_b.rotate()
+        raise AssertionError("This algorithm is straight retarded")
+
     @staticmethod
     def do_rooms_overlap(room_a: AbstractRoomCard, room_b: AbstractRoomCard) -> bool:
         for tile_a in room_a.get_tiles():
@@ -89,6 +99,14 @@ class TileGeometry:
 
     def get_exit_b(self, room):
         return self.get_tile_by_type(room, DungeonCardValues.EXIT_B)
+
+    def remove_tile_by_type(self, room, card_type):
+        tiles = room.get_tiles()
+        tile_to_remove = self.get_tile_by_type(room, card_type)
+        new_tiles = [tile for tile in tiles if tile != tile_to_remove]
+        new_room = room.clone()
+        new_room.set_tiles(new_tiles)
+        return new_room
 
     def get_tile_by_type(self, room, card_type):
         for tile in room.get_tiles():

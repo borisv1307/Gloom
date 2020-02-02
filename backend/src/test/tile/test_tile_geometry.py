@@ -247,3 +247,20 @@ def test_do_rooms_overlap_with_overlapping_tiles_returns_true(tile_geometry):
     room_two.set_tiles([Tile(1, 1, None), Tile(3, 3, None)])
 
     assert tile_geometry.do_rooms_overlap(room_one, room_two)
+
+
+def test_remove_tile_by_type(tile_geometry):
+    room = Burrow()
+    new_room = tile_geometry.remove_tile_by_type(room, DungeonCardValues.ENTRANCE_B)
+
+    assert not tile_geometry.has_tile_of_type(new_room, DungeonCardValues.ENTRANCE_B)
+    assert new_room.get_name() == room.get_name()
+
+
+def test_overlay_room_b_on_room_a_returns_room_b_after_rotation(tile_geometry):
+    room_one = Burrow()
+    room_two = Tunnel()
+
+    moved_room = tile_geometry.overlay_room_a_on_room_b_by_waypoint_b(room_one, room_two)
+
+    assert moved_room is not None
