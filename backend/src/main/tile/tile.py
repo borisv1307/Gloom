@@ -4,6 +4,14 @@ class Tile:  # pylint: disable=too-few-public-methods
         self.y_coordinate = y
         self.character_number = character_number
 
+    def rotate(self):
+        new_x = - self.get_z()
+        new_y = - self.get_x()
+        return Tile(new_x, new_y, self.get_character_number())
+
+    def get_z(self):
+        return - (self.get_x() + self.get_y())
+
     def get_x(self):
         return self.x_coordinate
 
