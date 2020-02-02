@@ -1,6 +1,4 @@
 # pylint: disable=too-many-public-methods
-import copy
-
 from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.room import AbstractRoomCard
 from backend.src.main.tile.tile import Tile
@@ -37,7 +35,7 @@ class TileGeometry:
         room_tiles = room.get_tiles()
         new_tiles = self.shift_tile_list(room_tiles, tile_to_be_shifted_round)
 
-        new_room = copy.deepcopy(room)
+        new_room = room.clone()
         new_room.set_tiles(new_tiles)
 
         return new_room
@@ -46,7 +44,7 @@ class TileGeometry:
         room_tiles = room.get_tiles()
         new_tiles = self.recenter_tile_list(room_tiles, tile_to_center_around)
 
-        new_room = copy.deepcopy(room)
+        new_room = room.clone()
         new_room.set_tiles(new_tiles)
 
         return new_room
