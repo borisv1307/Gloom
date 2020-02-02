@@ -16,9 +16,10 @@ class Tile:  # pylint: disable=too-few-public-methods
     def __eq__(self, other):
         if not isinstance(other, Tile):
             return False
-        return other.y_coordinate == self.y_coordinate and \
-            other.x_coordinate == self.x_coordinate and \
-            other.character_number == self.character_number
+        return self.has_same_coordinates(other) and other.character_number == self.character_number
+
+    def has_same_coordinates(self, other) -> bool:
+        return other.x_coordinate == self.x_coordinate and other.y_coordinate == self.y_coordinate
 
     def __repr__(self):
         return "{} {} {}".format(self.x_coordinate, self.y_coordinate, self.character_number)

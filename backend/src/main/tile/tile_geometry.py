@@ -1,10 +1,20 @@
+# pylint: disable=too-many-public-methods
 import copy
 
 from backend.src.main.game.values import DungeonCardValues
+from backend.src.main.room.room import AbstractRoomCard
 from backend.src.main.tile.tile import Tile
 
 
 class TileGeometry:
+    @staticmethod
+    def do_rooms_overlap(room_a: AbstractRoomCard, room_b: AbstractRoomCard) -> bool:
+        for tile_a in room_a.get_tiles():
+            for tile_b in room_b.get_tiles():
+                if tile_a.has_same_coordinates(tile_b):
+                    return True
+        return False
+
     def center_room_a_on_room_b_by_waypoint_b(self, room_a, room_b):
         intermediate_room_b = self.center_on_entrance_b(room_b)
         room_a_exit = self.get_exit_b(room_a)

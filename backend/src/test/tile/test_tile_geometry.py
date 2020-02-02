@@ -229,3 +229,21 @@ def test_center_tunnel_on_top_of_burrow_on_waypoint_a_causes_waypoints_to_match_
 
     assert exit_waypoint.get_x() == entry_waypoint.get_x()
     assert exit_waypoint.get_y() == entry_waypoint.get_y()
+
+
+def test_do_rooms_overlap_with_non_overlapping_tiles_returns_false(tile_geometry):
+    room_one = Burrow()
+    room_two = Burrow()
+    room_one.set_tiles([Tile(0, 0, None), Tile(1, 1, None)])
+    room_two.set_tiles([Tile(2, 2, None), Tile(3, 3, None)])
+
+    assert not tile_geometry.do_rooms_overlap(room_one, room_two)
+
+
+def test_do_rooms_overlap_with_overlapping_tiles_returns_true(tile_geometry):
+    room_one = Burrow()
+    room_two = Burrow()
+    room_one.set_tiles([Tile(0, 0, None), Tile(1, 1, None)])
+    room_two.set_tiles([Tile(1, 1, None), Tile(3, 3, None)])
+
+    assert tile_geometry.do_rooms_overlap(room_one, room_two)

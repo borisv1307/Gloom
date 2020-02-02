@@ -1,4 +1,5 @@
 from abc import ABC
+
 from backend.src.main.game.values import NumberedRoomTileValues
 from backend.src.main.room.room_card_exceptions import DuplicateTileError
 from backend.src.main.tile.tile import Tile
@@ -22,7 +23,7 @@ class AbstractRoomCard(ABC):  # pylint: disable=too-few-public-methods
             raise DuplicateTileError
         self.tiles.append(new_tile)
 
-    def get_tiles(self):
+    def get_tiles(self) -> [Tile]:
         return self.tiles
 
     def get_name(self):
