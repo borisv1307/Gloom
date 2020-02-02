@@ -1,7 +1,7 @@
 """Test case for Cutthroat Monster Card Class:
 Test cases for Cutthroat Monster Card
 """
-# pylint: disable=redefined-outer-name,pointless-statement
+# pylint: disable=pointless-statement
 import pytest
 
 from backend.src.main.game.cutthroat import Cutthroat
@@ -9,8 +9,8 @@ from backend.src.main.game.random_monster_card import AbstractMonsterCard
 from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
 
 
-@pytest.fixture(autouse=True)
-def cutthroat():
+@pytest.fixture(autouse=True, name='cutthroat')
+def create_cutthroat():
     _cutthroat = Cutthroat()
     return _cutthroat
 
