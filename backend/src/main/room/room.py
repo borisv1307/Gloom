@@ -24,6 +24,12 @@ class AbstractRoomCard(ABC):  # pylint: disable=too-few-public-methods
             raise DuplicateTileError
         self.tiles.append(new_tile)
 
+    def rotate(self):
+        new_tiles = [tile.rotate() for tile in self.get_tiles()]
+        new_room = self.clone()
+        new_room.set_tiles(new_tiles)
+        return new_room
+
     def get_tiles(self) -> [Tile]:
         return self.tiles
 
