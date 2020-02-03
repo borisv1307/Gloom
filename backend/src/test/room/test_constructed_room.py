@@ -1,8 +1,9 @@
-from backend.src.main.tile.tile import Tile
-from backend.src.main.room.concrete_room_cards.den import Den
-from backend.src.main.game.values import NumberedRoomTileValues, DungeonCardValues
-from backend.src.main.room.constructed_room import ConstructedRoom
+import pytest
 from backend.src.main.game.cutthroat import Cutthroat
+from backend.src.main.game.values import NumberedRoomTileValues, DungeonCardValues
+from backend.src.main.room.concrete_room_cards.den import Den
+from backend.src.main.room.constructed_room import ConstructedRoom
+from backend.src.main.tile.tile import Tile
 
 
 def test_numbered_tile_is_numbered_tile():
@@ -38,3 +39,13 @@ def test_get_tiles_returns_no_instances_of_numbered_tiles():
 
     for tile in tiles:
         assert not isinstance(tile.character_number, NumberedRoomTileValues)
+
+
+def test_constructed_room_only_accepts_room_card_objects_for_first_argument():
+    with pytest.raises(ValueError, match='Bad Room Card input to ConstructedRoom'):
+        ConstructedRoom(None, None)
+
+
+def test_constructed_room_only_accepts_monster_card_objects_for_second_argument():
+    with pytest.raises(ValueError, match='Bad Monster Card input to ConstructedRoom'):
+        ConstructedRoom(Den(), None)

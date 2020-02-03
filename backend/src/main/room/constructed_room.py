@@ -1,3 +1,4 @@
+from backend.src.main.game.random_monster_card import AbstractMonsterCard
 from backend.src.main.game.values import NumberedRoomTileValues
 from backend.src.main.room.room import AbstractRoomCard
 from backend.src.main.tile.tile import Tile
@@ -5,6 +6,10 @@ from backend.src.main.tile.tile import Tile
 
 class ConstructedRoom(AbstractRoomCard):
     def __init__(self, room_card, monster_card):
+        if not isinstance(room_card, AbstractRoomCard):
+            raise ValueError("Bad Room Card input to ConstructedRoom")
+        if not isinstance(monster_card, AbstractMonsterCard):
+            raise ValueError("Bad Monster Card input to ConstructedRoom")
         AbstractRoomCard.__init__(self, room_card.get_name)
         self.room_card = room_card
         self.monster_card = monster_card
