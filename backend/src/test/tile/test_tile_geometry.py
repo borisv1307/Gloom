@@ -7,12 +7,7 @@ from backend.src.main.room.concrete_room_cards.hovel import Hovel
 from backend.src.main.room.concrete_room_cards.trail import Trail
 from backend.src.main.room.concrete_room_cards.tunnel import Tunnel
 from backend.src.main.tile.tile import Tile
-from backend.src.main.tile.tile_geometry import TileGeometry, WaypointATileGeometry, WaypointBTileGeometry
-
-
-@pytest.fixture(name='tile_geometry')
-def create_instance_of_tile_geometry():
-    return TileGeometry(DungeonCardValues.ENTRANCE_A, DungeonCardValues.EXIT_A)
+from backend.src.main.tile.tile_geometry import WaypointATileGeometry, WaypointBTileGeometry
 
 
 @pytest.fixture(name='tile_geometry_a')

@@ -11,7 +11,12 @@ from backend.src.main.wrappers.random_wrapper import RandomWrapper
 
 @pytest.fixture(name='dungeon_generator')
 def create_dungeon_generator():
-    return RandomDungeonGenerator(RandomWrapper(), WaypointATileGeometry())
+    return RandomDungeonGenerator(RandomWrapper())
+
+
+@pytest.fixture(name='tile_geometry')
+def create_tile_geometry():
+    return WaypointATileGeometry()
 
 
 def test_dungeon_generator_has_20_monster_cards(dungeon_generator):
@@ -61,36 +66,36 @@ def test_select_first_room_calls_random_choice_twice(dungeon_generator):
     assert mock.call_count == 2
 
 
-def test_select_room_waypoint_a_checks_if_drawn_card_has_entrance_a(dungeon_generator):
+def test_select_room_waypoint_a_checks_if_drawn_card_has_entrance_a(dungeon_generator, tile_geometry):
     mock = MagicMock()
-    dungeon_generator.tile_geometry.has_entrance_a = mock
+    tile_geometry.has_entrance = mock
     dungeon_generator.select_first_room()
     assert len(dungeon_generator.constructed_rooms) == 1
-    dungeon_generator.select_room_waypoint_a()
+    dungeon_generator.select_room_by_waypoint(tile_geometry)
     assert mock.call_count >= 1
 
 
-def test_select_room_waypoint_a_calls_overlay_room(dungeon_generator):
+def test_select_room_by_waypoint_calls_overlay_room(dungeon_generator, tile_geometry):
     mock = MagicMock()
-    dungeon_generator.tile_geometry.overlay_room_a_on_room_b_by_waypoint_a = mock
+    tile_geometry.overlay_room_a_on_room_b = mock
 
     dungeon_generator.select_first_room()
     assert len(dungeon_generator.constructed_rooms) == 1
-    dungeon_generator.select_room_waypoint_a()
+    dungeon_generator.select_room_by_waypoint(tile_geometry)
 
     assert mock.call_count == 1
 
 
-def test_select_room_waypoint_a_causes_two_constructed_rooms_to_be_in_list(dungeon_generator):
+def test_select_room_by_waypoint_causes_two_constructed_rooms_to_be_in_list(dungeon_generator, tile_geometry):
     dungeon_generator.select_first_room()
-    dungeon_generator.select_room_waypoint_a()
+    dungeon_generator.select_room_by_waypoint(tile_geometry)
     assert len(dungeon_generator.constructed_rooms) == 2
 
 
-def test_select_room_waypoint_a_causes_monster_cards_to_be_length_18(dungeon_generator):
+def test_select_room_by_waypoint_causes_monster_cards_to_be_length_18(dungeon_generator, tile_geometry):
     dungeon_generator.select_first_room()
     assert len(dungeon_generator.room_cards) == 19
     assert len(dungeon_generator.monster_cards) == 19
-    dungeon_generator.select_room_waypoint_a()
+    dungeon_generator.select_room_by_waypoint(tile_geometry)
     assert len(dungeon_generator.room_cards) == 18
     assert len(dungeon_generator.monster_cards) == 18

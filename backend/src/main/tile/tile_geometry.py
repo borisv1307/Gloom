@@ -1,10 +1,12 @@
 # pylint: disable=too-many-public-methods
+from abc import ABC
+
 from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.room import AbstractRoomCard
 from backend.src.main.tile.tile import Tile
 
 
-class TileGeometry:
+class TileGeometry(ABC):
     def __init__(self, entrance_tile, exit_tile):
         self.entrance_tile = entrance_tile
         self.exit_tile = exit_tile

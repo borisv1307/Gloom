@@ -5,9 +5,8 @@ from backend.src.main.tile.tile_geometry import TileGeometry
 
 
 class RandomDungeonGenerator:  # pylint: disable=too-few-public-methods
-    def __init__(self, random_wrapper, tile_geometry: TileGeometry):
+    def __init__(self, random_wrapper):
         self.random_wrapper = random_wrapper
-        self.tile_geometry = tile_geometry
         self.monster_cards = [Cutthroat() for _ in range(20)]
         self.room_cards = [Den() for _ in range(20)]
         self.constructed_rooms = []
@@ -18,17 +17,17 @@ class RandomDungeonGenerator:  # pylint: disable=too-few-public-methods
         new_constructed_room = self.construct_room(chosen_room, chosen_monster)
         self.constructed_rooms.append(new_constructed_room)
 
-    def select_room_waypoint_a(self):
+    def select_room_by_waypoint(self, tile_geometry: TileGeometry):
         chosen_room = self.select_room_card()
-        while not self.tile_geometry.has_entrance_a(chosen_room):
+        while not tile_geometry.has_entrance(chosen_room):
             chosen_room = self.select_room_card()
 
         chosen_monster = self.select_monster_card()
 
         new_constructed_room = self.construct_room(chosen_room, chosen_monster)
 
-        new_constructed_room = self.tile_geometry.overlay_room_a_on_room_b_by_waypoint_a(self.constructed_rooms[-1],
-                                                                                         new_constructed_room)
+        new_constructed_room = tile_geometry.overlay_room_a_on_room_b(self.constructed_rooms[-1],
+                                                                      new_constructed_room)
         self.constructed_rooms.append(new_constructed_room)
 
     def construct_room(self, room, monster):
