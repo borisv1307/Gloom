@@ -9,3 +9,4 @@ exclude_lines =
 omit = *\__init__.py
         backend\src\test
         backend\src\main\room\concrete_room_cards*
+        backend\src\main\room\concrete_rooms.py

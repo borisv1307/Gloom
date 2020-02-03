@@ -68,3 +68,9 @@ def test_hash():
     actual = hash(Tile(0, 0, NumberedRoomTileValues.ONE))
     expected = hash((0, 0, NumberedRoomTileValues.ONE))
     assert actual == expected
+
+
+def test_repr():
+    tile = Tile(0, 0, NumberedRoomTileValues.ONE)
+    expected = '{} {} {}'.format(0, 0, NumberedRoomTileValues.ONE)
+    assert tile.__repr__() == expected
