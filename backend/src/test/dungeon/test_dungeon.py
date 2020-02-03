@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long
 from unittest.mock import MagicMock, call
 
 import pytest

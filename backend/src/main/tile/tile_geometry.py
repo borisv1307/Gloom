@@ -1,4 +1,3 @@
-# pylint: disable=too-many-public-methods
 from abc import ABC
 
 from backend.src.main.game.values import DungeonCardValues
@@ -13,7 +12,7 @@ class TileGeometry(ABC):
 
     def overlay_room_a_on_room_b(self, room_a, room_b):
         current_room_b = room_b
-        for i in range(6):
+        for _ in range(6):
             new_room_b = self.center_room_a_on_room_b_by_waypoint(room_a, current_room_b)
             new_room_b = self.remove_entrance(new_room_b)
             if not self.do_rooms_overlap(room_a, new_room_b):
@@ -124,9 +123,15 @@ class TileGeometry(ABC):
 
 class WaypointATileGeometry(TileGeometry):
     def __init__(self):
-        super(WaypointATileGeometry, self).__init__(DungeonCardValues.ENTRANCE_A, DungeonCardValues.EXIT_A)
+        super(WaypointATileGeometry, self).__init__(
+            DungeonCardValues.ENTRANCE_A,
+            DungeonCardValues.EXIT_A
+        )
 
 
 class WaypointBTileGeometry(TileGeometry):
     def __init__(self):
-        super(WaypointBTileGeometry, self).__init__(DungeonCardValues.ENTRANCE_B, DungeonCardValues.EXIT_B)
+        super(WaypointBTileGeometry, self).__init__(
+            DungeonCardValues.ENTRANCE_B,
+            DungeonCardValues.EXIT_B
+        )
