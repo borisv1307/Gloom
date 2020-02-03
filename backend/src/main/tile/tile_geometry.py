@@ -9,10 +9,11 @@ class TileGeometry(ABC):
     def __init__(self, entrance_tile, exit_tile):
         self.entrance_tile = entrance_tile
         self.exit_tile = exit_tile
+        self.max_rotations = 6
 
     def overlay_room_a_on_room_b(self, room_a, room_b):
         current_room_b = room_b
-        for _ in range(6):
+        for _ in range(self.max_rotations):
             new_room_b = self.center_room_a_on_room_b_by_waypoint(room_a, current_room_b)
             new_room_b = self.remove_entrance(new_room_b)
             if not self.do_rooms_overlap(room_a, new_room_b):
