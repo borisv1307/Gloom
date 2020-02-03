@@ -5,13 +5,13 @@ from backend.src.main.dungeon.dungeon import RandomDungeonGenerator
 from backend.src.main.game.random_monster_card import AbstractMonsterCard
 from backend.src.main.room.constructed_room import ConstructedRoom
 from backend.src.main.room.room import AbstractRoomCard
-from backend.src.main.tile.tile_geometry import TileGeometry
+from backend.src.main.tile.tile_geometry import WaypointATileGeometry
 from backend.src.main.wrappers.random_wrapper import RandomWrapper
 
 
 @pytest.fixture(name='dungeon_generator')
 def create_dungeon_generator():
-    return RandomDungeonGenerator(RandomWrapper(), TileGeometry())
+    return RandomDungeonGenerator(RandomWrapper(), WaypointATileGeometry())
 
 
 def test_dungeon_generator_has_20_monster_cards(dungeon_generator):

@@ -7,12 +7,22 @@ from backend.src.main.room.concrete_room_cards.hovel import Hovel
 from backend.src.main.room.concrete_room_cards.trail import Trail
 from backend.src.main.room.concrete_room_cards.tunnel import Tunnel
 from backend.src.main.tile.tile import Tile
-from backend.src.main.tile.tile_geometry import TileGeometry
+from backend.src.main.tile.tile_geometry import TileGeometry, WaypointATileGeometry, WaypointBTileGeometry
 
 
 @pytest.fixture(name='tile_geometry')
 def create_instance_of_tile_geometry():
-    return TileGeometry()
+    return TileGeometry(DungeonCardValues.ENTRANCE_A, DungeonCardValues.EXIT_A)
+
+
+@pytest.fixture(name='tile_geometry_a')
+def create_instance_of_tile_geometry_a():
+    return WaypointATileGeometry()
+
+
+@pytest.fixture(name='tile_geometry_b')
+def create_instance_of_tile_geometry_b():
+    return WaypointBTileGeometry()
 
 
 def test_recentering_tile_0_0_returns_tile_with_coordinates_0_0(tile_geometry):
@@ -82,9 +92,9 @@ def test_recenters_list_of_tiles_around_a_tile(tile_geometry):
     assert new_tile_two.get_y() == expected_tile_two_y
 
 
-def test_is_entrance_a_on_tile_returns_true(tile_geometry):
+def test_is_entrance_a_on_tile_returns_true(tile_geometry_a):
     tile = Tile(0, 0, DungeonCardValues.ENTRANCE_A)
-    actual = tile_geometry.is_entrance_a(tile)
+    actual = tile_geometry_a.is_entrance_a(tile)
     expected = True
     assert actual == expected
 

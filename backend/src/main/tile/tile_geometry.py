@@ -5,6 +5,10 @@ from backend.src.main.tile.tile import Tile
 
 
 class TileGeometry:
+    def __init__(self, entrance_tile, exit_tile):
+        self.entrance_tile = entrance_tile
+        self.exit_tile = exit_tile
+
     def overlay_room_a_on_room_b_by_waypoint_a(self, room_a, room_b):
         current_room_b = room_b
         for i in range(6):
@@ -24,6 +28,19 @@ class TileGeometry:
                 return new_room_b
             current_room_b = current_room_b.rotate()
         raise AssertionError("TileGeometry algorithm failed")
+
+    def overlay_room_a_on_room_b(self, room_a, room_b):
+        current_room_b = room_b
+        for i in range(6):
+            new_room_b = self.center_room_a_on_room_b_by_waypoint(room_a, current_room_b)
+            new_room_b = self.remove_entrance(new_room_b)
+            if not self.do_rooms_overlap(room_a, new_room_b):
+                return new_room_b
+            current_room_b = current_room_b.rotate()
+        raise AssertionError("TileGeometry algorithm failed")
+
+    def remove_entrance(self, room):
+        return self.remove_tile_by_type(room, self.entrance_tile)
 
     @staticmethod
     def do_rooms_overlap(room_a: AbstractRoomCard, room_b: AbstractRoomCard) -> bool:
@@ -45,11 +62,20 @@ class TileGeometry:
         new_room_b = self.shift_room_on_tile(intermediate_room_b, room_a_exit)
         return new_room_b
 
+    def center_room_a_on_room_b_by_waypoint(self, room_a, room_b):
+        intermediate_room_b = self.center_on_entrance(room_b)
+        room_a_exit = self.get_exit(room_a)
+        new_room_b = self.shift_room_on_tile(intermediate_room_b, room_a_exit)
+        return new_room_b
+
     def center_on_entrance_a(self, room):
         return self.center_room_on_tile_type(room, DungeonCardValues.ENTRANCE_A)
 
     def center_on_entrance_b(self, room):
         return self.center_room_on_tile_type(room, DungeonCardValues.ENTRANCE_B)
+
+    def center_on_entrance(self, room):
+        return self.center_room_on_tile_type(room, self.entrance_tile)
 
     def center_room_on_tile_type(self, room, card_type):
         tile_to_recenter_around = self.get_tile_by_type(room, card_type)
@@ -101,6 +127,9 @@ class TileGeometry:
     def has_entrance_b(self, room):
         return self.has_tile_of_type(room, DungeonCardValues.ENTRANCE_B)
 
+    def has_entrance(self, room):
+        return self.has_tile_of_type(room, self.entrance_tile)
+
     def has_tile_of_type(self, room, card_type):
         for tile in room.get_tiles():
             if self.is_tile_of_type(tile, card_type):
@@ -113,11 +142,17 @@ class TileGeometry:
     def get_entrance_b(self, room):
         return self.get_tile_by_type(room, DungeonCardValues.ENTRANCE_B)
 
+    def get_entrance(self, room):
+        return self.get_tile_by_type(room, self.entrance_tile)
+
     def get_exit_a(self, room):
         return self.get_tile_by_type(room, DungeonCardValues.EXIT_A)
-    
+
     def get_exit_b(self, room):
         return self.get_tile_by_type(room, DungeonCardValues.EXIT_B)
+
+    def get_exit(self, room):
+        return self.get_tile_by_type(room, self.exit_tile)
 
     def remove_tile_by_type(self, room, card_type):
         tiles = room.get_tiles()
@@ -133,6 +168,9 @@ class TileGeometry:
                 return tile
         return None
 
+    def is_entrance(self, tile):
+        return self.is_tile_of_type(tile, self.entrance_tile)
+
     def is_entrance_a(self, tile):
         return self.is_tile_of_type(tile, DungeonCardValues.ENTRANCE_A)
 
@@ -142,3 +180,13 @@ class TileGeometry:
     @staticmethod
     def is_tile_of_type(tile, card_type):
         return tile.get_character_number() == card_type
+
+
+class WaypointATileGeometry(TileGeometry):
+    def __init__(self):
+        super(WaypointATileGeometry, self).__init__(DungeonCardValues.ENTRANCE_A, DungeonCardValues.EXIT_A)
+
+
+class WaypointBTileGeometry(TileGeometry):
+    def __init__(self):
+        super(WaypointBTileGeometry, self).__init__(DungeonCardValues.ENTRANCE_A, DungeonCardValues.EXIT_A)
