@@ -1,19 +1,52 @@
 from backend.src.main.game.cutthroat import Cutthroat
 from backend.src.main.room.concrete_room_cards.den import Den
 from backend.src.main.room.constructed_room import ConstructedRoom
+from backend.src.main.tile.tile_geometry import TileGeometry
 
 
-class RandomDungeonGenerator: # pylint: disable=too-few-public-methods
-    def __init__(self):
+class RandomDungeonGenerator:  # pylint: disable=too-few-public-methods
+    def __init__(self, random_wrapper, tile_geometry: TileGeometry):
+        self.random_wrapper = random_wrapper
+        self.tile_geometry = tile_geometry
         self.monster_cards = [Cutthroat() for _ in range(20)]
         self.room_cards = [Den() for _ in range(20)]
         self.constructed_rooms = []
 
-    def select_first_room(self, random_wrapper):
-        chosen_monster_idx = random_wrapper.randrange(len(self.room_cards))
-        chosen_room_idx = random_wrapper.randrange(len(self.monster_cards))
+    def select_first_room(self):
+        chosen_monster = self.select_monster_card()
+        chosen_room = self.select_room_card()
+        new_constructed_room = self.construct_room(chosen_room, chosen_monster)
+        self.constructed_rooms.append(new_constructed_room)
 
-        chosen_monster = self.monster_cards.pop(chosen_monster_idx)
-        chosen_room = self.room_cards.pop(chosen_room_idx)
+    def select_room_waypoint_a(self):
+        chosen_room = self.select_room_card()
+        while not self.tile_geometry.has_entrance_a(chosen_room):
+            chosen_room = self.select_room_card()
 
-        self.constructed_rooms.append(ConstructedRoom(chosen_room, chosen_monster))
+        chosen_monster = self.select_monster_card()
+
+        new_constructed_room = self.construct_room(chosen_room, chosen_monster)
+
+        new_constructed_room = self.tile_geometry.overlay_room_a_on_room_b_by_waypoint_a(self.constructed_rooms[-1],
+                                                                                         new_constructed_room)
+        self.constructed_rooms.append(new_constructed_room)
+
+    def construct_room(self, room, monster):
+        self.pop_room_card(room)
+        self.pop_monster_card(monster)
+
+        return ConstructedRoom(room, monster)
+
+    def select_room_card(self):
+        chosen_room_idx = self.random_wrapper.randrange(len(self.room_cards))
+        return self.room_cards[chosen_room_idx]
+
+    def select_monster_card(self):
+        chosen_monster_idx = self.random_wrapper.randrange(len(self.monster_cards))
+        return self.monster_cards[chosen_monster_idx]
+
+    def pop_room_card(self, room):
+        return self.room_cards.pop(self.room_cards.index(room))
+
+    def pop_monster_card(self, monster):
+        return self.monster_cards.pop(self.monster_cards.index(monster))
