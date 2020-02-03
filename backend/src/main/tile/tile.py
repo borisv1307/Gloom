@@ -31,3 +31,6 @@ class Tile:  # pylint: disable=too-few-public-methods
 
     def __repr__(self):
         return "{} {} {}".format(self.x_coordinate, self.y_coordinate, self.character_number)
+
+    def __hash__(self):
+        return hash((self.x_coordinate, self.y_coordinate, self.character_number))

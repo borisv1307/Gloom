@@ -62,3 +62,9 @@ def test_rotate_tile_1_0_returns_tile_0_minus_1():
     actual = tile.rotate()
 
     assert actual == Tile(1, -1, None)
+
+
+def test_hash():
+    actual = hash(Tile(0, 0, NumberedRoomTileValues.ONE))
+    expected = hash((0, 0, NumberedRoomTileValues.ONE))
+    assert actual == expected
