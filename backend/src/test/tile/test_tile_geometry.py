@@ -110,7 +110,7 @@ def test_is_entrance_b_on_tile_returns_true(tile_geometry_b):
 
 def test_is_entrance_b_on_non_entrance_return_false(tile_geometry_b):
     tile = Tile(0, 0, DungeonCardValues.ENTRANCE_A)
-    actual = tile_geometry_b.is_entrance_b(tile)
+    actual = tile_geometry_b.is_entrance(tile)
     expected = False
     assert actual == expected
 

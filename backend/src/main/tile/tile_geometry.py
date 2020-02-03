@@ -11,26 +11,6 @@ class TileGeometry(ABC):
         self.entrance_tile = entrance_tile
         self.exit_tile = exit_tile
 
-    def overlay_room_a_on_room_b_by_waypoint_a(self, room_a, room_b):
-        current_room_b = room_b
-        for i in range(6):
-            new_room_b = self.center_room_a_on_room_b_by_waypoint_a(room_a, current_room_b)
-            new_room_b = self.remove_tile_by_type(new_room_b, DungeonCardValues.ENTRANCE_A)
-            if not self.do_rooms_overlap(room_a, new_room_b):
-                return new_room_b
-            current_room_b = current_room_b.rotate()
-        raise AssertionError("TileGeometry algorithm failed")
-
-    def overlay_room_a_on_room_b_by_waypoint_b(self, room_a, room_b):
-        current_room_b = room_b
-        for i in range(6):
-            new_room_b = self.center_room_a_on_room_b_by_waypoint_b(room_a, current_room_b)
-            new_room_b = self.remove_tile_by_type(new_room_b, DungeonCardValues.ENTRANCE_B)
-            if not self.do_rooms_overlap(room_a, new_room_b):
-                return new_room_b
-            current_room_b = current_room_b.rotate()
-        raise AssertionError("TileGeometry algorithm failed")
-
     def overlay_room_a_on_room_b(self, room_a, room_b):
         current_room_b = room_b
         for i in range(6):
@@ -52,29 +32,11 @@ class TileGeometry(ABC):
                     return True
         return False
 
-    def center_room_a_on_room_b_by_waypoint_a(self, room_a, room_b):
-        intermediate_room_b = self.center_on_entrance_a(room_b)
-        room_a_exit = self.get_exit_a(room_a)
-        new_room_b = self.shift_room_on_tile(intermediate_room_b, room_a_exit)
-        return new_room_b
-
-    def center_room_a_on_room_b_by_waypoint_b(self, room_a, room_b):
-        intermediate_room_b = self.center_on_entrance_b(room_b)
-        room_a_exit = self.get_exit_b(room_a)
-        new_room_b = self.shift_room_on_tile(intermediate_room_b, room_a_exit)
-        return new_room_b
-
     def center_room_a_on_room_b_by_waypoint(self, room_a, room_b):
         intermediate_room_b = self.center_on_entrance(room_b)
         room_a_exit = self.get_exit(room_a)
         new_room_b = self.shift_room_on_tile(intermediate_room_b, room_a_exit)
         return new_room_b
-
-    def center_on_entrance_a(self, room):
-        return self.center_room_on_tile_type(room, DungeonCardValues.ENTRANCE_A)
-
-    def center_on_entrance_b(self, room):
-        return self.center_room_on_tile_type(room, DungeonCardValues.ENTRANCE_B)
 
     def center_on_entrance(self, room):
         return self.center_room_on_tile_type(room, self.entrance_tile)
@@ -123,12 +85,6 @@ class TileGeometry(ABC):
         character_number = tile_to_move.get_character_number()
         return Tile(new_x, new_y, character_number)
 
-    def has_entrance_a(self, room):
-        return self.has_tile_of_type(room, DungeonCardValues.ENTRANCE_A)
-
-    def has_entrance_b(self, room):
-        return self.has_tile_of_type(room, DungeonCardValues.ENTRANCE_B)
-
     def has_entrance(self, room):
         return self.has_tile_of_type(room, self.entrance_tile)
 
@@ -138,20 +94,8 @@ class TileGeometry(ABC):
                 return True
         return False
 
-    def get_entrance_a(self, room):
-        return self.get_tile_by_type(room, DungeonCardValues.ENTRANCE_A)
-
-    def get_entrance_b(self, room):
-        return self.get_tile_by_type(room, DungeonCardValues.ENTRANCE_B)
-
     def get_entrance(self, room):
         return self.get_tile_by_type(room, self.entrance_tile)
-
-    def get_exit_a(self, room):
-        return self.get_tile_by_type(room, DungeonCardValues.EXIT_A)
-
-    def get_exit_b(self, room):
-        return self.get_tile_by_type(room, DungeonCardValues.EXIT_B)
 
     def get_exit(self, room):
         return self.get_tile_by_type(room, self.exit_tile)
@@ -172,12 +116,6 @@ class TileGeometry(ABC):
 
     def is_entrance(self, tile):
         return self.is_tile_of_type(tile, self.entrance_tile)
-
-    def is_entrance_a(self, tile):
-        return self.is_tile_of_type(tile, DungeonCardValues.ENTRANCE_A)
-
-    def is_entrance_b(self, tile):
-        return self.is_tile_of_type(tile, DungeonCardValues.ENTRANCE_B)
 
     @staticmethod
     def is_tile_of_type(tile, card_type):
