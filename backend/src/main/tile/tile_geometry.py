@@ -189,4 +189,4 @@ class WaypointATileGeometry(TileGeometry):
 
 class WaypointBTileGeometry(TileGeometry):
     def __init__(self):
-        super(WaypointBTileGeometry, self).__init__(DungeonCardValues.ENTRANCE_A, DungeonCardValues.EXIT_A)
+        super(WaypointBTileGeometry, self).__init__(DungeonCardValues.ENTRANCE_B, DungeonCardValues.EXIT_B)
