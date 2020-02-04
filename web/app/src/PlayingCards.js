@@ -1,5 +1,5 @@
 import './PlayingCards.css'
-import card from './card2.jpg'
+import card from './images/card2.jpg'
 import React, {Component} from "react";
 import {GridGenerator, Hexagon, HexGrid, Layout} from "react-hexgrid";
 import Draggable from "react-draggable";
@@ -7,7 +7,7 @@ import Draggable from "react-draggable";
 class PlayingCards extends Component {
     state = {
 	tasks: [
-      {id: "1", taskName:"Trample",type:"cardsInHand", backgroundImage: "red"},
+      {id: "1", taskName:"Trample 1",type:"cardsInHand", backgroundImage: "red"},
       {id: "2", taskName:"Trample 2", type:"cardsInHand", backgroundImage:"blue"},
       {id: "3", taskName:"Trample 3", type:"cardsInHand", backgroundImage:"green"},
       {id: "4", taskName:"Trample 4", type:"cardsInHand", backgroundImage:"yellow"},

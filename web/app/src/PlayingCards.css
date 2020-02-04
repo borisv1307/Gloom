@@ -27,7 +27,7 @@
 .cards {
   width: 60px;
   height: 90px;
-  background-color: yellow;
+  background-color: blue;
   /*background-image: url("./card1.png");*/
   background-size: contain;
   margin: 10px auto;
