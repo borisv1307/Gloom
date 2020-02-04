@@ -19,8 +19,8 @@ class RandomDungeonGenerator:  # pylint: disable=too-few-public-methods
 
     def select_room_by_waypoint(self, tile_geometry: TileGeometry):
         chosen_room = self.select_room_card()
-        while not tile_geometry.has_entrance(chosen_room):
-            chosen_room = self.select_room_card()
+        # while not tile_geometry.has_entrance(chosen_room):
+        #     chosen_room = self.select_room_card()
 
         chosen_monster = self.select_monster_card()
 

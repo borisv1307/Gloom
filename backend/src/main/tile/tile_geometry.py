@@ -19,7 +19,8 @@ class TileGeometry(ABC):
             if not self.do_rooms_overlap(room_a, new_room_b):
                 return new_room_b
             current_room_b = current_room_b.rotate()
-        raise AssertionError("TileGeometry algorithm failed")
+        # raise AssertionError("TileGeometry algorithm failed")
+        return None
 
     def remove_entrance(self, room):
         return self.remove_tile_by_type(room, self.entrance_tile)
