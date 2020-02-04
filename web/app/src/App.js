@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {HexGrid, Layout, Hexagon, GridGenerator} from 'react-hexgrid';
 import './App.css';
+import PlayingCards from './PlayingCards.js';
 
 class SquareHexGrid extends Component {
     render() {
@@ -20,8 +21,11 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <h1>Basic example of HexGrid usage.</h1>
-                <SquareHexGrid />
+                {/*<h1>Basic example of HexGrid usage.</h1>*/}
+                {/*<SquareHexGrid />*/}
+
+                <h2>Basic Drag And Drop Containers</h2>
+                <PlayingCards/>
             </div>
         );
     }
