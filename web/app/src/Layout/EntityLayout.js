@@ -16,25 +16,24 @@ class EntityLayout extends Component {
             hazard: "Hazardous Terrain",
             dangerous: "Dangerous Terrain"
         });
-// TODO: Fix color fill issue, currently the value is a string field that doesn't get parsed right for the library
         const EntityImageEnum = Object.freeze({
-            character: "#9a2132",
-            monster: "#9a2132",
-            wall: "#9a2132",
-            obstacle: "#9a2132",
-            trap: "#9a2132",
-            empty: "#9a2132",
-            hazard: "#9a2132",
-            dangerous: "#9a2132"
+            character: "https://img.icons8.com/color/96/000000/morty-smith.png",
+            monster: "https://img.icons8.com/color/96/000000/monster-face.png",
+            wall: "https://img.icons8.com/color/96/000000/brick-wall.png",
+            obstacle: "https://img.icons8.com/color/96/000000/roadblock.png",
+            trap: "https://img.icons8.com/color/96/000000/naval-mine.png",
+            empty: "",
+            hazard: "https://img.icons8.com/color/96/000000/self-destruct-button--v1.png",
+            dangerous: "https://img.icons8.com/color/96/000000/error.png"
         });
 
-        var name_vals = Object.values(EntityEnum);
-        var image_vals = Object.values(EntityImageEnum);
+        var name_values = Object.values(EntityEnum);
+        var image_values = Object.values(EntityImageEnum);
 
-        const hexagons = GridGenerator.parallelogram(-1, 1, -1, 2).map((hexagon, index) => {
+        const hexagons = GridGenerator.parallelogram(-1, 0, -1, 2).map((hexagon, index) => {
                 return Object.assign({}, hexagon, {
-                        text: name_vals[index],
-                        image: image_vals[index]
+                        text: name_values[index],
+                        image: image_values[index]
                     }
                 );
             }
@@ -55,7 +54,9 @@ class EntityLayout extends Component {
     }
 
     onDragStart(event, source) {
-
+        if (!source.props.data.text) {
+            event.preventDefault();
+        }
     }
 
     onDragOver(event, source) {
@@ -76,14 +77,14 @@ class EntityLayout extends Component {
         }
         const {hexagons} = this.state;
 
-        const hexas = hexagons.map(hex => {
+        const hexes = hexagons.map(hex => {
             if (HexUtils.equals(source.state.hex, hex)) {
                 hex.text = null;
                 hex.image = null;
             }
             return hex;
         });
-        this.setState({hexagons: hexas});
+        this.setState({hexagons: hexes});
     }
 
     render() {
@@ -105,7 +106,7 @@ class EntityLayout extends Component {
                             onDragOver={(e, h) => this.onDragOver(e, h)}
                         >
                             <Text>{hex.text}</Text>
-                            {!!hex.image && <Pattern id={HexUtils.getID(hex)} link={hex.text}/>}
+                            {hex.image && <Pattern id={HexUtils.getID(hex)} link={hex.image}/>}
                         </Hexagon>
                     ))
                 }

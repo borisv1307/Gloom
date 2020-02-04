@@ -15,7 +15,6 @@ class HexLayout extends Component {
             if (HexUtils.equals(source.state.hex, hex)) {
                 hex.image = targetProps.data.image;
                 hex.text = targetProps.data.text;
-                hex.fill = targetProps.data.fill;
             }
             return hex;
         });
@@ -44,6 +43,7 @@ class HexLayout extends Component {
         if (!success) {
             return;
         }
+
         const {hexagons} = this.state;
         const hexes = hexagons.map(hex => {
             if (HexUtils.equals(source.state.hex, hex)) {
@@ -66,7 +66,6 @@ class HexLayout extends Component {
                             q={hex.q}
                             r={hex.r}
                             s={hex.s}
-                            className={hex.blocked ? 'blocked' : null}
                             fill={(hex.image) ? HexUtils.getID(hex) : null}
                             data={hex}
                             onDragStart={(e, h) => this.onDragStart(e, h)}
@@ -74,7 +73,7 @@ class HexLayout extends Component {
                             onDrop={(e, h, t) => this.onDrop(e, h, t)}
                             onDragOver={(e, h) => this.onDragOver(e, h)}
                         >
-                            <Text>{hex.text || HexUtils.getID(hex)}</Text>
+                            <Text>{hex.text}</Text>
                             {hex.image && <Pattern id={HexUtils.getID(hex)} link={hex.image}/>}
                         </Hexagon>
                     ))
