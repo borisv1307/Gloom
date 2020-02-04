@@ -1,4 +1,6 @@
 # pylint: disable=line-too-long
+import itertools
+
 import pytest
 
 from backend.src.main.game.values import DungeonCardValues
@@ -267,3 +269,18 @@ def test_overlay_room_b_on_room_a_returns_room_b_after_rotation(tile_geometry_b)
     moved_room = tile_geometry_b.overlay_room_a_on_room_b(room_one, room_two)
 
     assert moved_room is not None
+
+
+def test_rotation_algorithm_fails_on_arbitrary_edge_case(tile_geometry_b):
+    room_one = Burrow()
+    room_two = Tunnel()
+
+    tile_coordinate_list = list(itertools.permutations([-1, 0, 1], 2))
+    tiles_surrounding_origin = [Tile(coord[0], coord[1], None) for coord in tile_coordinate_list]
+    origin_tile = Tile(0, 0, DungeonCardValues.ENTRANCE_B)
+    tiles_surrounding_origin.append(origin_tile)
+
+    room_two.set_tiles(tiles_surrounding_origin)
+
+    with pytest.raises(AssertionError, match="TileGeometry algorithm failed"):
+        tile_geometry_b.overlay_room_a_on_room_b(room_one, room_two)
