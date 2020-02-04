@@ -1,4 +1,3 @@
-
 import pytest
 
 from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
@@ -16,7 +15,7 @@ def _test_room():
 def test_add_tile(_test_room):
     current_tile = Tile(5, 10, DungeonCardValues.EMPTY)
     _test_room.add_tile(DungeonCardValues.EMPTY, 5, 10)
-    assert current_tile in _test_room.tiles
+    assert current_tile in _test_room.get_tiles()
 
 
 def test_can_have_multiple_empty_tiles(_test_room):
@@ -24,8 +23,8 @@ def test_can_have_multiple_empty_tiles(_test_room):
     tile_two = Tile(5, 12, DungeonCardValues.EMPTY)
     _test_room.add_tile(DungeonCardValues.EMPTY, 5, 11)
     _test_room.add_tile(DungeonCardValues.EMPTY, 5, 12)
-    assert tile_one in _test_room.tiles
-    assert tile_two in _test_room.tiles
+    assert tile_one in _test_room.get_tiles()
+    assert tile_two in _test_room.get_tiles()
 
 
 def test_no_duplicate_character_number_in_room_tiles(_test_room):
@@ -45,7 +44,7 @@ def test_no_duplicate_coordinates_in_room(_test_room):
 
 def test_den_can_be_instantiate():
     current_room = den.Den()
-    assert current_room.name == "Den"
+    assert current_room.get_name() == "Den"
 
 
 def test_get_tiles_on_den_returns_list_of_tiles():
