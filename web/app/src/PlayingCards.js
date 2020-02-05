@@ -68,7 +68,7 @@ class PlayingCards extends Component {
 
 	    return (
 	      <div className="drag-container">
-	        <h2 className="head">To Do List Drag & Drop</h2>
+	        <h2 className="head">Cards UI</h2>
 		    <div className="discard-pile" style={{display:"flex", justifyContent:"space-evenly"}}
 	    		onDragOver={(event)=>this.onDragOver(event)}
       			onDrop={(event)=>{this.onDrop(event, "discardPile")}}>
@@ -89,7 +89,7 @@ class PlayingCards extends Component {
 				{tasks.discardPile}
 			</div>
 
-			<div className="cards-in-hand" style={{display:"flex", justifyContent:"space-evenly"}}
+			<div className="cards-in-hand" style={{display:"flex", justifyContent:"space-evenly", position: "absolute", bottom: 0}}
 				onDragOver={(event)=>this.onDragOver(event)}
 				onDrop={(event)=>{this.onDrop(event, "cardsInHand")}}>
 				<span className="group-header">Cards In Hand</span>
