@@ -1,4 +1,4 @@
-# pylint: disable=line-too-long
+# pylint: disable=line-too-long,duplicate-code
 import itertools
 
 import pytest
@@ -8,6 +8,7 @@ from backend.src.main.room.concrete_room_cards.burrow import Burrow
 from backend.src.main.room.concrete_room_cards.hovel import Hovel
 from backend.src.main.room.concrete_room_cards.trail import Trail
 from backend.src.main.room.concrete_room_cards.tunnel import Tunnel
+from backend.src.main.room.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.tile import Tile
 from backend.src.main.tile.tile_geometry import WaypointATileGeometry, WaypointBTileGeometry
 
@@ -20,6 +21,16 @@ def create_instance_of_tile_geometry_a():
 @pytest.fixture(name='tile_geometry_b')
 def create_instance_of_tile_geometry_b():
     return WaypointBTileGeometry()
+
+
+@pytest.fixture(name='waypoint_pojo_a')
+def create_instance_of_waypoint_pojo_a():
+    return WaypointPOJO(DungeonCardValues.ENTRANCE_A, DungeonCardValues.EXIT_B)
+
+
+@pytest.fixture(name='waypoint_pojo_b')
+def create_instance_of_waypoint_pojo_b():
+    return WaypointPOJO(DungeonCardValues.ENTRANCE_B, DungeonCardValues.EXIT_B)
 
 
 def test_recentering_tile_0_0_returns_tile_with_coordinates_0_0(tile_geometry_a):
@@ -89,117 +100,89 @@ def test_recenters_list_of_tiles_around_a_tile(tile_geometry_a):
     assert new_tile_two.get_y() == expected_tile_two_y
 
 
-def test_is_entrance_a_on_tile_returns_true(tile_geometry_a):
+def test_is_entrance_a_on_tile_returns_true(waypoint_pojo_a):
     tile = Tile(0, 0, DungeonCardValues.ENTRANCE_A)
-    actual = tile_geometry_a.is_entrance(tile)
+    actual = waypoint_pojo_a.is_entrance(tile)
     expected = True
     assert actual == expected
 
 
-def test_is_entrance_a_on_non_entrance_return_false(tile_geometry_a):
+def test_is_entrance_a_on_non_entrance_return_false(waypoint_pojo_a):
     tile = Tile(0, 0, DungeonCardValues.ENTRANCE_B)
-    actual = tile_geometry_a.is_entrance(tile)
+    actual = waypoint_pojo_a.is_entrance(tile)
     expected = False
     assert actual == expected
 
 
-def test_is_entrance_b_on_tile_returns_true(tile_geometry_b):
-    tile = Tile(0, 0, DungeonCardValues.ENTRANCE_B)
-    actual = tile_geometry_b.is_entrance(tile)
-    expected = True
-    assert actual == expected
-
-
-def test_is_entrance_b_on_non_entrance_return_false(tile_geometry_b):
+def test_is_entrance_b_on_non_entrance_return_false(waypoint_pojo_b):
     tile = Tile(0, 0, DungeonCardValues.ENTRANCE_A)
-    actual = tile_geometry_b.is_entrance(tile)
+    actual = waypoint_pojo_b.is_entrance(tile)
     expected = False
     assert actual == expected
 
 
-def test_has_entrance_b_on_trail_returns_false(tile_geometry_b):
+def test_has_entrance_b_on_trail_returns_false(waypoint_pojo_b):
     room = Trail()
-    actual = tile_geometry_b.has_entrance(room)
+    actual = waypoint_pojo_b.has_entrance(room)
     expected = False
     assert actual == expected
 
 
-def test_has_entrance_b_on_hovel_returns_true(tile_geometry_b):
-    room = Hovel()
-    actual = tile_geometry_b.has_entrance(room)
-    expected = True
-    assert actual == expected
-
-
-def test_has_entrance_a_on_trail_returns_true(tile_geometry_a):
+def test_get_entrance_a_on_trail_returns_entrance_tile(waypoint_pojo_a):
     room = Trail()
-    actual = tile_geometry_a.has_entrance(room)
-    expected = True
-    assert actual == expected
-
-
-def test_has_entrance_a_on_burrow_returns_false(tile_geometry_a):
-    room = Burrow()
-    actual = tile_geometry_a.has_entrance(room)
-    expected = False
-    assert actual == expected
-
-
-def test_get_entrance_a_on_trail_returns_entrance_tile(tile_geometry_a):
-    room = Trail()
-    actual = tile_geometry_a.get_entrance(room)
+    actual = waypoint_pojo_a.get_entrance(room)
     expected = Tile(-2, 5, DungeonCardValues.ENTRANCE_A)
     assert actual == expected
 
 
-def test_get_entrance_b_on_hovel_returns_entrance_tile(tile_geometry_b):
+def test_get_entrance_b_on_hovel_returns_entrance_tile(waypoint_pojo_b):
     room = Hovel()
-    actual = tile_geometry_b.get_entrance(room)
+    actual = waypoint_pojo_b.get_entrance(room)
     expected = Tile(0, 3, DungeonCardValues.ENTRANCE_B)
     assert actual == expected
 
 
-def test_center_hovel_on_entrance_a(tile_geometry_a):
+def test_center_hovel_on_entrance_a(tile_geometry_a, waypoint_pojo_a):
     room = Hovel()
-    assert tile_geometry_a.has_entrance(room)
+    assert waypoint_pojo_a.has_entrance(room)
     actual = tile_geometry_a.center_on_entrance(room)
-    tile = tile_geometry_a.get_entrance(actual)
+    tile = waypoint_pojo_a.get_entrance(actual)
     assert tile == Tile(0, 0, DungeonCardValues.ENTRANCE_A)
     assert isinstance(actual, Hovel)
 
 
-def test_center_burrow_on_entrance_b(tile_geometry_b):
+def test_center_burrow_on_entrance_b(tile_geometry_b, waypoint_pojo_b):
     room = Burrow()
-    assert tile_geometry_b.has_entrance(room)
+    assert waypoint_pojo_b.has_entrance(room)
     actual = tile_geometry_b.center_on_entrance(room)
-    tile = tile_geometry_b.get_entrance(actual)
+    tile = waypoint_pojo_b.get_entrance(actual)
     assert tile == Tile(0, 0, DungeonCardValues.ENTRANCE_B)
     assert isinstance(actual, Burrow)
 
 
-def test_center_room_on_tile_type_that_room_does_not_have_raises_value_error(tile_geometry_a):
+def test_center_room_on_tile_type_that_room_does_not_have_raises_value_error(tile_geometry_a, waypoint_pojo_a):
     room = Burrow()
-    assert not tile_geometry_a.has_entrance(room)
+    assert not waypoint_pojo_a.has_entrance(room)
     with pytest.raises(ValueError):
         tile_geometry_a.center_on_entrance(room)
 
 
-def test_get_exit_b_on_burrow(tile_geometry_b):
+def test_get_exit_b_on_burrow(waypoint_pojo_b):
     room = Burrow()
-    actual = tile_geometry_b.get_exit(room)
+    actual = waypoint_pojo_b.get_exit(room)
     assert actual == Tile(-1, -4, DungeonCardValues.EXIT_B)
 
 
-def test_recenter_room_on_tile(tile_geometry_b):
+def test_recenter_room_on_tile(tile_geometry_b, waypoint_pojo_b):
     room = Burrow()
     actual = tile_geometry_b.center_on_entrance(room)
-    assert tile_geometry_b.get_entrance(actual) == Tile(0, 0, DungeonCardValues.ENTRANCE_B)
+    assert waypoint_pojo_b.get_entrance(actual) == Tile(0, 0, DungeonCardValues.ENTRANCE_B)
 
 
-def test_center_on_entrance_b_causes_entrance_to_have_coordinate_0_0(tile_geometry_b):
+def test_center_on_entrance_b_causes_entrance_to_have_coordinate_0_0(tile_geometry_b, waypoint_pojo_b):
     room = Tunnel()
     new_room = tile_geometry_b.center_on_entrance(room)
-    actual = tile_geometry_b.get_entrance(new_room)
+    actual = waypoint_pojo_b.get_entrance(new_room)
 
     assert actual == Tile(0, 0, DungeonCardValues.ENTRANCE_B)
     assert actual.get_x() == 0
@@ -223,14 +206,15 @@ def test_shift_tile_list_0_0_and_0_1_to_1_0_returns_1_0_and_1_1(tile_geometry_a)
     assert actual == expected
 
 
-def test_center_tunnel_on_top_of_burrow_on_waypoint_a_causes_waypoints_to_match_coordinates(tile_geometry_b):
+def test_center_tunnel_on_top_of_burrow_on_waypoint_a_causes_waypoints_to_match_coordinates(tile_geometry_b,
+                                                                                            waypoint_pojo_b):
     room_one = Burrow()
     room_two = Tunnel()
 
     moved_room = tile_geometry_b.center_room_a_on_room_b_by_waypoint(room_one, room_two)
 
-    exit_waypoint = tile_geometry_b.get_exit(room_one)
-    entry_waypoint = tile_geometry_b.get_entrance(moved_room)
+    exit_waypoint = waypoint_pojo_b.get_exit(room_one)
+    entry_waypoint = waypoint_pojo_b.get_entrance(moved_room)
 
     assert exit_waypoint.get_x() == entry_waypoint.get_x()
     assert exit_waypoint.get_y() == entry_waypoint.get_y()
@@ -254,11 +238,11 @@ def test_do_rooms_overlap_with_overlapping_tiles_returns_true(tile_geometry_a):
     assert tile_geometry_a.do_rooms_overlap(room_one, room_two)
 
 
-def test_remove_tile_by_type(tile_geometry_b):
+def test_remove_tile_by_type(tile_geometry_b, waypoint_pojo_b):
     room = Burrow()
     new_room = tile_geometry_b.remove_entrance(room)
 
-    assert not tile_geometry_b.has_entrance(new_room)
+    assert not waypoint_pojo_b.has_entrance(new_room)
     assert new_room.get_name() == room.get_name()
 
 

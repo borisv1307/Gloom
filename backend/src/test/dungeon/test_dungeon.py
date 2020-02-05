@@ -2,6 +2,7 @@
 from unittest.mock import MagicMock, call
 
 import pytest
+
 from backend.src.main.dungeon.dungeon import RandomDungeonGenerator
 from backend.src.main.game.random_monster_card import AbstractMonsterCard
 from backend.src.main.room.constructed_room import ConstructedRoom
@@ -69,7 +70,7 @@ def test_select_first_room_calls_random_choice_twice(dungeon_generator):
 
 def test_select_room_waypoint_a_checks_if_drawn_card_has_entrance_a(dungeon_generator, tile_geometry):
     mock = MagicMock()
-    tile_geometry.has_entrance = mock
+    tile_geometry.waypoint_pojo.has_entrance = mock
     dungeon_generator.select_first_room()
     assert len(dungeon_generator.constructed_rooms) == 1
     dungeon_generator.select_room_by_waypoint(tile_geometry)

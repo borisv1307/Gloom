@@ -2,6 +2,7 @@ from abc import ABC
 
 from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.room import AbstractRoomCard
+from backend.src.main.room.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.tile import Tile
 from backend.src.main.tile.tile_geometry_util import TileGeometryUtility
 
@@ -11,6 +12,7 @@ class TileGeometry(ABC):
         self.entrance_tile = entrance_tile
         self.exit_tile = exit_tile
         self.max_rotations = 6
+        self.waypoint_pojo = WaypointPOJO(entrance_tile, exit_tile)
 
     def overlay_room_a_on_room_b(self, room_a, room_b):
         current_room_b = room_b
@@ -35,7 +37,7 @@ class TileGeometry(ABC):
 
     def center_room_a_on_room_b_by_waypoint(self, room_a, room_b):
         intermediate_room_b = self.center_on_entrance(room_b)
-        room_a_exit = self.get_exit(room_a)
+        room_a_exit = self.waypoint_pojo.get_exit(room_a)
         new_room_b = self.shift_room_on_tile(intermediate_room_b, room_a_exit)
         return new_room_b
 
@@ -85,18 +87,6 @@ class TileGeometry(ABC):
         new_y = tile_to_move.get_y() - tile_to_center_around.get_y()
         character_number = tile_to_move.get_character_number()
         return Tile(new_x, new_y, character_number)
-
-    def has_entrance(self, room):
-        return TileGeometryUtility.has_tile_of_type(room, self.entrance_tile)
-
-    def get_entrance(self, room):
-        return TileGeometryUtility.get_tile_by_type(room, self.entrance_tile)
-
-    def get_exit(self, room):
-        return TileGeometryUtility.get_tile_by_type(room, self.exit_tile)
-
-    def is_entrance(self, tile):
-        return TileGeometryUtility.is_tile_of_type(tile, self.entrance_tile)
 
 
 class WaypointATileGeometry(TileGeometry):
