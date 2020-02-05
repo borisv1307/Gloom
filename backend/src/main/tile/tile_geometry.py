@@ -3,6 +3,7 @@ from abc import ABC
 from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.room import AbstractRoomCard
 from backend.src.main.tile.tile import Tile
+from backend.src.main.tile.tile_geometry_util import TileGeometryUtility
 
 
 class TileGeometry(ABC):
@@ -22,7 +23,7 @@ class TileGeometry(ABC):
         raise AssertionError("TileGeometry algorithm failed")
 
     def remove_entrance(self, room):
-        return self.remove_tile_by_type(room, self.entrance_tile)
+        return TileGeometryUtility.remove_tile_by_type(room, self.entrance_tile)
 
     @staticmethod
     def do_rooms_overlap(room_a: AbstractRoomCard, room_b: AbstractRoomCard) -> bool:
@@ -42,7 +43,7 @@ class TileGeometry(ABC):
         return self.center_room_on_tile_type(room, self.entrance_tile)
 
     def center_room_on_tile_type(self, room, card_type):
-        tile_to_recenter_around = self.get_tile_by_type(room, card_type)
+        tile_to_recenter_around = TileGeometryUtility.get_tile_by_type(room, card_type)
         if not tile_to_recenter_around:
             raise ValueError("Room {} does not have tile with type {}".format(room, card_type))
         return self.center_room_on_tile(room, tile_to_recenter_around)
@@ -86,40 +87,16 @@ class TileGeometry(ABC):
         return Tile(new_x, new_y, character_number)
 
     def has_entrance(self, room):
-        return self.has_tile_of_type(room, self.entrance_tile)
-
-    def has_tile_of_type(self, room, card_type):
-        for tile in room.get_tiles():
-            if self.is_tile_of_type(tile, card_type):
-                return True
-        return False
+        return TileGeometryUtility.has_tile_of_type(room, self.entrance_tile)
 
     def get_entrance(self, room):
-        return self.get_tile_by_type(room, self.entrance_tile)
+        return TileGeometryUtility.get_tile_by_type(room, self.entrance_tile)
 
     def get_exit(self, room):
-        return self.get_tile_by_type(room, self.exit_tile)
-
-    def remove_tile_by_type(self, room, card_type):
-        tiles = room.get_tiles()
-        tile_to_remove = self.get_tile_by_type(room, card_type)
-        new_tiles = [tile for tile in tiles if tile != tile_to_remove]
-        new_room = room.clone()
-        new_room.set_tiles(new_tiles)
-        return new_room
-
-    def get_tile_by_type(self, room, card_type):
-        for tile in room.get_tiles():
-            if self.is_tile_of_type(tile, card_type):
-                return tile
-        return None
+        return TileGeometryUtility.get_tile_by_type(room, self.exit_tile)
 
     def is_entrance(self, tile):
-        return self.is_tile_of_type(tile, self.entrance_tile)
-
-    @staticmethod
-    def is_tile_of_type(tile, card_type):
-        return tile.get_character_number() == card_type
+        return TileGeometryUtility.is_tile_of_type(tile, self.entrance_tile)
 
 
 class WaypointATileGeometry(TileGeometry):
