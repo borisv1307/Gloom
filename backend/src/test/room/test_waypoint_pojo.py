@@ -87,3 +87,11 @@ def test_get_entrance_b_on_hovel_returns_entrance_tile(waypoint_pojo_b):
     actual = waypoint_pojo_b.get_entrance(room)
     expected = Tile(0, 3, DungeonCardValues.ENTRANCE_B)
     assert actual == expected
+
+
+def test_remove_tile_by_type(waypoint_pojo_b):
+    room = Burrow()
+    new_room = waypoint_pojo_b.remove_entrance(room)
+
+    assert not waypoint_pojo_b.has_entrance(new_room)
+    assert new_room.get_name() == room.get_name()

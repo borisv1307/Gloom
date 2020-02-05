@@ -5,7 +5,6 @@ from backend.src.main.room.room import AbstractRoomCard
 from backend.src.main.room.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.center_tile import CenterTile
 from backend.src.main.tile.shift_tile import ShiftTile
-from backend.src.main.tile.tile_geometry_util import TileGeometryUtility
 
 
 class TileGeometry(ABC):
@@ -19,14 +18,11 @@ class TileGeometry(ABC):
         current_room_b = room_b
         for _ in range(self.max_rotations):
             new_room_b = self.center_room_a_on_room_b_by_waypoint(room_a, current_room_b)
-            new_room_b = self.remove_entrance(new_room_b)
+            new_room_b = self.waypoint_pojo.remove_entrance(new_room_b)
             if not self.do_rooms_overlap(room_a, new_room_b):
                 return new_room_b
             current_room_b = current_room_b.rotate()
         raise AssertionError("TileGeometry algorithm failed")
-
-    def remove_entrance(self, room):
-        return TileGeometryUtility.remove_tile_by_type(room, self.entrance_tile)
 
     @staticmethod
     def do_rooms_overlap(room_a: AbstractRoomCard, room_b: AbstractRoomCard) -> bool:

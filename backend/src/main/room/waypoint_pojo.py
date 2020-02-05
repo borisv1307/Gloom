@@ -6,6 +6,9 @@ class WaypointPOJO:
         self.entrance_tile = entrance_tile_type
         self.exit_tile = exit_tile_type
 
+    def remove_entrance(self, room):
+        return TileGeometryUtility.remove_tile_by_type(room, self.entrance_tile)
+
     def has_entrance(self, room):
         return TileGeometryUtility.has_tile_of_type(room, self.entrance_tile)
 

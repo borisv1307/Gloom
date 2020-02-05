@@ -79,14 +79,6 @@ def test_do_rooms_overlap_with_overlapping_tiles_returns_true(tile_geometry_a):
     assert tile_geometry_a.do_rooms_overlap(room_one, room_two)
 
 
-def test_remove_tile_by_type(tile_geometry_b, waypoint_pojo_b):
-    room = Burrow()
-    new_room = tile_geometry_b.remove_entrance(room)
-
-    assert not waypoint_pojo_b.has_entrance(new_room)
-    assert new_room.get_name() == room.get_name()
-
-
 def test_overlay_room_b_on_room_a_returns_room_b_after_rotation(tile_geometry_b):
     room_one = Burrow()
     room_two = Tunnel()

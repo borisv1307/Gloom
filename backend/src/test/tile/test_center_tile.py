@@ -2,8 +2,19 @@ import pytest
 from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.concrete_room_cards.burrow import Burrow
 from backend.src.main.room.concrete_room_cards.hovel import Hovel
+from backend.src.main.room.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.center_tile import CenterTile
 from backend.src.main.tile.tile import Tile
+
+
+@pytest.fixture(name='waypoint_pojo_a', scope='function')
+def create_instance_of_waypoint_pojo_a():
+    return WaypointPOJO(DungeonCardValues.ENTRANCE_A, DungeonCardValues.EXIT_B)
+
+
+@pytest.fixture(name='waypoint_pojo_b', scope='function')
+def create_instance_of_waypoint_pojo_b():
+    return WaypointPOJO(DungeonCardValues.ENTRANCE_B, DungeonCardValues.EXIT_B)
 
 
 def test_recentering_tile_0_0_returns_tile_with_coordinates_0_0():
