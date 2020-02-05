@@ -3,6 +3,7 @@ from abc import ABC
 from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.room import AbstractRoomCard
 from backend.src.main.room.waypoint_pojo import WaypointPOJO
+from backend.src.main.tile.shift_tile import ShiftTile
 from backend.src.main.tile.tile import Tile
 from backend.src.main.tile.tile_geometry_util import TileGeometryUtility
 
@@ -38,7 +39,7 @@ class TileGeometry(ABC):
     def center_room_a_on_room_b_by_waypoint(self, room_a, room_b):
         intermediate_room_b = self.center_on_entrance(room_b)
         room_a_exit = self.waypoint_pojo.get_exit(room_a)
-        new_room_b = self.shift_room_on_tile(intermediate_room_b, room_a_exit)
+        new_room_b = ShiftTile.shift_room_on_tile(intermediate_room_b, room_a_exit)
         return new_room_b
 
     def center_on_entrance(self, room):
@@ -50,15 +51,6 @@ class TileGeometry(ABC):
             raise ValueError("Room {} does not have tile with type {}".format(room, card_type))
         return self.center_room_on_tile(room, tile_to_recenter_around)
 
-    def shift_room_on_tile(self, room, tile_to_be_shifted_round):
-        room_tiles = room.get_tiles()
-        new_tiles = self.shift_tile_list(room_tiles, tile_to_be_shifted_round)
-
-        new_room = room.clone()
-        new_room.set_tiles(new_tiles)
-
-        return new_room
-
     def center_room_on_tile(self, room, tile_to_center_around):
         room_tiles = room.get_tiles()
         new_tiles = self.recenter_tile_list(room_tiles, tile_to_center_around)
@@ -67,16 +59,6 @@ class TileGeometry(ABC):
         new_room.set_tiles(new_tiles)
 
         return new_room
-
-    def shift_tile_list(self, tiles_to_move, tile_to_shift_to):
-        return [self.shift_tile(tile, tile_to_shift_to) for tile in tiles_to_move]
-
-    @staticmethod
-    def shift_tile(tile_to_move, tile_to_shift_to):
-        new_x = tile_to_shift_to.get_x() + tile_to_move.get_x()
-        new_y = tile_to_shift_to.get_y() + tile_to_move.get_y()
-        character_number = tile_to_move.get_character_number()
-        return Tile(new_x, new_y, character_number)
 
     def recenter_tile_list(self, tile_list, tile_to_recenter_around):
         return [self.recenter_tile(tile, tile_to_recenter_around) for tile in tile_list]
