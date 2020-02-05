@@ -8,6 +8,10 @@ class App extends Component {
     render() {
         return (
             <div className="app">
+                <div>
+                    <p>Character Name: {this.props.characterName}</p>
+                    <p>Character Card Hand: {this.props.characterCardHand}</p>
+                </div>
                 <h1>Drag & drop</h1>
                 <HexGrid width={2600} height={1000} viewBox="-50 -50 100 100">
                     <HexLayout/>
