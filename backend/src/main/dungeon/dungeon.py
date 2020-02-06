@@ -1,6 +1,7 @@
 from backend.src.main.game.cutthroat import Cutthroat
 from backend.src.main.room.concrete_room_cards.den import Den
 from backend.src.main.room.constructed_room import ConstructedRoom
+from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.tile_geometry import TileGeometry
 
 
@@ -17,9 +18,9 @@ class RandomDungeonGenerator:  # pylint: disable=too-few-public-methods
         new_constructed_room = self.construct_room(chosen_room, chosen_monster)
         self.constructed_rooms.append(new_constructed_room)
 
-    def select_room_by_waypoint(self, tile_geometry: TileGeometry):
+    def select_room_by_waypoint(self, waypoint: WaypointPOJO):
         chosen_room = self.select_room_card()
-        while not tile_geometry.waypoint_pojo.has_entrance(chosen_room):
+        while not waypoint.has_entrance(chosen_room):
             pass
         #     chosen_room = self.select_room_card()
 
@@ -27,9 +28,9 @@ class RandomDungeonGenerator:  # pylint: disable=too-few-public-methods
 
         new_constructed_room = self.construct_room(chosen_room, chosen_monster)
 
-        new_constructed_room = tile_geometry.overlay_room_a_on_room_b(self.constructed_rooms[-1],
-                                                                      new_constructed_room,
-                                                                      tile_geometry.waypoint_pojo)
+        new_constructed_room = TileGeometry.overlay_room_a_on_room_b(self.constructed_rooms[-1],
+                                                                     new_constructed_room,
+                                                                     waypoint)
         self.constructed_rooms.append(new_constructed_room)
 
     def construct_room(self, room, monster):

@@ -8,17 +8,7 @@ from backend.src.main.room.concrete_room_cards.tunnel import Tunnel
 from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.center_tile import CenterTile
 from backend.src.main.tile.tile import Tile
-from backend.src.main.tile.tile_geometry import WaypointATileGeometry, WaypointBTileGeometry
-
-
-@pytest.fixture(name='tile_geometry_a')
-def create_instance_of_tile_geometry_a():
-    return WaypointATileGeometry()
-
-
-@pytest.fixture(name='tile_geometry_b')
-def create_instance_of_tile_geometry_b():
-    return WaypointBTileGeometry()
+from backend.src.main.tile.tile_geometry import TileGeometry
 
 
 @pytest.fixture(name='waypoint_pojo_a', scope='module')
@@ -47,12 +37,11 @@ def test_center_on_entrance_b_causes_entrance_to_have_coordinate_0_0(waypoint_po
     assert actual.get_y() == 0
 
 
-def test_center_tunnel_on_top_of_burrow_on_waypoint_a_causes_waypoints_to_match_coordinates(tile_geometry_b,
-                                                                                            waypoint_pojo_b):
+def test_center_tunnel_on_top_of_burrow_on_waypoint_a_causes_waypoints_to_match_coordinates(waypoint_pojo_b):
     room_one = Burrow()
     room_two = Tunnel()
 
-    moved_room = tile_geometry_b.center_room_a_on_room_b_by_waypoint(room_one, room_two, waypoint_pojo_b)
+    moved_room = TileGeometry.center_room_a_on_room_b_by_waypoint(room_one, room_two, waypoint_pojo_b)
 
     exit_waypoint = waypoint_pojo_b.get_exit(room_one)
     entry_waypoint = waypoint_pojo_b.get_entrance(moved_room)
@@ -61,34 +50,34 @@ def test_center_tunnel_on_top_of_burrow_on_waypoint_a_causes_waypoints_to_match_
     assert exit_waypoint.get_y() == entry_waypoint.get_y()
 
 
-def test_do_rooms_overlap_with_non_overlapping_tiles_returns_false(tile_geometry_a):
+def test_do_rooms_overlap_with_non_overlapping_tiles_returns_false():
     room_one = Burrow()
     room_two = Burrow()
     room_one.set_tiles([Tile(0, 0, None), Tile(1, 1, None)])
     room_two.set_tiles([Tile(2, 2, None), Tile(3, 3, None)])
 
-    assert not tile_geometry_a.do_rooms_overlap(room_one, room_two)
+    assert not TileGeometry.do_rooms_overlap(room_one, room_two)
 
 
-def test_do_rooms_overlap_with_overlapping_tiles_returns_true(tile_geometry_a):
+def test_do_rooms_overlap_with_overlapping_tiles_returns_true():
     room_one = Burrow()
     room_two = Burrow()
     room_one.set_tiles([Tile(0, 0, None), Tile(1, 1, None)])
     room_two.set_tiles([Tile(1, 1, None), Tile(3, 3, None)])
 
-    assert tile_geometry_a.do_rooms_overlap(room_one, room_two)
+    assert TileGeometry.do_rooms_overlap(room_one, room_two)
 
 
-def test_overlay_room_b_on_room_a_returns_room_b_after_rotation(tile_geometry_b, waypoint_pojo_b):
+def test_overlay_room_b_on_room_a_returns_room_b_after_rotation(waypoint_pojo_b):
     room_one = Burrow()
     room_two = Tunnel()
 
-    moved_room = tile_geometry_b.overlay_room_a_on_room_b(room_one, room_two, waypoint_pojo_b)
+    moved_room = TileGeometry.overlay_room_a_on_room_b(room_one, room_two, waypoint_pojo_b)
 
     assert moved_room is not None
 
 
-def test_rotation_algorithm_fails_on_arbitrary_edge_case(tile_geometry_b, waypoint_pojo_b):
+def test_rotation_algorithm_fails_on_arbitrary_edge_case(waypoint_pojo_b):
     room_one = Burrow()
     room_two = Tunnel()
 
@@ -100,4 +89,4 @@ def test_rotation_algorithm_fails_on_arbitrary_edge_case(tile_geometry_b, waypoi
     room_two.set_tiles(tiles_surrounding_origin)
 
     with pytest.raises(AssertionError, match="TileGeometry algorithm failed"):
-        tile_geometry_b.overlay_room_a_on_room_b(room_one, room_two, waypoint_pojo_b)
+        TileGeometry.overlay_room_a_on_room_b(room_one, room_two, waypoint_pojo_b)

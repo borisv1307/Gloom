@@ -1,6 +1,5 @@
 from abc import ABC
 
-from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.room import AbstractRoomCard
 from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.center_tile import CenterTile
@@ -9,11 +8,6 @@ from backend.src.main.tile.shift_tile import ShiftTile
 
 class TileGeometry(ABC):
     MAX_ROTATIONS = 6
-
-    def __init__(self, entrance_tile, exit_tile):
-        self.entrance_tile = entrance_tile
-        self.exit_tile = exit_tile
-        self.waypoint_pojo = WaypointPOJO(entrance_tile, exit_tile)
 
     @staticmethod
     def overlay_room_a_on_room_b(room_a, room_b, waypoint_pojo: WaypointPOJO):
@@ -41,19 +35,3 @@ class TileGeometry(ABC):
         room_a_exit = waypoint_pojo.get_exit(room_a)
         new_room_b = ShiftTile.shift_room_on_tile(intermediate_room_b, room_a_exit)
         return new_room_b
-
-
-class WaypointATileGeometry(TileGeometry):
-    def __init__(self):
-        super(WaypointATileGeometry, self).__init__(
-            DungeonCardValues.ENTRANCE_A,
-            DungeonCardValues.EXIT_A
-        )
-
-
-class WaypointBTileGeometry(TileGeometry):
-    def __init__(self):
-        super(WaypointBTileGeometry, self).__init__(
-            DungeonCardValues.ENTRANCE_B,
-            DungeonCardValues.EXIT_B
-        )
