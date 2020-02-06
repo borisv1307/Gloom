@@ -39,7 +39,7 @@ def test_get_exit_b_on_burrow(waypoint_pojo_b):
 
 def test_center_on_entrance_b_causes_entrance_to_have_coordinate_0_0(waypoint_pojo_b):
     room = Tunnel()
-    new_room = CenterTile.center_on_entrance(room, waypoint_pojo_b.entrance_tile)
+    new_room = CenterTile.center_on_entrance(room, waypoint_pojo_b)
     actual = waypoint_pojo_b.get_entrance(new_room)
 
     assert actual == Tile(0, 0, DungeonCardValues.ENTRANCE_B)
@@ -52,7 +52,7 @@ def test_center_tunnel_on_top_of_burrow_on_waypoint_a_causes_waypoints_to_match_
     room_one = Burrow()
     room_two = Tunnel()
 
-    moved_room = tile_geometry_b.center_room_a_on_room_b_by_waypoint(room_one, room_two)
+    moved_room = tile_geometry_b.center_room_a_on_room_b_by_waypoint(room_one, room_two, waypoint_pojo_b)
 
     exit_waypoint = waypoint_pojo_b.get_exit(room_one)
     entry_waypoint = waypoint_pojo_b.get_entrance(moved_room)

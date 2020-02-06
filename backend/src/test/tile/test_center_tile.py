@@ -86,14 +86,14 @@ def test_recenters_list_of_tiles_around_a_tile():
 
 def test_recenter_room_on_tile(waypoint_pojo_b):
     room = Burrow()
-    actual = CenterTile.center_on_entrance(room, waypoint_pojo_b.entrance_tile)
+    actual = CenterTile.center_on_entrance(room, waypoint_pojo_b)
     assert waypoint_pojo_b.get_entrance(actual) == Tile(0, 0, DungeonCardValues.ENTRANCE_B)
 
 
 def test_center_hovel_on_entrance_a(waypoint_pojo_a):
     room = Hovel()
     assert waypoint_pojo_a.has_entrance(room)
-    actual = CenterTile.center_on_entrance(room, waypoint_pojo_a.entrance_tile)
+    actual = CenterTile.center_on_entrance(room, waypoint_pojo_a)
     tile = waypoint_pojo_a.get_entrance(actual)
     assert tile == Tile(0, 0, DungeonCardValues.ENTRANCE_A)
     assert isinstance(actual, Hovel)
@@ -103,13 +103,13 @@ def test_center_room_on_tile_type_that_room_does_not_have_raises_value_error(way
     room = Burrow()
     assert not waypoint_pojo_a.has_entrance(room)
     with pytest.raises(ValueError):
-        CenterTile.center_on_entrance(room, waypoint_pojo_a.entrance_tile)
+        CenterTile.center_on_entrance(room, waypoint_pojo_a)
 
 
 def test_center_burrow_on_entrance_b(waypoint_pojo_b):
     room = Burrow()
     assert waypoint_pojo_b.has_entrance(room)
-    actual = CenterTile.center_on_entrance(room, waypoint_pojo_b.entrance_tile)
+    actual = CenterTile.center_on_entrance(room, waypoint_pojo_b)
     tile = waypoint_pojo_b.get_entrance(actual)
     assert tile == Tile(0, 0, DungeonCardValues.ENTRANCE_B)
     assert isinstance(actual, Burrow)

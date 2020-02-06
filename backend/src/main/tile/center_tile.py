@@ -7,6 +7,8 @@ class CenterTile:
     @staticmethod
     def center_on_entrance(room, waypoint_pojo: WaypointPOJO):
         entrance = waypoint_pojo.get_entrance(room)
+        if not entrance:
+            raise ValueError
         return CenterTile.center_room_on_tile(room, entrance)
 
     @staticmethod

@@ -8,15 +8,16 @@ from backend.src.main.tile.shift_tile import ShiftTile
 
 
 class TileGeometry(ABC):
+    MAX_ROTATIONS = 6
+
     def __init__(self, entrance_tile, exit_tile):
         self.entrance_tile = entrance_tile
         self.exit_tile = exit_tile
-        self.max_rotations = 6
         self.waypoint_pojo = WaypointPOJO(entrance_tile, exit_tile)
 
     def overlay_room_a_on_room_b(self, room_a, room_b):
         current_room_b = room_b
-        for _ in range(self.max_rotations):
+        for _ in range(TileGeometry.MAX_ROTATIONS):
             new_room_b = TileGeometry.center_room_a_on_room_b_by_waypoint(room_a, current_room_b, self.waypoint_pojo)
             new_room_b = self.waypoint_pojo.remove_entrance(new_room_b)
             if not self.do_rooms_overlap(room_a, new_room_b):
