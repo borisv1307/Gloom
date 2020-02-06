@@ -28,7 +28,8 @@ class RandomDungeonGenerator:  # pylint: disable=too-few-public-methods
         new_constructed_room = self.construct_room(chosen_room, chosen_monster)
 
         new_constructed_room = tile_geometry.overlay_room_a_on_room_b(self.constructed_rooms[-1],
-                                                                      new_constructed_room)
+                                                                      new_constructed_room,
+                                                                      tile_geometry.waypoint_pojo)
         self.constructed_rooms.append(new_constructed_room)
 
     def construct_room(self, room, monster):

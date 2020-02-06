@@ -79,16 +79,16 @@ def test_do_rooms_overlap_with_overlapping_tiles_returns_true(tile_geometry_a):
     assert tile_geometry_a.do_rooms_overlap(room_one, room_two)
 
 
-def test_overlay_room_b_on_room_a_returns_room_b_after_rotation(tile_geometry_b):
+def test_overlay_room_b_on_room_a_returns_room_b_after_rotation(tile_geometry_b, waypoint_pojo_b):
     room_one = Burrow()
     room_two = Tunnel()
 
-    moved_room = tile_geometry_b.overlay_room_a_on_room_b(room_one, room_two)
+    moved_room = tile_geometry_b.overlay_room_a_on_room_b(room_one, room_two, waypoint_pojo_b)
 
     assert moved_room is not None
 
 
-def test_rotation_algorithm_fails_on_arbitrary_edge_case(tile_geometry_b):
+def test_rotation_algorithm_fails_on_arbitrary_edge_case(tile_geometry_b, waypoint_pojo_b):
     room_one = Burrow()
     room_two = Tunnel()
 
@@ -100,4 +100,4 @@ def test_rotation_algorithm_fails_on_arbitrary_edge_case(tile_geometry_b):
     room_two.set_tiles(tiles_surrounding_origin)
 
     with pytest.raises(AssertionError, match="TileGeometry algorithm failed"):
-        tile_geometry_b.overlay_room_a_on_room_b(room_one, room_two)
+        tile_geometry_b.overlay_room_a_on_room_b(room_one, room_two, waypoint_pojo_b)

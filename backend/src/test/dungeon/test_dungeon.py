@@ -2,7 +2,6 @@
 from unittest.mock import MagicMock, call
 
 import pytest
-
 from backend.src.main.dungeon.dungeon import RandomDungeonGenerator
 from backend.src.main.game.random_monster_card import AbstractMonsterCard
 from backend.src.main.room.constructed_room import ConstructedRoom
