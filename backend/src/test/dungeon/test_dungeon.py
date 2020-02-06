@@ -1,7 +1,8 @@
 # pylint: disable=line-too-long
-from unittest.mock import MagicMock, call
+from unittest.mock import MagicMock, call, patch
 
 import pytest
+
 from backend.src.main.dungeon.dungeon import RandomDungeonGenerator
 from backend.src.main.game.random_monster_card import AbstractMonsterCard
 from backend.src.main.room.concrete_room_cards.den import Den
@@ -78,12 +79,21 @@ def test_select_first_room_calls_random_choice_twice(dungeon_generator):
 
 
 def test_select_room_waypoint_a_checks_if_drawn_card_has_entrance_a(dungeon_generator, waypoint_a):
-    mock = MagicMock()
-    waypoint_a.has_entrance = mock
+    for room in dungeon_generator.room_cards:
+        if waypoint_a.has_exit(room):
+            room_with_exit = room
+
+    for room in dungeon_generator.room_cards:
+        if waypoint_a.has_entrance(room) and room != room_with_exit:
+            room_with_entrance = room
+
+    dungeon_generator.select_room_card = MagicMock()
+    dungeon_generator.select_room_card.side_effect = [room_with_exit, room_with_entrance]
     dungeon_generator.select_first_room()
     assert len(dungeon_generator.constructed_rooms) == 1
-    dungeon_generator.select_room_by_waypoint(waypoint_a)
-    assert mock.call_count >= 1
+    with patch.object(WaypointA, 'has_entrance', wraps=waypoint_a.get_entrance) as mock:
+        dungeon_generator.select_room_by_waypoint(waypoint_a)
+        assert mock.call_count >= 1
 
 
 def test_select_room_by_waypoint_calls_overlay_room(dungeon_generator, waypoint_a):
