@@ -104,3 +104,23 @@ def test_select_room_by_waypoint_causes_monster_cards_to_be_length_18(dungeon_ge
     dungeon_generator.select_room_by_waypoint(waypoint_a)
     assert len(dungeon_generator.room_cards) == 18
     assert len(dungeon_generator.monster_cards) == 18
+
+
+def test_select_room_is_called_twice_when_first_room_chosen_does_not_have_a_valid_entrance(dungeon_generator,
+                                                                                           waypoint_a):
+    original_function = waypoint_a.has_entrance
+    has_entrance_mock = MagicMock()
+    has_entrance_mock.side_effect = [False, True]
+    waypoint_a.has_entrance = has_entrance_mock
+
+    select_room_mock = MagicMock()
+    select_room_mock.side_effect = [dungeon_generator.room_cards[i] for i in range(3)]
+    dungeon_generator.select_room_card = select_room_mock
+
+    dungeon_generator.select_first_room()
+    dungeon_generator.select_room_by_waypoint(waypoint_a)
+
+    assert has_entrance_mock.call_count == 2
+    assert select_room_mock.call_count == 3
+
+    waypoint_a.has_entrance = original_function
