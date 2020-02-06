@@ -17,7 +17,7 @@ class TileGeometry(ABC):
     def overlay_room_a_on_room_b(self, room_a, room_b):
         current_room_b = room_b
         for _ in range(self.max_rotations):
-            new_room_b = self.center_room_a_on_room_b_by_waypoint(room_a, current_room_b)
+            new_room_b = TileGeometry.center_room_a_on_room_b_by_waypoint(room_a, current_room_b, self.waypoint_pojo)
             new_room_b = self.waypoint_pojo.remove_entrance(new_room_b)
             if not self.do_rooms_overlap(room_a, new_room_b):
                 return new_room_b
@@ -32,9 +32,10 @@ class TileGeometry(ABC):
                     return True
         return False
 
-    def center_room_a_on_room_b_by_waypoint(self, room_a, room_b):
-        intermediate_room_b = CenterTile.center_on_entrance(room_b, self.entrance_tile)
-        room_a_exit = self.waypoint_pojo.get_exit(room_a)
+    @staticmethod
+    def center_room_a_on_room_b_by_waypoint(room_a, room_b, waypoint_pojo):
+        intermediate_room_b = CenterTile.center_on_entrance(room_b, waypoint_pojo)
+        room_a_exit = waypoint_pojo.get_exit(room_a)
         new_room_b = ShiftTile.shift_room_on_tile(intermediate_room_b, room_a_exit)
         return new_room_b
 

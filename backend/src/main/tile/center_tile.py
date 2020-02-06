@@ -1,11 +1,13 @@
+from backend.src.main.room.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.tile import Tile
 from backend.src.main.tile.tile_geometry_util import TileGeometryUtility
 
 
 class CenterTile:
     @staticmethod
-    def center_on_entrance(room, tile_type):
-        return CenterTile.center_room_on_tile_type(room, tile_type)
+    def center_on_entrance(room, waypoint_pojo: WaypointPOJO):
+        entrance = waypoint_pojo.get_entrance(room)
+        return CenterTile.center_room_on_tile(room, entrance)
 
     @staticmethod
     def center_room_on_tile_type(room, card_type):
