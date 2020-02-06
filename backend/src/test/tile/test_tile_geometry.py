@@ -2,23 +2,23 @@
 import itertools
 
 import pytest
-from backend.src.main.game.values import DungeonCardValues
+from backend.src.main.game.values import UniqueDungeonCardValues
 from backend.src.main.room.concrete_room_cards.burrow import Burrow
 from backend.src.main.room.concrete_room_cards.tunnel import Tunnel
-from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
+from backend.src.main.room.waypoint.waypoint_b_pojo import WaypointB
 from backend.src.main.tile.tile import Tile
 from backend.src.main.tile.tile_geometry import TileGeometry
 
 
 @pytest.fixture(name='waypoint_pojo_b', scope='module')
 def create_instance_of_waypoint_pojo_b():
-    return WaypointPOJO(DungeonCardValues.ENTRANCE_B, DungeonCardValues.EXIT_B)
+    return WaypointB()
 
 
 def test_get_exit_b_on_burrow(waypoint_pojo_b):
     room = Burrow()
     actual = waypoint_pojo_b.get_exit(room)
-    assert actual == Tile(-1, -4, DungeonCardValues.EXIT_B)
+    assert actual == Tile(-1, -4, UniqueDungeonCardValues.EXIT_B)
 
 
 def test_center_tunnel_on_top_of_burrow_on_waypoint_a_causes_waypoints_to_match_coordinates(waypoint_pojo_b):
@@ -67,7 +67,7 @@ def test_rotation_algorithm_fails_on_arbitrary_edge_case(waypoint_pojo_b):
 
     tile_coordinate_list = list(itertools.permutations([-1, 0, 1], 2))
     tiles_surrounding_origin = [Tile(coord[0], coord[1], None) for coord in tile_coordinate_list]
-    origin_tile = Tile(0, 0, DungeonCardValues.ENTRANCE_B)
+    origin_tile = Tile(0, 0, UniqueDungeonCardValues.ENTRANCE_B)
     tiles_surrounding_origin.append(origin_tile)
 
     room_two.set_tiles(tiles_surrounding_origin)

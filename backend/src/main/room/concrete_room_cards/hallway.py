@@ -1,4 +1,7 @@
-from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.values import (
+    DungeonCardValues,
+    NumberedRoomTileValues,
+    UniqueDungeonCardValues)
 from backend.src.main.room.room import AbstractRoomCard
 
 
@@ -13,7 +16,7 @@ class Hallway(AbstractRoomCard):  # pylint: disable=too-few-public-methods
         self.add_tile(DungeonCardValues.EMPTY, -1, 2)
         self.add_tile(DungeonCardValues.EMPTY, -1, 3)
         self.add_tile(DungeonCardValues.EMPTY, -1, 4)
-        self.add_tile(DungeonCardValues.EXIT_B, 0, -4)
+        self.add_tile(UniqueDungeonCardValues.EXIT_B, 0, -4)
         self.add_tile(DungeonCardValues.EMPTY, 0, -3)
         self.add_tile(NumberedRoomTileValues.NINE, 0, -2)
         self.add_tile(DungeonCardValues.EMPTY, 0, -1)
@@ -21,7 +24,7 @@ class Hallway(AbstractRoomCard):  # pylint: disable=too-few-public-methods
         self.add_tile(NumberedRoomTileValues.ONE, 0, 1)
         self.add_tile(DungeonCardValues.EMPTY, 0, 2)
         self.add_tile(DungeonCardValues.EMPTY, 0, 3)
-        self.add_tile(DungeonCardValues.ENTRANCE_B, 0, 4)
+        self.add_tile(UniqueDungeonCardValues.ENTRANCE_B, 0, 4)
         self.add_tile(NumberedRoomTileValues.TWELVE, 1, -4)
         self.add_tile(NumberedRoomTileValues.ELEVEN, 1, -3)
         self.add_tile(NumberedRoomTileValues.TEN, 1, -2)
@@ -30,4 +33,4 @@ class Hallway(AbstractRoomCard):  # pylint: disable=too-few-public-methods
         self.add_tile(NumberedRoomTileValues.THREE, 1, 1)
         self.add_tile(DungeonCardValues.EMPTY, 1, 2)
         self.add_tile(DungeonCardValues.EMPTY, 1, 3)
-        self.add_tile(DungeonCardValues.ENTRANCE_A, 2, 2)
+        self.add_tile(UniqueDungeonCardValues.ENTRANCE_A, 2, 2)

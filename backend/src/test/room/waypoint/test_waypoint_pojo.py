@@ -1,7 +1,7 @@
 # pylint: disable=duplicate-code
 import pytest
 
-from backend.src.main.game.values import DungeonCardValues
+from backend.src.main.game.values import UniqueDungeonCardValues
 from backend.src.main.room.concrete_room_cards.burrow import Burrow
 from backend.src.main.room.concrete_room_cards.hovel import Hovel
 from backend.src.main.room.concrete_room_cards.trail import Trail
@@ -35,7 +35,7 @@ def test_has_entrance_a_on_trail_returns_true(waypoint_pojo_a):
 
 
 def test_is_entrance_b_on_tile_returns_true(waypoint_pojo_b):
-    tile = Tile(0, 0, DungeonCardValues.ENTRANCE_B)
+    tile = Tile(0, 0, UniqueDungeonCardValues.ENTRANCE_B)
     actual = waypoint_pojo_b.is_entrance(tile)
     expected = True
     assert actual == expected
@@ -49,21 +49,21 @@ def test_has_entrance_a_on_burrow_returns_false(waypoint_pojo_a):
 
 
 def test_is_entrance_a_on_tile_returns_true(waypoint_pojo_a):
-    tile = Tile(0, 0, DungeonCardValues.ENTRANCE_A)
+    tile = Tile(0, 0, UniqueDungeonCardValues.ENTRANCE_A)
     actual = waypoint_pojo_a.is_entrance(tile)
     expected = True
     assert actual == expected
 
 
 def test_is_entrance_a_on_non_entrance_return_false(waypoint_pojo_a):
-    tile = Tile(0, 0, DungeonCardValues.ENTRANCE_B)
+    tile = Tile(0, 0, UniqueDungeonCardValues.ENTRANCE_B)
     actual = waypoint_pojo_a.is_entrance(tile)
     expected = False
     assert actual == expected
 
 
 def test_is_entrance_b_on_non_entrance_return_false(waypoint_pojo_b):
-    tile = Tile(0, 0, DungeonCardValues.ENTRANCE_A)
+    tile = Tile(0, 0, UniqueDungeonCardValues.ENTRANCE_A)
     actual = waypoint_pojo_b.is_entrance(tile)
     expected = False
     assert actual == expected
@@ -79,14 +79,14 @@ def test_has_entrance_b_on_trail_returns_false(waypoint_pojo_b):
 def test_get_entrance_a_on_trail_returns_entrance_tile(waypoint_pojo_a):
     room = Trail()
     actual = waypoint_pojo_a.get_entrance(room)
-    expected = Tile(-2, 5, DungeonCardValues.ENTRANCE_A)
+    expected = Tile(-2, 5, UniqueDungeonCardValues.ENTRANCE_A)
     assert actual == expected
 
 
 def test_get_entrance_b_on_hovel_returns_entrance_tile(waypoint_pojo_b):
     room = Hovel()
     actual = waypoint_pojo_b.get_entrance(room)
-    expected = Tile(0, 3, DungeonCardValues.ENTRANCE_B)
+    expected = Tile(0, 3, UniqueDungeonCardValues.ENTRANCE_B)
     assert actual == expected
 
 

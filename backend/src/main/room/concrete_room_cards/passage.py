@@ -1,4 +1,7 @@
-from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.values import (
+    DungeonCardValues,
+    NumberedRoomTileValues,
+    UniqueDungeonCardValues)
 from backend.src.main.room.room import AbstractRoomCard
 
 
@@ -33,9 +36,9 @@ class Passage(AbstractRoomCard):  # pylint: disable=too-few-public-methods
         self.add_tile(DungeonCardValues.EMPTY, 2, 0)
         self.add_tile(DungeonCardValues.EMPTY, 2, 1)
         self.add_tile(DungeonCardValues.EMPTY, 2, 2)
-        self.add_tile(DungeonCardValues.EXIT_A, 3, -6)
+        self.add_tile(UniqueDungeonCardValues.EXIT_A, 3, -6)
         self.add_tile(NumberedRoomTileValues.SIX, 3, -5)
         self.add_tile(DungeonCardValues.EMPTY, 3, -4)
         self.add_tile(DungeonCardValues.EMPTY, 3, 0)
         self.add_tile(DungeonCardValues.EMPTY, 3, 1)
-        self.add_tile(DungeonCardValues.ENTRANCE_A, 3, 1)
+        self.add_tile(UniqueDungeonCardValues.ENTRANCE_A, 3, 1)

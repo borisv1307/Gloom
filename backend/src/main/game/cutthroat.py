@@ -2,7 +2,10 @@
 Cutthroat
 """
 from backend.src.main.game.random_monster_card import AbstractMonsterCard
-from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.values import (
+    DungeonCardValues,
+    NumberedRoomTileValues
+)
 
 
 class Cutthroat(AbstractMonsterCard):  # pylint: disable=too-few-public-methods

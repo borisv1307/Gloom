@@ -1,4 +1,7 @@
-from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.values import (
+    DungeonCardValues,
+    NumberedRoomTileValues,
+    UniqueDungeonCardValues)
 from backend.src.main.room.room import AbstractRoomCard
 
 
@@ -6,7 +9,7 @@ class Cabin(AbstractRoomCard):  # pylint: disable=too-few-public-methods
 
     def __init__(self):
         AbstractRoomCard.__init__(self, "Cabin")
-        self.add_tile(DungeonCardValues.ENTRANCE_A, -3, 1)
+        self.add_tile(UniqueDungeonCardValues.ENTRANCE_A, -3, 1)
         self.add_tile(NumberedRoomTileValues.THREE, -2, -2)
         self.add_tile(NumberedRoomTileValues.TWO, -2, -1)
         self.add_tile(DungeonCardValues.EMPTY, -2, 0)
@@ -35,4 +38,4 @@ class Cabin(AbstractRoomCard):  # pylint: disable=too-few-public-methods
         self.add_tile(NumberedRoomTileValues.FOUR, 2, -1)
         self.add_tile(DungeonCardValues.EMPTY, 2, 0)
         self.add_tile(DungeonCardValues.EMPTY, 2, 1)
-        self.add_tile(DungeonCardValues.EXIT_A, 3, -2)
+        self.add_tile(UniqueDungeonCardValues.EXIT_A, 3, -2)

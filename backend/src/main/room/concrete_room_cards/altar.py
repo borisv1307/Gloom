@@ -1,4 +1,7 @@
-from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.values import (
+    DungeonCardValues,
+    NumberedRoomTileValues,
+    UniqueDungeonCardValues)
 from backend.src.main.room.room import AbstractRoomCard
 
 
@@ -20,12 +23,12 @@ class Altar(AbstractRoomCard):  # pylint: disable=too-few-public-methods
         self.add_tile(DungeonCardValues.OBSTACLE, 0, -1)
         self.add_tile(DungeonCardValues.EMPTY, 1, -1)
         self.add_tile(NumberedRoomTileValues.ONE, 2, -1)
-        self.add_tile(DungeonCardValues.ENTRANCE_B, -3, 0)
+        self.add_tile(UniqueDungeonCardValues.ENTRANCE_B, -3, 0)
         self.add_tile(DungeonCardValues.EMPTY, -2, 0)
         self.add_tile(DungeonCardValues.OBSTACLE, -1, 0)
         self.add_tile(DungeonCardValues.OBSTACLE, 0, 0)
         self.add_tile(NumberedRoomTileValues.TWO, 1, 0)
-        self.add_tile(DungeonCardValues.EXIT_B, 2, 0)
+        self.add_tile(UniqueDungeonCardValues.EXIT_B, 2, 0)
         self.add_tile(DungeonCardValues.EMPTY, -3, 1)
         self.add_tile(NumberedRoomTileValues.SIX, -2, 1)
         self.add_tile(DungeonCardValues.OBSTACLE, -1, 1)

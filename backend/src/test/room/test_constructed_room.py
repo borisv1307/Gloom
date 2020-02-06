@@ -39,7 +39,7 @@ def test_get_tiles_returns_no_instances_of_numbered_tiles():
 
     for tile in tiles:
         assert not isinstance(tile.character_number, NumberedRoomTileValues)
-
+ 
 
 def test_constructed_room_only_accepts_room_card_objects_for_first_argument():
     with pytest.raises(ValueError, match='Bad Room Card input to ConstructedRoom'):
