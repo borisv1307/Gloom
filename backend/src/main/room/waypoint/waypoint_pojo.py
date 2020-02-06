@@ -1,7 +1,9 @@
+from abc import ABC
+
 from backend.src.main.tile.tile_geometry_util import TileGeometryUtility
 
 
-class WaypointPOJO:
+class WaypointPOJO(ABC):
     def __init__(self, entrance_tile_type, exit_tile_type):
         self.entrance_tile = entrance_tile_type
         self.exit_tile = exit_tile_type

@@ -5,18 +5,19 @@ from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.concrete_room_cards.burrow import Burrow
 from backend.src.main.room.concrete_room_cards.hovel import Hovel
 from backend.src.main.room.concrete_room_cards.trail import Trail
-from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
+from backend.src.main.room.waypoint.waypoint_a_pojo import WaypointA
+from backend.src.main.room.waypoint.waypoint_b_pojo import WaypointB
 from backend.src.main.tile.tile import Tile
 
 
 @pytest.fixture(name='waypoint_pojo_a')
 def create_instance_of_waypoint_pojo_a():
-    return WaypointPOJO(DungeonCardValues.ENTRANCE_A, DungeonCardValues.EXIT_B)
+    return WaypointA()
 
 
 @pytest.fixture(name='waypoint_pojo_b')
 def create_instance_of_waypoint_pojo_b():
-    return WaypointPOJO(DungeonCardValues.ENTRANCE_B, DungeonCardValues.EXIT_B)
+    return WaypointB()
 
 
 def test_has_entrance_b_on_hovel_returns_true(waypoint_pojo_b):
