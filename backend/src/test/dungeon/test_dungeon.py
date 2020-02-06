@@ -4,6 +4,9 @@ from unittest.mock import MagicMock, call
 import pytest
 from backend.src.main.dungeon.dungeon import RandomDungeonGenerator
 from backend.src.main.game.random_monster_card import AbstractMonsterCard
+from backend.src.main.room.concrete_room_cards.den import Den
+from backend.src.main.room.concrete_room_cards.hovel import Hovel
+from backend.src.main.room.concrete_room_cards.trail import Trail
 from backend.src.main.room.constructed_room import ConstructedRoom
 from backend.src.main.room.room import AbstractRoomCard
 from backend.src.main.room.waypoint.waypoint_a_pojo import WaypointA
@@ -31,6 +34,12 @@ def test_dungeon_generator_has_20_room_cards(dungeon_generator):
     assert len(dungeon_generator.room_cards) == 20
     for item in dungeon_generator.room_cards:
         assert isinstance(item, AbstractRoomCard)
+
+
+def test_dungeon_is_composed_of_twenty_distinct_cards(dungeon_generator):
+    assert len(dungeon_generator.room_cards) == 20
+    room_card_names = {room.name for room in dungeon_generator.room_cards}
+    assert len(room_card_names) == 20
 
 
 def test_dungeon_generator_has_no_rooms_initially(dungeon_generator):
@@ -114,7 +123,7 @@ def test_select_room_is_called_twice_when_first_room_chosen_does_not_have_a_vali
     waypoint_a.has_entrance = has_entrance_mock
 
     select_room_mock = MagicMock()
-    select_room_mock.side_effect = [dungeon_generator.room_cards[i] for i in range(3)]
+    select_room_mock.side_effect = [Trail(), Hovel(), Den()]
     dungeon_generator.select_room_card = select_room_mock
 
     dungeon_generator.select_first_room()

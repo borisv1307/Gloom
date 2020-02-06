@@ -1,5 +1,5 @@
 from backend.src.main.game.cutthroat import Cutthroat
-from backend.src.main.room.concrete_room_cards.den import Den
+from backend.src.main.room import concrete_rooms
 from backend.src.main.room.constructed_room import ConstructedRoom
 from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.tile_geometry import TileGeometry
@@ -9,7 +9,7 @@ class RandomDungeonGenerator:  # pylint: disable=too-few-public-methods
     def __init__(self, random_wrapper):
         self.random_wrapper = random_wrapper
         self.monster_cards = [Cutthroat() for _ in range(20)]
-        self.room_cards = [Den() for _ in range(20)]
+        self.room_cards = concrete_rooms.get_all_rooms()
         self.constructed_rooms = []
 
     def select_first_room(self):
