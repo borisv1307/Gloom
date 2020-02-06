@@ -1,6 +1,10 @@
 import pytest
 
-from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues, UniqueDungeonCardValues
+from backend.src.main.game.values import (
+    DungeonCardValues,
+    NumberedRoomTileValues,
+    UniqueDungeonCardValues
+)
 from backend.src.main.room import room, concrete_rooms
 from backend.src.main.room.concrete_room_cards import den
 from backend.src.main.room.room_card_exceptions import DuplicateTileError
