@@ -1,4 +1,4 @@
-from backend.src.main.room.waypoint_pojo import WaypointPOJO
+from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.tile import Tile
 from backend.src.main.tile.tile_geometry_util import TileGeometryUtility
 

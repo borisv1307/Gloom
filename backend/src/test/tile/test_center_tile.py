@@ -2,7 +2,7 @@ import pytest
 from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.concrete_room_cards.burrow import Burrow
 from backend.src.main.room.concrete_room_cards.hovel import Hovel
-from backend.src.main.room.waypoint_pojo import WaypointPOJO
+from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.center_tile import CenterTile
 from backend.src.main.tile.tile import Tile
 
