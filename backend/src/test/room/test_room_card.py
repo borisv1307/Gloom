@@ -1,6 +1,6 @@
 import pytest
 
-from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues, UniqueDungeonCardValues
 from backend.src.main.room import room, concrete_rooms
 from backend.src.main.room.concrete_room_cards import den
 from backend.src.main.room.room_card_exceptions import DuplicateTileError
@@ -25,6 +25,18 @@ def test_can_have_multiple_empty_tiles(_test_room):
     _test_room.add_tile(DungeonCardValues.EMPTY, 5, 12)
     assert tile_one in _test_room.get_tiles()
     assert tile_two in _test_room.get_tiles()
+
+
+def test_cannot_add_second_exit(_test_room):
+    _test_room.add_tile(UniqueDungeonCardValues.EXIT_A, 101, 101)
+    with pytest.raises(DuplicateTileError):
+        _test_room.add_tile(UniqueDungeonCardValues.EXIT_A, 102, 102)
+
+
+def test_cannot_add_second_entrance(_test_room):
+    _test_room.add_tile(UniqueDungeonCardValues.ENTRANCE_A, 103, 103)
+    with pytest.raises(DuplicateTileError):
+        _test_room.add_tile(UniqueDungeonCardValues.ENTRANCE_A, 104, 104)
 
 
 def test_no_duplicate_character_number_in_room_tiles(_test_room):

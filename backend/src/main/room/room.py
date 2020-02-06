@@ -1,7 +1,7 @@
 import copy
 from abc import ABC
 
-from backend.src.main.game.values import NumberedRoomTileValues
+from backend.src.main.game.values import UniqueTileValues
 from backend.src.main.room.room_card_exceptions import DuplicateTileError
 from backend.src.main.tile.tile import Tile
 
@@ -17,7 +17,7 @@ class AbstractRoomCard(ABC):  # pylint: disable=too-few-public-methods
         coordinates_in_tile_list = ((tile.get_x(), tile.get_y()) for tile in self.tiles)
         attributes = (tile.get_character_number() for tile in self.tiles)
 
-        if isinstance(character_number, NumberedRoomTileValues) \
+        if isinstance(character_number, UniqueTileValues) \
                 and character_number in attributes:
             raise DuplicateTileError
         if coordinates in coordinates_in_tile_list:
