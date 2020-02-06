@@ -40,5 +40,4 @@ class Passage(AbstractRoomCard):  # pylint: disable=too-few-public-methods
         self.add_tile(NumberedRoomTileValues.SIX, 3, -5)
         self.add_tile(DungeonCardValues.EMPTY, 3, -4)
         self.add_tile(DungeonCardValues.EMPTY, 3, 0)
-        self.add_tile(DungeonCardValues.EMPTY, 3, 1)
         self.add_tile(UniqueDungeonCardValues.ENTRANCE_A, 3, 1)

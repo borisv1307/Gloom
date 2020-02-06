@@ -1,7 +1,7 @@
 import pytest
 
 from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
-from backend.src.main.room import room
+from backend.src.main.room import room, concrete_rooms
 from backend.src.main.room.concrete_room_cards import den
 from backend.src.main.room.room_card_exceptions import DuplicateTileError
 from backend.src.main.tile.tile import Tile
@@ -51,3 +51,8 @@ def test_get_tiles_on_den_returns_list_of_tiles():
     current_room = den.Den()
     expected = current_room.get_tiles()
     assert isinstance(expected, list)
+
+
+def test_can_instantiate_all_rooms():
+    rooms = concrete_rooms.get_all_rooms()
+    assert len(rooms) == 20
