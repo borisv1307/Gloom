@@ -3,6 +3,7 @@ import pytest
 
 from backend.src.main.game.values import UniqueDungeonCardValues
 from backend.src.main.room.concrete_room_cards.burrow import Burrow
+from backend.src.main.room.concrete_room_cards.den import Den
 from backend.src.main.room.concrete_room_cards.hovel import Hovel
 from backend.src.main.room.concrete_room_cards.trail import Trail
 from backend.src.main.room.waypoint.waypoint_a_pojo import WaypointA
@@ -96,3 +97,13 @@ def test_remove_tile_by_type(waypoint_pojo_b):
 
     assert not waypoint_pojo_b.has_entrance(new_room)
     assert new_room.get_name() == room.get_name()
+
+
+def test_has_exit_b_on_den_returns_false(waypoint_pojo_b):
+    room = Den()
+    assert not waypoint_pojo_b.has_exit(room)
+
+
+def test_has_exit_a_on_den_returns_true(waypoint_pojo_a):
+    room = Den()
+    assert waypoint_pojo_a.has_exit(room)

@@ -14,6 +14,9 @@ class WaypointPOJO(ABC):
     def has_entrance(self, room):
         return TileGeometryUtility.has_tile_of_type(room, self.entrance_tile)
 
+    def has_exit(self, room):
+        return TileGeometryUtility.has_tile_of_type(room, self.exit_tile)
+
     def get_entrance(self, room):
         return TileGeometryUtility.get_tile_by_type(room, self.entrance_tile)
 
