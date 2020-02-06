@@ -6,7 +6,6 @@ from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.concrete_room_cards.burrow import Burrow
 from backend.src.main.room.concrete_room_cards.tunnel import Tunnel
 from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
-from backend.src.main.tile.center_tile import CenterTile
 from backend.src.main.tile.tile import Tile
 from backend.src.main.tile.tile_geometry import TileGeometry
 
@@ -25,16 +24,6 @@ def test_get_exit_b_on_burrow(waypoint_pojo_b):
     room = Burrow()
     actual = waypoint_pojo_b.get_exit(room)
     assert actual == Tile(-1, -4, DungeonCardValues.EXIT_B)
-
-
-def test_center_on_entrance_b_causes_entrance_to_have_coordinate_0_0(waypoint_pojo_b):
-    room = Tunnel()
-    new_room = CenterTile.center_on_entrance(room, waypoint_pojo_b)
-    actual = waypoint_pojo_b.get_entrance(new_room)
-
-    assert actual == Tile(0, 0, DungeonCardValues.ENTRANCE_B)
-    assert actual.get_x() == 0
-    assert actual.get_y() == 0
 
 
 def test_center_tunnel_on_top_of_burrow_on_waypoint_a_causes_waypoints_to_match_coordinates(waypoint_pojo_b):

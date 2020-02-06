@@ -1,12 +1,10 @@
-from abc import ABC
-
 from backend.src.main.room.room import AbstractRoomCard
 from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.center_tile import CenterTile
 from backend.src.main.tile.shift_tile import ShiftTile
 
 
-class TileGeometry(ABC):
+class TileGeometry:
     MAX_ROTATIONS = 6
 
     @staticmethod

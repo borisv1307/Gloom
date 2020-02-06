@@ -2,6 +2,7 @@ import pytest
 from backend.src.main.game.values import DungeonCardValues
 from backend.src.main.room.concrete_room_cards.burrow import Burrow
 from backend.src.main.room.concrete_room_cards.hovel import Hovel
+from backend.src.main.room.concrete_room_cards.tunnel import Tunnel
 from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.center_tile import CenterTile
 from backend.src.main.tile.tile import Tile
@@ -88,6 +89,16 @@ def test_recenter_room_on_tile(waypoint_pojo_b):
     room = Burrow()
     actual = CenterTile.center_on_entrance(room, waypoint_pojo_b)
     assert waypoint_pojo_b.get_entrance(actual) == Tile(0, 0, DungeonCardValues.ENTRANCE_B)
+
+
+def test_center_on_entrance_b_causes_entrance_to_have_coordinate_0_0(waypoint_pojo_b):
+    room = Tunnel()
+    new_room = CenterTile.center_on_entrance(room, waypoint_pojo_b)
+    actual = waypoint_pojo_b.get_entrance(new_room)
+
+    assert actual == Tile(0, 0, DungeonCardValues.ENTRANCE_B)
+    assert actual.get_x() == 0
+    assert actual.get_y() == 0
 
 
 def test_center_hovel_on_entrance_a(waypoint_pojo_a):
