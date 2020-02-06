@@ -10,11 +10,6 @@ from backend.src.main.tile.tile import Tile
 from backend.src.main.tile.tile_geometry import TileGeometry
 
 
-@pytest.fixture(name='waypoint_pojo_a', scope='module')
-def create_instance_of_waypoint_pojo_a():
-    return WaypointPOJO(DungeonCardValues.ENTRANCE_A, DungeonCardValues.EXIT_B)
-
-
 @pytest.fixture(name='waypoint_pojo_b', scope='module')
 def create_instance_of_waypoint_pojo_b():
     return WaypointPOJO(DungeonCardValues.ENTRANCE_B, DungeonCardValues.EXIT_B)

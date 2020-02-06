@@ -1,6 +1,5 @@
 from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.tile import Tile
-from backend.src.main.tile.tile_geometry_util import TileGeometryUtility
 
 
 class CenterTile:
@@ -10,13 +9,6 @@ class CenterTile:
         if not entrance:
             raise ValueError
         return CenterTile.center_room_on_tile(room, entrance)
-
-    @staticmethod
-    def center_room_on_tile_type(room, card_type):
-        tile_to_recenter_around = TileGeometryUtility.get_tile_by_type(room, card_type)
-        if not tile_to_recenter_around:
-            raise ValueError("Room {} does not have tile with type {}".format(room, card_type))
-        return CenterTile.center_room_on_tile(room, tile_to_recenter_around)
 
     @staticmethod
     def center_room_on_tile(room, tile_to_center_around):
