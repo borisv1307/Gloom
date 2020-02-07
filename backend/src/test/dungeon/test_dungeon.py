@@ -9,6 +9,7 @@ from backend.src.main.room.room import AbstractRoomCard
 from backend.src.main.room.waypoint.waypoint_a_pojo import WaypointA
 from backend.src.main.tile.tile_geometry import TileGeometry
 from backend.src.main.wrappers.random_wrapper import RandomWrapper
+from backend.src.test.dungeon import util
 
 
 @pytest.fixture(name='dungeon_generator')
@@ -110,7 +111,9 @@ def test_select_room_waypoint_raises_value_error_if_does_not_have_exit(dungeon_g
 
 
 def test_select_room_by_waypoint_calls_overlay_room(dungeon_generator, waypoint_a):
-    dungeon_generator.select_first_room()
+    room_with_exit = util.get_room_with_exit_a(dungeon_generator)
+    with patch.object(RandomDungeonGenerator, 'select_room_card', return_value=room_with_exit):
+        dungeon_generator.select_first_room()
     assert len(dungeon_generator.constructed_rooms) == 1
 
     with patch.object(TileGeometry, 'overlay_room_a_on_room_b', wraps=TileGeometry.overlay_room_a_on_room_b) as mock:
@@ -119,10 +122,7 @@ def test_select_room_by_waypoint_calls_overlay_room(dungeon_generator, waypoint_
 
 
 def test_select_room_by_waypoint_causes_two_constructed_rooms_to_be_in_list(dungeon_generator, waypoint_a):
-    for room in dungeon_generator.room_cards:
-        if waypoint_a.has_exit(room):
-            room_with_exit_a = room
-            break
+    room_with_exit_a = util.get_room_with_exit_a(dungeon_generator)
     assert waypoint_a.has_exit(room_with_exit_a)
 
     with patch.object(RandomDungeonGenerator, 'select_room_card', return_value=room_with_exit_a):
@@ -143,10 +143,7 @@ def test_select_room_by_waypoint_causes_monster_cards_to_be_length_18(dungeon_ge
 
 def test_select_room_is_called_twice_when_first_room_chosen_does_not_have_a_valid_entrance(dungeon_generator,
                                                                                            waypoint_a):
-    for room in dungeon_generator.room_cards:
-        if waypoint_a.has_exit(room):
-            room_one = room
-            break
+    room_one = util.get_room_with_exit_a(dungeon_generator)
 
     with patch.object(RandomDungeonGenerator, 'select_room_card', return_value=room_one) as mock:
         dungeon_generator.select_first_room()
