@@ -1,3 +1,4 @@
+# pylint: disable=inconsistent-return-statements
 from backend.src.main.room.waypoint.waypoint_a_pojo import WaypointA
 
 

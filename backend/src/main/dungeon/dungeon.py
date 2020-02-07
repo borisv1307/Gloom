@@ -21,7 +21,9 @@ class RandomDungeonGenerator:  # pylint: disable=too-few-public-methods
 
     def select_room_by_waypoint(self, waypoint: WaypointPOJO):
         if not waypoint.has_exit(self.constructed_rooms[-1]):
-            raise ValueError("Cannot use provided waypoint as room does not have corresponding exit.")
+            raise ValueError(
+                "Cannot use provided waypoint as room does not have corresponding exit."
+            )
         chosen_room = self.select_room_card()
         while not waypoint.has_entrance(chosen_room):
             chosen_room = self.select_room_card()
