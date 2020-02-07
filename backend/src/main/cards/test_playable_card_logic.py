@@ -89,11 +89,11 @@ def test_lost_moves_to_hand():
     assert playable_card_logic.hand.__getitem__(0) == card
 
 
-def test_hand_moves_to_lost(playable_card_logic, card):
+def test_hand_moves_to_lost():
     hand = []
+    playable_card_logic = PlayableCardLogic(hand)
     card = Card("4")
     hand.append(card)
-    playable_card_logic = PlayableCardLogic(hand)
     playable_card_logic.hand_to_lost("4")
     assert playable_card_logic.hand.__len__() == 0
     assert playable_card_logic.lost.__len__() == 1
