@@ -1,10 +1,10 @@
 
 import pytest
 
-from backend.src.main.game.values import DungeonCardValues
-from backend.src.main.room import room
-from backend.src.main.room.concrete_room_cards import den
-from backend.src.main.room.room_card_exceptions import DuplicateTileError
+from backend.src.main.game.monster.values import DungeonCardValues
+from backend.src.main.game.room import room
+from backend.src.main.game.room.concrete_room_cards import den
+from backend.src.main.game.room.room_card_exceptions import DuplicateTileError
 
 
 @pytest.fixture

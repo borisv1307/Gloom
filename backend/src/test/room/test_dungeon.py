@@ -1,9 +1,9 @@
 
-from backend.src.main.room.room import Tile
-from backend.src.main.room.concrete_room_cards.den import Den
-from backend.src.main.game.values import NumberedRoomTileValues, DungeonCardValues
-from backend.src.main.room.dungeon import Dungeon
-from backend.src.main.game.cutthroat import Cutthroat
+from backend.src.main.game.room.room import Tile
+from backend.src.main.game.room.concrete_room_cards.den import Den
+from backend.src.main.game.monster.values import NumberedRoomTileValues, DungeonCardValues
+from backend.src.main.game.room.dungeon import Dungeon
+from backend.src.main.game.monster.concrete_monster_cards.cutthroat import Cutthroat
 
 
 def test_numbered_tile_is_numbered_tile():
