@@ -1,12 +1,11 @@
 from backend.src.main.game.cutthroat import Cutthroat
 from backend.src.main.room import concrete_rooms
 from backend.src.main.room.constructed_room import ConstructedRoom
-from backend.src.main.room.room import AbstractRoomCard
 from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.tile_geometry import TileGeometry
 
 
-class RandomDungeonGenerator:  # pylint: disable=too-few-public-methods
+class RandomDungeonGenerator:
     def __init__(self, random_wrapper):
         self.random_wrapper = random_wrapper
         self.monster_cards = [Cutthroat() for _ in range(20)]
@@ -28,15 +27,12 @@ class RandomDungeonGenerator:  # pylint: disable=too-few-public-methods
         while not waypoint.has_entrance(chosen_room):
             chosen_room = self.select_room_card()
 
-        assert isinstance(chosen_room, AbstractRoomCard)
         chosen_monster = self.select_monster_card()
 
         new_constructed_room = self.construct_room(chosen_room, chosen_monster)
-        assert isinstance(new_constructed_room, AbstractRoomCard)
         new_constructed_room = TileGeometry.overlay_room_a_on_room_b(self.constructed_rooms[-1],
                                                                      new_constructed_room,
                                                                      waypoint)
-        assert isinstance(new_constructed_room, AbstractRoomCard)
         self.constructed_rooms.append(new_constructed_room)
 
     def construct_room(self, room, monster):

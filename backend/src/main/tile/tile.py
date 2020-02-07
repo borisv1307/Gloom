@@ -1,4 +1,4 @@
-class Tile:  # pylint: disable=too-few-public-methods
+class Tile:
     def __init__(self, x, y, character_number):
         self.x_coordinate = x
         self.y_coordinate = y
