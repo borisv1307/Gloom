@@ -98,3 +98,4 @@ def test_hand_moves_to_lost():
     assert playable_card_logic.hand.__len__() == 0
     assert playable_card_logic.lost.__len__() == 1
     assert playable_card_logic.lost.__getitem__(0) == card
+

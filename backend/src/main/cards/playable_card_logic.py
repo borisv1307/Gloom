@@ -46,3 +46,4 @@ class PlayableCardLogic:
                 self.lost.remove(card)
                 self.hand.append(card)
                 break
+
