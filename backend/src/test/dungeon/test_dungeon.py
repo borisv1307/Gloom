@@ -113,17 +113,12 @@ def test_select_room_waypoint_raises_value_error_if_does_not_have_exit(dungeon_g
 
 
 def test_select_room_by_waypoint_calls_overlay_room(dungeon_generator, waypoint_a):
-    mock = MagicMock()
-    original_function = TileGeometry.overlay_room_a_on_room_b
-    TileGeometry.overlay_room_a_on_room_b = mock
-
     dungeon_generator.select_first_room()
     assert len(dungeon_generator.constructed_rooms) == 1
-    dungeon_generator.select_room_by_waypoint(waypoint_a)
 
-    assert mock.call_count == 1
-    # mocked static function MUST be restored or other tests will fail
-    TileGeometry.overlay_room_a_on_room_b = original_function
+    with patch.object(TileGeometry, 'overlay_room_a_on_room_b', wraps=TileGeometry.overlay_room_a_on_room_b) as mock:
+        dungeon_generator.select_room_by_waypoint(waypoint_a)
+        assert mock.call_count == 1
 
 
 def test_select_room_by_waypoint_causes_two_constructed_rooms_to_be_in_list(dungeon_generator, waypoint_a):
