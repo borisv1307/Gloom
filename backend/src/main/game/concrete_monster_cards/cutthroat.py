@@ -1,12 +1,8 @@
-"""Creating Random Monster Card Class:
-Cutthroat
-"""
 from backend.src.main.game.random_monster_card import RandomMonsterCard
 from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
 
 
 class Cutthroat(RandomMonsterCard):  # pylint: disable=too-few-public-methods
-    """ Class for Cutthroat Random Monster Card """
 
     def __init__(self):
         map_values = {NumberedRoomTileValues.ONE: DungeonCardValues.MONSTER,
