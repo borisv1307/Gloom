@@ -2,7 +2,6 @@
 from unittest.mock import MagicMock, call, patch
 
 import pytest
-
 from backend.src.main.dungeon.dungeon import RandomDungeonGenerator
 from backend.src.main.game.random_monster_card import AbstractMonsterCard
 from backend.src.main.room.concrete_room_cards.den import Den
@@ -94,6 +93,23 @@ def test_select_room_waypoint_a_checks_if_drawn_card_has_entrance_a(dungeon_gene
     with patch.object(WaypointA, 'has_entrance', wraps=waypoint_a.get_entrance) as mock:
         dungeon_generator.select_room_by_waypoint(waypoint_a)
         assert mock.call_count >= 1
+
+
+def test_select_room_waypoint_raises_value_error_if_does_not_have_exit(dungeon_generator, waypoint_a):
+    for room in dungeon_generator.room_cards:
+        if not waypoint_a.has_exit(room):
+            room_with_exit = room
+
+    for room in dungeon_generator.room_cards:
+        if room != room_with_exit:
+            room_with_entrance = room
+
+    dungeon_generator.select_room_card = MagicMock()
+    dungeon_generator.select_room_card.side_effect = [room_with_exit, room_with_entrance]
+    dungeon_generator.select_first_room()
+    assert len(dungeon_generator.constructed_rooms) == 1
+    with pytest.raises(ValueError, match="Cannot use provided waypoint as room does not have corresponding exit."):
+        dungeon_generator.select_room_by_waypoint(waypoint_a)
 
 
 def test_select_room_by_waypoint_calls_overlay_room(dungeon_generator, waypoint_a):
