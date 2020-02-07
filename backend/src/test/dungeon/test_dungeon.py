@@ -123,7 +123,6 @@ def test_select_room_by_waypoint_calls_overlay_room(dungeon_generator, waypoint_
 
 def test_select_room_by_waypoint_causes_two_constructed_rooms_to_be_in_list(dungeon_generator, waypoint_a):
     room_with_exit_a = util.get_room_with_exit_a(dungeon_generator)
-    assert waypoint_a.has_exit(room_with_exit_a)
 
     with patch.object(RandomDungeonGenerator, 'select_room_card', return_value=room_with_exit_a):
         dungeon_generator.select_first_room()
@@ -133,7 +132,9 @@ def test_select_room_by_waypoint_causes_two_constructed_rooms_to_be_in_list(dung
 
 
 def test_select_room_by_waypoint_causes_monster_cards_to_be_length_18(dungeon_generator, waypoint_a):
-    dungeon_generator.select_first_room()
+    room_with_exit_a = util.get_room_with_exit_a(dungeon_generator)
+    with patch.object(RandomDungeonGenerator, 'select_room_card', return_value=room_with_exit_a):
+        dungeon_generator.select_first_room()
     assert len(dungeon_generator.room_cards) == 19
     assert len(dungeon_generator.monster_cards) == 19
     dungeon_generator.select_room_by_waypoint(waypoint_a)
