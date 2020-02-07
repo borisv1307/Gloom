@@ -4,9 +4,6 @@ from unittest.mock import MagicMock, call, patch
 import pytest
 from backend.src.main.dungeon.dungeon import RandomDungeonGenerator
 from backend.src.main.game.random_monster_card import AbstractMonsterCard
-from backend.src.main.room.concrete_room_cards.den import Den
-from backend.src.main.room.concrete_room_cards.hovel import Hovel
-from backend.src.main.room.concrete_room_cards.trail import Trail
 from backend.src.main.room.constructed_room import ConstructedRoom
 from backend.src.main.room.room import AbstractRoomCard
 from backend.src.main.room.waypoint.waypoint_a_pojo import WaypointA
@@ -138,19 +135,29 @@ def test_select_room_by_waypoint_causes_monster_cards_to_be_length_18(dungeon_ge
 
 def test_select_room_is_called_twice_when_first_room_chosen_does_not_have_a_valid_entrance(dungeon_generator,
                                                                                            waypoint_a):
-    original_function = waypoint_a.has_entrance
-    has_entrance_mock = MagicMock()
-    has_entrance_mock.side_effect = [False, True]
-    waypoint_a.has_entrance = has_entrance_mock
+    for room in dungeon_generator.room_cards:
+        if waypoint_a.has_exit(room):
+            room_one = room
+            break
 
-    select_room_mock = MagicMock()
-    select_room_mock.side_effect = [Trail(), Hovel(), Den()]
-    dungeon_generator.select_room_card = select_room_mock
+    with patch.object(RandomDungeonGenerator, 'select_room_card', return_value=room_one) as mock:
+        dungeon_generator.select_first_room()
+        assert mock.call_count == 1
 
-    dungeon_generator.select_first_room()
-    dungeon_generator.select_room_by_waypoint(waypoint_a)
+    select_room_return_values = []
 
-    assert has_entrance_mock.call_count == 2
-    assert select_room_mock.call_count == 3
+    for room in dungeon_generator.room_cards:
+        if not waypoint_a.has_entrance(room) and room not in select_room_return_values:
+            select_room_return_values.append(room)
+            break
+    assert len(select_room_return_values) == 1
 
-    waypoint_a.has_entrance = original_function
+    for room in dungeon_generator.room_cards:
+        if waypoint_a.has_entrance(room) and room not in select_room_return_values:
+            select_room_return_values.append(room)
+            break
+    assert len(select_room_return_values) == 2
+
+    with patch.object(RandomDungeonGenerator, 'select_room_card', side_effect=select_room_return_values) as mock:
+        dungeon_generator.select_room_by_waypoint(waypoint_a)
+        assert mock.call_count == 2
