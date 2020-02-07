@@ -119,7 +119,15 @@ def test_select_room_by_waypoint_calls_overlay_room(dungeon_generator, waypoint_
 
 
 def test_select_room_by_waypoint_causes_two_constructed_rooms_to_be_in_list(dungeon_generator, waypoint_a):
-    dungeon_generator.select_first_room()
+    for room in dungeon_generator.room_cards:
+        if waypoint_a.has_exit(room):
+            room_with_exit_a = room
+            break
+    assert waypoint_a.has_exit(room_with_exit_a)
+
+    with patch.object(RandomDungeonGenerator, 'select_room_card', return_value=room_with_exit_a):
+        dungeon_generator.select_first_room()
+
     dungeon_generator.select_room_by_waypoint(waypoint_a)
     assert len(dungeon_generator.constructed_rooms) == 2
 
