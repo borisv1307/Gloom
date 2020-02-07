@@ -1,7 +1,7 @@
 import pytest
 
-from backend.src.main.game.concrete_monster_cards.cutthroat import Cutthroat
-from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.concrete_monster_cards.cutthroat import Cutthroat
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
 
 
 @pytest.fixture(autouse=True)

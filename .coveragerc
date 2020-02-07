@@ -8,5 +8,5 @@ exclude_lines =
 
 omit = *\__init__.py
         backend\src\test*
-        backend\src\main\room\concrete_room_cards*
-        backend\src\main\game\concrete_monster_cards*
+        backend\src\main\game\room\concrete_room_cards*
+        backend\src\main\game\monster\concrete_monster_cards*
