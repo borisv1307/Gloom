@@ -7,8 +7,8 @@ from backend.src.main.game.cutthroat import Cutthroat
 from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
 
 
-@pytest.fixture(autouse=True)
-def cutthroat():
+@pytest.fixture(name='cutthroat', autouse=True)
+def create_cutthroat():
     """Getting Cutthroat object"""
     cutthroat = Cutthroat()
     return cutthroat

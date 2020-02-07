@@ -1,5 +1,3 @@
-from backend.src.main.cards.cards import Cards
-
 
 class PlayableCardLogic:
     def __init__(self, hand):
