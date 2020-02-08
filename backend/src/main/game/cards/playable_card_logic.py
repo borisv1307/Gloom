@@ -4,6 +4,8 @@ class PlayableCardLogic:
         self.hand = hand
         self.discard = []
         self.lost = []
+        if not self.hand:
+            raise ValueError('wrong input value')
 
     def hand_to_discard(self, card_name):
         for card in self.hand:

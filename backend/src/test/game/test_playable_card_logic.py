@@ -83,12 +83,13 @@ def test_lost_moves_to_hand(playable_card_logic):
     assert playable_card_logic.hand[0]
 
 
-def test_hand_moves_to_lost():
-    hand = []
-    playable_card_logic = PlayableCardLogic(hand)
-    card = Card("4")
-    hand.append(card)
-    playable_card_logic.hand_to_lost("4")
+def test_hand_moves_to_lost(playable_card_logic):
+    playable_card_logic.hand_to_lost("1")
     assert len(playable_card_logic.hand) == 0
     assert len(playable_card_logic.lost) == 1
     assert playable_card_logic.lost[0]
+
+
+def test_create_playable_card_logic_with_non_card_type_raises_value_error():
+    with pytest.raises(ValueError, match='wrong input value'):
+        PlayableCardLogic(None)
