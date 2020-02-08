@@ -1,8 +1,4 @@
-from abc import ABC
-
-
-class Cards(ABC):
-
+class Cards:
     def __init__(self):
         self.cards = []
 

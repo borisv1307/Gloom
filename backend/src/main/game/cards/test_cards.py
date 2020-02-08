@@ -1,5 +1,5 @@
-from backend.src.main.cards.card import Card
-from backend.src.main.cards.cards import Cards
+from backend.src.main.game.cards.card import Card
+from backend.src.main.game.cards.cards import Cards
 
 
 def test_cards_starts_empty():
