@@ -1,4 +1,4 @@
-from backend.src.main.game.monster.concrete_monster_cards.cutthroat import Cutthroat
+from backend.src.main.game.monster import concrete_monsters
 from backend.src.main.game.room import concrete_rooms
 from backend.src.main.game.room.constructed_room import ConstructedRoom
 from backend.src.main.game.room.waypoint.waypoint_pojo import WaypointPOJO
@@ -8,7 +8,7 @@ from backend.src.main.game.tile.tile_geometry import TileGeometry
 class RandomDungeonGenerator:
     def __init__(self, random_wrapper):
         self.random_wrapper = random_wrapper
-        self.monster_cards = [Cutthroat() for _ in range(20)]
+        self.monster_cards = concrete_monsters.get_all_monsters()
         self.room_cards = concrete_rooms.get_all_rooms()
         self.constructed_rooms = []
 

@@ -34,10 +34,16 @@ def test_dungeon_generator_has_20_room_cards(dungeon_generator):
         assert isinstance(item, AbstractRoomCard)
 
 
-def test_dungeon_is_composed_of_twenty_distinct_cards(dungeon_generator):
+def test_dungeon_is_composed_of_twenty_distinct_room_cards(dungeon_generator):
     assert len(dungeon_generator.room_cards) == 20
     room_card_names = {room.name for room in dungeon_generator.room_cards}
     assert len(room_card_names) == 20
+
+
+def test_dungeon_is_composed_of_twenty_distinct_monster_cards(dungeon_generator):
+    assert len(dungeon_generator.monster_cards) == 20
+    dungeon_card_names = {monster.name for monster in dungeon_generator.monster_cards}
+    assert len(dungeon_card_names) == 20
 
 
 def test_dungeon_generator_has_no_rooms_initially(dungeon_generator):
