@@ -4,16 +4,9 @@ from backend.src.main.game.monster.concrete_monster_cards.cutthroat import Cutth
 from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
 
 
-@pytest.fixture(autouse=True, name='cutthroat')
-def create_cutthroat():
-    _cutthroat = Cutthroat()
-    return _cutthroat
-
-
-def test_if_cutthroat_can_be_instantiated():
-    cut_throat = Cutthroat()
-    assert isinstance(cut_throat, Cutthroat)
-    assert isinstance(cut_throat, AbstractMonsterCard)
+def test_if_cutthroat_can_be_instantiated(cutthroat):
+    assert isinstance(cutthroat, Cutthroat)
+    assert isinstance(cutthroat, AbstractMonsterCard)
 
 
 def test_cutthroat_node_1_is_monster(cutthroat):

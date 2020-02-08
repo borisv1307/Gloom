@@ -12,16 +12,6 @@ from backend.src.main.wrappers.random_wrapper import RandomWrapper
 from backend.src.test.game.dungeon import util
 
 
-@pytest.fixture(name='dungeon_generator')
-def create_dungeon_generator():
-    return RandomDungeonGenerator(RandomWrapper())
-
-
-@pytest.fixture(name='waypoint_a')
-def create_waypoint_a():
-    return WaypointA()
-
-
 def test_dungeon_generator_has_20_monster_cards(dungeon_generator):
     assert len(dungeon_generator.monster_cards) == 20
     for item in dungeon_generator.monster_cards:
