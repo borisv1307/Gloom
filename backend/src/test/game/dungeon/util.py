@@ -1,5 +1,5 @@
 # pylint: disable=inconsistent-return-statements
-from backend.src.main.game.room.waypoint.waypoint_a_pojo import WaypointA
+from backend.src.main.game.room.waypoint.waypoint_a import WaypointA
 
 
 def get_room_with_exit_a(dungeon):

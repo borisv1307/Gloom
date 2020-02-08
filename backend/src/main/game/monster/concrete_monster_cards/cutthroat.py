@@ -1,4 +1,4 @@
-from backend.src.main.game.monster.random_monster_card import AbstractMonsterCard
+from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
 from backend.src.main.game.monster.values import (
     DungeonCardValues,
     NumberedRoomTileValues
