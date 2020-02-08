@@ -12,8 +12,8 @@ def create_card():
 @pytest.fixture(name='playable_card_logic')
 def create_playable_card_logic(card):
     hand = [card]
-    playable_card_logic = PlayableCardLogic(hand)
-    return playable_card_logic
+    playable_card_logic_hand = PlayableCardLogic(hand)
+    return playable_card_logic_hand
 
 
 def test_starts_with_hand(playable_card_logic):
@@ -67,8 +67,9 @@ def test_discard_moves_to_lost(playable_card_logic, card):
 
 def test_discard_moves_to_hand(playable_card_logic, card):
     card_one = Card("1")
-    playable_card_logic.lost_to_discard(card_one)
-    playable_card_logic.discard_to_hand(card_one)
+    discard = [card_one]
+    playable_card_logic.lost_to_discard(discard)
+    playable_card_logic.discard_to_hand(discard)
     assert playable_card_logic.discard.__len__() == 0
     assert playable_card_logic.hand.__len__() == 1
     assert playable_card_logic.hand.__getitem__(0) == card
@@ -76,8 +77,9 @@ def test_discard_moves_to_hand(playable_card_logic, card):
 
 def test_lost_moves_to_hand(playable_card_logic, card):
     card_one = Card("1")
-    playable_card_logic.discard_to_lost(card_one)
-    playable_card_logic.lost_to_hand(card_one)
+    lost = [card_one]
+    playable_card_logic.discard_to_lost(lost)
+    playable_card_logic.lost_to_hand(lost)
     assert playable_card_logic.lost.__len__() == 0
     assert playable_card_logic.hand.__len__() == 1
     assert playable_card_logic.hand.__getitem__(0) == card
