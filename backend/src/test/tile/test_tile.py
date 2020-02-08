@@ -1,4 +1,4 @@
-from backend.src.main.game.values import NumberedRoomTileValues
+from backend.src.main.game.monster.values import NumberedRoomTileValues
 from backend.src.main.tile.tile import Tile
 
 

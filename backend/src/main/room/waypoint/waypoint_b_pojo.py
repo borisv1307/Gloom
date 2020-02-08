@@ -1,4 +1,4 @@
-from backend.src.main.game.values import UniqueDungeonCardValues
+from backend.src.main.game.monster.values import UniqueDungeonCardValues
 from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
 
 

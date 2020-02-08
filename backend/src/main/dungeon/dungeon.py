@@ -1,4 +1,4 @@
-from backend.src.main.game.cutthroat import Cutthroat
+from backend.src.main.game.monster.concrete_monster_cards.cutthroat import Cutthroat
 from backend.src.main.room import concrete_rooms
 from backend.src.main.room.constructed_room import ConstructedRoom
 from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO

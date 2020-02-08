@@ -1,8 +1,8 @@
 import pytest
-from backend.src.main.game.values import DungeonCardValues, UniqueDungeonCardValues
-from backend.src.main.room.concrete_room_cards.burrow import Burrow
-from backend.src.main.room.concrete_room_cards.hovel import Hovel
-from backend.src.main.room.concrete_room_cards.tunnel import Tunnel
+from backend.src.main.game.monster.values import DungeonCardValues, UniqueDungeonCardValues
+from backend.src.main.game.room.concrete_room_cards.burrow import Burrow
+from backend.src.main.game.room.concrete_room_cards.hovel import Hovel
+from backend.src.main.game.room.concrete_room_cards.tunnel import Tunnel
 from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
 from backend.src.main.tile.center_tile import CenterTile
 from backend.src.main.tile.tile import Tile

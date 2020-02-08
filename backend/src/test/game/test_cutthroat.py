@@ -1,12 +1,8 @@
-"""Test case for Cutthroat Monster Card Class:
-Test cases for Cutthroat Monster Card
-"""
-# pylint: disable=pointless-statement
 import pytest
 
-from backend.src.main.game.cutthroat import Cutthroat
-from backend.src.main.game.random_monster_card import AbstractMonsterCard
-from backend.src.main.game.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.concrete_monster_cards.cutthroat import Cutthroat
+from backend.src.main.game.monster.random_monster_card import AbstractMonsterCard
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
 
 
 @pytest.fixture(autouse=True, name='cutthroat')
@@ -29,6 +25,7 @@ def test_cutthroat_node_12_is_treasure(cutthroat):
     assert cutthroat.map_values[NumberedRoomTileValues.TWELVE] == DungeonCardValues.TREASURE
 
 
+# pylint: disable=pointless-statement
 def test_cutthroat_node_13_raises_key_error(cutthroat):
     with pytest.raises(KeyError):
         cutthroat.map_values[13]
