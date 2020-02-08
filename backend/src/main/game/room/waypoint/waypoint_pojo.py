@@ -1,6 +1,6 @@
 from abc import ABC
 
-from backend.src.main.game.tile.tile_geometry_util import TileGeometryUtility
+from backend.src.main.game.tile.tile_util import TileUtility
 
 
 class WaypointPOJO(ABC):
@@ -9,19 +9,19 @@ class WaypointPOJO(ABC):
         self.exit_tile = exit_tile_type
 
     def remove_entrance(self, room):
-        return TileGeometryUtility.remove_tile_by_type(room, self.entrance_tile)
+        return TileUtility.remove_tile_by_type(room, self.entrance_tile)
 
     def has_entrance(self, room):
-        return TileGeometryUtility.has_tile_of_type(room, self.entrance_tile)
+        return TileUtility.has_tile_of_type(room, self.entrance_tile)
 
     def has_exit(self, room):
-        return TileGeometryUtility.has_tile_of_type(room, self.exit_tile)
+        return TileUtility.has_tile_of_type(room, self.exit_tile)
 
     def get_entrance(self, room):
-        return TileGeometryUtility.get_tile_by_type(room, self.entrance_tile)
+        return TileUtility.get_tile_by_type(room, self.entrance_tile)
 
     def get_exit(self, room):
-        return TileGeometryUtility.get_tile_by_type(room, self.exit_tile)
+        return TileUtility.get_tile_by_type(room, self.exit_tile)
 
     def is_entrance(self, tile):
-        return TileGeometryUtility.is_tile_of_type(tile, self.entrance_tile)
+        return TileUtility.is_tile_of_type(tile, self.entrance_tile)
