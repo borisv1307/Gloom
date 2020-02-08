@@ -68,7 +68,6 @@ def test_discard_moves_to_lost(playable_card_logic, card):
 def test_discard_moves_to_hand(playable_card_logic, card):
     card_one = Card("1")
     discard = [card_one]
-    playable_card_logic.lost_to_discard(discard)
     playable_card_logic.discard_to_hand(discard)
     assert playable_card_logic.discard.__len__() == 0
     assert playable_card_logic.hand.__len__() == 1
@@ -78,7 +77,6 @@ def test_discard_moves_to_hand(playable_card_logic, card):
 def test_lost_moves_to_hand(playable_card_logic, card):
     card_one = Card("1")
     lost = [card_one]
-    playable_card_logic.discard_to_lost(lost)
     playable_card_logic.lost_to_hand(lost)
     assert playable_card_logic.lost.__len__() == 0
     assert playable_card_logic.hand.__len__() == 1
