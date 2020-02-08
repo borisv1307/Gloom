@@ -1,5 +1,5 @@
 # pylint: disable=line-too-long
-from unittest.mock import MagicMock, call, patch
+from unittest.mock import call, patch
 
 import pytest
 from backend.src.main.game.dungeon.random_dungeon_generator import RandomDungeonGenerator
@@ -63,36 +63,27 @@ def test_select_first_room_adds_constructed_room(dungeon_generator):
 
 
 def test_select_first_room_calls_random_choice_twice(dungeon_generator):
-    # Note, we depend on the order of calls
-    mock = MagicMock()
-    mock.side_effect = [0, 0]
-
-    random_wrapper = RandomWrapper()
-    random_wrapper.randrange = mock
-
     expected_room_argument = 20
     expected_monster_argument = 20
     expected_calls = [call(expected_room_argument), call(expected_monster_argument)]
 
-    dungeon_generator.random_wrapper = random_wrapper
-    dungeon_generator.select_first_room()
+    with patch.object(RandomWrapper, 'randrange', side_effect=[0, 0]) as mock:
+        dungeon_generator.select_first_room()
 
-    mock.assert_has_calls(expected_calls)
-    assert mock.call_count == 2
+        mock.assert_has_calls(expected_calls)
+        assert mock.call_count == 2
 
 
 def test_select_room_waypoint_a_checks_if_drawn_card_has_entrance_a(dungeon_generator, waypoint_a):
-    for room in dungeon_generator.room_cards:
-        if waypoint_a.has_exit(room):
-            room_with_exit = room
+    room_with_exit = util.get_room_with_exit_a(dungeon_generator)
 
     for room in dungeon_generator.room_cards:
         if waypoint_a.has_entrance(room) and room != room_with_exit:
             room_with_entrance = room
 
-    dungeon_generator.select_room_card = MagicMock()
-    dungeon_generator.select_room_card.side_effect = [room_with_exit, room_with_entrance]
-    dungeon_generator.select_first_room()
+    with patch.object(RandomDungeonGenerator, 'select_room_card', side_effect=[room_with_exit, room_with_entrance]):
+        dungeon_generator.select_first_room()
+
     assert len(dungeon_generator.constructed_rooms) == 1
     with patch.object(WaypointA, 'has_entrance', wraps=waypoint_a.get_entrance) as mock:
         dungeon_generator.select_room_by_waypoint(waypoint_a)
@@ -102,16 +93,15 @@ def test_select_room_waypoint_a_checks_if_drawn_card_has_entrance_a(dungeon_gene
 def test_select_room_waypoint_raises_value_error_if_does_not_have_exit(dungeon_generator, waypoint_a):
     for room in dungeon_generator.room_cards:
         if not waypoint_a.has_exit(room):
-            room_with_exit = room
+            room_with_no_exit = room
 
     for room in dungeon_generator.room_cards:
-        if room != room_with_exit:
+        if room != room_with_no_exit:
             room_with_entrance = room
 
-    dungeon_generator.select_room_card = MagicMock()
-    dungeon_generator.select_room_card.side_effect = [room_with_exit, room_with_entrance]
-    dungeon_generator.select_first_room()
-    assert len(dungeon_generator.constructed_rooms) == 1
+    with patch.object(RandomDungeonGenerator, 'select_room_card', side_effect=[room_with_no_exit, room_with_entrance]):
+        dungeon_generator.select_first_room()
+        assert len(dungeon_generator.constructed_rooms) == 1
     with pytest.raises(ValueError, match="Cannot use provided waypoint as room does not have corresponding exit."):
         dungeon_generator.select_room_by_waypoint(waypoint_a)
 
