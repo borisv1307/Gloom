@@ -53,8 +53,6 @@ def test_hand_moves_to_discard_with_many_cards():
     playable_card_logic = PlayableCardLogic(hand)
     playable_card_logic.hand_to_discard("3")
     assert playable_card_logic.hand.__len__() == 4
-    if playable_card_logic.hand == card_three:
-        assert True
     assert playable_card_logic.discard.__len__() == 1
     assert playable_card_logic.discard.__getitem__(0) == card_three
 
@@ -68,16 +66,18 @@ def test_discard_moves_to_lost(playable_card_logic, card):
 
 
 def test_discard_moves_to_hand(playable_card_logic, card):
-    playable_card_logic.lost_to_discard("1")
-    playable_card_logic.discard_to_hand("1")
+    card_one = Card("1")
+    playable_card_logic.lost_to_discard(card_one)
+    playable_card_logic.discard_to_hand(card_one)
     assert playable_card_logic.discard.__len__() == 0
     assert playable_card_logic.hand.__len__() == 1
     assert playable_card_logic.hand.__getitem__(0) == card
 
 
 def test_lost_moves_to_hand(playable_card_logic, card):
-    playable_card_logic.discard_to_lost("1")
-    playable_card_logic.lost_to_hand("1")
+    card_one = Card("1")
+    playable_card_logic.discard_to_lost(card_one)
+    playable_card_logic.lost_to_hand(card_one)
     assert playable_card_logic.lost.__len__() == 0
     assert playable_card_logic.hand.__len__() == 1
     assert playable_card_logic.hand.__getitem__(0) == card
