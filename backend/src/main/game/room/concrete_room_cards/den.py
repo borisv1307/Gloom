@@ -3,7 +3,7 @@ from backend.src.main.game.monster.values import (
     DungeonCardValues,
     UniqueDungeonCardValues
 )
-from backend.src.main.game.room.room import AbstractRoomCard
+from backend.src.main.game.room.abstract_room_card import AbstractRoomCard
 
 
 class Den(AbstractRoomCard):  # pylint: disable=too-few-public-methods

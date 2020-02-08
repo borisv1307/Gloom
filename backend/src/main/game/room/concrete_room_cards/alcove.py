@@ -2,7 +2,7 @@ from backend.src.main.game.monster.values import (
     DungeonCardValues,
     NumberedRoomTileValues,
     UniqueDungeonCardValues)
-from backend.src.main.game.room.room import AbstractRoomCard
+from backend.src.main.game.room.abstract_room_card import AbstractRoomCard
 
 
 class Alcove(AbstractRoomCard):  # pylint: disable=too-few-public-methods

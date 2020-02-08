@@ -4,8 +4,8 @@ from unittest.mock import call, patch
 import pytest
 from backend.src.main.game.dungeon.random_dungeon_generator import RandomDungeonGenerator
 from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
+from backend.src.main.game.room.abstract_room_card import AbstractRoomCard
 from backend.src.main.game.room.constructed_room import ConstructedRoom
-from backend.src.main.game.room.room import AbstractRoomCard
 from backend.src.main.game.room.waypoint.waypoint_a import WaypointA
 from backend.src.main.game.tile.tile_geometry import TileGeometry
 from backend.src.main.wrappers.random_wrapper import RandomWrapper

@@ -1,4 +1,4 @@
-from backend.src.main.game.room.room import AbstractRoomCard
+from backend.src.main.game.room.abstract_room_card import AbstractRoomCard
 from backend.src.main.game.room.waypoint.waypoint_pojo import WaypointPOJO
 from backend.src.main.game.tile.center_tile import CenterTile
 from backend.src.main.game.tile.shift_tile import ShiftTile
