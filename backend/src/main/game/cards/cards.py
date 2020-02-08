@@ -1,9 +1,9 @@
 class Cards:
     def __init__(self):
-        self.cards = []
+        self.card_deck = []
 
     def append(self, card):
-        self.cards.append(card)
+        self.card_deck.append(card)
 
     def remove(self, card):
-        self.cards.remove(card)
+        self.card_deck.remove(card)

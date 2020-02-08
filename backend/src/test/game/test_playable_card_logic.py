@@ -91,5 +91,5 @@ def test_hand_moves_to_lost(playable_card_logic):
 
 
 def test_create_playable_card_logic_with_non_card_type_raises_value_error():
-    with pytest.raises(ValueError, match='wrong input value'):
+    with pytest.raises(ValueError, match='non card type'):
         PlayableCardLogic(None)
