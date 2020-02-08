@@ -6,7 +6,7 @@ from backend.src.main.game.room.room_card_exceptions import DuplicateTileError
 from backend.src.main.game.tile.tile import Tile
 
 
-class AbstractRoomCard(ABC):  # pylint: disable=too-few-public-methods
+class AbstractRoomCard(ABC):
     def __init__(self, name):
         self.name = name
         self.tiles = []

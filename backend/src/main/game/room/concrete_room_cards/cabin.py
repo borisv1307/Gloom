@@ -5,7 +5,7 @@ from backend.src.main.game.monster.values import (
 from backend.src.main.game.room.abstract_room_card import AbstractRoomCard
 
 
-class Cabin(AbstractRoomCard):  # pylint: disable=too-few-public-methods
+class Cabin(AbstractRoomCard):
 
     def __init__(self):
         AbstractRoomCard.__init__(self, "Cabin")

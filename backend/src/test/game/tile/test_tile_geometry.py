@@ -1,8 +1,7 @@
-# pylint: disable=line-too-long,duplicate-code
+# pylint: disable=line-too-long
 import itertools
 
 import pytest
-
 from backend.src.main.game.monster.values import UniqueDungeonCardValues
 from backend.src.main.game.room.concrete_room_cards.burrow import Burrow
 from backend.src.main.game.room.concrete_room_cards.tunnel import Tunnel

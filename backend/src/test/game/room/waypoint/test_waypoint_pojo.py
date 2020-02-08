@@ -1,4 +1,4 @@
-# pylint: disable=duplicate-code
+
 import pytest
 
 from backend.src.main.game.monster.values import UniqueDungeonCardValues

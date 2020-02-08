@@ -5,7 +5,7 @@ from backend.src.main.game.monster.values import (
 from backend.src.main.game.room.abstract_room_card import AbstractRoomCard
 
 
-class DeadEnd(AbstractRoomCard):  # pylint: disable=too-few-public-methods
+class DeadEnd(AbstractRoomCard):
 
     def __init__(self):
         AbstractRoomCard.__init__(self, "DeadEnd")

@@ -5,7 +5,7 @@ from backend.src.main.game.monster.values import (
 from backend.src.main.game.room.abstract_room_card import AbstractRoomCard
 
 
-class Sewer(AbstractRoomCard):  # pylint: disable=too-few-public-methods
+class Sewer(AbstractRoomCard):
 
     def __init__(self):
         AbstractRoomCard.__init__(self, "Sewer")
