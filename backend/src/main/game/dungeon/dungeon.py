@@ -1,8 +1,8 @@
 from backend.src.main.game.monster.concrete_monster_cards.cutthroat import Cutthroat
-from backend.src.main.room import concrete_rooms
-from backend.src.main.room.constructed_room import ConstructedRoom
-from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
-from backend.src.main.tile.tile_geometry import TileGeometry
+from backend.src.main.game.room import concrete_rooms
+from backend.src.main.game.room.constructed_room import ConstructedRoom
+from backend.src.main.game.room.waypoint.waypoint_pojo import WaypointPOJO
+from backend.src.main.game.tile.tile_geometry import TileGeometry
 
 
 class RandomDungeonGenerator:

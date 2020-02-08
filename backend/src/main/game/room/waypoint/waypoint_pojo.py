@@ -1,6 +1,6 @@
 from abc import ABC
 
-from backend.src.main.tile.tile_geometry_util import TileGeometryUtility
+from backend.src.main.game.tile.tile_geometry_util import TileGeometryUtility
 
 
 class WaypointPOJO(ABC):

@@ -1,5 +1,5 @@
-from backend.src.main.room.waypoint.waypoint_pojo import WaypointPOJO
-from backend.src.main.tile.tile import Tile
+from backend.src.main.game.room.waypoint.waypoint_pojo import WaypointPOJO
+from backend.src.main.game.tile.tile import Tile
 
 
 class CenterTile:

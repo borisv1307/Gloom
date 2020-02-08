@@ -1,7 +1,7 @@
 from backend.src.main.game.monster.random_monster_card import AbstractMonsterCard
 from backend.src.main.game.monster.values import NumberedRoomTileValues
 from backend.src.main.game.room.room import AbstractRoomCard
-from backend.src.main.tile.tile import Tile
+from backend.src.main.game.tile.tile import Tile
 
 
 class ConstructedRoom(AbstractRoomCard):

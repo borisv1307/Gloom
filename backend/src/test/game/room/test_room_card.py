@@ -5,11 +5,10 @@ from backend.src.main.game.monster.values import (
     NumberedRoomTileValues,
     UniqueDungeonCardValues
 )
-from backend.src.main.game.room import room
+from backend.src.main.game.room import room, concrete_rooms
 from backend.src.main.game.room.concrete_room_cards import den
 from backend.src.main.game.room.room_card_exceptions import DuplicateTileError
-from backend.src.main.room import concrete_rooms
-from backend.src.main.tile.tile import Tile
+from backend.src.main.game.tile.tile import Tile
 
 
 @pytest.fixture

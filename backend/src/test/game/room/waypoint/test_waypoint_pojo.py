@@ -6,9 +6,9 @@ from backend.src.main.game.room.concrete_room_cards.burrow import Burrow
 from backend.src.main.game.room.concrete_room_cards.den import Den
 from backend.src.main.game.room.concrete_room_cards.hovel import Hovel
 from backend.src.main.game.room.concrete_room_cards.trail import Trail
-from backend.src.main.room.waypoint.waypoint_a_pojo import WaypointA
-from backend.src.main.room.waypoint.waypoint_b_pojo import WaypointB
-from backend.src.main.tile.tile import Tile
+from backend.src.main.game.room.waypoint.waypoint_a_pojo import WaypointA
+from backend.src.main.game.room.waypoint.waypoint_b_pojo import WaypointB
+from backend.src.main.game.tile.tile import Tile
 
 
 @pytest.fixture(name='waypoint_pojo_a')

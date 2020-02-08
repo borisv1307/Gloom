@@ -1,5 +1,5 @@
-from backend.src.main.tile.shift_tile import ShiftTile
-from backend.src.main.tile.tile import Tile
+from backend.src.main.game.tile.shift_tile import ShiftTile
+from backend.src.main.game.tile.tile import Tile
 
 
 def test_shift_tile_0_0_to_1_2_returns_1_2():

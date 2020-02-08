@@ -1,4 +1,4 @@
-from backend.src.main.tile.tile import Tile
+from backend.src.main.game.tile.tile import Tile
 
 
 class ShiftTile:

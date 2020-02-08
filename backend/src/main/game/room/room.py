@@ -3,7 +3,7 @@ from abc import ABC
 
 from backend.src.main.game.monster.values import UniqueTileValues
 from backend.src.main.game.room.room_card_exceptions import DuplicateTileError
-from backend.src.main.tile.tile import Tile
+from backend.src.main.game.tile.tile import Tile
 
 
 class AbstractRoomCard(ABC):  # pylint: disable=too-few-public-methods
