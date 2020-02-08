@@ -22,8 +22,8 @@ def create_dungeon_generator():
     return RandomDungeonGenerator(RandomWrapper())
 
 
-@pytest.fixture(name='_test_room')
-def create__test_room():
+@pytest.fixture(name='test_room')
+def create_test_room():
     return AbstractRoomCard("Den")
 
 
