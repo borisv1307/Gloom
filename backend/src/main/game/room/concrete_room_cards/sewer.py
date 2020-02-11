@@ -1,12 +1,15 @@
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
-from backend.src.main.game.room.room import AbstractRoomCard
+from backend.src.main.game.monster.values import (
+    DungeonCardValues,
+    NumberedRoomTileValues,
+    UniqueDungeonCardValues)
+from backend.src.main.game.room.abstract_room_card import AbstractRoomCard
 
 
-class Sewer(AbstractRoomCard):  # pylint: disable=too-few-public-methods
+class Sewer(AbstractRoomCard):
 
     def __init__(self):
         AbstractRoomCard.__init__(self, "Sewer")
-        self.add_tile(DungeonCardValues.EXIT_A, 2, -4)
+        self.add_tile(UniqueDungeonCardValues.EXIT_A, 2, -4)
         self.add_tile(NumberedRoomTileValues.TWELVE, -1, -3)
         self.add_tile(DungeonCardValues.EMPTY, 0, -3)
         self.add_tile(DungeonCardValues.EMPTY, 1, -3)
@@ -32,4 +35,4 @@ class Sewer(AbstractRoomCard):  # pylint: disable=too-few-public-methods
         self.add_tile(DungeonCardValues.EMPTY, 0, 2)
         self.add_tile(DungeonCardValues.EMPTY, -2, 3)
         self.add_tile(DungeonCardValues.EMPTY, -1, 3)
-        self.add_tile(DungeonCardValues.ENTRANCE_A, -2, 4)
+        self.add_tile(UniqueDungeonCardValues.ENTRANCE_A, -2, 4)

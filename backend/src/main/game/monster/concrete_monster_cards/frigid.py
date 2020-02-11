@@ -1,8 +1,8 @@
-from backend.src.main.game.monster.random_monster_card import RandomMonsterCard
+from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
 from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
 
 
-class Frigid(RandomMonsterCard):  # pylint: disable=too-few-public-methods
+class Frigid(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
 
     def __init__(self):
         map_values = {NumberedRoomTileValues.ONE: DungeonCardValues.EMPTY,
@@ -17,4 +17,4 @@ class Frigid(RandomMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.TEN: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.ELEVEN: DungeonCardValues.TRAPS,
                       NumberedRoomTileValues.TWELVE: DungeonCardValues.MONSTER}
-        RandomMonsterCard.__init__(self, "Frigid", map_values)
+        AbstractMonsterCard.__init__(self, "Frigid", map_values)

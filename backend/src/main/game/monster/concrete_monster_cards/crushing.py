@@ -1,8 +1,8 @@
-from backend.src.main.game.monster.random_monster_card import RandomMonsterCard
+from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
 from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
 
 
-class Crushing(RandomMonsterCard):  # pylint: disable=too-few-public-methods
+class Crushing(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
 
     def __init__(self):
         map_values = {NumberedRoomTileValues.ONE: DungeonCardValues.MONSTER,
@@ -17,4 +17,4 @@ class Crushing(RandomMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.TEN: DungeonCardValues.DIFFICULT_TERRAIN,
                       NumberedRoomTileValues.ELEVEN: DungeonCardValues.TREASURE,
                       NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE}
-        RandomMonsterCard.__init__(self, "Crushing", map_values)
+        AbstractMonsterCard.__init__(self, "Crushing", map_values)
