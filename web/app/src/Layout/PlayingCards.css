@@ -28,8 +28,6 @@
   width: 60px;
   height: 90px;
   bottom: 0;
-  background-color: blue;
-  background-image: url("/card1.png");
   background-size: contain;
   margin: 10px auto;
   font-size: 10px;
