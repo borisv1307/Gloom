@@ -32,3 +32,14 @@ class NumberedRoomTileValues(Enum):
     TEN = '10'
     ELEVEN = '11'
     TWELVE = '12'
+
+
+class TrapIndicators(Enum):
+    POISON = 'poison'
+    WOUND = 'wound'
+    IMMOBILIZE = 'immobilize'
+    DISARM = 'disarm'
+    STUN = 'stun'
+    MUDDLE = 'muddle'
+    CURSE = 'curse'
+    DAMAGE = 'damage'

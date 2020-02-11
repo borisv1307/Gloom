@@ -1,5 +1,6 @@
 from backend.src.main.game.monster.random_monster_card import RandomMonsterCard
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues, \
+    TrapIndicators
 
 
 class Wild(RandomMonsterCard):  # pylint: disable=too-few-public-methods
@@ -10,9 +11,15 @@ class Wild(RandomMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.THREE: DungeonCardValues.COIN,
                       NumberedRoomTileValues.SIX: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.SEVEN: DungeonCardValues.MONSTER,
-                      NumberedRoomTileValues.EIGHT: DungeonCardValues.TRAPS,
+                      NumberedRoomTileValues.EIGHT:
+                          [DungeonCardValues.TRAPS,
+                           TrapIndicators.IMMOBILIZE,
+                           TrapIndicators.DAMAGE],
                       NumberedRoomTileValues.FIVE: DungeonCardValues.MONSTER,
-                      NumberedRoomTileValues.NINE: DungeonCardValues.TRAPS,
+                      NumberedRoomTileValues.NINE:
+                          [DungeonCardValues.TRAPS,
+                           TrapIndicators.IMMOBILIZE,
+                           TrapIndicators.DAMAGE],
                       NumberedRoomTileValues.TEN: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.ELEVEN: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.FOUR: DungeonCardValues.MONSTER,

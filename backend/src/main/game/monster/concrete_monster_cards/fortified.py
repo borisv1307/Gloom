@@ -1,5 +1,6 @@
 from backend.src.main.game.monster.random_monster_card import RandomMonsterCard
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues, \
+    TrapIndicators
 
 
 class Fortified(RandomMonsterCard):  # pylint: disable=too-few-public-methods
@@ -12,9 +13,15 @@ class Fortified(RandomMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.FIVE: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.SIX: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.SEVEN: DungeonCardValues.MONSTER,
-                      NumberedRoomTileValues.EIGHT: DungeonCardValues.TRAPS,
                       NumberedRoomTileValues.NINE: DungeonCardValues.MONSTER,
-                      NumberedRoomTileValues.TEN: DungeonCardValues.TRAPS,
-                      NumberedRoomTileValues.ELEVEN: DungeonCardValues.TRAPS,
+                      NumberedRoomTileValues.EIGHT:
+                          [DungeonCardValues.TRAPS,
+                           TrapIndicators.DAMAGE],
+                      NumberedRoomTileValues.TEN:
+                          [DungeonCardValues.TRAPS,
+                           TrapIndicators.DAMAGE],
+                      NumberedRoomTileValues.ELEVEN:
+                          [DungeonCardValues.TRAPS,
+                           TrapIndicators.DAMAGE],
                       NumberedRoomTileValues.TWELVE: DungeonCardValues.MONSTER}
         RandomMonsterCard.__init__(self, "Fortified", map_values)

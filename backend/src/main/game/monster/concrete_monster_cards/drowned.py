@@ -1,5 +1,6 @@
 from backend.src.main.game.monster.random_monster_card import RandomMonsterCard
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues, \
+    TrapIndicators
 
 
 class Drowned(RandomMonsterCard):  # pylint: disable=too-few-public-methods
@@ -12,9 +13,12 @@ class Drowned(RandomMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.FOUR: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.SIX: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.SEVEN: DungeonCardValues.MONSTER,
-                      NumberedRoomTileValues.EIGHT: DungeonCardValues.TRAPS,
-                      NumberedRoomTileValues.NINE: DungeonCardValues.TRAPS,
-                      NumberedRoomTileValues.TEN: DungeonCardValues.TRAPS,
+                      NumberedRoomTileValues.EIGHT:
+                          [DungeonCardValues.TRAPS, TrapIndicators.STUN, TrapIndicators.DAMAGE],
+                      NumberedRoomTileValues.NINE:
+                          [DungeonCardValues.TRAPS, TrapIndicators.STUN, TrapIndicators.DAMAGE],
+                      NumberedRoomTileValues.TEN:
+                          [DungeonCardValues.TRAPS, TrapIndicators.STUN, TrapIndicators.DAMAGE],
                       NumberedRoomTileValues.ELEVEN: DungeonCardValues.DIFFICULT_TERRAIN,
                       NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE}
         RandomMonsterCard.__init__(self, "Drowned", map_values)

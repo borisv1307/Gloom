@@ -1,5 +1,6 @@
 from backend.src.main.game.monster.random_monster_card import RandomMonsterCard
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues,\
+    TrapIndicators
 
 
 class Rotting(RandomMonsterCard):  # pylint: disable=too-few-public-methods
@@ -13,9 +14,12 @@ class Rotting(RandomMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.SIX: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.SEVEN: DungeonCardValues.COIN,
                       NumberedRoomTileValues.TWO: DungeonCardValues.MONSTER,
-                      NumberedRoomTileValues.EIGHT: DungeonCardValues.TRAPS,
+                      NumberedRoomTileValues.EIGHT:
+                          [DungeonCardValues.TRAPS, TrapIndicators.STUN, TrapIndicators.POISON],
                       NumberedRoomTileValues.NINE: DungeonCardValues.MONSTER,
-                      NumberedRoomTileValues.TEN: DungeonCardValues.TRAPS,
-                      NumberedRoomTileValues.ELEVEN: DungeonCardValues.TRAPS,
+                      NumberedRoomTileValues.TEN:
+                          [DungeonCardValues.TRAPS, TrapIndicators.STUN, TrapIndicators.POISON],
+                      NumberedRoomTileValues.ELEVEN:
+                          [DungeonCardValues.TRAPS, TrapIndicators.STUN, TrapIndicators.POISON],
                       NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE}
         RandomMonsterCard.__init__(self, "Rotting", map_values)

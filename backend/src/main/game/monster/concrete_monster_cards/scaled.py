@@ -1,13 +1,17 @@
 from backend.src.main.game.monster.random_monster_card import RandomMonsterCard
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues, \
+    TrapIndicators
 
 
 class Scaled(RandomMonsterCard):  # pylint: disable=too-few-public-methods
 
     def __init__(self):
-        map_values = {NumberedRoomTileValues.ONE: DungeonCardValues.TRAPS,
-                      NumberedRoomTileValues.TWO: DungeonCardValues.TRAPS,
-                      NumberedRoomTileValues.THREE: DungeonCardValues.TRAPS,
+        map_values = {NumberedRoomTileValues.ONE:
+                          [DungeonCardValues.TRAPS, TrapIndicators.WOUND, TrapIndicators.POISON],
+                      NumberedRoomTileValues.TWO:
+                          [DungeonCardValues.TRAPS, TrapIndicators.WOUND, TrapIndicators.POISON],
+                      NumberedRoomTileValues.THREE:
+                          [DungeonCardValues.TRAPS, TrapIndicators.WOUND, TrapIndicators.POISON],
                       NumberedRoomTileValues.FOUR: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.FIVE: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.SIX: DungeonCardValues.MONSTER,
