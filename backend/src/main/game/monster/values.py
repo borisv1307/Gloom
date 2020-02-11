@@ -13,13 +13,20 @@ class DungeonCardValues(Enum):
     EMPTY = 'empty'
     COIN = 'coin'
     TREASURE = '5 gold'
+
+
+class UniqueTileValues(Enum):
+    pass
+
+
+class UniqueDungeonCardValues(DungeonCardValues, UniqueTileValues):
     ENTRANCE_A = 'entrance a'
     ENTRANCE_B = 'entrance b'
     EXIT_A = 'exit a'
     EXIT_B = 'exit b'
 
 
-class NumberedRoomTileValues(Enum):
+class NumberedRoomTileValues(UniqueTileValues):
     ONE = '1'
     TWO = '2'
     THREE = '3'

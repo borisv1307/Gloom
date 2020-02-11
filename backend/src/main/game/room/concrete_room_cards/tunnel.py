@@ -1,12 +1,15 @@
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
-from backend.src.main.game.room.room import AbstractRoomCard
+from backend.src.main.game.monster.values import (
+    DungeonCardValues,
+    NumberedRoomTileValues,
+    UniqueDungeonCardValues)
+from backend.src.main.game.room.abstract_room_card import AbstractRoomCard
 
 
-class Tunnel(AbstractRoomCard):  # pylint: disable=too-few-public-methods
+class Tunnel(AbstractRoomCard):
 
     def __init__(self):
         AbstractRoomCard.__init__(self, "Tunnel")
-        self.add_tile(DungeonCardValues.EXIT_B, 0, -4)
+        self.add_tile(UniqueDungeonCardValues.EXIT_B, 0, -4)
         self.add_tile(NumberedRoomTileValues.TEN, 0, -3)
         self.add_tile(DungeonCardValues.OBSTACLE, 0, -2)
         self.add_tile(DungeonCardValues.EMPTY, 0, -1)
@@ -30,10 +33,10 @@ class Tunnel(AbstractRoomCard):  # pylint: disable=too-few-public-methods
         self.add_tile(DungeonCardValues.EMPTY, -4, 5)
         self.add_tile(DungeonCardValues.EMPTY, -4, 6)
         self.add_tile(DungeonCardValues.EMPTY, -5, 5)
-        self.add_tile(DungeonCardValues.ENTRANCE_B, -5, 6)
+        self.add_tile(UniqueDungeonCardValues.ENTRANCE_B, -5, 6)
         self.add_tile(NumberedRoomTileValues.FOUR, 1, -4)
         self.add_tile(DungeonCardValues.EMPTY, 1, -3)
         self.add_tile(NumberedRoomTileValues.SIX, 1, -2)
         self.add_tile(NumberedRoomTileValues.EIGHT, 1, -1)
         self.add_tile(DungeonCardValues.OBSTACLE, 1, 0)
-        self.add_tile(DungeonCardValues.EXIT_A, 2, -3)
+        self.add_tile(UniqueDungeonCardValues.EXIT_A, 2, -3)

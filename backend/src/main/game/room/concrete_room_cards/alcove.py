@@ -1,12 +1,15 @@
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
-from backend.src.main.game.room.room import AbstractRoomCard
+from backend.src.main.game.monster.values import (
+    DungeonCardValues,
+    NumberedRoomTileValues,
+    UniqueDungeonCardValues)
+from backend.src.main.game.room.abstract_room_card import AbstractRoomCard
 
 
-class Alcove(AbstractRoomCard):  # pylint: disable=too-few-public-methods
+class Alcove(AbstractRoomCard):
 
     def __init__(self):
         AbstractRoomCard.__init__(self, "Alcove")
-        self.add_tile(DungeonCardValues.EXIT_B, 0, -5)
+        self.add_tile(UniqueDungeonCardValues.EXIT_B, 0, -5)
         self.add_tile(DungeonCardValues.EMPTY, -1, -4)
         self.add_tile(DungeonCardValues.EMPTY, 0, -4)
         self.add_tile(DungeonCardValues.EMPTY, 1, -5)
@@ -22,7 +25,7 @@ class Alcove(AbstractRoomCard):  # pylint: disable=too-few-public-methods
         self.add_tile(DungeonCardValues.EMPTY, -1, 0)
         self.add_tile(DungeonCardValues.EMPTY, 0, 0)
         self.add_tile(DungeonCardValues.EMPTY, 1, -1)
-        self.add_tile(DungeonCardValues.ENTRANCE_B, -1, 1)
+        self.add_tile(UniqueDungeonCardValues.ENTRANCE_B, -1, 1)
         self.add_tile(DungeonCardValues.EMPTY, 0, 1)
         self.add_tile(NumberedRoomTileValues.TWO, 1, 0)
         self.add_tile(DungeonCardValues.OBSTACLE, 1, 1)

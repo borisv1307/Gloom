@@ -1,12 +1,15 @@
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
-from backend.src.main.game.room.room import AbstractRoomCard
+from backend.src.main.game.monster.values import (
+    DungeonCardValues,
+    NumberedRoomTileValues,
+    UniqueDungeonCardValues)
+from backend.src.main.game.room.abstract_room_card import AbstractRoomCard
 
 
-class DeadEnd(AbstractRoomCard):  # pylint: disable=too-few-public-methods
+class DeadEnd(AbstractRoomCard):
 
     def __init__(self):
         AbstractRoomCard.__init__(self, "DeadEnd")
-        self.add_tile(DungeonCardValues.ENTRANCE_A, -3, 1)
+        self.add_tile(UniqueDungeonCardValues.ENTRANCE_A, -3, 1)
         self.add_tile(DungeonCardValues.EMPTY, -2, -1)
         self.add_tile(DungeonCardValues.EMPTY, -2, 0)
         self.add_tile(DungeonCardValues.EMPTY, -2, 1)
@@ -34,7 +37,7 @@ class DeadEnd(AbstractRoomCard):  # pylint: disable=too-few-public-methods
         self.add_tile(DungeonCardValues.EMPTY, 2, 0)
         self.add_tile(NumberedRoomTileValues.TEN, 2, 1)
         self.add_tile(DungeonCardValues.EMPTY, 2, 2)
-        self.add_tile(DungeonCardValues.EXIT_A, 3, -6)
+        self.add_tile(UniqueDungeonCardValues.EXIT_A, 3, -6)
         self.add_tile(NumberedRoomTileValues.FOUR, 3, -5)
         self.add_tile(NumberedRoomTileValues.SIX, 3, -4)
         self.add_tile(NumberedRoomTileValues.ELEVEN, 3, 0)

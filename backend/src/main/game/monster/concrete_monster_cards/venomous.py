@@ -1,8 +1,8 @@
-from backend.src.main.game.monster.random_monster_card import RandomMonsterCard
+from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
 from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
 
 
-class Venomous(RandomMonsterCard):  # pylint: disable=too-few-public-methods
+class Venomous(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
 
     def __init__(self):
         map_values = {NumberedRoomTileValues.THREE: DungeonCardValues.MONSTER,
@@ -17,4 +17,4 @@ class Venomous(RandomMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.TEN: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.TWO: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE}
-        RandomMonsterCard.__init__(self, "Venomous", map_values)
+        AbstractMonsterCard.__init__(self, "Venomous", map_values)

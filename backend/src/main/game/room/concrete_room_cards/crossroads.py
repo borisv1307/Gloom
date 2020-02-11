@@ -1,8 +1,11 @@
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
-from backend.src.main.game.room.room import AbstractRoomCard
+from backend.src.main.game.monster.values import (
+    DungeonCardValues,
+    NumberedRoomTileValues,
+    UniqueDungeonCardValues)
+from backend.src.main.game.room.abstract_room_card import AbstractRoomCard
 
 
-class Crossroads(AbstractRoomCard):  # pylint: disable=too-few-public-methods
+class Crossroads(AbstractRoomCard):
 
     def __init__(self):
         AbstractRoomCard.__init__(self, "Crossroads")
@@ -13,7 +16,7 @@ class Crossroads(AbstractRoomCard):  # pylint: disable=too-few-public-methods
         self.add_tile(NumberedRoomTileValues.NINE, 2, -3)
         self.add_tile(DungeonCardValues.EMPTY, 3, -3)
         self.add_tile(NumberedRoomTileValues.SEVEN, 4, -3)
-        self.add_tile(DungeonCardValues.EXIT_B, 5, -3)
+        self.add_tile(UniqueDungeonCardValues.EXIT_B, 5, -3)
         self.add_tile(DungeonCardValues.EMPTY, -2, -2)
         self.add_tile(DungeonCardValues.EMPTY, -1, -2)
         self.add_tile(NumberedRoomTileValues.FOUR, 0, -2)
