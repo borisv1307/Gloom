@@ -1,0 +1,13 @@
+.shortrest-container{
+    float: left;
+    size: 1000px;
+}
+
+.card-container{
+    color: black;
+}
+
+.close{
+    color: red;
+    float: right;
+}
