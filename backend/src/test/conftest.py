@@ -65,8 +65,7 @@ def create_tile_serializer():
         'x': 0,
         'y': 0,
         'z': 0,
-        'value': 'coin'}
-    )
+        'value': 'coin'})
     tile_serializer.serialize = mock
     return tile_serializer
 

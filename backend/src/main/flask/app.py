@@ -1,6 +1,4 @@
-""" FILE: foo.py
-    DESC: Flask routing file. Contains the flask application object
-"""
+# pylint:disable=wrong-import-order
 import json
 
 from backend.src.main.game.dungeon.random_dungeon_generator import RandomDungeonGenerator
@@ -12,13 +10,11 @@ from backend.src.main.wrappers.random_wrapper import RandomWrapper
 from flask import Flask
 
 
-class Handler:  # pylint: disable=too-few-public-methods
-    """ Class for flask app object """
+class Handler:
     app = Flask(__name__)
 
     @staticmethod
     def index():
-        """ Returns index page """
         return "Hello, world!"
 
     @staticmethod
@@ -31,10 +27,8 @@ class Handler:  # pylint: disable=too-few-public-methods
 
 
 def get_handler():
-    """ Initializes the handler and adds endpoint mappings """
     handler = Handler()
 
-    # URL Routes
     handler.app.add_url_rule('/', 'index', handler.index)
     handler.app.add_url_rule('/start', 'start', handler.start)
 
@@ -43,6 +37,4 @@ def get_handler():
 
 if __name__ == "__main__":
     HANDLER = get_handler()
-
-    # App Config
     HANDLER.app.run(host='0.0.0.0', port=5000, debug=True)

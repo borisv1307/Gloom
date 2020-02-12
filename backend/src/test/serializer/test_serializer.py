@@ -76,7 +76,7 @@ def test_serialize_dungeon_with_one_room(room_serializer, dungeon_generator):
 
 
 def test_serialize_child_classes_raise_unimplement_error_when_method_not_implemented():
-    class FooSerializer(AbstractSerializer):
+    class FooSerializer(AbstractSerializer):  # pylint: disable=too-few-public-methods,abstract-method
         pass
 
     with pytest.raises(NotImplementedError):
