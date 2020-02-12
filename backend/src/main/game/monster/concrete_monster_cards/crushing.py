@@ -1,5 +1,6 @@
 from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues,\
+    TrapIndicators
 
 
 class Crushing(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
@@ -16,5 +17,6 @@ class Crushing(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.NINE: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.TEN: DungeonCardValues.DIFFICULT_TERRAIN,
                       NumberedRoomTileValues.ELEVEN: DungeonCardValues.TREASURE,
-                      NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE}
+                      NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE,
+                      TrapIndicators.INDICATOR: []}
         AbstractMonsterCard.__init__(self, "Crushing", map_values)

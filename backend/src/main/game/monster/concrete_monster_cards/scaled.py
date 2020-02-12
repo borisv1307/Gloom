@@ -1,5 +1,6 @@
 from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues, \
+    TrapIndicators
 
 
 class Scaled(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
@@ -16,5 +17,6 @@ class Scaled(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.NINE: DungeonCardValues.HAZARDOUS_TERRAIN,
                       NumberedRoomTileValues.TEN: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.ELEVEN: DungeonCardValues.MONSTER,
-                      NumberedRoomTileValues.TWELVE: DungeonCardValues.MONSTER}
+                      NumberedRoomTileValues.TWELVE: DungeonCardValues.MONSTER,
+                      TrapIndicators.INDICATOR: [TrapIndicators.WOUND, TrapIndicators.POISON]}
         AbstractMonsterCard.__init__(self, "Scaled", map_values)

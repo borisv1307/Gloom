@@ -1,8 +1,6 @@
 from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
-from backend.src.main.game.monster.values import (
-    DungeonCardValues,
-    NumberedRoomTileValues
-)
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues, \
+    TrapIndicators
 
 
 class Cutthroat(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
@@ -18,5 +16,6 @@ class Cutthroat(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.NINE: DungeonCardValues.TRAPS,
                       NumberedRoomTileValues.TEN: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.ELEVEN: DungeonCardValues.TRAPS,
-                      NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE}
+                      NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE,
+                      TrapIndicators.INDICATOR: [TrapIndicators.DAMAGE, TrapIndicators.POISON]}
         AbstractMonsterCard.__init__(self, "Cutthroat", map_values)

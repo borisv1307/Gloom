@@ -1,5 +1,6 @@
 from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues,\
+    TrapIndicators
 
 
 class Corrupted(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
@@ -16,5 +17,6 @@ class Corrupted(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.NINE: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.TEN: DungeonCardValues.HAZARDOUS_TERRAIN,
                       NumberedRoomTileValues.ELEVEN: DungeonCardValues.HAZARDOUS_TERRAIN,
-                      NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE}
+                      NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE,
+                      TrapIndicators.INDICATOR: []}
         AbstractMonsterCard.__init__(self, "Corrupted", map_values)

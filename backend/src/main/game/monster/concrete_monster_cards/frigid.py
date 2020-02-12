@@ -1,5 +1,6 @@
 from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues,\
+    TrapIndicators
 
 
 class Frigid(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
@@ -16,5 +17,6 @@ class Frigid(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.NINE: DungeonCardValues.TRAPS,
                       NumberedRoomTileValues.TEN: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.ELEVEN: DungeonCardValues.TRAPS,
-                      NumberedRoomTileValues.TWELVE: DungeonCardValues.MONSTER}
+                      NumberedRoomTileValues.TWELVE: DungeonCardValues.MONSTER,
+                      TrapIndicators.INDICATOR: [TrapIndicators.DISARM]}
         AbstractMonsterCard.__init__(self, "Frigid", map_values)

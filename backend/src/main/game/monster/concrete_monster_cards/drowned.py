@@ -1,5 +1,6 @@
 from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues, \
+    TrapIndicators
 
 
 class Drowned(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
@@ -16,5 +17,6 @@ class Drowned(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.NINE: DungeonCardValues.TRAPS,
                       NumberedRoomTileValues.TEN: DungeonCardValues.TRAPS,
                       NumberedRoomTileValues.ELEVEN: DungeonCardValues.DIFFICULT_TERRAIN,
-                      NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE}
+                      NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE,
+                      TrapIndicators.INDICATOR: [TrapIndicators.STUN, TrapIndicators.DAMAGE]}
         AbstractMonsterCard.__init__(self, "Drowned", map_values)
