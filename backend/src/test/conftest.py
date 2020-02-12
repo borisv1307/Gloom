@@ -1,6 +1,7 @@
 from unittest.mock import Mock
 
 import pytest
+from backend.src.main.flask.app import get_handler
 from backend.src.main.game.dungeon.random_dungeon_generator import RandomDungeonGenerator
 from backend.src.main.game.monster.concrete_monster_cards.cutthroat import Cutthroat
 from backend.src.main.game.monster.values import DungeonCardValues
@@ -76,3 +77,9 @@ def create_room_serializer():
     mock = Mock(return_value='mocked_room')
     serializer.serialize = mock
     return serializer
+
+
+@pytest.fixture(name='flask_test_client')
+def create_flask_test_client():
+    handler = get_handler()
+    return handler.app.test_client()
