@@ -10,7 +10,7 @@ class ConstructedRoom(AbstractRoomCard):
             raise ValueError("Bad Room Card input to ConstructedRoom")
         if not isinstance(monster_card, AbstractMonsterCard):
             raise ValueError("Bad Monster Card input to ConstructedRoom")
-        AbstractRoomCard.__init__(self, room_card.get_name)
+        super().__init__(room_card.get_name())
         self.room_card = room_card
         self.monster_card = monster_card
         self.tiles = self.transform_tiles()
