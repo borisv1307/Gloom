@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long
 import pytest
 
 from backend.src.main.game.monster.values import (
@@ -38,12 +39,10 @@ def test_cannot_add_second_entrance(test_room):
         test_room.add_tile(UniqueDungeonCardValues.ENTRANCE_A, 104, 104)
 
 
-def test_no_duplicate_character_number_in_room_tiles(test_room):
+def test_trying_to_add_two_tiles_with_the_same_character_number_raises_duplicate_tile_error(test_room):
     character_number = NumberedRoomTileValues.TWELVE
     test_room.add_tile(character_number, 5, 13)
     with pytest.raises(DuplicateTileError):
-        # Both tiles have character_number 1
-        # this is not valid
         test_room.add_tile(character_number, 5, 14)
 
 

@@ -22,13 +22,10 @@ def test_coin_tile_is_correctly_replaced():
     dungeon = ConstructedRoom(den, cutthroat)
     tile_of_interest = den.get_tiles()[1]
 
-    # Sanity check the second tile is the numbered tile with value 2
     assert tile_of_interest.character_number == NumberedRoomTileValues.TWO
 
-    # Update the tile to be replaced with concrete items from the monster card
     output_tile = dungeon.replace_generic_number_with_concrete_monster_value(tile_of_interest)
 
-    # Sanity check
     two = NumberedRoomTileValues.TWO
     assert output_tile.character_number == cutthroat.get_designation_by_number(two)
 
