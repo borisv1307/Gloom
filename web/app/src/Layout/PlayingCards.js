@@ -1,5 +1,6 @@
 import './PlayingCards.css'
 import React, {Component} from "react";
+import Popup from "reactjs-popup";
 
 class PlayingCards extends Component {
     state = {
@@ -32,7 +33,7 @@ class PlayingCards extends Component {
 	    let cardName = event.dataTransfer.getData("cardName");
 
 	    let cards = this.state.cards.filter((task) => {
-	        if (task.cardName == cardName) {
+	        if (task.cardName === cardName) {
 	            task.cardType = changeCardType;
 	        }
 	        return task;
@@ -65,6 +66,39 @@ class PlayingCards extends Component {
 
 	    return (
 	      <div className="drag-container">
+		<div className="shortrest">
+ 		{
+  			cards.discardPile.length > 1 &&
+  			<Popup trigger={<button className="button" onClick={() => {
+ 			 }}> Short Rest </button>} modal>
+	  		{close => (
+		  <div className="modal">
+			  <a className="close" onClick={close}>
+				  &times;
+			  </a>
+			  <div className="header"> Send to lost or Redraw</div>
+			  <div className="card-container">
+				  {cards.discardPile.slice(cards.discardPile.length -1)}
+				  <br/>
+				  <br/>
+				  <button id="sendToLost" onClick={(event)=>this.onClick(event, "cardsInHand")}
+					onDragOver={(event)=>this.onDragOver(event)}
+					  onDrop={(event)=>this.onDrop(event, "lostCards")}
+				  >
+					  Send to Lost
+				  </button>
+				  <button onClick={this.getNextCard}
+					  onDragOver={(event)=>this.onDragOver(event)}
+					  onDrop={(event)=>this.onDrop(event, "cardsInHand")}>
+					  Redraw
+				  </button>
+			  </div>
+		  	</div>
+	  				)}
+  			</Popup>
+ 			}
+			</div>
+
 		    <div className="discard-pile" style={{display:"flex", justifyContent:"space-evenly"}}
 	    		onDragOver={(event)=>this.onDragOver(event)}
       			onDrop={(event)=>{this.onDrop(event, "discardPile")}}>
