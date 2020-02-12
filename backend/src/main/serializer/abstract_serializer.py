@@ -2,6 +2,6 @@ from abc import ABC
 
 
 class AbstractSerializer(ABC):
-    @staticmethod
-    def serialize(object):
+
+    def serialize(self, serializable_object):
         raise NotImplementedError

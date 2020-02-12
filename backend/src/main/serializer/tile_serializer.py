@@ -1,9 +1,10 @@
 from backend.src.main.game.tile.tile import Tile
 from backend.src.main.serializer.abstract_serializer import AbstractSerializer
+from backend.src.main.serializer.enum_serializer import EnumSerializer
 
 
 class TileSerializer(AbstractSerializer):
-    def __init__(self, enum_serializer):
+    def __init__(self, enum_serializer: EnumSerializer):
         self.enum_serializer = enum_serializer
 
     def serialize(self, tile: Tile):
