@@ -1,4 +1,6 @@
+import pytest
 from backend.src.main.game.monster.values import DungeonCardValues
+from backend.src.main.serializer.abstract_serializer import AbstractSerializer
 from backend.src.main.serializer.dungeon_serializer import DungeonSerializer
 from backend.src.main.serializer.enum_serializer import EnumSerializer
 from backend.src.main.serializer.room_serializer import RoomSerializer
@@ -71,3 +73,11 @@ def test_serialize_dungeon_with_one_room(room_serializer, dungeon_generator):
         0: 'mocked_room'
     }
     assert actual == expected
+
+
+def test_serialize_child_classes_raise_unimplement_error_when_method_not_implemented():
+    class FooSerializer(AbstractSerializer):
+        pass
+
+    with pytest.raises(NotImplementedError):
+        FooSerializer().serialize(None)
