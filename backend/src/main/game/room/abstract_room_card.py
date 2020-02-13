@@ -10,6 +10,7 @@ class AbstractRoomCard(ABC):
     def __init__(self, name):
         self.name = name
         self.tiles = []
+        self.trap_indicators = []
 
     def add_tile(self, character_number, x_value, y_value):
         new_tile = Tile(x_value, y_value, character_number)
@@ -38,6 +39,9 @@ class AbstractRoomCard(ABC):
 
     def set_tiles(self, new_tiles):
         self.tiles = new_tiles
+
+    def get_trap_indicators(self):
+        return self.trap_indicators
 
     def clone(self):
         return copy.deepcopy(self)

@@ -34,3 +34,6 @@ class ConstructedRoom(AbstractRoomCard):
     @staticmethod
     def is_tile_numbered_tile(tile):
         return isinstance(tile.character_number, NumberedRoomTileValues)
+
+    def get_trap_indicators(self):
+        return self.monster_card.get_trap_indicators()

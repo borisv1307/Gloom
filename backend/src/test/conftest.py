@@ -72,7 +72,7 @@ def create_tile_serializer():
 
 @pytest.fixture(name='room_serializer')
 def create_room_serializer():
-    serializer = RoomSerializer(None)
+    serializer = RoomSerializer(None, None)
     mock = Mock(return_value='mocked_room')
     serializer.serialize = mock
     return serializer

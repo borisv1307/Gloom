@@ -1,4 +1,4 @@
-# pylint:disable=wrong-import-order
+# pylint:disable=wrong-import-order,line-too-long
 import json
 
 from backend.src.main.game.dungeon.random_dungeon_generator import RandomDungeonGenerator
@@ -21,7 +21,7 @@ class Handler:
     def start():
         rdg = RandomDungeonGenerator(RandomWrapper())
         rdg.select_first_room()
-        output = DungeonSerializer(RoomSerializer(TileSerializer(EnumSerializer()))).serialize(rdg)
+        output = DungeonSerializer(RoomSerializer(TileSerializer(EnumSerializer()), EnumSerializer())).serialize(rdg)
 
         return json.dumps(output)
 

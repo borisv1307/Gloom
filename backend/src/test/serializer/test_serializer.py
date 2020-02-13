@@ -1,5 +1,7 @@
 import pytest
+from backend.src.main.game.monster.concrete_monster_cards.frigid import Frigid
 from backend.src.main.game.monster.values import DungeonCardValues
+from backend.src.main.game.room.constructed_room import ConstructedRoom
 from backend.src.main.serializer.abstract_serializer import AbstractSerializer
 from backend.src.main.serializer.dungeon_serializer import DungeonSerializer
 from backend.src.main.serializer.enum_serializer import EnumSerializer
@@ -26,33 +28,47 @@ def test_serialize_tile(tile_a, enum_serializer):
     assert actual == expected
 
 
-def test_serialize_test_room_with_mocked_tile_serializer(test_room, tile_serializer):
-    serializer = RoomSerializer(tile_serializer)
+def test_serialize_test_room_with_mocked_tile_serializer(test_room, tile_serializer, enum_serializer):
+    serializer = RoomSerializer(tile_serializer, enum_serializer)
     actual = serializer.serialize(test_room)
     expected = {
         'name': 'foo',
-        'tiles': {}
+        'tiles': {},
+        'indicators': []
     }
 
     assert actual == expected
 
 
-def test_serialize_test_room_with_tiles(test_room, tile_serializer, tile_a, tile_b):
-    serializer = RoomSerializer(tile_serializer)
+def test_serialize_test_room_with_tiles(test_room, tile_serializer, enum_serializer, tile_a, tile_b):
+    serializer = RoomSerializer(tile_serializer, enum_serializer)
     test_room.set_tiles([tile_a, tile_b])
     actual = serializer.serialize(test_room)
-    mocked_tile_value = {
-        'x': 0,
-        'y': 0,
-        'z': 0,
-        'value': 'coin'}
+    mocked_tile_value = tile_serializer.serialize.return_value
 
     expected = {
         'name': 'foo',
+        'indicators': [],
         'tiles': {
             0: mocked_tile_value,
             1: mocked_tile_value
         }
+    }
+
+    assert actual == expected
+
+
+def test_serialize_room_with_trap_indicators(tile_serializer, enum_serializer, test_room):
+    serializer = RoomSerializer(tile_serializer, enum_serializer)
+    mocked_enum_value = enum_serializer.serialize.return_value
+    test_constructed_room = ConstructedRoom(test_room, Frigid())
+
+    actual = serializer.serialize(test_constructed_room)
+
+    expected = {
+        'name': 'foo',
+        'indicators': [mocked_enum_value],
+        'tiles': {}
     }
 
     assert actual == expected
