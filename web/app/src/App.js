@@ -10,6 +10,9 @@ class App extends Component {
         return (
             <div className="app">
                 <div>
+                    <button style={{display:"flex", float:"left"}} onClick={() => window.location.reload(false)}>Change Character</button>
+                </div>
+                <div>
                     <p>Character Name: {this.props.characterName}</p>
                     <p>Character Card Hand: {this.props.characterCardHand}</p>
                 </div>
