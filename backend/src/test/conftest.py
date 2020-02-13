@@ -82,3 +82,10 @@ def create_room_serializer():
 def create_flask_test_client():
     handler = get_handler()
     return handler.app.test_client()
+
+
+@pytest.fixture(name='experimental_flask_test_client')
+def create_experimental_flask_test_client():
+    handler = get_handler()
+    handler.EXPERIMENTAL = True
+    return handler.app.test_client()

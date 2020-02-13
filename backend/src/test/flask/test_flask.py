@@ -23,3 +23,7 @@ def test_start_returns_json_string(flask_test_client):
         room_json = dungeon_json['0']
         assert 'name' in room_json
         assert 'tiles' in room_json
+
+
+def test_experimental_start_returns_json_string(experimental_flask_test_client):
+    test_start_returns_json_string(experimental_flask_test_client)

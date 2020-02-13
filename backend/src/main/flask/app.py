@@ -3,12 +3,14 @@ import json
 
 from backend.src.main.game.dungeon.random_dungeon_generator import RandomDungeonGenerator
 from backend.src.main.serializer.dungeon_serializer import DungeonSerializer
+from backend.src.main.serializer.serializer_builder import SerializerBuilder
 from backend.src.main.wrappers.random_wrapper import RandomWrapper
 from flask import Flask
 
 
 class Handler:
     app = Flask(__name__)
+    EXPERIMENTAL = False
 
     @staticmethod
     def index():
@@ -18,7 +20,11 @@ class Handler:
     def start():
         rdg = RandomDungeonGenerator(RandomWrapper())
         rdg.select_first_room()
-        serializer = DungeonSerializer.create()
+        if Handler.EXPERIMENTAL:
+            serializer = SerializerBuilder.create_dungeon_serializer()
+        else:
+            serializer = DungeonSerializer.create()
+
         output = serializer.serialize(rdg)
 
         return json.dumps(output)

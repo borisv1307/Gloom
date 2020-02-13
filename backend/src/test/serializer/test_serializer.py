@@ -7,6 +7,7 @@ from backend.src.main.serializer.abstract_serializer import AbstractSerializer
 from backend.src.main.serializer.dungeon_serializer import DungeonSerializer
 from backend.src.main.serializer.enum_serializer import EnumSerializer
 from backend.src.main.serializer.room_serializer import RoomSerializer
+from backend.src.main.serializer.serializer_builder import SerializerBuilder
 from backend.src.main.serializer.tile_serializer import TileSerializer
 
 
@@ -105,9 +106,18 @@ def test_serialize_child_classes_raise_unimplement_error_when_method_not_impleme
 
 def test_create_dungeon_serializer():
     actual = DungeonSerializer.create()
-    assert isinstance(actual, DungeonSerializer)
+    util_is_dungeon_serializer_concrete(actual)
 
-    room_serializer = actual.room_serializer
+
+def test_create_dungeon_serializer_using_builder():
+    actual = SerializerBuilder.create_dungeon_serializer()
+    util_is_dungeon_serializer_concrete(actual)
+
+
+def util_is_dungeon_serializer_concrete(concrete_dungeon_serializer):
+    assert isinstance(concrete_dungeon_serializer, DungeonSerializer)
+
+    room_serializer = concrete_dungeon_serializer.room_serializer
     assert isinstance(room_serializer, RoomSerializer)
 
     enum_serializer_in_room = room_serializer.enum_serializer
