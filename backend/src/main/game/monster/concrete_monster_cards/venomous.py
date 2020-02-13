@@ -1,5 +1,6 @@
 from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues, \
+    TrapIndicators
 
 
 class Venomous(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
@@ -16,5 +17,6 @@ class Venomous(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.ELEVEN: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.TEN: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.TWO: DungeonCardValues.MONSTER,
-                      NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE}
+                      NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE,
+                      TrapIndicators.INDICATOR: [TrapIndicators.POISON, TrapIndicators.STUN]}
         AbstractMonsterCard.__init__(self, "Venomous", map_values)

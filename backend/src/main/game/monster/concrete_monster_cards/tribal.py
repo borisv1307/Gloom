@@ -1,5 +1,6 @@
 from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues,\
+    TrapIndicators
 
 
 class Tribal(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
@@ -16,5 +17,6 @@ class Tribal(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.NINE: DungeonCardValues.MONSTER,
                       NumberedRoomTileValues.TEN: DungeonCardValues.TRAPS,
                       NumberedRoomTileValues.ELEVEN: DungeonCardValues.COIN,
-                      NumberedRoomTileValues.TWELVE: DungeonCardValues.COIN}
+                      NumberedRoomTileValues.TWELVE: DungeonCardValues.COIN,
+                      TrapIndicators.INDICATOR: [TrapIndicators.WOUND, TrapIndicators.DISARM]}
         AbstractMonsterCard.__init__(self, "Tribal", map_values)
