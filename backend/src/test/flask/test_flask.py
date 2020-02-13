@@ -14,11 +14,12 @@ def test_start_returns_status_200(flask_test_client):
 
 
 def test_start_returns_json_string(flask_test_client):
-    response = flask_test_client.get('/start', content_type='html/text')
-    assert response
-    dungeon_json = json.loads(response.data)
-    assert '0' in dungeon_json
+    for _ in range(30):
+        response = flask_test_client.get('/start', content_type='html/text')
+        assert response
+        dungeon_json = json.loads(response.data)
+        assert '0' in dungeon_json
 
-    room_json = dungeon_json['0']
-    assert 'name' in room_json
-    assert 'tiles' in room_json
+        room_json = dungeon_json['0']
+        assert 'name' in room_json
+        assert 'tiles' in room_json
