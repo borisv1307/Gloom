@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long
 import pytest
 from backend.src.main.game.monster.concrete_monster_cards.frigid import Frigid
 from backend.src.main.game.monster.values import DungeonCardValues
@@ -97,3 +98,22 @@ def test_serialize_child_classes_raise_unimplement_error_when_method_not_impleme
 
     with pytest.raises(NotImplementedError):
         FooSerializer().serialize(None)
+
+    with pytest.raises(NotImplementedError):
+        FooSerializer().create()
+
+
+def test_create_dungeon_serializer():
+    actual = DungeonSerializer.create()
+    assert isinstance(actual, DungeonSerializer)
+
+    room_serializer = actual.room_serializer
+    assert isinstance(room_serializer, RoomSerializer)
+
+    enum_serializer_in_room = room_serializer.enum_serializer
+    tile_serializer = room_serializer.tile_serializer
+    assert isinstance(enum_serializer_in_room, EnumSerializer)
+    assert isinstance(tile_serializer, TileSerializer)
+
+    enum_serializer_in_tile = tile_serializer.enum_serializer
+    assert isinstance(enum_serializer_in_tile, EnumSerializer)

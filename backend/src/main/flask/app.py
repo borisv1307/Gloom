@@ -3,9 +3,6 @@ import json
 
 from backend.src.main.game.dungeon.random_dungeon_generator import RandomDungeonGenerator
 from backend.src.main.serializer.dungeon_serializer import DungeonSerializer
-from backend.src.main.serializer.enum_serializer import EnumSerializer
-from backend.src.main.serializer.room_serializer import RoomSerializer
-from backend.src.main.serializer.tile_serializer import TileSerializer
 from backend.src.main.wrappers.random_wrapper import RandomWrapper
 from flask import Flask
 
@@ -21,7 +18,8 @@ class Handler:
     def start():
         rdg = RandomDungeonGenerator(RandomWrapper())
         rdg.select_first_room()
-        output = DungeonSerializer(RoomSerializer(TileSerializer(EnumSerializer()), EnumSerializer())).serialize(rdg)
+        serializer = DungeonSerializer.create()
+        output = serializer.serialize(rdg)
 
         return json.dumps(output)
 

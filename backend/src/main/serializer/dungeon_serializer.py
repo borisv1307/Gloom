@@ -12,3 +12,7 @@ class DungeonSerializer(AbstractSerializer):  # pylint: disable=too-few-public-m
             idx: self.room_serializer.serialize(serializable_object.constructed_rooms[idx])
             for idx in range(len(serializable_object.constructed_rooms))
         }
+
+    @staticmethod
+    def create():
+        return DungeonSerializer(RoomSerializer.create())

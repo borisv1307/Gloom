@@ -4,7 +4,7 @@ from backend.src.main.serializer.enum_serializer import EnumSerializer
 from backend.src.main.serializer.tile_serializer import TileSerializer
 
 
-class RoomSerializer(AbstractSerializer):  # pylint: disable=too-few-public-methods
+class RoomSerializer(AbstractSerializer):
     def __init__(self, tile_serializer: TileSerializer, enum_serializer: EnumSerializer):
         self.tile_serializer = tile_serializer
         self.enum_serializer = enum_serializer
@@ -24,3 +24,9 @@ class RoomSerializer(AbstractSerializer):  # pylint: disable=too-few-public-meth
             'tiles': tile_dict,
             'indicators': indicators
         }
+
+    @staticmethod
+    def create():
+        tile_serializer = TileSerializer.create()
+        enum_serializer = EnumSerializer.create()
+        return RoomSerializer(tile_serializer, enum_serializer)
