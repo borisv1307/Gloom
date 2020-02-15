@@ -14,7 +14,7 @@
   width:100%;
 }
 
-.lost-cards {
+.lost-cards-pile {
   position: absolute;
   width: 10%;
   height: 30%;
@@ -22,19 +22,31 @@
   right: 0;
   background-color: #9E9E9E;
   border-left: 2px dotted red;
+  flex-direction: column;
+  vertical-align: text-top;
 }
 
 .cards {
   width: 60px;
-  height: 90px;
-  bottom: 0;
   background-size: contain;
-  margin: 10px auto;
   font-size: 10px;
 }
 
+.cards-in-hand {
+  width: 60px;
+  height: 90px;
+  background-size: contain;
+  font-size: 10px;
+}
+
+.cards-in-hand:hover{
+  width: 90px;
+  height: 135px;
+}
+
 .cards:hover{
-  transform: scale(1.5);
+  width: 90px;
+  height: 135px;
 }
 
 .discard-pile {
@@ -43,11 +55,13 @@
   height: 30%;
   left: 0;
   bottom: 20%;
-  background-color: #EEEEEE;
+  background-color: #FF0000;
   border-right: 2px dotted red;
+  flex-direction: column;
+  vertical-align: text-top;
 }
 
-.cards-in-hand {
+.cards-in-hand-pile {
   position: absolute;
   width: 100%;
   height: 20%;
