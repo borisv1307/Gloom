@@ -1,22 +1,38 @@
 import './PlayingCards.css'
 import React, {Component} from "react";
+import backOfCard from './backofcard.PNG';
+import card from './card1.png';
 
 class PlayingCards extends Component {
     state = {
 	cards: [
-      {id: "1", cardName:"Trample 1",cardType:"cardsInHand", backgroundImage: "red"},
-      {id: "2", cardName:"Trample 2", cardType:"cardsInHand", backgroundImage:"blue"},
-      {id: "3", cardName:"Trample 3", cardType:"cardsInHand", backgroundImage:"green"},
-      {id: "4", cardName:"Trample 4", cardType:"cardsInHand", backgroundImage:"yellow"},
-	  {id: "5", cardName:"Trample 5", cardType:"cardsInHand", backgroundImage:"red"},
-      {id: "6", cardName:"Trample 6", cardType:"cardsInHand", backgroundImage:"blue"},
-	  {id: "7", cardName:"Trample 7",cardType:"cardsInHand", backgroundImage: "green"},
-      {id: "8", cardName:"Trample 8", cardType:"cardsInHand", backgroundImage:"yellow"},
-      {id: "9", cardName:"Trample 9", cardType:"cardsInHand", backgroundImage:"red"},
-      {id: "10", cardName:"Trample 10", cardType:"cardsInHand", backgroundImage:"blue"},
-	  {id: "11", cardName:"Trample 11", cardType:"cardsInHand", backgroundImage:"green"},
-      {id: "12", cardName:"Trample 12", cardType:"cardsInHand", backgroundImage:"yellow"}
+      {id: "1", cardName:"Trample 1", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "2", cardName:"Trample 2", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "3", cardName:"Trample 3", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "4", cardName:"Trample 4", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+	  {id: "5", cardName:"Trample 5", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "6", cardName:"Trample 6", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+	  {id: "7", cardName:"Trample 7", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "8", cardName:"Trample 8", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "9", cardName:"Trample 9", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "10", cardName:"Trample 10", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+	  {id: "11", cardName:"Trample 11", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "12", cardName:"Trample 12", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"}
 
+	],
+		cardsInitial: [
+      {id: "1", cardName:"Trample 1", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "2", cardName:"Trample 2", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "3", cardName:"Trample 3", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "4", cardName:"Trample 4", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+	  {id: "5", cardName:"Trample 5", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "6", cardName:"Trample 6", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+	  {id: "7", cardName:"Trample 7", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "8", cardName:"Trample 8", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "9", cardName:"Trample 9", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "10", cardName:"Trample 10", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+	  {id: "11", cardName:"Trample 11", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
+      {id: "12", cardName:"Trample 12", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"}
 	]
     }
 
@@ -32,8 +48,18 @@ class PlayingCards extends Component {
 	    let cardName = event.dataTransfer.getData("cardName");
 
 	    let cards = this.state.cards.filter((task) => {
-	        if (task.cardName == cardName) {
+	        if (task.cardName === cardName) {
 	            task.cardType = changeCardType;
+	            if(task.cardType === "lostCards") {
+	            	task.backgroundImage = "url("+ backOfCard +")";
+				}
+	            else {
+	            	for(let i=0; i<this.state.cards.length; i++){
+	            		if(task.cardName === this.state.cards[i].cardName){
+	            			task.backgroundImage = this.state.cardsInitial[i].backgroundImage;
+						}
+					}
+				}
 	        }
 	        return task;
 	    });
@@ -57,7 +83,7 @@ class PlayingCards extends Component {
 		      onDragStart = {(event) => this.onDragStart(event, task.cardName)}
 		      draggable
 		      className="cards"
-		      style = {{backgroundColor: task.backgroundImage}}>
+		      style = {{backgroundImage: task.backgroundImage}}>
 		      {task.cardName}
 		    </div>
 		  );
