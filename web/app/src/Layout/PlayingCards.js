@@ -50,10 +50,8 @@ class PlayingCards extends Component {
 	    let cards = this.state.cards.filter((task) => {
 	        if (task.cardName === cardName) {
 	            task.cardType = changeCardType;
-	            if(task.cardType === "lostCards") {
-	            	task.backgroundImage = "url("+ backOfCard +")";
-				}
-	            else {
+
+	            if(task.cardType === "cardsInHand") {
 	            	for(let i=0; i<this.state.cards.length; i++){
 	            		if(task.cardName === this.state.cards[i].cardName){
 	            			task.backgroundImage = this.state.cardsInitial[i].backgroundImage;
@@ -77,44 +75,58 @@ class PlayingCards extends Component {
 		  cardsInHand: []
 	    }
 
-		this.state.cards.forEach ((task) => {
-		  cards[task.cardType].push(
-		    <div key={task.id}
-		      onDragStart = {(event) => this.onDragStart(event, task.cardName)}
-		      draggable
-		      className="cards"
-		      style = {{backgroundImage: task.backgroundImage}}>
-		      {task.cardName}
-		    </div>
-		  );
+		this.state.cards.forEach ((card) => {
+			if(card.cardType === "cardsInHand") {
+				cards[card.cardType].push(
+				<div key={card.id}
+				  onDragStart = {(event) => this.onDragStart(event, card.cardName)}
+				  draggable
+				  className="cards-in-hand"
+                    style = {{backgroundImage: card.backgroundImage}}>
+				  {card.cardName}
+				</div>
+			  );
+			}
+			else{
+				cards[card.cardType].push(
+				<div key={card.id}
+				  onDragStart = {(event) => this.onDragStart(event, card.cardName)}
+				  draggable
+				  className="cards"
+				  style = {{backgroundImage: card.backgroundImage}}>
+				  {card.cardName}
+				</div>
+			  );
+			}
+
 		});
 
 	    return (
 	      <div className="drag-container">
-		    <div className="discard-pile" style={{display:"flex", justifyContent:"space-evenly"}}
+		    <div className="discard-pile" style={{display:"flex", flexDirection: "column", textAlign: "top"}}
 	    		onDragOver={(event)=>this.onDragOver(event)}
       			onDrop={(event)=>{this.onDrop(event, "discardPile")}}>
-	          <span className="group-header">Discard Pile</span>
+				<text>Discard Pile</text>
 	          {cards.discardPile}
 	        </div>
-	        <div className="lost-cards" style={{display:"flex", justifyContent:"space-evenly"}}
+	        <div className="lost-cards-pile" style={{display:"flex", flexDirection: "column", textAlign: "top" }}
 				 onDragOver={(event)=>this.onDragOver(event)}
 				 onDrop={(event)=>this.onDrop(event, "lostCards")}>
-	          <span className="group-header">Lost Cards</span>
+				<text>Lost Cards</text>
 	          {cards.lostCards}
 	        </div>
 
-            <div className="discard-pile" style={{display:"flex", justifyContent:"space-evenly"}}
+            <div className="discard-pile" style={{display:"flex", flexDirection: "column", textAlign: "top"}}
 				onDragOver={(event)=>this.onDragOver(event)}
 				onDrop={(event)=>{this.onDrop(event, "discardPile")}}>
-				<span className="group-header">Discard Pile</span>
+				<text>Discard Pile</text>
 				{cards.discardPile}
 			</div>
 
-			<div className="cards-in-hand" style={{display:"flex", justifyContent:"space-evenly", position: "absolute", bottom: 0}}
-				onDragOver={(event)=>this.onDragOver(event)}
-				onDrop={(event)=>{this.onDrop(event, "cardsInHand")}}>
-				<span className="group-header">Cards In Hand</span>
+			<div className="cards-in-hand-pile" style={{display:"flex", justifyContent:"space-evenly", position: "absolute", bottom: 0}}
+				 onDragOver={(event)=>this.onDragOver(event)}
+				 onDrop={(event)=>{this.onDrop(event, "cardsInHand")}}>
+				<text>Cards In Hand</text>
 				{cards.cardsInHand}
 			</div>
 	      </div>
