@@ -28,18 +28,31 @@ class Deck extends Component {
 }
 
 class AttackModifier extends Component {
-    cards = {
-        "discard": [1, 2, -1, -2],
-        "deck": [1, 1, 0, 2]
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            "deck": [1, 1, 0, 2],
+            "discard": [1, 2, -1, -2]
+        }
     }
 
     render() {
         return (
             <div>
-                <Deck name="discard" cards={this.cards.discard} hidden={false}/>
-                <Deck name="deck" cards={this.cards.deck} hidden={true}/>
+                <Deck name="discard" cards={this.state.discard} hidden={false}/>
+                <Deck name="deck" cards={this.state.deck} hidden={true}/>
+                <button onClick={() => this.reset()}>Shuffle</button>
             </div>
         )
+    }
+
+    reset() {
+        const new_deck = this.state.deck.concat(this.state.discard);
+        this.setState({
+            "deck": new_deck,
+            "discard": []
+        })
     }
 }
 
