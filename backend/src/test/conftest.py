@@ -1,7 +1,8 @@
 from unittest.mock import Mock
 
 import pytest
-from backend.src.main.flask.app import get_handler
+
+from backend.src.main.flask.app import get_handler, Handler
 from backend.src.main.game.dungeon.random_dungeon_generator import RandomDungeonGenerator
 from backend.src.main.game.monster.concrete_monster_cards.cutthroat import Cutthroat
 from backend.src.main.game.monster.values import DungeonCardValues
@@ -86,6 +87,6 @@ def create_flask_test_client():
 
 @pytest.fixture(name='experimental_flask_test_client')
 def create_experimental_flask_test_client():
+    Handler.EXPERIMENTAL = True
     handler = get_handler()
-    handler.EXPERIMENTAL = True
     return handler.app.test_client()
