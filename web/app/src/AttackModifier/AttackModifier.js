@@ -137,7 +137,7 @@ class Deck extends Component {
 
 function Card(props) {
     return (
-        <div className="attack-cards">{props.value}</div>
+        <div className="attack-card">{props.value}</div>
     )
 }
 
