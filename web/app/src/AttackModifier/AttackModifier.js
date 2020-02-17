@@ -1,34 +1,8 @@
 import React, {Component} from 'react'
 import './AttackModifier.css'
 
-class Deck extends Component {
-    get_cards() {
-        if (this.props.hidden) {
-            return this.props.cards.map(
-                (val, idx) =>
-                    <Card key={idx}/>
-            );
-        }
-        return this.props.cards.map(
-            (val, idx) =>
-                <Card key={idx} value={val}/>
-        );
-    }
-
-    render() {
-        let cards = this.get_cards();
-
-        return (
-            <div className="attack-deck">
-                <div>{this.props.name}</div>
-                <div>{cards}</div>
-            </div>
-        )
-    }
-}
 
 class AttackModifier extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -65,7 +39,6 @@ class AttackModifier extends Component {
             "discard": new_discard,
             "selected": new_selected
         })
-
     }
 
     removeByIndex(array, index) {
@@ -88,6 +61,32 @@ class AttackModifier extends Component {
             "discard": [],
             "selected": []
         })
+    }
+}
+
+class Deck extends Component {
+    get_cards() {
+        if (this.props.hidden) {
+            return this.props.cards.map(
+                (val, idx) =>
+                    <Card key={idx}/>
+            );
+        }
+        return this.props.cards.map(
+            (val, idx) =>
+                <Card key={idx} value={val}/>
+        );
+    }
+
+    render() {
+        let cards = this.get_cards();
+
+        return (
+            <div className="attack-deck">
+                <div>{this.props.name}</div>
+                <div>{cards}</div>
+            </div>
+        )
     }
 }
 
