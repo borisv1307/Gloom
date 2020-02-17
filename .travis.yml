@@ -1,7 +1,7 @@
 dist: xenial
 language: python
 env:
-  - BACKEND_DIR='backend/src' FRONTEND_DIR='web/app'
+  - BACKEND_DIR='backend/src' FRONTEND_DIR='web/app' CI='true'
 
 python:
   - "3.7"
@@ -23,6 +23,7 @@ before_script:
 script:
   - pytest --cov-report term --cov=.
   - coverage xml
+  - npm --prefix $FRONTEND_DIR test -- --coverage
   - sonar-scanner
 
 after_script:
