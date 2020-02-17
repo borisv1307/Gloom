@@ -23,11 +23,12 @@ before_script:
 script:
   - pytest --cov-report term --cov=.
   - coverage xml
-  - npm --prefix $FRONTEND_DIR test -- --coverage
+  - npm --prefix $FRONTEND_DIR test --reporters=xml -- --coverage
   - sonar-scanner
 
 after_script:
-  - codecov
+  - codecov --name backend
+  - codecov --file web/app/coverage/clover.xml --name web
 
 # safelist
 branches:
