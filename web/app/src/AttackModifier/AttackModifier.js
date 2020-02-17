@@ -6,39 +6,66 @@ class AttackModifier extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            "deck": [1, 1, 0, 2],
-            "selected": [],
-            "discard": [1, 2, -1, -2]
+            "decks": {
+                "discard": {
+                    "cards": [1, -1, -2, 0],
+                    "isHidden": false
+                },
+                "selected": {
+                    "cards": [],
+                    "isHidden": false
+                },
+                "deck": {
+                    "cards": [1, 1, 0, 2],
+                    "isHidden": true
+                }
+            },
+            "onclick": (deck_name) => this.handleClick(deck_name)
         }
     }
 
     render() {
+        const decks_names = ["discard", "selected", "deck"];
+        const decks = decks_names.map(
+            (key, idx) =>
+                <Deck
+                    key={idx}
+                    name={key}
+                    cards={this.state.decks[key].cards}
+                    onclick={this.state.onclick}
+                    hidden={this.state.decks[key].isHidden}
+                />
+        );
+
         return (
             <div>
-                <Deck name="discard" cards={this.state.discard} hidden={false}/>
-                <Deck name="selected" cards={this.state.selected} hidden={false}/>
-                <Deck name="deck" cards={this.state.deck} hidden={true}/>
+                {decks}
                 <button onClick={() => this.randomSelect()}>Random Select</button>
-                <button onClick={() => this.reset()}>Shuffle</button>
+                <button onClick={() => this.reset()}>Reset</button>
             </div>
         )
     }
 
-    randomSelect() {
-        if (this.state.deck.length === 0) {
+    handleClick(deck_name) {
+        if (deck_name === "discard") {
+            this.reset();
             return;
         }
-        const random_idx = this.randomIndex(this.state.deck);
-        const item = this.state.deck[random_idx];
-        const new_discard = this.state.discard.concat(this.state.selected);
-        const new_selected = [item];
-        const new_deck = this.removeByIndex(this.state.deck, random_idx)
+        this.randomSelect();
+    }
 
-        this.setState({
-            "deck": new_deck,
-            "discard": new_discard,
-            "selected": new_selected
-        })
+    randomSelect() {
+        const [deck, discard, selected] = this.getDecks();
+        if (deck.length === 0) {
+            return;
+        }
+        const random_idx = this.randomIndex(deck);
+        const item = deck[random_idx];
+        const new_discard = discard.concat(selected);
+        const new_selected = [item];
+        const new_deck = this.removeByIndex(deck, random_idx)
+
+        this.setDecks(new_deck, new_discard, new_selected);
     }
 
     removeByIndex(array, index) {
@@ -52,14 +79,32 @@ class AttackModifier extends Component {
     }
 
     reset() {
-        const new_deck = this.state.deck
-            .concat(this.state.discard)
-            .concat(this.state.selected);
+        const [deck, selected, discard] = this.getDecks();
+        const new_deck = deck
+            .concat(selected)
+            .concat(discard);
 
+        this.setDecks(new_deck, [], [])
+    }
+
+    getDecks() {
+        const decks = this.state.decks;
+        return [decks.deck.cards, decks.selected.cards, decks.discard.cards];
+    }
+
+    setDecks(deck, discard, selected) {
         this.setState({
-            "deck": new_deck,
-            "discard": [],
-            "selected": []
+            "decks": {
+                "deck": {
+                    "cards": deck
+                },
+                "discard": {
+                    "cards": discard
+                },
+                "selected": {
+                    "cards": selected
+                }
+            }
         })
     }
 }
@@ -82,7 +127,7 @@ class Deck extends Component {
         let cards = this.get_cards();
 
         return (
-            <div className="attack-deck">
+            <div className="attack-deck" onClick={() => this.props.onclick(this.props.name)}>
                 <div>{this.props.name}</div>
                 <div>{cards}</div>
             </div>
