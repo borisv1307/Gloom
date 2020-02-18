@@ -9,7 +9,7 @@ class Crossroads(AbstractRoomCard):
 
     def __init__(self):
         AbstractRoomCard.__init__(self, "Crossroads")
-        self.add_tile('EntranceB', -2, -3)
+        self.add_tile(UniqueDungeonCardValues.ENTRANCE_B, -2, -3)
         self.add_tile(DungeonCardValues.EMPTY, -1, -3)
         self.add_tile(DungeonCardValues.EMPTY, 0, -3)
         self.add_tile(DungeonCardValues.EMPTY, 1, -3)

@@ -1,32 +1,44 @@
-""" FILE: foo.py
-    DESC: Flask routing file. Contains the flask application object
-"""
+# pylint:disable=wrong-import-order,line-too-long
+import json
 
+from backend.src.main.game.dungeon.random_dungeon_generator import RandomDungeonGenerator
+from backend.src.main.serializer.dungeon_serializer import DungeonSerializer
+from backend.src.main.serializer.serializer_builder import SerializerBuilder
+from backend.src.main.wrappers.random_wrapper import RandomWrapper
 from flask import Flask
 
 
-class Handler:  # pylint: disable=too-few-public-methods
-    """ Class for flask app object """
+class Handler:
     app = Flask(__name__)
+    EXPERIMENTAL = False
 
     @staticmethod
     def index():
-        """ Returns index page """
         return "Hello, world!"
+
+    @staticmethod
+    def start():
+        rdg = RandomDungeonGenerator(RandomWrapper())
+        rdg.select_first_room()
+        if Handler.EXPERIMENTAL:
+            serializer = SerializerBuilder.create_dungeon_serializer()
+        else:
+            serializer = DungeonSerializer.create()
+
+        output = serializer.serialize(rdg)
+
+        return json.dumps(output)
 
 
 def get_handler():
-    """ Initializes the handler and adds endpoint mappings """
     handler = Handler()
 
-    # URL Routes
     handler.app.add_url_rule('/', 'index', handler.index)
+    handler.app.add_url_rule('/start', 'start', handler.start)
 
     return handler
 
 
 if __name__ == "__main__":
     HANDLER = get_handler()
-
-    # App Config
     HANDLER.app.run(host='0.0.0.0', port=5000, debug=True)
