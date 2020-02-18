@@ -1,12 +1,35 @@
 import React, {Component} from 'react';
 import {GridGenerator, Layout, Hexagon, Text, Pattern, HexUtils} from 'react-hexgrid';
 import './HexLayout.css';
+import axios from 'axios'
+
+const USER_SERVICE_URL = 'http://0.0.0.0:5000/start';
 
 class HexLayout extends Component {
     constructor(props) {
         super(props);
-        const hexagons = GridGenerator.hexagon(2);
-        this.state = {hexagons};
+        const hexagons = GridGenerator.hexagon(0);
+        // this.state = {hexagons};
+        this.state = {
+            isFetching: false,
+            hexagons: []
+        };
+    }
+
+    componentDidMount() {
+        this.fetchHexagons();
+    }
+
+    fetchHexagons() {
+        this.setState({...this.state, isFetching: true});
+        axios.get(USER_SERVICE_URL)
+            .then(response => {
+                this.setState({data: response.data, isFetching: false})
+                console.log(response.data);
+            })
+            .catch(e => {
+                this.setState({...this.state, isFetching: false});
+            });
     }
 
     onDrop(event, source, targetProps) {
