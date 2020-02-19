@@ -38,6 +38,7 @@ class EntityLayout extends Component {
                 );
             }
         );
+        console.log(hexagons);
         this.state = {hexagons};
     }
 

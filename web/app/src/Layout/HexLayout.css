@@ -24,7 +24,7 @@ svg .game g polygon {
 }
 
 svg .game g text {
-    font-size: 0.22em;
+    font-size: 0.11em;
     fill: white;
     fill-opacity: 0.7;
     transition: fill-opacity .5s;
