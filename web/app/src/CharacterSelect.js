@@ -21,12 +21,13 @@ import summoner from './characterImages/summoner.jpg'
 import sunkeeper from './characterImages/sunkeeper.jpg'
 import './CharacterSelect.css'
 import ReactDOM from "react-dom";
+import CharacterAbilityCardSelection from './characterAbilityCardSelection'
 
 
 const CharacterBox = (props) => {
 
     function displayCharacterSelected() {
-      ReactDOM.render(<App characterName={props.characterName} characterCardHand={props.characterCardHand}/>, document.getElementById('root'));
+      ReactDOM.render(<CharacterAbilityCardSelection characterName={props.characterName} characterCardHand={props.characterCardHand}/>, document.getElementById('root'));
     }
     return <div className="characterBox">
     <h2>{props.characterName}</h2>
