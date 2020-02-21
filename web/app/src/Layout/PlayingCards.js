@@ -1,7 +1,7 @@
 import './PlayingCards.css'
 import React, {Component} from "react";
-import backOfCard from './backofcard.PNG';
 import card from './card1.png';
+import Popup from "reactjs-popup";
 
 class PlayingCards extends Component {
     state = {
@@ -13,11 +13,11 @@ class PlayingCards extends Component {
 	  {id: "5", cardName:"Trample 5", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
       {id: "6", cardName:"Trample 6", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
 	  {id: "7", cardName:"Trample 7", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "8", cardName:"Trample 8", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "9", cardName:"Trample 9", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "10", cardName:"Trample 10", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-	  {id: "11", cardName:"Trample 11", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "12", cardName:"Trample 12", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"}
+      {id: "8", cardName:"Trample 8", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
+      {id: "9", cardName:"Trample 9", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
+      {id: "10", cardName:"Trample 10", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
+	  {id: "11", cardName:"Trample 11", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
+      {id: "12", cardName:"Trample 12", cardType:"discardPile", backgroundImage: "url(" + card + ")"}
 
 	],
 		cardsInitial: [
@@ -30,9 +30,9 @@ class PlayingCards extends Component {
 	  {id: "7", cardName:"Trample 7", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
       {id: "8", cardName:"Trample 8", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
       {id: "9", cardName:"Trample 9", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "10", cardName:"Trample 10", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-	  {id: "11", cardName:"Trample 11", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "12", cardName:"Trample 12", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"}
+      {id: "10", cardName:"Trample 10", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
+	  {id: "11", cardName:"Trample 11", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
+      {id: "12", cardName:"Trample 12", cardType:"discardPile", backgroundImage: "url(" + card + ")"}
 	]
     }
 
@@ -40,6 +40,12 @@ class PlayingCards extends Component {
     	console.log('dragstart on div: ', cardName);
     	event.dataTransfer.setData("cardName", cardName);
 	}
+
+	onClick = (event2, cardName) => {
+    	console.log('dragstart on div: ', cardName);
+    	event2.dataTransfer.setData("cardName", cardName);
+	}
+
 	onDragOver = (event) => {
 	    event.preventDefault();
 	}
@@ -64,7 +70,22 @@ class PlayingCards extends Component {
 
 	    this.setState({
 	        ...this.state,
-	        cards
+			cards
+	    });
+	}
+
+	onClickSendToLost(discard) {
+
+    	let cards = this.state.cards.filter((task) => {
+	        if (task.cardName === discard[discard.length-1].props.children) {
+	            task.cardType = "lostCards";
+	        }
+	        return task;
+	    });
+
+	    this.setState({
+	        ...this.state,
+			cards
 	    });
 	}
 
@@ -102,6 +123,34 @@ class PlayingCards extends Component {
 		});
 
 	    return (
+			<div>
+				<div className="shortrest">
+				  {
+					cards.discardPile.length > 1 &&
+					<Popup trigger={<button className="button" onClick={() => {
+					 }}> Short Rest </button>} modal>
+					{close => (
+				  <div className="modal">
+					  <a className="close" onClick={close}>
+						  &times;
+					  </a>
+					  <div className="header"> Send to lost or Redraw</div>
+					  <div className="card-container">
+						  {cards.discardPile.slice(cards.discardPile.length -1)}
+						  <br/>
+						  <br/>
+						  <button id="sendToLost" onClick={()=>{this.onClickSendToLost(cards.discardPile); close();}} >
+							  Send to Lost
+						  </button>
+						  <button onClick={this.getNextCard} >
+							  Redraw
+						  </button>
+					  </div>
+					</div>
+							)}
+					</Popup>
+					}
+			  </div>
 	      <div className="drag-container">
 		    <div className="discard-pile" style={{display:"flex", flexDirection: "column", textAlign: "top"}}
 	    		onDragOver={(event)=>this.onDragOver(event)}
@@ -130,6 +179,7 @@ class PlayingCards extends Component {
 				{cards.cardsInHand}
 			</div>
 	      </div>
+			</div>
 	    );
     }
 }
