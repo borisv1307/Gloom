@@ -12,17 +12,12 @@ class App extends Component {
                 <div>
                     <button style={{display:"flex", float:"left"}} onClick={() => window.location.reload(false)}>Change Character</button>
                 </div>
-                <div>
-                    <p>Character Name: {this.props.characterName}</p>
-                    <p>Character Card Hand: {this.props.characterCardHand}</p>
-                </div>
                 <h1>Drag & drop</h1>
                 <HexGrid width={1300} height={500} viewBox="-50 -50 100 100">
                     <HexLayout/>
                     <EntityLayout/>
                 </HexGrid>
-
-                <PlayingCards/>
+                <PlayingCards abilityCards={this.props.abilityCards} characterName = {this.props.characterName}/>
             </div>
         );
     }

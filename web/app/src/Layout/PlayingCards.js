@@ -2,38 +2,35 @@ import './PlayingCards.css'
 import React, {Component} from "react";
 import backOfCard from './backofcard.PNG';
 import card from './card1.png';
+import BRUTE from '../bruteAbilityCardimages'
+
+
+let selectedImages;
+selectedImages = [];
+let image = [];
+let cardsCreated = false;
+
 
 class PlayingCards extends Component {
-    state = {
-	cards: [
-      {id: "1", cardName:"Trample 1", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "2", cardName:"Trample 2", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "3", cardName:"Trample 3", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "4", cardName:"Trample 4", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-	  {id: "5", cardName:"Trample 5", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "6", cardName:"Trample 6", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-	  {id: "7", cardName:"Trample 7", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "8", cardName:"Trample 8", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "9", cardName:"Trample 9", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "10", cardName:"Trample 10", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-	  {id: "11", cardName:"Trample 11", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "12", cardName:"Trample 12", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"}
 
-	],
-		cardsInitial: [
-      {id: "1", cardName:"Trample 1", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "2", cardName:"Trample 2", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "3", cardName:"Trample 3", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "4", cardName:"Trample 4", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-	  {id: "5", cardName:"Trample 5", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "6", cardName:"Trample 6", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-	  {id: "7", cardName:"Trample 7", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "8", cardName:"Trample 8", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "9", cardName:"Trample 9", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "10", cardName:"Trample 10", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-	  {id: "11", cardName:"Trample 11", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "12", cardName:"Trample 12", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"}
-	]
+	createCards(){
+
+		if(cardsCreated == false)
+		{
+			for(let i = 0;i<selectedImages.length;i++)
+			{
+				let currentId = selectedImages[i];
+
+				this.state.cards.push({id: currentId, cardName:image[currentId].cardName, cardType:"cardsInHand", backgroundImage: "url(" + image[currentId].src + ")"})
+				this.state.cardsInitial.push({id: currentId, cardName:image[currentId].cardName, cardType:"cardsInHand", backgroundImage: "url(" + image[currentId].src + ")"})
+			}
+			cardsCreated = true;
+		}
+	}
+
+    state = {
+		cards: [],
+		cardsInitial: []
     }
 
     onDragStart = (event, cardName) => {
@@ -68,12 +65,24 @@ class PlayingCards extends Component {
 	    });
 	}
 
+
     render() {
+
+		selectedImages = this.props.abilityCards;
+
+		if(this.props.characterName == 'Brute')
+		{
+				image = BRUTE;
+		}
+
+		this.createCards();
+
         var cards = {
 	      discardPile: [],
 	      lostCards: [],
 		  cardsInHand: []
 	    }
+
 
 		this.state.cards.forEach ((card) => {
 			if(card.cardType === "cardsInHand") {
@@ -83,7 +92,7 @@ class PlayingCards extends Component {
 				  draggable
 				  className="cards-in-hand"
                     style = {{backgroundImage: card.backgroundImage}}>
-				  {card.cardName}
+				  {/*{card.cardName}*/}
 				</div>
 			  );
 			}
@@ -98,7 +107,6 @@ class PlayingCards extends Component {
 				</div>
 			  );
 			}
-
 		});
 
 	    return (
