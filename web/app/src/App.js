@@ -17,7 +17,7 @@ class App extends Component {
                     <p>Character Card Hand: {this.props.characterCardHand}</p>
                 </div>
                 <h1>Drag & drop</h1>
-                <HexGrid width={1300} height={500} viewBox="-50 -50 100 100">
+                <HexGrid width={650} height={225} viewBox="-50 -50 100 100">
                     <HexLayout/>
                     <EntityLayout/>
                 </HexGrid>
