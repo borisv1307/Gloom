@@ -170,7 +170,7 @@ class PlayingCards extends Component {
 						  <button onClick={()=>{this.onClickMoveToShortRest(cards.discardPile)}}>
 						  Get Card
 					  </button>
-					  {cards.cardsInShortRest}
+					  {cards.cardsInShortRest.slice(cards.cardsInShortRest.length -1)}
 						  <br/>
 						  <br/>
 						  <button id="sendToLost" onClick={()=>{this.onClickSendToLost(cards.cardsInShortRest); close();}} >
