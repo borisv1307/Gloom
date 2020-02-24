@@ -33,17 +33,12 @@ class PlayingCards extends Component {
       {id: "10", cardName:"Trample 10", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
 	  {id: "11", cardName:"Trample 11", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
       {id: "12", cardName:"Trample 12", cardType:"discardPile", backgroundImage: "url(" + card + ")"}
-	]
+	],
     }
 
     onDragStart = (event, cardName) => {
     	console.log('dragstart on div: ', cardName);
     	event.dataTransfer.setData("cardName", cardName);
-	}
-
-	onClick = (event2, cardName) => {
-    	console.log('dragstart on div: ', cardName);
-    	event2.dataTransfer.setData("cardName", cardName);
 	}
 
 	onDragOver = (event) => {
@@ -74,11 +69,29 @@ class PlayingCards extends Component {
 	    });
 	}
 
-	onClickSendToLost(discard) {
+	onClickSendToLost() {
+
+    	let cards = this.state.cards.filter((task) => {
+	        if (task.cardType === "cardsInShortRest") {
+	            task.cardType = "lostCards";
+	        }
+	        else if (task.cardType === "discardPile") {
+	        	task.cardType = "cardsInHand";
+			}
+	        return task;
+	    });
+
+	    this.setState({
+	        ...this.state,
+			cards
+	    });
+	}
+
+	onClickReDraw(discard) {
 
     	let cards = this.state.cards.filter((task) => {
 	        if (task.cardName === discard[discard.length-1].props.children) {
-	            task.cardType = "lostCards";
+	            task.cardType = "discardPile";
 	        }
 	        return task;
 	    });
@@ -89,12 +102,30 @@ class PlayingCards extends Component {
 	    });
 	}
 
+	onClickMoveToShortRest(discard) {
+
+    	let cards = this.state.cards.filter((task) => {
+	        if (task.cardName === discard[Math.floor(Math.random() * discard.length)].props.children) {
+	            task.cardType = "cardsInShortRest";
+	        }
+	        return task;
+	    });
+
+	    this.setState({
+	        ...this.state,
+			cards
+	    });
+	}
+
+
     render() {
         var cards = {
 	      discardPile: [],
 	      lostCards: [],
-		  cardsInHand: []
+		  cardsInHand: [],
+		  cardsInShortRest: []
 	    }
+
 
 		this.state.cards.forEach ((card) => {
 			if(card.cardType === "cardsInHand") {
@@ -127,7 +158,7 @@ class PlayingCards extends Component {
 				<div className="shortrest">
 				  {
 					cards.discardPile.length > 1 &&
-					<Popup trigger={<button className="button" onClick={() => {
+					<Popup trigger={<button className="shortrest" onClick={() => {
 					 }}> Short Rest </button>} modal>
 					{close => (
 				  <div className="modal">
@@ -135,14 +166,17 @@ class PlayingCards extends Component {
 						  &times;
 					  </a>
 					  <div className="header"> Send to lost or Redraw</div>
-					  <div className="card-container">
-						  {cards.discardPile.slice(cards.discardPile.length -1)}
+					  <div className="card-container" >
+						  <button onClick={()=>{this.onClickMoveToShortRest(cards.discardPile)}}>
+						  Get Card
+					  </button>
+					  {cards.cardsInShortRest}
 						  <br/>
 						  <br/>
-						  <button id="sendToLost" onClick={()=>{this.onClickSendToLost(cards.discardPile); close();}} >
+						  <button id="sendToLost" onClick={()=>{this.onClickSendToLost(cards.cardsInShortRest); close();}} >
 							  Send to Lost
 						  </button>
-						  <button onClick={this.getNextCard} >
+						  <button id="reDraw" onClick={()=>{this.onClickReDraw(cards.cardsInShortRest);}} >
 							  Redraw
 						  </button>
 					  </div>
