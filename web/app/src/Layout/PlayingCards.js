@@ -4,37 +4,48 @@ import card from './card1.png';
 import Popup from "reactjs-popup";
 
 class PlayingCards extends Component {
-    state = {
-	cards: [
-      {id: "1", cardName:"Trample 1", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "2", cardName:"Trample 2", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "3", cardName:"Trample 3", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "4", cardName:"Trample 4", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-	  {id: "5", cardName:"Trample 5", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "6", cardName:"Trample 6", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-	  {id: "7", cardName:"Trample 7", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "8", cardName:"Trample 8", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
-      {id: "9", cardName:"Trample 9", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
-      {id: "10", cardName:"Trample 10", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
-	  {id: "11", cardName:"Trample 11", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
-      {id: "12", cardName:"Trample 12", cardType:"discardPile", backgroundImage: "url(" + card + ")"}
+	 constructor(props) {
+		 super(props);
+		 this.state = {
+			 cards: [
+				 {id: "1", cardName: "Trample 1", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "2", cardName: "Trample 2", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "3", cardName: "Trample 3", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "4", cardName: "Trample 4", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "5", cardName: "Trample 5", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "6", cardName: "Trample 6", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "7", cardName: "Trample 7", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "8", cardName: "Trample 8", cardType: "discardPile", backgroundImage: "url(" + card + ")"},
+				 {id: "9", cardName: "Trample 9", cardType: "discardPile", backgroundImage: "url(" + card + ")"},
+				 {id: "10", cardName: "Trample 10", cardType: "discardPile", backgroundImage: "url(" + card + ")"},
+				 {id: "11", cardName: "Trample 11", cardType: "discardPile", backgroundImage: "url(" + card + ")"},
+				 {id: "12", cardName: "Trample 12", cardType: "discardPile", backgroundImage: "url(" + card + ")"}
 
-	],
-		cardsInitial: [
-      {id: "1", cardName:"Trample 1", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "2", cardName:"Trample 2", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "3", cardName:"Trample 3", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "4", cardName:"Trample 4", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-	  {id: "5", cardName:"Trample 5", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "6", cardName:"Trample 6", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-	  {id: "7", cardName:"Trample 7", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "8", cardName:"Trample 8", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "9", cardName:"Trample 9", cardType:"cardsInHand", backgroundImage: "url(" + card + ")"},
-      {id: "10", cardName:"Trample 10", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
-	  {id: "11", cardName:"Trample 11", cardType:"discardPile", backgroundImage: "url(" + card + ")"},
-      {id: "12", cardName:"Trample 12", cardType:"discardPile", backgroundImage: "url(" + card + ")"}
-	],
-    }
+			 ],
+			 cardsInitial: [
+				 {id: "1", cardName: "Trample 1", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "2", cardName: "Trample 2", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "3", cardName: "Trample 3", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "4", cardName: "Trample 4", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "5", cardName: "Trample 5", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "6", cardName: "Trample 6", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "7", cardName: "Trample 7", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "8", cardName: "Trample 8", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "9", cardName: "Trample 9", cardType: "cardsInHand", backgroundImage: "url(" + card + ")"},
+				 {id: "10", cardName: "Trample 10", cardType: "discardPile", backgroundImage: "url(" + card + ")"},
+				 {id: "11", cardName: "Trample 11", cardType: "discardPile", backgroundImage: "url(" + card + ")"},
+				 {id: "12", cardName: "Trample 12", cardType: "discardPile", backgroundImage: "url(" + card + ")"}
+			 ],
+			 isToggleOn: true
+		 }
+			this.handleClick = this.handleClick.bind(this);
+	 }
+
+	 handleClick() {
+    this.setState(prevState=> ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
 
     onDragStart = (event, cardName) => {
     	console.log('dragstart on div: ', cardName);
@@ -90,31 +101,35 @@ class PlayingCards extends Component {
 	onClickReDraw(discard) {
 
     	let cards = this.state.cards.filter((task) => {
-	        if (task.cardName === discard[discard.length-1].props.children) {
+	        if (task.cardType === "cardsInShortRest") {
 	            task.cardType = "discardPile";
 	        }
+
 	        return task;
 	    });
 
-	    this.setState({
+	    this.setState(prevState=> ({
 	        ...this.state,
-			cards
-	    });
+			cards,
+			isToggleOn: !prevState.isToggleOn
+	    }));
+
 	}
 
 	onClickMoveToShortRest(discard) {
 
     	let cards = this.state.cards.filter((task) => {
-	        if (task.cardName === discard[Math.floor(Math.random() * discard.length)].props.children) {
-	            task.cardType = "cardsInShortRest";
+	        if (task.cardName === discard.props.children) {
+	             task.cardType = "cardsInShortRest";
 	        }
 	        return task;
 	    });
 
-	    this.setState({
+	    this.setState(prevState=> ({
 	        ...this.state,
-			cards
-	    });
+			cards,
+			isToggleOn: !prevState.isToggleOn
+	    }));
 	}
 
 
@@ -167,17 +182,17 @@ class PlayingCards extends Component {
 					  </a>
 					  <div className="header"> Send to lost or Redraw</div>
 					  <div className="card-container" >
-						  <button onClick={()=>{this.onClickMoveToShortRest(cards.discardPile)}}>
-						  Get Card
+						  <button onClick={()=>{this.onClickMoveToShortRest(cards.discardPile[Math.floor(Math.random() * cards.discardPile.length -1)])}}>
+						  {this.state.isToggleOn ? 'Get Card' : 'Get New Card'}
 					  </button>
-					  {cards.cardsInShortRest.slice(cards.cardsInShortRest.length -1)}
+					  		{cards.cardsInShortRest}
 						  <br/>
 						  <br/>
 						  <button id="sendToLost" onClick={()=>{this.onClickSendToLost(cards.cardsInShortRest); close();}} >
-							  Send to Lost
+							  {this.state.isToggleOn ? 'Send to Lost' : 'Continue'}
 						  </button>
-						  <button id="reDraw" onClick={()=>{this.onClickReDraw(cards.cardsInShortRest);}} >
-							  Redraw
+						  <button id="reDraw" onClick={()=>{this.onClickReDraw(cards.cardsInShortRest[Math.floor(Math.random() * cards.discardPile.length -1)]);}} >
+							   Shuffle
 						  </button>
 					  </div>
 					</div>
