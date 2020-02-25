@@ -38,7 +38,7 @@ class EntityLayout extends Component {
                 );
             }
         );
-        console.log(hexagons);
+        // console.log(hexagons);
         this.state = {hexagons};
     }
 
@@ -90,6 +90,7 @@ class EntityLayout extends Component {
 
     render() {
         const {hexagons} = this.state;
+        console.log(hexagons);
         return (
             <Layout className="tiles" size={{x: 10, y: 10}} flat={true} spacing={1.0} origin={{x: 60, y: -10}}>
                 {

@@ -66,7 +66,6 @@ class HexLayout extends Component {
         axios.get(USER_SERVICE_URL)
             .then(response => {
                 this.setState({data: response.data, isFetching: false})
-                console.log(response.data);
                 // console.log("First room = " + response.data[0].name)
             })
             .catch(e => {
@@ -87,19 +86,12 @@ class HexLayout extends Component {
     }
 
     onDragStart(event, source) {
-        if (!source.props.data.text) {
-            event.preventDefault();
-        }
+        event.preventDefault();
     }
 
     onDragOver(event, source) {
-        const blockedHexes = this.state.hexagons.filter(h => h.blocked);
-        const blocked = blockedHexes.find(blockedHex => {
-            return HexUtils.equals(source.state.hex, blockedHex);
-        });
-
-        const {text} = source.props.data;
-        if (!blocked && !text) {
+        const {text} = source.props.data.text;
+        if (!text) {
             event.preventDefault();
         }
     }
@@ -125,6 +117,7 @@ class HexLayout extends Component {
         const room1 = data[0].tiles;
         const tile_keys = Object.keys(room1);
 
+        // map function needs to somehow have a sense of what {hexagons} state is and append the newly generated hexagon
         return tile_keys.map(tileID =>
             this.generateHexagon(0, tileID)
         )
@@ -133,33 +126,33 @@ class HexLayout extends Component {
     generateHexagon(roomID, tileID, q, r, s) {
         const tile = this.state.data[roomID].tiles[tileID];
         const tile_value = tile.value;
-        const image = this.state.image[tile_value];
-        const text = this.state.text[tile_value];
+        const image = this.state.image[tile_value]; // Didn't get set in <Hexagon>
+        const text = this.state.text[tile_value]; // Didn't get set in <Hexagon>
         const tile_key = "room-" + roomID + "-tile-" + tileID;
-        console.log(image);
-        console.log(tile_value);
+
         return <Hexagon
-            key={tile_key}
+            key={tileID} // Changed to tileID from tile_key
             q={tile.x}
             r={tile.y}
             s={tile.z}
-            fill={"pat-" + tile_key}
-            image={image}
-            text={text}
+            fill={tileID}
+            image={this.state.image[tile_value]}
+            text={this.state.text[tile_value]}
             onDragStart={(e, h) => this.onDragStart(e, h)}
             onDragEnd={(e, h, s) => this.onDragEnd(e, h, s)}
             onDrop={(e, h, t) => this.onDrop(e, h, t)}
             onDragOver={(e, h) => this.onDragOver(e, h)}
         >
             <Text>{text}</Text>
-            <Pattern id={"pat-" + tile_key} link={image} size={{x: 5, y: 5}}/>
-
+            <Pattern id={tileID} link={this.state.image[tile_value]} size={{x: 5, y: 5}}/>
         </Hexagon>
+
     }
 
     render() {
-        console.log(this.state.image.character);
         const hexagons = this.parseHexagons();
+        // props: key is undefined because it's not mapped correctly?
+        console.log(hexagons);
         return (
             <Layout className="game" size={{x: 5, y: 5}} flat={true} spacing={1.08} origin={{x: -30, y: 0}}>
                 {hexagons}
