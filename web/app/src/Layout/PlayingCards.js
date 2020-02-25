@@ -79,6 +79,8 @@ class PlayingCards extends Component {
 			cards
 	    });
 	}
+	clickCount = 0;
+	shuffleClickCount = 0;
 
 	onClickSendToLost() {
 
@@ -100,9 +102,10 @@ class PlayingCards extends Component {
 
 	onClickReDraw(discard) {
 
+
     	let cards = this.state.cards.filter((task) => {
 	        if (task.cardType === "cardsInShortRest") {
-	            task.cardType = "discardPile";
+	            task.cardType = "cardsInHand";
 	        }
 
 	        return task;
@@ -113,15 +116,22 @@ class PlayingCards extends Component {
 			cards,
 			isToggleOn: !prevState.isToggleOn
 	    }));
+
+	    if(this.shuffleClickCount == 0){
+	    	document.getElementById("reDraw").disabled = true;
+		}
 
 	}
 
 	onClickMoveToShortRest(discard) {
 
+	 	this.clickCount = this.clickCount + 1;
+
     	let cards = this.state.cards.filter((task) => {
-	        if (task.cardName === discard.props.children) {
-	             task.cardType = "cardsInShortRest";
-	        }
+    		if (task.cardName === discard.props.children) {
+	              task.cardType = "cardsInShortRest";
+	         }
+
 	        return task;
 	    });
 
@@ -130,6 +140,11 @@ class PlayingCards extends Component {
 			cards,
 			isToggleOn: !prevState.isToggleOn
 	    }));
+
+	    if(this.clickCount == 2){
+	    	document.getElementById("GetCard").disabled = true;
+		}
+
 	}
 
 
@@ -182,7 +197,7 @@ class PlayingCards extends Component {
 					  </a>
 					  <div className="header"> Send to lost or Redraw</div>
 					  <div className="card-container" >
-						  <button onClick={()=>{this.onClickMoveToShortRest(cards.discardPile[Math.floor(Math.random() * cards.discardPile.length -1)])}}>
+						  <button id="GetCard" onClick={()=>{this.onClickMoveToShortRest(cards.discardPile[Math.floor(Math.random() * cards.discardPile.length)])}}>
 						  {this.state.isToggleOn ? 'Get Card' : 'Get New Card'}
 					  </button>
 					  		{cards.cardsInShortRest}
@@ -191,7 +206,7 @@ class PlayingCards extends Component {
 						  <button id="sendToLost" onClick={()=>{this.onClickSendToLost(cards.cardsInShortRest); close();}} >
 							  {this.state.isToggleOn ? 'Send to Lost' : 'Continue'}
 						  </button>
-						  <button id="reDraw" onClick={()=>{this.onClickReDraw(cards.cardsInShortRest[Math.floor(Math.random() * cards.discardPile.length -1)]);}} >
+						  <button id="reDraw" onClick={()=>{this.onClickReDraw(cards.discardPile);}} >
 							   Shuffle
 						  </button>
 					  </div>
