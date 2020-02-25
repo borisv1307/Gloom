@@ -1,7 +1,11 @@
 import pytest
 from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
 from backend.src.main.game.monster.concrete_monster_cards.cutthroat import Cutthroat
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues
+from backend.src.main.game.monster.values import (
+    DungeonCardValues,
+    MonsterValues,
+    NumberedRoomTileValues
+)
 
 
 def test_if_cutthroat_can_be_instantiated(cutthroat):
@@ -10,7 +14,7 @@ def test_if_cutthroat_can_be_instantiated(cutthroat):
 
 
 def test_cutthroat_node_1_is_monster(cutthroat):
-    assert cutthroat.map_values[NumberedRoomTileValues.ONE] == DungeonCardValues.MONSTER
+    assert cutthroat.map_values[NumberedRoomTileValues.ONE] == MonsterValues.BANDIT_GUARD
 
 
 def test_cutthroat_node_12_is_treasure(cutthroat):

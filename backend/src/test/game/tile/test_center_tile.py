@@ -46,13 +46,13 @@ def test_recentering_tile0_0_around_0_1_has_coordinates_0_minus_1():
 
 
 def test_tile_character_attribute_does_not_change_after_being_recentered():
-    attribute = DungeonCardValues.MONSTER
+    attribute = DungeonCardValues.TREASURE
     tile_to_be_recentered = Tile(0, 0, attribute)
     tile_to_recenter_around = Tile(0, 1, None)
 
     actual = CenterTile.recenter_tile(tile_to_be_recentered, tile_to_recenter_around)
 
-    assert actual.get_character_number() == DungeonCardValues.MONSTER
+    assert actual.get_character_number() == DungeonCardValues.TREASURE
 
 
 def test_recenters_list_of_tiles_around_a_tile():
