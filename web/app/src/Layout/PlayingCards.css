@@ -71,6 +71,10 @@
   border-bottom: 2px dotted red;
 }
 
+.shortrest {
+  float: left;
+}
+
 .close {
   color: #FF0000;
   float: right;

@@ -158,7 +158,7 @@ class PlayingCards extends Component {
 
 
 		this.state.cards.forEach ((card) => {
-			if(card.cardType === "cardsInHand") {
+			if(card.cardType === "cardsInHand" || card.cardType === "cardsInShortRest") {
 				cards[card.cardType].push(
 				<div key={card.id}
 				  onDragStart = {(event) => this.onDragStart(event, card.cardName)}
@@ -207,7 +207,7 @@ class PlayingCards extends Component {
 							  {this.state.isToggleOn ? 'Send to Lost' : 'Continue'}
 						  </button>
 						  <button id="reDraw" onClick={()=>{this.onClickReDraw(cards.discardPile);}} >
-							   Shuffle
+							   Redraw
 						  </button>
 					  </div>
 					</div>
