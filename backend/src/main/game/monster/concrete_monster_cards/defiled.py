@@ -1,9 +1,9 @@
 from backend.src.main.game.monster.abstract_monster_card import AbstractMonsterCard
-from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues,\
+from backend.src.main.game.monster.values import DungeonCardValues, NumberedRoomTileValues, \
     TrapIndicators
 
 
-class Defied(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
+class Defiled(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
 
     def __init__(self):
         map_values = {NumberedRoomTileValues.ONE: DungeonCardValues.MONSTER,
@@ -19,4 +19,4 @@ class Defied(AbstractMonsterCard):  # pylint: disable=too-few-public-methods
                       NumberedRoomTileValues.ELEVEN: DungeonCardValues.TRAPS,
                       NumberedRoomTileValues.TWELVE: DungeonCardValues.TREASURE,
                       TrapIndicators.INDICATOR: [TrapIndicators.POISON, TrapIndicators.IMMOBILIZE]}
-        AbstractMonsterCard.__init__(self, "Defied", map_values)
+        AbstractMonsterCard.__init__(self, "Defiled", map_values)

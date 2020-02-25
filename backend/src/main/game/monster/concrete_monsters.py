@@ -2,7 +2,7 @@ from backend.src.main.game.monster.concrete_monster_cards.archaic import Archaic
 from backend.src.main.game.monster.concrete_monster_cards.corrupted import Corrupted
 from backend.src.main.game.monster.concrete_monster_cards.crushing import Crushing
 from backend.src.main.game.monster.concrete_monster_cards.cutthroat import Cutthroat
-from backend.src.main.game.monster.concrete_monster_cards.defied import Defied
+from backend.src.main.game.monster.concrete_monster_cards.defiled import Defiled
 from backend.src.main.game.monster.concrete_monster_cards.drowned import Drowned
 from backend.src.main.game.monster.concrete_monster_cards.foggy import Foggy
 from backend.src.main.game.monster.concrete_monster_cards.fortified import Fortified
@@ -26,7 +26,7 @@ def get_all_monsters():
         Corrupted(),
         Crushing(),
         Cutthroat(),
-        Defied(),
+        Defiled(),
         Drowned(),
         Foggy(),
         Fortified(),
