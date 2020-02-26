@@ -71,7 +71,6 @@ class EntityLayout extends Component {
 
         const hexagons2 = GridGenerator.hexagon(1);
 
-        // console.log(hexagons);
         this.state = {
             hexagons, hexagons2, isFetching: false,
             JSONdata: {
@@ -92,7 +91,6 @@ class EntityLayout extends Component {
         };
     }
 
-    // ---- //
     componentWillMount() {
         this.fetchHexagons();
     }
@@ -113,8 +111,6 @@ class EntityLayout extends Component {
         const data = this.state.JSONdata;
         const room1 = data[0].tiles;
         const tile_keys = Object.keys(room1);
-
-        // map function needs to somehow have a sense of what {hexagons} state is and append the newly generated hexagon
         return tile_keys.map(i =>
             this.generateHexagon(0, i)
         )
@@ -123,8 +119,8 @@ class EntityLayout extends Component {
     generateHexagon(roomID, tileID) {
         const tile = this.state.JSONdata[roomID].tiles[tileID];
         const tile_value = tile.value;
-        const image = this.state.image[tile_value]; // Didn't get set in <Hexagon>
-        const text = this.state.text[tile_value]; // Didn't get set in <Hexagon>
+        const image = this.state.image[tile_value];
+        const text = this.state.text[tile_value];
         const tile_key = "room-" + roomID + "-tile-" + tileID;
         const hex_data = {q: tile.x, r: tile.y, s: tile.z, text: {text}, image: {image}};
         const {hexagons2} = this.state.hexagons2;
@@ -149,8 +145,6 @@ class EntityLayout extends Component {
 
     }
 
-
-    // ---- //
 
     onDrop(event, source, targetProps) {
         const {hexagons} = this.state;
