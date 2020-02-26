@@ -1,0 +1,16 @@
+{
+  "Brute": [
+    {
+      "description": "Remove two -1 cards.",
+      "actions": [
+        {
+          "type": "REMOVE",
+          "card": {
+            "value": "-1"
+          }
+        }
+      ],
+      "count": 2
+    }
+  ]
+}
