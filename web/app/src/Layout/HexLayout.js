@@ -7,6 +7,8 @@ const USER_SERVICE_URL = 'http://0.0.0.0:5000/start';
 
 class HexLayout extends Component {
     constructor(props) {
+        super(props);
+
         const text = {
             character: "Character",
             monster: "Monster",
@@ -34,10 +36,17 @@ class HexLayout extends Component {
             dangerous: "https://img.icons8.com/color/96/000000/error.png"
         };
 
-        super(props);
-        const hexagons = GridGenerator.hexagon(1);
-        this.state = {hexagons};
+
+        const hexagons = GridGenerator.parallelogram(-1, 0, -1, 2).map((hexagon, index) => {
+                return Object.assign({}, hexagon, {
+                        text: text[index],
+                        image: image[index]
+                    }
+                );
+            }
+        );
         this.state = {
+            hexagons,
             isFetching: false,
             data: {
                 "0": {
@@ -90,10 +99,7 @@ class HexLayout extends Component {
     }
 
     onDragOver(event, source) {
-        const {text} = source.props.data.text;
-        if (!text) {
-            event.preventDefault();
-        }
+        event.preventDefault();
     }
 
     onDragEnd(event, source, success) {
@@ -101,7 +107,7 @@ class HexLayout extends Component {
             return;
         }
 
-        const {hexagons} = this.state;
+        const {hexagons} = this.state.hexagons;
         const hexes = hexagons.map(hex => {
             if (HexUtils.equals(source.state.hex, hex)) {
                 hex.text = null;
@@ -118,20 +124,21 @@ class HexLayout extends Component {
         const tile_keys = Object.keys(room1);
 
         // map function needs to somehow have a sense of what {hexagons} state is and append the newly generated hexagon
-        return tile_keys.map(tileID =>
-            this.generateHexagon(0, tileID)
+        return tile_keys.map(i =>
+            this.generateHexagon(0, i)
         )
     }
 
-    generateHexagon(roomID, tileID, q, r, s) {
+    generateHexagon(roomID, tileID) {
         const tile = this.state.data[roomID].tiles[tileID];
         const tile_value = tile.value;
         const image = this.state.image[tile_value]; // Didn't get set in <Hexagon>
         const text = this.state.text[tile_value]; // Didn't get set in <Hexagon>
         const tile_key = "room-" + roomID + "-tile-" + tileID;
 
+        const {hexagons} = this.state.hexagons;
+
         return <Hexagon
-            key={tileID} // Changed to tileID from tile_key
             q={tile.x}
             r={tile.y}
             s={tile.z}
