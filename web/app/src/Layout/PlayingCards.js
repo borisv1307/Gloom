@@ -1,19 +1,26 @@
 import './PlayingCards.css'
 import React, {Component} from "react";
-import backOfCard from './backofcard.PNG';
 import card from './card1.png';
-import BRUTE from '../bruteAbilityCardimages'
-
+import Popup from "reactjs-popup";
+import BRUTE from '../bruteAbilityCardimages';
 
 let selectedImages;
 selectedImages = [];
 let image = [];
 let cardsCreated = false;
 
-
 class PlayingCards extends Component {
+	 constructor(props) {
+		 super(props);
+		 this.state = {
+			 cards: [],
+		cardsInitial: [],
+			 isToggleOn: true
+		 }
+			this.handleClick = this.handleClick.bind(this);
+	 }
 
-	createCards(){
+	 createCards(){
 
 		if(cardsCreated == false)
 		{
@@ -28,15 +35,17 @@ class PlayingCards extends Component {
 		}
 	}
 
-    state = {
-		cards: [],
-		cardsInitial: []
-    }
+	 handleClick() {
+    this.setState(prevState=> ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
 
     onDragStart = (event, cardName) => {
     	console.log('dragstart on div: ', cardName);
     	event.dataTransfer.setData("cardName", cardName);
 	}
+
 	onDragOver = (event) => {
 	    event.preventDefault();
 	}
@@ -61,8 +70,75 @@ class PlayingCards extends Component {
 
 	    this.setState({
 	        ...this.state,
-	        cards
+			cards
 	    });
+	}
+	clickCount = 0;
+	shuffleClickCount = 0;
+
+	onClickSendToLost() {
+
+    	let cards = this.state.cards.filter((task) => {
+	        if (task.cardType === "cardsInShortRest") {
+	            task.cardType = "lostCards";
+	        }
+	        else if (task.cardType === "discardPile") {
+	        	task.cardType = "cardsInHand";
+			}
+	        return task;
+	    });
+
+	    this.setState({
+	        ...this.state,
+			cards
+	    });
+	}
+
+	onClickReDraw(discard) {
+
+
+    	let cards = this.state.cards.filter((task) => {
+	        if (task.cardType === "cardsInShortRest") {
+	            task.cardType = "cardsInHand";
+	        }
+
+	        return task;
+	    });
+
+	    this.setState(prevState=> ({
+	        ...this.state,
+			cards,
+			isToggleOn: !prevState.isToggleOn
+	    }));
+
+	    if(this.shuffleClickCount == 0){
+	    	document.getElementById("reDraw").disabled = true;
+		}
+
+	}
+
+	onClickMoveToShortRest(discard) {
+
+	 	this.clickCount = this.clickCount + 1;
+
+    	let cards = this.state.cards.filter((task) => {
+    		if (task.cardName === discard.props.children) {
+	              task.cardType = "cardsInShortRest";
+	         }
+
+	        return task;
+	    });
+
+	    this.setState(prevState=> ({
+	        ...this.state,
+			cards,
+			isToggleOn: !prevState.isToggleOn
+	    }));
+
+	    if(this.clickCount == 2){
+	    	document.getElementById("GetCard").disabled = true;
+		}
+
 	}
 
 
@@ -80,19 +156,20 @@ class PlayingCards extends Component {
         var cards = {
 	      discardPile: [],
 	      lostCards: [],
-		  cardsInHand: []
+		  cardsInHand: [],
+		  cardsInShortRest: []
 	    }
 
 
 		this.state.cards.forEach ((card) => {
-			if(card.cardType === "cardsInHand") {
+			if(card.cardType === "cardsInHand" || card.cardType === "cardsInShortRest") {
 				cards[card.cardType].push(
 				<div key={card.id}
 				  onDragStart = {(event) => this.onDragStart(event, card.cardName)}
 				  draggable
 				  className="cards-in-hand"
                     style = {{backgroundImage: card.backgroundImage}}>
-				  {/*{card.cardName}*/}
+				  {card.cardName}
 				</div>
 			  );
 			}
@@ -107,9 +184,41 @@ class PlayingCards extends Component {
 				</div>
 			  );
 			}
+
 		});
 
 	    return (
+			<div>
+				<div className="shortrest">
+				  {
+					cards.discardPile.length > 1 &&
+					<Popup trigger={<button className="shortrest" onClick={() => {
+					 }}> Short Rest </button>} modal>
+					{close => (
+				  <div className="modal">
+					  <a className="close" onClick={close}>
+						  &times;
+					  </a>
+					  <div className="header"> Send to lost or Redraw</div>
+					  <div className="card-container" >
+						  <button id="GetCard" onClick={()=>{this.onClickMoveToShortRest(cards.discardPile[Math.floor(Math.random() * cards.discardPile.length)])}}>
+						  {this.state.isToggleOn ? 'Get Card' : 'Get New Card'}
+					  </button>
+					  		{cards.cardsInShortRest}
+						  <br/>
+						  <br/>
+						  <button id="sendToLost" onClick={()=>{this.onClickSendToLost(cards.cardsInShortRest); close();}} >
+							  {this.state.isToggleOn ? 'Send to Lost' : 'Continue'}
+						  </button>
+						  <button id="reDraw" onClick={()=>{this.onClickReDraw(cards.discardPile);}} >
+							   Redraw
+						  </button>
+					  </div>
+					</div>
+							)}
+					</Popup>
+					}
+			  </div>
 	      <div className="drag-container">
 		    <div className="discard-pile" style={{display:"flex", flexDirection: "column", textAlign: "top"}}
 	    		onDragOver={(event)=>this.onDragOver(event)}
@@ -138,6 +247,7 @@ class PlayingCards extends Component {
 				{cards.cardsInHand}
 			</div>
 	      </div>
+			</div>
 	    );
     }
 }
