@@ -1,6 +1,8 @@
 # pylint:disable=wrong-import-order,line-too-long
 import json
 
+from flask_cors import cross_origin
+
 from backend.src.main.game.dungeon.random_dungeon_generator import RandomDungeonGenerator
 from backend.src.main.serializer.dungeon_serializer import DungeonSerializer
 from backend.src.main.serializer.serializer_builder import SerializerBuilder
@@ -10,6 +12,7 @@ from flask import Flask
 
 class Handler:
     app = Flask(__name__)
+    app.config['CORS_HEADERS'] = 'Content-Type'
     EXPERIMENTAL = False
 
     @staticmethod
@@ -17,6 +20,7 @@ class Handler:
         return "Hello, world!"
 
     @staticmethod
+    @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
     def start():
         rdg = RandomDungeonGenerator(RandomWrapper())
         rdg.select_first_room()
