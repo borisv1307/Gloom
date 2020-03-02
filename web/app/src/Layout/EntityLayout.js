@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {GridGenerator, Layout, Hexagon, Text, Pattern, HexUtils, HexGrid} from 'react-hexgrid';
+import monsters from '../monsters';
 import './EntityLayout.css';
 import axios from 'axios'
 
@@ -32,38 +33,18 @@ const image = {
     dangerous: "https://img.icons8.com/color/96/000000/error.png"
 };
 
-const EntityEnum = Object.freeze({
-    character: "Character",
-    monster: "Monster",
-    wall: "Wall",
-    obstacle: "Obstacle",
-    trap: "Trap",
-    empty: "Empty",
-    hazard: "Hazardous Terrain",
-    dangerous: "Dangerous Terrain"
-});
-const EntityImageEnum = Object.freeze({
-    character: "https://img.icons8.com/color/96/000000/morty-smith.png",
-    monster: "https://img.icons8.com/color/96/000000/monster-face.png",
-    wall: "https://img.icons8.com/color/96/000000/brick-wall.png",
-    obstacle: "https://img.icons8.com/color/96/000000/roadblock.png",
-    trap: "https://img.icons8.com/color/96/000000/naval-mine.png",
-    empty: "",
-    hazard: "https://img.icons8.com/color/96/000000/self-destruct-button--v1.png",
-    dangerous: "https://img.icons8.com/color/96/000000/error.png"
-});
 
-var name_values = Object.values(EntityEnum);
-var image_values = Object.values(EntityImageEnum);
+var name_values = ["Character", "Monster", "Wall", "Obstacle", "Trap", "Empty", "Hazardous Terrain", "Dangerous Terrain"];
 
 class EntityLayout extends Component {
     constructor(props) {
         super(props);
 
         const hexagons = GridGenerator.parallelogram(-1, 0, -1, 2).map((hexagon, index) => {
+                const monster_key = name_values[index].toLowerCase();
                 return Object.assign({}, hexagon, {
                         text: name_values[index],
-                        image: image_values[index]
+                        image: monsters[monster_key]
                     }
                 );
             }
