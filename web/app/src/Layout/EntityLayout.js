@@ -90,11 +90,11 @@ class EntityLayout extends Component {
     generateHexagon(roomID, tileID) {
         const tile = this.state.JSONdata[roomID].tiles[tileID];
         const tile_value = tile.value;
-        const image = this.state.image[tile_value];
-        const text = this.state.text[tile_value];
-        const tile_key = "room-" + roomID + "-tile-" + tileID;
+        const image = monsters[tile_value];
+        const text = tile_value;
+        // const tile_key = "room-" + roomID + "-tile-" + tileID;
         const hex_data = {q: tile.x, r: tile.y, s: tile.z, text: {text}, image: {image}};
-        const {hexagons2} = this.state.hexagons2;
+        // const {hexagons2} = this.state.hexagons2;
 
         return <Hexagon
             key={tileID}
@@ -102,8 +102,8 @@ class EntityLayout extends Component {
             r={tile.y}
             s={tile.z}
             fill={tileID}
-            image={this.state.image[tile_value]}
-            text={this.state.text[tile_value]}
+            image={image}
+            text={text}
             data={hex_data}
             onDragStart={(e, h) => this.onDragStart(e, h)}
             onDragEnd={(e, h, s) => this.onDragEnd(e, h, s)}
