@@ -33,4 +33,12 @@
   "vermling scout": "../Images/Vermling-Scout.png",
   "vermling shaman": "../Images/Vermling-Shaman.png",
   "wind demon": "../Images/Wind-Demon.png",
+  "character": "https://img.icons8.com/color/96/000000/morty-smith.png",
+  "monster": "https://img.icons8.com/color/96/000000/monster-face.png",
+  "wall": "https://img.icons8.com/color/96/000000/brick-wall.png",
+  "obstacle": "https://img.icons8.com/color/96/000000/roadblock.png",
+  "trap": "https://img.icons8.com/color/96/000000/naval-mine.png",
+  "empty": "",
+  "hazardous terrain": "https://img.icons8.com/color/96/000000/self-destruct-button--v1.png",
+  "dangerous terrain": "https://img.icons8.com/color/96/000000/error.png"
 }
