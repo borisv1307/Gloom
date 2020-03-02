@@ -66,31 +66,3 @@
   background-color: #777777;
   border-bottom: 2px dotted red;
 }
-
-.attack-modifier {
-  position: absolute;
-  width: 10%;
-  height: 30%;
-  bottom: 20%;
-  right: 10%;
-  background-color: #9a2132;
-  border-left: 2px dotted red;
-  vertical-align: text-top;
-  flex-wrap: wrap;
-}
-
-.attack-deck {
-  background-color: #9a2132;
-  margin: 5px auto;
-  font-size: 10px;
-
-}
-
-.attack-card {
-  background-color: #7be3f6;
-  margin: 5px auto;
-  font-size: 10px;
-  text: false ;
-  padding: 5px;
-  color: black;
-}
