@@ -17,6 +17,14 @@ class AttackModifier extends Component {
                 },
                 "deck": {
                     "cards": ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"],
+                    // "cards": [
+                    //     {id:"0", name:"Zero (No Effect)"}, {id:"0", name:"Zero (No Effect)"}, {id:"0", name:"Zero (No Effect)"},
+                    //     {id:"0", name:"Zero (No Effect)"}, {id:"0", name:"Zero (No Effect)"}, {id:"0", name:"Zero (No Effect)"},
+                    //     {id:"+1", name:"Plus One"}, {id:"+1", name:"Plus One"}, {id:"+1", name:"Plus One"}, {id:"+1", name:"Plus One"},
+                    //     {id:"+1", name:"Plus One"}, {id:"-1", name:"Negative One"}, {id:"-1", name:"Negative One"},
+                    //     {id:"-1", name:"Negative One"}, {id:"-1", name:"Negative One"}, {id:"-1", name:"Negative One"},
+                    //     {id:"+2", name:"Plus Two"}, {id:"-2", name:"Negative Two"}, {id:"2x", name:"Twice"}, {id:"Null", name:"Null"}
+                    // ],
                     "isHidden": true
                 }
             },
@@ -130,11 +138,11 @@ class Deck extends Component {
         let cards = this.get_cards();
 
         return (
-            <div style={{justifyContent:"flex-start"}}
-                 className="attack-deck" onClick={() => this.props.onclick(this.props.name)}>
-                <div>{this.props.name}</div>
-                <div style={{display:"flex",flexDirection: "row", flexWrap:"wrap"}}>{cards}</div>
-            </div>
+                <div style={{justifyContent:"flex-start"}}
+                     className="attack-deck" onClick={() => this.props.onclick(this.props.name)}>
+                    <div>{this.props.name}</div>
+                    <div style={{display:"flex",flexDirection: "row", flexWrap:"wrap"}}>{cards}</div>
+                </div>
         )
     }
 }
