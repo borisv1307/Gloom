@@ -1,6 +1,5 @@
 import './PlayingCards.css'
 import React, {Component} from "react";
-import card from './card1.png';
 import Popup from "reactjs-popup";
 import BRUTE from '../bruteAbilityCardimages';
 
@@ -141,7 +140,6 @@ class PlayingCards extends Component {
 
 	}
 
-
     render() {
 
 		selectedImages = this.props.abilityCards;
@@ -188,11 +186,9 @@ class PlayingCards extends Component {
 		});
 
 	    return (
-			<div>
-				<div className="shortrest">
+	    	<div className="shortrest">
 				  {
-					cards.discardPile.length > 1 &&
-					<Popup trigger={<button className="shortrest" onClick={() => {
+					<Popup trigger={<button disabled={cards.discardPile.length < 2} id="shortrestbutton" onClick={() => {
 					 }}> Short Rest </button>} modal>
 					{close => (
 				  <div className="modal">
@@ -218,7 +214,6 @@ class PlayingCards extends Component {
 							)}
 					</Popup>
 					}
-			  </div>
 	      <div className="drag-container">
 		    <div className="discard-pile" style={{display:"flex", flexDirection: "column", textAlign: "top"}}
 	    		onDragOver={(event)=>this.onDragOver(event)}
@@ -232,7 +227,6 @@ class PlayingCards extends Component {
 				<text>Lost Cards</text>
 	          {cards.lostCards}
 	        </div>
-
             <div className="discard-pile" style={{display:"flex", flexDirection: "column", textAlign: "top"}}
 				onDragOver={(event)=>this.onDragOver(event)}
 				onDrop={(event)=>{this.onDrop(event, "discardPile")}}>
@@ -250,6 +244,8 @@ class PlayingCards extends Component {
 			</div>
 	    );
     }
+
+
 }
 
 export default PlayingCards;
