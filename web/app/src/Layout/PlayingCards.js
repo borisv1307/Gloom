@@ -278,8 +278,8 @@ class PlayingCards extends Component {
 			<div>
 				<div className="shortrest">
 				  {
-					cards.discardPile.length > 1 &&
-					<Popup trigger={<button className="shortrest" onClick={() => {
+
+					<Popup trigger={<button disabled={cards.discardPile.length < 2} id="shortrestbutton" onClick={() => {
 					 }}> Short Rest </button>} modal>
 					{close => (
 				  <div className="modal">
