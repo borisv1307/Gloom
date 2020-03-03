@@ -3,7 +3,6 @@ import React, {Component} from "react";
 import Popup from "reactjs-popup";
 import BRUTE from '../bruteAbilityCardimages';
 import AttackModifier from './AttackModifier.js';
-import BlessAndCurse from "./BlessAndCurse";
 
 let selectedImages;
 selectedImages = [];
@@ -227,7 +226,6 @@ class PlayingCards extends Component {
                   </div>
 
                   <AttackModifier/>
-                  <BlessAndCurse/>
 
                   <div className="lost-cards-pile" style={{flexDirection: "column", textAlign: "top" }}
 				 onDragOver={(event)=>this.onDragOver(event)}

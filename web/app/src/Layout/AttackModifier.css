@@ -25,3 +25,15 @@
   padding: 5px;
   color: black;
 }
+
+.bless-and-curse {
+  position: absolute;
+  width: 10%;
+  height: 23%;
+  bottom: 20%;
+  right: 20%;
+  background-color: #71CFFF;
+  border-left: 2px dotted red;
+  vertical-align: text-top;
+  color: black;
+}

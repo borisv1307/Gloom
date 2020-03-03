@@ -17,18 +17,12 @@ class AttackModifier extends Component {
                 },
                 "deck": {
                     "cards": ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"],
-                    // "cards": [
-                    //     {id:"0", name:"Zero (No Effect)"}, {id:"0", name:"Zero (No Effect)"}, {id:"0", name:"Zero (No Effect)"},
-                    //     {id:"0", name:"Zero (No Effect)"}, {id:"0", name:"Zero (No Effect)"}, {id:"0", name:"Zero (No Effect)"},
-                    //     {id:"+1", name:"Plus One"}, {id:"+1", name:"Plus One"}, {id:"+1", name:"Plus One"}, {id:"+1", name:"Plus One"},
-                    //     {id:"+1", name:"Plus One"}, {id:"-1", name:"Negative One"}, {id:"-1", name:"Negative One"},
-                    //     {id:"-1", name:"Negative One"}, {id:"-1", name:"Negative One"}, {id:"-1", name:"Negative One"},
-                    //     {id:"+2", name:"Plus Two"}, {id:"-2", name:"Negative Two"}, {id:"2x", name:"Twice"}, {id:"Null", name:"Null"}
-                    // ],
                     "isHidden": true
                 }
             },
-            "onclick": (deck_name) => this.handleClickDeck(deck_name)
+            "onclick": (deck_name) => this.handleClickDeck(deck_name),
+            bless: 10,
+            curse: 10
         }
     }
 
@@ -69,6 +63,8 @@ class AttackModifier extends Component {
         const new_deck = deck
             .concat(selected)
             .concat(discard);
+        this.state.bless = 10;
+        this.state.curse = 10;
 
         this.setDecks(new_deck, [], [])
     }
@@ -94,6 +90,36 @@ class AttackModifier extends Component {
         })
     }
 
+    onClickBlessPlus() {
+        this.state.bless = this.state.bless - 1;
+        this.state.decks["deck"].cards.push("2xB");
+    }
+
+    onClickBlessMinus() {
+        this.state.bless = this.state.bless + 1;
+        for(var i=0; i<this.state.decks["deck"].cards.length; i++) {
+            if(this.state.decks["deck"].cards[i] === "2xB"){
+                this.state.decks["deck"].cards.splice(i,1);
+                return;
+            }
+        }
+    }
+
+    onClickCursePlus() {
+        this.state.curse = this.state.curse - 1;
+        this.state.decks["deck"].cards.push("-2C");
+    }
+
+    onClickCurseMinus() {
+        this.state.curse = this.state.curse + 1;
+        for(var i=0; i<this.state.decks["deck"].cards.length; i++) {
+            if(this.state.decks["deck"].cards[i] === "-2C"){
+                this.state.decks["deck"].cards.splice(i,1);
+                return;
+            }
+        }
+    }
+
     render() {
         const decks_names = ["discard", "selected"];
         const decks = decks_names.map(
@@ -107,15 +133,31 @@ class AttackModifier extends Component {
         );
 
         var cardsLeft = this.state.decks["deck"].cards.length;
-
-
+        var blessLeft = this.state.bless;
+        var curseLeft = this.state.curse;
         return(
-            <div className="attack-modifier" style={{flexDirection: "row"}}>
-                    {decks}
-                    <text>Cards Left: {cardsLeft}</text>
-                    <button onClick={() => this.randomSelect()}>Pull Card</button>
-                    <button onClick={() => this.reset()}>Reset</button>
-                  </div>
+            <div>
+                <div className="attack-modifier" style={{flexDirection: "row"}}>
+                        {decks}
+                        <text>Cards Left: {cardsLeft}</text>
+                        <button onClick={() => this.randomSelect()}>Pull Card</button>
+                        <button onClick={() => this.reset()}>Reset</button>
+                </div>
+
+                <div className="bless-and-curse">
+                <div id="bless" style={{display: 'flex', lineHeight: '40px'}}>
+                    <button onClick={() => this.onClickBlessPlus()}>+</button>
+                    <text>Bless Cards Left: {blessLeft}</text>
+                    <button onClick={() => this.onClickBlessMinus()}>-</button>
+                </div>
+
+                <div id="curse" style={{display: 'flex', lineHeight: '40px'}}>
+                    <button onClick={() => this.onClickCursePlus()}>+</button>
+                    <text>Curse Cards Left: {curseLeft}</text>
+                    <button onClick={() => this.onClickCurseMinus()}>-</button>
+                </div>
+            </div>
+            </div>
         )
     }
 }
