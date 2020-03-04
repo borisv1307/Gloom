@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import './AttackModifier.css';
 
-var blessDiscard = 0;
-var curseDiscard = 0;
+let blessDiscard = 0;
+let curseDiscard = 0;
 
 class AttackModifier extends Component {
     constructor(props) {
