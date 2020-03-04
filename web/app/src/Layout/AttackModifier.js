@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import './AttackModifier.css';
 
+const initial_deck = ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"];
+
 class AttackModifier extends Component {
     constructor(props) {
         super(props);
@@ -60,9 +62,14 @@ class AttackModifier extends Component {
 
     reset() {
         const [deck, selected, discard] = this.getDecks();
-        const new_deck = deck
+        let new_deck = deck
             .concat(selected)
             .concat(discard);
+        console.log("New Deck : " + new_deck);
+
+        new_deck = initial_deck;
+
+        console.log("New Deck After While : " + new_deck);
         this.state.bless = 10;
         this.state.curse = 10;
 
@@ -91,30 +98,42 @@ class AttackModifier extends Component {
     }
 
     onClickBlessPlus() {
-        this.state.bless = this.state.bless - 1;
-        this.state.decks["deck"].cards.push("2xB");
+        if(this.state.bless !== 0 && this.state.bless <=10) {
+            this.state.bless = this.state.bless - 1;
+            this.state.decks["deck"].cards.push("2xB");
+            this.setDecks(this.state.decks.deck.cards, this.state.decks.discard.cards, this.state.decks.selected.cards);
+            return;
+        }
     }
 
     onClickBlessMinus() {
-        this.state.bless = this.state.bless + 1;
-        for(var i=0; i<this.state.decks["deck"].cards.length; i++) {
-            if(this.state.decks["deck"].cards[i] === "2xB"){
-                this.state.decks["deck"].cards.splice(i,1);
-                return;
+        if(this.state.bless !== 0 && this.state.bless <=10) {
+            for(var i=0; i<this.state.decks["deck"].cards.length; i++) {
+                if(this.state.decks["deck"].cards[i] === "2xB"){
+                    this.state.decks["deck"].cards.splice(i,1);
+                    this.state.bless = this.state.bless + 1;
+                    this.setDecks(this.state.decks.deck.cards, this.state.decks.discard.cards, this.state.decks.selected.cards);
+                    return;
+                }
             }
         }
     }
 
     onClickCursePlus() {
-        this.state.curse = this.state.curse - 1;
-        this.state.decks["deck"].cards.push("-2C");
+        if(this.state.curse != 0) {
+            this.state.curse = this.state.curse - 1;
+            this.state.decks["deck"].cards.push("-2C");
+            this.setDecks(this.state.decks.deck.cards, this.state.decks.discard.cards, this.state.decks.selected.cards);
+            return;
+        }
     }
 
     onClickCurseMinus() {
-        this.state.curse = this.state.curse + 1;
         for(var i=0; i<this.state.decks["deck"].cards.length; i++) {
             if(this.state.decks["deck"].cards[i] === "-2C"){
                 this.state.decks["deck"].cards.splice(i,1);
+                this.state.curse = this.state.curse + 1;
+                this.setDecks(this.state.decks.deck.cards, this.state.decks.discard.cards, this.state.decks.selected.cards);
                 return;
             }
         }
@@ -146,15 +165,15 @@ class AttackModifier extends Component {
 
                 <div className="bless-and-curse">
                 <div id="bless" style={{display: 'flex', lineHeight: '40px'}}>
-                    <button onClick={() => this.onClickBlessPlus()}>+</button>
+                    <button disabled={blessLeft <= 0} onClick={() => this.onClickBlessPlus()}>+</button>
                     <text>Bless Cards Left: {blessLeft}</text>
-                    <button onClick={() => this.onClickBlessMinus()}>-</button>
+                    <button disabled={blessLeft >= 10} onClick={() => this.onClickBlessMinus()}>-</button>
                 </div>
 
                 <div id="curse" style={{display: 'flex', lineHeight: '40px'}}>
-                    <button onClick={() => this.onClickCursePlus()}>+</button>
+                    <button disabled={curseLeft <= 0} onClick={() => this.onClickCursePlus()}>+</button>
                     <text>Curse Cards Left: {curseLeft}</text>
-                    <button onClick={() => this.onClickCurseMinus()}>-</button>
+                    <button disabled={curseLeft >= 10} onClick={() => this.onClickCurseMinus()}>-</button>
                 </div>
             </div>
             </div>
