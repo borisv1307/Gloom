@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import './AttackModifier.css';
 
-const initial_deck = ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"];
+var blessDiscard = 0;
+var curseDiscard = 0;
 
 class AttackModifier extends Component {
     constructor(props) {
@@ -47,6 +48,14 @@ class AttackModifier extends Component {
         const new_selected = [item];
         const new_deck = this.removeByIndex(deck, random_idx)
 
+        if(item === "2xB") {
+            blessDiscard += 1;
+        }
+
+        if(item === "0C") {
+            curseDiscard += 1;
+        }
+
         this.setDecks(new_deck, new_discard, new_selected);
     }
 
@@ -62,16 +71,40 @@ class AttackModifier extends Component {
 
     reset() {
         const [deck, selected, discard] = this.getDecks();
-        let new_deck = deck
-            .concat(selected)
-            .concat(discard);
+
+        console.log("Selected before : " + selected);
+        console.log("Discard before : " + discard);
+
+        for(let i=0; i<selected.length; i++) {
+            if(selected[i] === "2xB"){
+                selected.splice(i, 1);
+            }
+            else if(selected[i] === "0C"){
+                selected.splice(i, 1);
+            }
+        }
+        for(let i=0; i<discard.length; i++) {
+            if(discard[i] === "2xB"){
+                discard.splice(i, 1);
+            }
+            else if(discard[i] === "0C"){
+                discard.splice(i, 1);
+            }
+        }
+
+        console.log("Selected after : " + selected);
+        console.log("Discard after : " + discard);
+
+        let new_deck = deck.concat(selected).concat(discard);
         console.log("New Deck : " + new_deck);
 
-        new_deck = initial_deck;
+        let currentBless = this.state.bless;
+        this.state.bless = currentBless + blessDiscard;
+        blessDiscard = 0;
 
-        console.log("New Deck After While : " + new_deck);
-        this.state.bless = 10;
-        this.state.curse = 10;
+        let currentCurse = this.state.curse;
+        this.state.curse = currentCurse + curseDiscard;
+        curseDiscard = 0;
 
         this.setDecks(new_deck, [], [])
     }
@@ -98,7 +131,7 @@ class AttackModifier extends Component {
     }
 
     onClickBlessPlus() {
-        if(this.state.bless !== 0 && this.state.bless <=10) {
+        if(this.state.bless >= 0 && this.state.bless <= 10) {
             this.state.bless = this.state.bless - 1;
             this.state.decks["deck"].cards.push("2xB");
             this.setDecks(this.state.decks.deck.cards, this.state.decks.discard.cards, this.state.decks.selected.cards);
@@ -107,7 +140,7 @@ class AttackModifier extends Component {
     }
 
     onClickBlessMinus() {
-        if(this.state.bless !== 0 && this.state.bless <=10) {
+        if(this.state.bless >= 0 && this.state.bless <=10) {
             for(var i=0; i<this.state.decks["deck"].cards.length; i++) {
                 if(this.state.decks["deck"].cards[i] === "2xB"){
                     this.state.decks["deck"].cards.splice(i,1);
@@ -120,21 +153,23 @@ class AttackModifier extends Component {
     }
 
     onClickCursePlus() {
-        if(this.state.curse != 0) {
+        if(this.state.curse >= 0 && this.state.curse <= 10) {
             this.state.curse = this.state.curse - 1;
-            this.state.decks["deck"].cards.push("-2C");
+            this.state.decks["deck"].cards.push("0C");
             this.setDecks(this.state.decks.deck.cards, this.state.decks.discard.cards, this.state.decks.selected.cards);
             return;
         }
     }
 
     onClickCurseMinus() {
-        for(var i=0; i<this.state.decks["deck"].cards.length; i++) {
-            if(this.state.decks["deck"].cards[i] === "-2C"){
-                this.state.decks["deck"].cards.splice(i,1);
-                this.state.curse = this.state.curse + 1;
-                this.setDecks(this.state.decks.deck.cards, this.state.decks.discard.cards, this.state.decks.selected.cards);
-                return;
+        if(this.state.curse >= 0 && this.state.curse <= 10) {
+            for(var i=0; i<this.state.decks["deck"].cards.length; i++) {
+                if(this.state.decks["deck"].cards[i] === "0C"){
+                    this.state.decks["deck"].cards.splice(i,1);
+                    this.state.curse = this.state.curse + 1;
+                    this.setDecks(this.state.decks.deck.cards, this.state.decks.discard.cards, this.state.decks.selected.cards);
+                    return;
+                }
             }
         }
     }
@@ -159,8 +194,8 @@ class AttackModifier extends Component {
                 <div className="attack-modifier" style={{flexDirection: "row"}}>
                         {decks}
                         <text>Cards Left: {cardsLeft}</text>
-                        <button onClick={() => this.randomSelect()}>Pull Card</button>
-                        <button onClick={() => this.reset()}>Reset</button>
+                        <button disabled={cardsLeft <= 0} onClick={() => this.randomSelect()}>Pull Card</button>
+                        <button onClick={() => this.reset()}>Shuffle</button>
                 </div>
 
                 <div className="bless-and-curse">
