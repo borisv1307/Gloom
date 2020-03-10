@@ -8,10 +8,25 @@ class Perks extends Component {
         this.state = {
             "cards": ["+1", "-1"],
             "character": HARDCODED_CHARACTER,
-            "perks": PerksData[HARDCODED_CHARACTER]
-        }
+            "perks": PerksData[HARDCODED_CHARACTER],
+            "enabled_perks": []
+        };
         this.addCheckedToPerks();
         this.performActions();
+    }
+
+    togglePerk(perk_id) {
+        let enabled = this.state.enabled_perks;
+        let new_enabled = null;
+        if (enabled.indexOf(perk_id) == -1) {
+            new_enabled = enabled.concat(perk_id);
+        } else {
+            new_enabled = enabled.splice(perk_id, 1);
+        }
+        this.setState({
+            "enabled_perks": new_enabled
+        })
+        console.log(this.state.enabled_perks);
     }
 
     addCheckedToPerks() {
@@ -19,7 +34,7 @@ class Perks extends Component {
             let current_perk = this.state.perks[perk_id];
             for (let action_id in current_perk.actions) {
                 let action = current_perk.actions[action_id];
-                action.checked = false;
+                action.checked = true;
                 this.setState(this.state.perks)
             }
         }
@@ -75,7 +90,11 @@ class Perks extends Component {
                 <div>PERKS:</div>
                 <ul>
                     {this.state.perks.map((perk, iter) => (
-                        <ToggleablePerk description={perk.description}/>
+                        <ToggleablePerk
+                            description={perk.description}
+                            callback={i => this.togglePerk(i)}
+                            id={iter}
+                            key={iter}/>
                     ))}
                 </ul>
                 <div>CARDS:</div>
@@ -94,8 +113,9 @@ class ToggleablePerk extends Component {
         super(props);
         this.state = {
             "checked": this.props.checked,
-            "key": this.props.key,
-            "description": this.props.description
+            "description": this.props.description,
+            "callback": this.props.callback,
+            "id": this.props.id
         };
     }
 
@@ -103,11 +123,10 @@ class ToggleablePerk extends Component {
         return (
             <div>
                 <input type="checkbox"
-                       id={'checkbox-' + this.state.key}
-                       key={this.state.key}
                        checked={this.state.checked}
+                       onChange={() => this.state.callback(this.state.id)}
                 />
-                <label for={'checkbox-' + this.state.key}>{this.state.description}</label>
+                <label htmlFor={'checkbox-' + this.state.key}>{this.state.description}</label>
             </div>
         );
     }
