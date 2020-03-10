@@ -57,7 +57,11 @@ class Perks extends Component {
         return (
             <div>
                 <div>CARDS:</div>
-                <div>{this.state.cards}</div>
+                <ul>
+                    {this.state.cards.map((card, iter) => (
+                        <li key={iter}>{card}</li>
+                    ))}
+                </ul>
             </div>
         );
     }
