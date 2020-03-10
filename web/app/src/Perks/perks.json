@@ -1,14 +1,29 @@
 {
   "Brute": [
     {
-      "description": "Remove two -1 cards.",
+      "description": "Remove two -1 cards",
       "actions": [
         {
           "type": "REMOVE",
-          "count": 2,
-          "card": {
-            "value": "-1"
-          }
+          "card": "-1"
+        },
+        {
+          "type": "REMOVE",
+          "card": "-1"
+        }
+      ],
+      "number_times_unlockable": 2
+    },
+    {
+      "description": "Replace one -1 card with one +1 card",
+      "actions": [
+        {
+          "type": "REMOVE",
+          "card": "-1"
+        },
+        {
+          "type": "ADD",
+          "card": "+1"
         }
       ]
     }

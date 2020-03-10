@@ -24,8 +24,16 @@ class Perks extends Component {
     }
 
     handleAction(action) {
-        if (action.type === "REMOVE") {
-            this.handleRemove(action.card.value);
+        const card_value = action.card;
+        switch (action.type) {
+            case "REMOVE":
+                this.handleRemove(card_value);
+                break;
+            case "ADD":
+                this.handleAdd(card_value);
+                break;
+            default:
+                break;
         }
     }
 
@@ -35,10 +43,13 @@ class Perks extends Component {
         this.updateState(new_cards);
     }
 
+    handleAdd(card_value) {
+        const new_cards = this.state.cards.concat(card_value);
+        this.updateState(new_cards);
+    }
+
     updateState(new_cards) {
-        this.setState({
-            "cards": new_cards
-        });
+        this.state.cards = new_cards;
     }
 
 
