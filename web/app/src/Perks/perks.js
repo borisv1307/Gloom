@@ -6,48 +6,45 @@ class Perks extends Component {
         super(props);
         const HARDCODED_CHARACTER = "Brute";
         this.state = {
+            "original_cards": ["+1", "-1"],
             "cards": ["+1", "-1"],
             "character": HARDCODED_CHARACTER,
             "perks": PerksData[HARDCODED_CHARACTER],
             "enabled_perks": []
         };
-        this.addCheckedToPerks();
         this.performActions();
     }
 
     togglePerk(perk_id) {
         let enabled = this.state.enabled_perks;
         let new_enabled = null;
-        if (enabled.indexOf(perk_id) == -1) {
+        if (enabled.indexOf(perk_id) === -1) {
             new_enabled = enabled.concat(perk_id);
         } else {
             new_enabled = enabled.splice(perk_id, 1);
         }
         this.setState({
             "enabled_perks": new_enabled
-        })
-        console.log(this.state.enabled_perks);
-    }
-
-    addCheckedToPerks() {
-        for (let perk_id in this.state.perks) {
-            let current_perk = this.state.perks[perk_id];
-            for (let action_id in current_perk.actions) {
-                let action = current_perk.actions[action_id];
-                action.checked = true;
-                this.setState(this.state.perks)
-            }
-        }
+        });
     }
 
     performActions() {
         for (let perk_id in this.state.perks) {
+            if (!this.isPerkEnabled(perk_id)) {
+                continue;
+            }
             let current_perk = this.state.perks[perk_id];
             for (let action_id in current_perk.actions) {
                 let action = current_perk.actions[action_id];
                 this.handleAction(action);
             }
         }
+    }
+
+    isPerkEnabled(perk_id) {
+        // console.log("Enabled Perks: " + this.state.enabled_perks);
+        // console.log("Checking perk_id: " + perk_id + " which is: " + (this.state.enabled_perks.indexOf(perk_id) !== -1));
+        return this.state.enabled_perks.indexOf(perk_id) !== -1;
     }
 
     handleAction(action) {
@@ -85,6 +82,8 @@ class Perks extends Component {
 
 
     render() {
+        // this.resetCards();
+        // this.performActions();
         return (
             <div>
                 <div>PERKS:</div>
@@ -93,6 +92,7 @@ class Perks extends Component {
                         <ToggleablePerk
                             description={perk.description}
                             callback={i => this.togglePerk(i)}
+                            // checked={this.isPerkEnabled(iter)}
                             id={iter}
                             key={iter}/>
                     ))}
@@ -105,6 +105,12 @@ class Perks extends Component {
                 </ul>
             </div>
         );
+    }
+
+    resetCards() {
+        this.setState({
+            "cards": this.state.original_cards
+        })
     }
 }
 
@@ -123,7 +129,7 @@ class ToggleablePerk extends Component {
         return (
             <div>
                 <input type="checkbox"
-                       checked={this.state.checked}
+                    // checked={this.state.checked}
                        onChange={() => this.state.callback(this.state.id)}
                 />
                 <label htmlFor={'checkbox-' + this.state.key}>{this.state.description}</label>
