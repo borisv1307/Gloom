@@ -42,7 +42,7 @@ class PlayingCards extends Component {
 			{
 				let currentId = selectedImages[i];
 
-				this.state.cards.push({id: currentId, cardName:image[currentId].cardName, cardType:"cardsInHand", backgroundImage: "url(" + image[currentId].src + ")"})
+				this.state.cards.push({id: currentId, cardName:image[currentId].cardName, cardType:"cardsInHand", backgroundImage: "url(" + image[currentId].src + ")", imgSrc:image[currentId].src})
 				this.state.cardsInitial.push({id: currentId, cardName:image[currentId].cardName, cardType:"cardsInHand", backgroundImage: "url(" + image[currentId].src + ")"})
 			}
 			cardsCreated = true;
@@ -256,7 +256,9 @@ class PlayingCards extends Component {
 				  onDragStart = {(event) => this.onDragStart(event, card.cardName)}
 				  draggable
 				  className="cards-in-hand"
-                    style = {{backgroundImage: card.backgroundImage}}>
+                    // style = {{backgroundImage: card.backgroundImage}}
+				>
+					<img src={card.imgSrc}/>
 				</div>
 			  );
 			}
@@ -307,7 +309,7 @@ class PlayingCards extends Component {
 					}
 			  </div>
 	      <div id="top">
-                  <div className="discard-pile" style={{flexDirection: "column", textAlign: "top"}}
+                  <div id="discard-pile" className="discard-pile" style={{flexDirection: "column", textAlign: "top"}}
 				    onDragOver={(event)=>this.onDragOver(event)}
                        onDrop={(event)=>{this.onDrop(event, "discardPile")}}>
                       <text>Discard Pile</text>

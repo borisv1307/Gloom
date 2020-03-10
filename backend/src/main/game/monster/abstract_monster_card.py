@@ -15,3 +15,6 @@ class AbstractMonsterCard(ABC):  # pylint: disable=too-few-public-methods
     def get_trap_indicators(self):
         key = TrapIndicators.INDICATOR
         return self.map_values[key]
+
+    def get_monster_card_name(self):
+        return self.name
