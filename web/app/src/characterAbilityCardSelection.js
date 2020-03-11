@@ -4,6 +4,8 @@ import './characterAbilityCardSelection.css'
 import BRUTE from './bruteAbilityCardimages'
 import App from "./App";
 import backImg from "./back_red.png"
+import ItemSelection from "./itemSelection";
+import items from "./itemsList";
 
 
 let selectedImages;
@@ -106,6 +108,9 @@ class CharacterAbilityCardSelection extends Component{
                 <button id={'submitButton'} type={"button"} onClick={() => goToApp(this.props)}>Play!</button>
             </div>
             <div>{this.createCards(this.props.characterName, this.props.characterCardHand)}</div>
+            <div>
+            <ItemSelection items={items}/>
+            </div>
         </div>
     );
 
