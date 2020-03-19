@@ -2,6 +2,7 @@
 Gloom is a UI tracker for playing Gloomhaven. 
 - The backend is built with Flask and Python3 and generates all the game entities (tiles, rooms, dungeons, monsters, characters)
 - The frontend is built with React that renders constructed rooms based on JSON data fetched from the Flask server.
+Refer to [Resources](Resources.md) as a starting point to get a better sense of how it all works under the hood
 
 ## Backend
 ### Build and Run
