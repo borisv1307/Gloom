@@ -11,7 +11,7 @@ import items from "./itemsList";
 let selectedImages;
 selectedImages = [];
 let maxCardsInHand;
-
+let items_selected;
 
 const CharacterAbilityBox = (props) => {
 
@@ -20,6 +20,7 @@ const CharacterAbilityBox = (props) => {
         //alert('Hey!');
 
         let isChecked = false;
+        items_selected = document.getElementById("items_hidden").value;
         for(let i =0;i<selectedImages.length;i++)
         {
             if(props.characterCardId == selectedImages[i])
@@ -44,7 +45,7 @@ const CharacterAbilityBox = (props) => {
             alert('Selected Number of Cards = '+ selectedImages.length + ' Max Number of Cards allowed = '+maxCardsInHand);
         }
 
-        if(selectedImages.length == maxCardsInHand)
+        if(selectedImages.length == maxCardsInHand && items_selected.length > 0)
         {
             document.getElementById('submitButton').disabled = false;
             document.getElementById("submitButton").className = 'PlayButtonEnabled'
@@ -62,8 +63,7 @@ const CharacterAbilityBox = (props) => {
 };
 
 function goToApp(props) {
-let items_selected = document.getElementById("items_hidden").value;
-console.log(items_selected); // items_selected is getting the data from itemSelection
+
     ReactDOM.render(<App abilityCards={selectedImages} characterName={props.characterName} characterCardHand={props.characterCardHand} itemsSelected={items_selected} />, document.getElementById('root'));
 
 }
