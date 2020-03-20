@@ -16,7 +16,7 @@ class App extends Component {
                             onClick={() => window.location.reload(false)}>Change Character
                     </button>
                 </div>
-                <h1>Drag & drop</h1>
+                <p>Items: {this.props.itemsSelected}</p>
 
                 {/*<HexLayout/>*/}
                 <EntityLayout/>

@@ -21,8 +21,14 @@ class ItemSelection extends Component {
 
 	getSelectedProject = () =>{
 	  let selectedProject = this.multiselectRef.getSelectedItems();
-	  console.log(selectedProject);
-	  document.getElementById("items_hidden").value = selectedProject;
+	  let i;
+	  let Object = [];
+	  for(i = 0; i < selectedProject.length; i++){
+			Object.push(selectedProject[i].key)
+	  }
+
+	  console.log(Object);
+	  document.getElementById("items_hidden").value = Object;
 	};
 
 	getfilterData =() =>{
