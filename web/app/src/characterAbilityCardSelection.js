@@ -62,8 +62,11 @@ const CharacterAbilityBox = (props) => {
 };
 
 function goToApp(props) {
+let value = document.getElementById("items_hidden").value;
+console.log(value[0]);
 
-    ReactDOM.render(<App abilityCards={selectedImages} characterName={props.characterName} characterCardHand={props.characterCardHand} />, document.getElementById('root'));
+
+    // ReactDOM.render(<App abilityCards={selectedImages} characterName={props.characterName} characterCardHand={props.characterCardHand} />, document.getElementById('root'));
 
 }
 

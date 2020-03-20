@@ -7,60 +7,53 @@ import App from "./App";
 import Items from "./items";
 
 class ItemSelection extends Component {
-    constructor(props) {
-        super(props);
-        this.multiselectRef = React.createRef();
-        this.state = {
-            items: itemList
+	constructor(props) {
+    	super(props);
+		this.state = {
+		    objectArray: itemList
+		};
+	}
 
-        }
-    }
+	resetValues = () =>{
+	  // By calling the belowe method will reset the selected values programatically
+	  this.multiselectRef.current.resetSelectedValues();
+	}
 
-    onSelect(selectedList, selectedItem) {
+	getSelectedProject = () =>{
+	  let selectedProject = this.multiselectRef.getSelectedItems();
+	  console.log(selectedProject);
+	  document.getElementById("items_hidden").value = selectedProject;
+	};
 
-    }
+	getfilterData =() =>{
+		this.getSelectedProject();
 
-    onRemove(selectedList, removedItem) {
-
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-        this.multiselectRef.current.getSelectedItems();
-        console.log(this.multiselectRef.current.getSelectedItems());
-
-    }
+	};
 
 
 
     render() {
 
         return (
-            <div style={{position: "absolute", width: "40%", right:"30%"}}>
+            <div  className="Items">
+                <div style={{position: "absolute", width: "40%", right:"30%"}}>
                <form onSubmit={this.handleSubmit}>
                    <label>Select Items</label>
                    <br/>
-                   <br/>
-               <Multiselect
-                options={this.state.items}
-                ref={this.multiselectRef}
-                selectedItem={this.state.selectedItem}
-                onSelect={this.onSelect}
-                onRemove={this.onRemove}
-                displayValue="name"
-                />
-                <input type="submit" />
-                </form>
+                   <br/><Multiselect
+                   options={this.state.objectArray}
+                   displayValue="key"
+                   ref= {(ref)=>this.multiselectRef=ref}
+                   placeholder="Project Name"/>
+                   <button type="button" className="btn btn-success" onClick={this.getfilterData}>Finalize Items</button>
+               </form>
+                    <input type="hidden" name="items_hidden" id="items_hidden" value=""/>
+                </div>
             </div>
         )
 
 
     }
-
-}
-function goToItems(props) {
-
-    ReactDOM.render(<Items items={this.multiselectRef.current.getSelectedItems()} />, document.getElementById('root'));
 
 }
 

@@ -1,43 +1,43 @@
 const itemList = [
         {
             "id": 1,
-            "name": "Boots of Shriding"
+            key: "Boots of Shriding"
         },
         {
             "id": 2,
-            "name": "Winged Shoes"
+            key: "Winged Shoes"
         },
         {
             "id": 3,
-            "name": "Hide Armor"
+            key: "Hide Armor"
         },
         {
             "id": 4,
-            "name": "Leather Armor"
+            key: "Leather Armor"
         },
         {
             "id": 5,
-            "name": "Cloak of Invisibility"
+            key: "Cloak of Invisibility"
         },
         {
             "id": 6,
-            "name": "Eagle-Eye Goggles"
+            key: "Eagle-Eye Goggles"
         },
         {
             "id": 7,
-            "name": "Iron Helmet"
+            key: "Iron Helmet"
         },
         {
             "id": 8,
-            "name": "Heater Shield"
+            key: "Heater Shield"
         },
         {
             "id": 9,
-            "name": "Piercing Bow"
+            key: "Piercing Bow"
         },
         {
             "id": 10,
-            "name": "War Hammer"
+            key: "War Hammer"
         }
     ]
 
