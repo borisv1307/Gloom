@@ -26,6 +26,10 @@
   color: black;
 }
 
+.attack-card:hover {
+  transform: scale(2);
+}
+
 .bless-and-curse {
   position: absolute;
   width: 10%;
