@@ -64,7 +64,7 @@ const CharacterAbilityBox = (props) => {
 function goToApp(props) {
 let items_selected = document.getElementById("items_hidden").value;
 console.log(items_selected); // items_selected is getting the data from itemSelection
-    ReactDOM.render(<App abilityCards={selectedImages} characterName={props.characterName} characterCardHand={props.characterCardHand} itemsSelected={items_selected} />, document.getElementById('root'));
+    ReactDOM.render(<App abilityCards={selectedImages} characterName={props.characterName} characterCardHand={props.characterCardHand} itemsSelected={items_selected.split(',')} />, document.getElementById('root'));
 
 }
 

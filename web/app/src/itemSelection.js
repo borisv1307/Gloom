@@ -50,7 +50,7 @@ class ItemSelection extends Component {
                    options={this.state.objectArray}
                    displayValue="key"
                    ref= {(ref)=>this.multiselectRef=ref}
-                   placeholder="Project Name"/>
+                   placeholder="Item Name"/>
                    <button type="button" className="btn btn-success" onClick={this.getfilterData}>Finalize Items</button>
                </form>
                     <input type="hidden" name="items_hidden" id="items_hidden" value=""/>
