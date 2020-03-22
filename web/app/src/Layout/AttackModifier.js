@@ -3,7 +3,7 @@ import './AttackModifier.css';
 
 let blessDiscard = 0;
 let curseDiscard = 0;
-let toggle = false;
+
 const cardName = {
             "0": "Zero",
             "+1": "Plus One",
@@ -16,7 +16,6 @@ const cardName = {
             "0C": "Zero Curse",
 };
 
-let cardValue = "";
 
 class AttackModifier extends Component {
     constructor(props) {
@@ -37,19 +36,10 @@ class AttackModifier extends Component {
                     "isHidden": true
                 }
             },
-            // "onclick": (deck_name) => this.handleClickDeck(deck_name),
             bless: 10,
             curse: 10
         }
     }
-
-    // handleClickDeck(deck_name) {
-    //     if (deck_name === "discard") {
-    //         this.reset();
-    //         return;
-    //     }
-    //     this.randomSelect();
-    // }
 
     randomSelect() {
         const [deck, discard, selected] = this.getDecks();
@@ -155,7 +145,7 @@ class AttackModifier extends Component {
 
     onClickBlessMinus() {
         if(this.state.bless >= 0 && this.state.bless <=10) {
-            for(var i=0; i<this.state.decks["deck"].cards.length; i++) {
+            for(let i=0; i<this.state.decks["deck"].cards.length; i++) {
                 if(this.state.decks["deck"].cards[i] === "2xB"){
                     this.state.decks["deck"].cards.splice(i,1);
                     this.state.bless = this.state.bless + 1;
@@ -177,7 +167,7 @@ class AttackModifier extends Component {
 
     onClickCurseMinus() {
         if(this.state.curse >= 0 && this.state.curse <= 10) {
-            for(var i=0; i<this.state.decks["deck"].cards.length; i++) {
+            for(let i=0; i<this.state.decks["deck"].cards.length; i++) {
                 if(this.state.decks["deck"].cards[i] === "0C"){
                     this.state.decks["deck"].cards.splice(i,1);
                     this.state.curse = this.state.curse + 1;
@@ -200,16 +190,16 @@ class AttackModifier extends Component {
                 />
         );
 
-        var cardsLeft = this.state.decks["deck"].cards.length;
-        var blessLeft = this.state.bless;
-        var curseLeft = this.state.curse;
+        let cardsLeft = this.state.decks["deck"].cards.length;
+        let blessLeft = this.state.bless;
+        let curseLeft = this.state.curse;
         return(
             <div>
                 <div className="attack-modifier" style={{flexDirection: "row"}}>
                         {decks}
                         <text>Cards Left: {cardsLeft}</text>
-                        <button disabled={cardsLeft <= 0} onClick={() => this.randomSelect()}>Pull Card</button>
-                        <button onClick={() => this.reset()}>Shuffle</button>
+                        <button className="attack-modifier-button" disabled={cardsLeft <= 0} onClick={() => this.randomSelect()}>Pull Card</button>
+                        <button className="attack-modifier-button" onClick={() => this.reset()}>Shuffle</button>
                 </div>
 
                 <div className="bless-and-curse">
@@ -250,7 +240,6 @@ class Deck extends Component {
         return (
                 <div style={{justifyContent:"flex-start"}}
                      className="attack-deck">
-                     {/*onClick={() => this.props.onclick(this.props.name)}>*/}
                     <div>{this.props.name}</div>
                     <div style={{display:"flex",flexDirection: "row", flexWrap:"wrap"}}>{cards}</div>
                 </div>
@@ -259,47 +248,13 @@ class Deck extends Component {
 }
 
 function Card(props) {
-    console.log("Props.value in function card: " + props.value);
-    cardValue = props.value;
-     console.log("Props in function card: " + props.fullName);
     return (
-            <div id="" className="attack-card"
-                 onMouseOver={
-                     ()=> onMouseOverHandler()
-                 }
-                 onMouseLeave={() => onMouseLeaveHandler()}
-                 // onMouseOver={()=> alert("Over")}
-                 // onMouseLeave={()=>alert("Leave")}
-                 // onMouseOut={()=> alert("Out")}
-                 style={{flexDirection: "row", textAlign: "top"}}>
-                {/*{cardValue}*/}
-                {toggle? props.fullName : cardValue}
+            <div className="attack-card"
+                 style={{flexDirection: "row", textAlign: "top"}} card-hover={props.fullName}>
+                <span>{props.value}</span>
             </div>
 
     )
-}
-
-function onMouseOverHandler(e) {
-    toggle = true;
-    // alert(toggle);
-    // alert(document.getElementById(currentDiv.id));
-    // alert("Enter Value = " + cardName[value]);
-    // cardValue = cardName[value];
-}
-
-function onMouseLeaveHandler(e) {
-    // console.log("Exit Value = " + value)
-    toggle = false;
-    // alert(toggle);
-}
-
-function setId() {
-    let list = document.getElementsByClassName("attack-card");
-    if(list.length > 0) {
-        for (let i = 0; i < list.length; i++) {
-            list[i].setAttribute("id", "attack-card-" + i);
-        }
-    }
 }
 
 export default AttackModifier;
