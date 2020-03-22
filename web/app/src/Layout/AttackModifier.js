@@ -12,7 +12,7 @@ const cardName = {
             "-2": "Minus Two",
             "Null": "Null",
             "2x": "Two Times",
-            "2xB": "Two Times Bless",
+            "2xB": "2X Bless",
             "0C": "Zero Curse",
 };
 
@@ -34,7 +34,11 @@ class AttackModifier extends Component {
                 "deck": {
                     "cards": ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"],
                     "isHidden": true
-                }
+                },
+                "init_deck": {
+                    "cards": ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"],
+                    "isHidden": true
+                },
             },
             bless: 10,
             curse: 10
@@ -73,13 +77,31 @@ class AttackModifier extends Component {
         return Math.floor(Math.random() * array.length);
     }
 
-    reset() {
+    resetBlessAndCurse() {
+
+        let currentBless = this.state.bless;
+        this.setState({
+            bless: currentBless + blessDiscard
+        })
+
+        blessDiscard = 0;
+
+        let currentCurse = this.state.curse;
+        this.setState({
+            curse: currentCurse + curseDiscard
+        })
+        curseDiscard = 0;
+
+    }
+
+    resetAttackDecks(){
         const [deck, selected, discard] = this.getDecks();
+        let new_deck;
 
-        console.log("Selected before : " + selected);
-        console.log("Discard before : " + discard);
+        let discardLength = discard.length;
+        let selectedLength = selected.length;
 
-        for(let i=0; i<selected.length; i++) {
+        for(var i=0; i<=selectedLength; i++) {
             if(selected[i] === "2xB"){
                 selected.splice(i, 1);
             }
@@ -87,28 +109,19 @@ class AttackModifier extends Component {
                 selected.splice(i, 1);
             }
         }
-        for(let i=0; i<discard.length; i++) {
+
+        for(i=0; i<discardLength; i++) {
             if(discard[i] === "2xB"){
                 discard.splice(i, 1);
+                i--;
             }
-            else if(discard[i] === "0C"){
+            if(discard[i] === "0C"){
                 discard.splice(i, 1);
+                i--;
             }
         }
 
-        console.log("Selected after : " + selected);
-        console.log("Discard after : " + discard);
-
-        let new_deck = deck.concat(selected).concat(discard);
-        console.log("New Deck : " + new_deck);
-
-        let currentBless = this.state.bless;
-        this.state.bless = currentBless + blessDiscard;
-        blessDiscard = 0;
-
-        let currentCurse = this.state.curse;
-        this.state.curse = currentCurse + curseDiscard;
-        curseDiscard = 0;
+        new_deck = deck.concat(selected).concat(discard);
 
         this.setDecks(new_deck, [], [])
     }
@@ -136,7 +149,10 @@ class AttackModifier extends Component {
 
     onClickBlessPlus() {
         if(this.state.bless >= 0 && this.state.bless <= 10) {
-            this.state.bless = this.state.bless - 1;
+            let currentBless = this.state.bless
+            this.setState({
+                bless: currentBless - 1
+            })
             this.state.decks["deck"].cards.push("2xB");
             this.setDecks(this.state.decks.deck.cards, this.state.decks.discard.cards, this.state.decks.selected.cards);
             return;
@@ -148,7 +164,10 @@ class AttackModifier extends Component {
             for(let i=0; i<this.state.decks["deck"].cards.length; i++) {
                 if(this.state.decks["deck"].cards[i] === "2xB"){
                     this.state.decks["deck"].cards.splice(i,1);
-                    this.state.bless = this.state.bless + 1;
+                    let currentBless = this.state.bless
+                    this.setState({
+                        bless: currentBless + 1
+                    })
                     this.setDecks(this.state.decks.deck.cards, this.state.decks.discard.cards, this.state.decks.selected.cards);
                     return;
                 }
@@ -158,7 +177,10 @@ class AttackModifier extends Component {
 
     onClickCursePlus() {
         if(this.state.curse >= 0 && this.state.curse <= 10) {
-            this.state.curse = this.state.curse - 1;
+            let currentCurse = this.state.curse;
+            this.setState({
+                curse: currentCurse - 1
+            })
             this.state.decks["deck"].cards.push("0C");
             this.setDecks(this.state.decks.deck.cards, this.state.decks.discard.cards, this.state.decks.selected.cards);
             return;
@@ -170,7 +192,10 @@ class AttackModifier extends Component {
             for(let i=0; i<this.state.decks["deck"].cards.length; i++) {
                 if(this.state.decks["deck"].cards[i] === "0C"){
                     this.state.decks["deck"].cards.splice(i,1);
-                    this.state.curse = this.state.curse + 1;
+                    let currentCurse = this.state.curse;
+                    this.setState({
+                        curse: currentCurse + 1
+                    })
                     this.setDecks(this.state.decks.deck.cards, this.state.decks.discard.cards, this.state.decks.selected.cards);
                     return;
                 }
@@ -197,22 +222,23 @@ class AttackModifier extends Component {
             <div>
                 <div className="attack-modifier" style={{flexDirection: "row"}}>
                         {decks}
-                        <text>Cards Left: {cardsLeft}</text>
-                        <button className="attack-modifier-button" disabled={cardsLeft <= 0} onClick={() => this.randomSelect()}>Pull Card</button>
-                        <button className="attack-modifier-button" onClick={() => this.reset()}>Shuffle</button>
+                        <text className="text-cards-left">Cards Left: {cardsLeft}</text>
+                        <button className="button-pull-card" disabled={cardsLeft <= 0} onClick={() => this.randomSelect()}>Pull Card</button>
+                        <button className="button-shuffle" onClick={() => {this.resetAttackDecks();
+                        this.resetBlessAndCurse();}}>Shuffle</button>
                 </div>
 
                 <div className="bless-and-curse">
                 <div id="bless" style={{display: 'flex', lineHeight: '40px'}}>
-                    <button disabled={blessLeft <= 0} onClick={() => this.onClickBlessPlus()}>+</button>
+                    <button className="button-plus-minus" disabled={blessLeft <= 0} onClick={() => this.onClickBlessPlus()}>+</button>
                     <text>Bless Cards Left: {blessLeft}</text>
-                    <button disabled={blessLeft >= 10} onClick={() => this.onClickBlessMinus()}>-</button>
+                    <button className="button-plus-minus" disabled={blessLeft >= 10} onClick={() => this.onClickBlessMinus()}>-</button>
                 </div>
 
                 <div id="curse" style={{display: 'flex', lineHeight: '40px'}}>
-                    <button disabled={curseLeft <= 0} onClick={() => this.onClickCursePlus()}>+</button>
+                    <button className="button-plus-minus" disabled={curseLeft <= 0} onClick={() => this.onClickCursePlus()}>+</button>
                     <text>Curse Cards Left: {curseLeft}</text>
-                    <button disabled={curseLeft >= 10} onClick={() => this.onClickCurseMinus()}>-</button>
+                    <button className="button-plus-minus" disabled={curseLeft >= 10} onClick={() => this.onClickCurseMinus()}>-</button>
                 </div>
             </div>
             </div>

@@ -9,34 +9,69 @@
 .attack-modifier {
   position: absolute;
   width: 10%;
-  height: 30%;
+  height: 80%;
   bottom: 20%;
   right: 10%;
-  background-color: #9a2132;
+  background-color: #7be3f6;
+  color: black;
+  font-weight: bold;
+    text-transform: uppercase;
   border-left: 2px dotted red;
   vertical-align: text-top;
   flex-wrap: wrap;
 }
 
 .attack-deck {
-  background-color: #9a2132;
+  background-color: #7be3f6;
   margin: 5px auto;
   font-size: 10px;
 
 }
 
 .attack-card {
-  background-color: #7be3f6;
+  background-color: #9a2132;
   display: inline-block;
+  font-weight: bold;
   width: 40px;
   margin: 5px auto;
   font-size: 10px;
   padding: 5px;
-  color: black;
+  color: #CCCCCC;
 }
 
-.attack-modifier-button {
-    bottom: 0;
+.button-pull-card {
+    position: absolute;
+    left: 0;
+    bottom: 3%;
+    font-weight: bold;
+    background-color: #CCCCCC;
+    color: black;
+}
+
+.button-pull-card:hover {
+    background-color: black;
+    color: #CCCCCC;
+}
+
+.button-shuffle {
+    position: absolute;
+    right: 0;
+    bottom: 3%;
+    font-weight: bold;
+    background-color: #CCCCCC;
+    color: black;
+}
+
+.button-shuffle:hover {
+    background-color: black;
+    color: #CCCCCC;
+}
+
+.text-cards-left {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 7%;
 }
 
 .attack-modifier-cards-left {
@@ -113,10 +148,27 @@
   position: absolute;
   width: 10%;
   height: 23%;
-  bottom: 20%;
-  right: 20%;
+  bottom: 50%;
+  right: 0;
+  font-weight: bold;
   background-color: #71CFFF;
   border-left: 2px dotted red;
   vertical-align: text-top;
   color: black;
+}
+
+.button-plus-minus {
+    font-weight: bold;
+}
+
+.button-plus-minus:hover {
+    font-weight: bold;
+    background-color: black;
+    color: #CCCCCC;
+}
+
+.button-plus-minus:disabled {
+    font-weight: bold;
+    background-color: #777777;
+    color: #CCCCCC;
 }
