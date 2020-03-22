@@ -33,7 +33,7 @@ class ItemSelection extends Component {
 
 	getfilterData =() =>{
 		this.getSelectedProject();
-
+		alert("Items selected!")
 	};
 
 

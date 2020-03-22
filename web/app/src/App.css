@@ -48,11 +48,17 @@ h1 {
     position: absolute;
     top:0;
     right:0;
-    padding: 10px;
+    padding: 0.7em;
 
 }
 
 .selection{
   background-color: red;
   text-decoration: line-through;
+}
+
+td{
+    border: 1px solid black;
+    padding: 0.5em;
+    text-align: left;
 }
