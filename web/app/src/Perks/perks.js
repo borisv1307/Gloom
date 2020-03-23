@@ -6,8 +6,8 @@ class Perks extends Component {
         super(props);
         const HARDCODED_CHARACTER = "Brute";
         this.state = {
-            "original_cards": ["+1", "-1"],
-            "cards": ["+1", "-1"],
+            "original_cards": ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"],
+            "cards": ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"],
             "character": HARDCODED_CHARACTER,
             "perks": PerksData[HARDCODED_CHARACTER],
             "enabled_perks": []
