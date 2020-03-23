@@ -18,10 +18,12 @@ class Perks extends Component {
     togglePerk(perk_id) {
         let enabled = this.state.enabled_perks;
         let new_enabled = null;
-        if (enabled.indexOf(perk_id) === -1) {
+        let perk_index = enabled.indexOf(perk_id);
+        if (perk_index === -1) {
             new_enabled = enabled.concat(perk_id);
         } else {
-            new_enabled = enabled.splice(perk_id, 1);
+            enabled.splice(perk_index, 1);
+            new_enabled = enabled;
         }
         this.setState({
             "enabled_perks": new_enabled
