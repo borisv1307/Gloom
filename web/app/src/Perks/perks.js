@@ -95,12 +95,7 @@ class Perks extends Component {
                 <div>PERKS:</div>
                 <ul>
                     {this.state.perks.map((perk, iter) => (
-                        <ToggleablePerk
-                            description={perk.description}
-                            callback={i => this.togglePerk(i)}
-                            // checked={this.isPerkEnabled(iter)}
-                            id={iter}
-                            key={iter}/>
+                        this.renderToggleablePerk(perk, iter)
                     ))}
                 </ul>
                 <div>CARDS:</div>
@@ -111,6 +106,17 @@ class Perks extends Component {
                 </ul>
             </div>
         );
+    }
+
+    renderToggleablePerk(perk, index) {
+        return (
+            <ToggleablePerk
+                description={perk.description}
+                callback={index => this.togglePerk(index)}
+                // checked={this.isPerkEnabled(iter)}
+                id={index}
+                key={index}/>
+        )
     }
 
     resetCards() {
