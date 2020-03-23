@@ -1,6 +1,9 @@
 # pylint: disable=line-too-long
 import pytest
+
+from backend.src.main.game.monster.concrete_monster_cards.frigid import Frigid
 from backend.src.main.game.monster.values import DungeonCardValues
+from backend.src.main.game.room.constructed_room import ConstructedRoom
 from backend.src.main.serializer.abstract_serializer import AbstractSerializer
 from backend.src.main.serializer.dungeon_serializer import DungeonSerializer
 from backend.src.main.serializer.enum_serializer import EnumSerializer
@@ -60,10 +63,10 @@ def test_serialize_test_room_with_tiles(test_constructed_room, tile_serializer, 
     assert actual == expected
 
 
-def test_serialize_room_with_trap_indicators(tile_serializer, enum_serializer, test_constructed_room):
+def test_serialize_room_with_trap_indicators(tile_serializer, enum_serializer, test_room):
     serializer = RoomSerializer(tile_serializer, enum_serializer)
     mocked_enum_value = enum_serializer.serialize.return_value
-    # test_constructed_room = ConstructedRoom(test_room, Frigid())
+    test_constructed_room = ConstructedRoom(test_room, Frigid())
 
     actual = serializer.serialize(test_constructed_room)
 
