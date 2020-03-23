@@ -1,0 +1,7 @@
+#itemsBox {
+    background-color: #FF0000;
+    display: inline-table;
+    position: absolute;
+    top:0;
+    right:0;
+}
