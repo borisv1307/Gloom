@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "multiselect-react-dropdown": "^1.4.7",
     "reactjs-popup": "^1.5.0"
   }
 }

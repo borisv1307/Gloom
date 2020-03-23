@@ -127,7 +127,20 @@ class App extends Component {
             });
     }
 
+    handleSingleCheck(event){
+    if(event.shiftKey)
+        event.target.parentElement.parentElement.classList.toggle('selection');
+    event.target.parentElement.parentElement.classList.toggle('selection');
+  }
     render() {
+        let rows = this.props.itemsSelected.map((row)=>{
+        return(
+          <tr>
+            <td><input type="checkbox" onClick={this.handleSingleCheck.bind(this)}/></td>
+              <td>{row}</td>
+          </tr>
+        );
+    });
         return (
             <div className="app">
                 <div>
@@ -139,6 +152,18 @@ class App extends Component {
                 {
                     this.state.isFetching ? <div/> : <RoomButtons jsonData={this.state.JSONdata}/>
                 }
+             <div className="item-table">
+                <table>
+                <thead>
+                    <tr>
+                    <th>Items</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    { rows }
+                </tbody>
+                </table>
+            </div>
                 {/*<HexLayout/>*/}
                 {
                     this.state.isFetching ? <div/> : <EntityLayout jsonData={this.state.JSONdata}/>

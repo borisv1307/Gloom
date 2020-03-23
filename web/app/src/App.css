@@ -68,3 +68,24 @@ h1 {
     height: 8%;
     width: 15%;
 }
+
+.item-table {
+    background-color: #9E9E9E;
+    vertical-align: top;
+    position: absolute;
+    top:0;
+    right:0;
+    padding: 0.7em;
+
+}
+
+.selection{
+  background-color: red;
+  text-decoration: line-through;
+}
+
+td{
+    border: 1px solid black;
+    padding: 0.5em;
+    text-align: left;
+}

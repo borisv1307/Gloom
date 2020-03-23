@@ -4,6 +4,8 @@ import './characterAbilityCardSelection.css'
 import BRUTE from './bruteAbilityCardimages'
 import App from "./App";
 import backImg from "./back_red.png"
+import ItemSelection from "./itemSelection";
+import items from "./itemsList";
 
 
 let selectedImages;
@@ -60,8 +62,9 @@ const CharacterAbilityBox = (props) => {
 };
 
 function goToApp(props) {
-
-    ReactDOM.render(<App abilityCards={selectedImages} characterName={props.characterName} characterCardHand={props.characterCardHand} />, document.getElementById('root'));
+let items_selected = document.getElementById("items_hidden").value;
+console.log(items_selected); // items_selected is getting the data from itemSelection
+    ReactDOM.render(<App abilityCards={selectedImages} characterName={props.characterName} characterCardHand={props.characterCardHand} itemsSelected={items_selected.split(',')} />, document.getElementById('root'));
 
 }
 
@@ -106,6 +109,9 @@ class CharacterAbilityCardSelection extends Component{
                 <button id={'submitButton'} type={"button"} onClick={() => goToApp(this.props)}>Play!</button>
             </div>
             <div>{this.createCards(this.props.characterName, this.props.characterCardHand)}</div>
+            <div>
+            <ItemSelection items={items}/>
+            </div>
         </div>
     );
 
