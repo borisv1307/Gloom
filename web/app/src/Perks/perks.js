@@ -75,11 +75,15 @@ class Perks extends Component {
     }
 
     updatePerkState(new_perk_state) {
-        this.state.perks = new_perk_state;
+        this.setState({
+            perks: new_perk_state
+        })
     }
 
     updateCardState(new_cards) {
-        this.state.cards = new_cards;
+        this.setState({
+            cards: new_cards
+        })
     }
 
 
