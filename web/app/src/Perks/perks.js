@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import PerksData from './perks.json';
 import AttackModifier from "../Layout/AttackModifier";
+import AttackModifierDeck from './AttackModifierDeck.json';
 
 class Perks extends Component {
     constructor(props) {
         super(props);
         const HARDCODED_CHARACTER = "Brute";
         this.state = {
-            "cards": ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"],
+            "cards": AttackModifierDeck.initial_deck,
             "character": HARDCODED_CHARACTER,
             "perks": PerksData[HARDCODED_CHARACTER],
             "enabled_perks": [],
