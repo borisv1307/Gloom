@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PerksData from './perks.json';
+import AttackModifier from "../Layout/AttackModifier";
 
 class Perks extends Component {
     constructor(props) {
@@ -9,7 +10,8 @@ class Perks extends Component {
             "cards": ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"],
             "character": HARDCODED_CHARACTER,
             "perks": PerksData[HARDCODED_CHARACTER],
-            "enabled_perks": []
+            "enabled_perks": [],
+            "showModifiers": false
         };
     }
 
@@ -72,12 +74,16 @@ class Perks extends Component {
     }
 
     handleAdd(card_value, cards) {
+        console.log(card_value);
         const new_cards = cards.concat(card_value);
         return new_cards;
     }
 
     render() {
         let cards = this.performActions();
+        if (this.state.showModifiers) {
+            return (<AttackModifier/>)
+        }
         return (
             <div>
                 <div>PERKS:</div>
@@ -92,6 +98,9 @@ class Perks extends Component {
                         <li key={iter}>{card}</li>
                     ))}
                 </ul>
+                <button type={"submit"} onClick={() => this.submit()}>
+                    submit
+                </button>
             </div>
         );
     }
@@ -103,6 +112,12 @@ class Perks extends Component {
                 callback={() => this.togglePerk(index)}
                 key={index}/>
         )
+    }
+
+    submit() {
+        this.setState({
+            "showModifiers": true
+        })
     }
 }
 
