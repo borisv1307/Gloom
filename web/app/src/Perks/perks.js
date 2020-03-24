@@ -83,7 +83,7 @@ class Perks extends Component {
             return (<AttackModifier cards={cards}/>)
         }
         return (
-            <div>
+            <div class='attack-modifier'>
                 <div>PERKS:</div>
                 <ul>
                     {this.state.perks.map((perk, iter) => (
