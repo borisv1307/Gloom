@@ -8,5 +8,12 @@
   "2x": "Two Times",
   "2xB": "2X Bless",
   "0C": "Zero Curse",
+  "ROLLING PUSH 1": "Rolling Push 1",
+  "ROLLING PIERCE 1": "Rolling Pierce 1",
+  "ROLLING STUN": "Rolling Stun",
+  "ROLLING DISARM": "Rolling Disarm",
+  "ROLLING MUDDLE": "Rolling Muddle",
+  "ROLLING ADD TARGET": "Rolling Add Target",
+  "+1 Shield": "+1 Shield",
   "initial_deck": ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"]
 }
