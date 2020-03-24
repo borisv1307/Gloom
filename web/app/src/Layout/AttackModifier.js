@@ -1,21 +1,11 @@
 import React, {Component} from "react";
 import './AttackModifier.css';
+import AttackModifierDeck from '../Perks/AttackModifierDeck.json'
 
 let blessDiscard = 0;
 let curseDiscard = 0;
 
-const cardName = {
-            "0": "Zero",
-            "+1": "Plus One",
-            "-1": "Minus One",
-            "+2": "Plus Two",
-            "-2": "Minus Two",
-            "Null": "Null",
-            "2x": "Two Times",
-            "2xB": "2X Bless",
-            "0C": "Zero Curse",
-};
-
+const cardName = AttackModifierDeck;
 
 class AttackModifier extends Component {
     constructor(props) {

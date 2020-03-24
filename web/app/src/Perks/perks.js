@@ -82,7 +82,7 @@ class Perks extends Component {
     render() {
         let cards = this.performActions();
         if (this.state.showModifiers) {
-            return (<AttackModifier/>)
+            return (<AttackModifier cards={cards}/>)
         }
         return (
             <div>
