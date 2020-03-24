@@ -6,13 +6,11 @@ class Perks extends Component {
         super(props);
         const HARDCODED_CHARACTER = "Brute";
         this.state = {
-            "original_cards": ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"],
             "cards": ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"],
             "character": HARDCODED_CHARACTER,
             "perks": PerksData[HARDCODED_CHARACTER],
             "enabled_perks": []
         };
-        this.performActions();
     }
 
     togglePerk(perk_id) {
@@ -20,7 +18,7 @@ class Perks extends Component {
         let new_enabled = null;
         let perk_index = enabled.indexOf(perk_id);
         if (perk_index === -1) {
-            new_enabled = enabled.concat(perk_id);
+            new_enabled = enabled.concat([perk_id]);
         } else {
             enabled.splice(perk_index, 1);
             new_enabled = enabled;
@@ -31,65 +29,55 @@ class Perks extends Component {
     }
 
     performActions() {
-        for (let perk_id in this.state.perks) {
+        let cards = Array.from(this.state.cards);
+        let perks = this.state.perks;
+        for (let perk_id in perks) {
             if (!this.isPerkEnabled(perk_id)) {
                 continue;
             }
-            let current_perk = this.state.perks[perk_id];
+            let current_perk = perks[perk_id];
             for (let action_id in current_perk.actions) {
                 let action = current_perk.actions[action_id];
-                this.handleAction(action);
+                cards = this.handleAction(action, cards);
             }
         }
+        return cards;
     }
 
     isPerkEnabled(perk_id) {
         // console.log("Enabled Perks: " + this.state.enabled_perks);
-        // console.log("Checking perk_id: " + perk_id + " which is: " + (this.state.enabled_perks.indexOf(perk_id) !== -1));
-        return this.state.enabled_perks.indexOf(perk_id) !== -1;
+        // console.log("Checking perk_id: " + perk_id + " which is: " + (this.state.enabled_perks.indexOf(parseInt(perk_id, 10)) !== -1));
+        return this.state.enabled_perks.indexOf(parseInt(perk_id, 10)) !== -1;
     }
 
-    handleAction(action) {
+    handleAction(action, cards) {
         const card_value = action.card;
         switch (action.type) {
             case "REMOVE":
-                this.handleRemove(card_value);
+                cards = this.handleRemove(card_value, cards);
                 break;
             case "ADD":
-                this.handleAdd(card_value);
+                cards = this.handleAdd(card_value, cards);
                 break;
             default:
                 break;
         }
+        return cards;
     }
 
-    handleRemove(card_value) {
-        const card_index = this.state.cards.indexOf(card_value);
-        const new_cards = this.state.cards.splice(card_index, 1);
-        this.updateCardState(new_cards);
+    handleRemove(card_value, cards) {
+        const card_index = cards.indexOf(card_value);
+        const new_cards = cards.splice(card_index, 1);
+        return new_cards;
     }
 
-    handleAdd(card_value) {
-        const new_cards = this.state.cards.concat(card_value);
-        this.updateCardState(new_cards);
+    handleAdd(card_value, cards) {
+        const new_cards = cards.concat(card_value);
+        return new_cards;
     }
-
-    updatePerkState(new_perk_state) {
-        this.setState({
-            perks: new_perk_state
-        })
-    }
-
-    updateCardState(new_cards) {
-        this.setState({
-            cards: new_cards
-        })
-    }
-
 
     render() {
-        // this.resetCards();
-        // this.performActions();
+        let cards = this.performActions();
         return (
             <div>
                 <div>PERKS:</div>
@@ -100,7 +88,7 @@ class Perks extends Component {
                 </ul>
                 <div>CARDS:</div>
                 <ul>
-                    {this.state.cards.map((card, iter) => (
+                    {cards.map((card, iter) => (
                         <li key={iter}>{card}</li>
                     ))}
                 </ul>
@@ -115,12 +103,6 @@ class Perks extends Component {
                 callback={() => this.togglePerk(index)}
                 key={index}/>
         )
-    }
-
-    resetCards() {
-        this.setState({
-            "cards": this.state.original_cards
-        })
     }
 }
 
