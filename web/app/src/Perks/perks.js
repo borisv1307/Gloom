@@ -48,8 +48,6 @@ class Perks extends Component {
     }
 
     isPerkEnabled(perk_id) {
-        // console.log("Enabled Perks: " + this.state.enabled_perks);
-        // console.log("Checking perk_id: " + perk_id + " which is: " + (this.state.enabled_perks.indexOf(parseInt(perk_id, 10)) !== -1));
         return this.state.enabled_perks.indexOf(parseInt(perk_id, 10)) !== -1;
     }
 
@@ -75,7 +73,6 @@ class Perks extends Component {
     }
 
     handleAdd(card_value, cards) {
-        console.log(card_value);
         const new_cards = cards.concat(card_value);
         return new_cards;
     }
