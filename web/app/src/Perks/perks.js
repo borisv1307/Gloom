@@ -112,9 +112,7 @@ class Perks extends Component {
         return (
             <ToggleablePerk
                 description={perk.description}
-                callback={index => this.togglePerk(index)}
-                // checked={this.isPerkEnabled(iter)}
-                id={index}
+                callback={() => this.togglePerk(index)}
                 key={index}/>
         )
     }
