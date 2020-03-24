@@ -67,8 +67,8 @@ class Perks extends Component {
 
     handleRemove(card_value, cards) {
         const card_index = cards.indexOf(card_value);
-        const new_cards = cards.splice(card_index, 1);
-        return new_cards;
+        cards.splice(card_index, 1);
+        return cards;
     }
 
     handleAdd(card_value, cards) {
