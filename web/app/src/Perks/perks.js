@@ -124,28 +124,15 @@ class Perks extends Component {
     }
 }
 
-class ToggleablePerk extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            "checked": this.props.checked,
-            "description": this.props.description,
-            "callback": this.props.callback,
-            "id": this.props.id
-        };
-    }
 
-    render() {
-        return (
-            <div>
-                <input type="checkbox"
-                    // checked={this.state.checked}
-                       onChange={() => this.state.callback(this.state.id)}
-                />
-                <label htmlFor={'checkbox-' + this.state.key}>{this.state.description}</label>
-            </div>
-        );
-    }
-}
+const ToggleablePerk = props => (
+    <div>
+        <input
+            type="checkbox"
+            onChange={props.callback}>
+        </input>
+        <label>{props.description}</label>
+    </div>
+)
 
 export default Perks;
