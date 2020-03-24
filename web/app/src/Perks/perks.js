@@ -90,12 +90,6 @@ class Perks extends Component {
                         this.renderToggleablePerk(perk, iter)
                     ))}
                 </ul>
-                <div>CARDS:</div>
-                <ul>
-                    {cards.map((card, iter) => (
-                        <li key={iter}>{card}</li>
-                    ))}
-                </ul>
                 <button type={"submit"} onClick={() => this.submit()}>
                     submit
                 </button>
