@@ -5,8 +5,10 @@ import pytest
 from backend.src.main.flask.app import get_handler, Handler
 from backend.src.main.game.dungeon.random_dungeon_generator import RandomDungeonGenerator
 from backend.src.main.game.monster.concrete_monster_cards.cutthroat import Cutthroat
+from backend.src.main.game.monster.concrete_monster_cards.frigid import Frigid
 from backend.src.main.game.monster.values import DungeonCardValues
 from backend.src.main.game.room.abstract_room_card import AbstractRoomCard
+from backend.src.main.game.room.constructed_room import ConstructedRoom
 from backend.src.main.game.room.waypoint.waypoint_a import WaypointA
 from backend.src.main.game.room.waypoint.waypoint_b import WaypointB
 from backend.src.main.game.tile.tile import Tile
@@ -34,6 +36,11 @@ def create_dungeon_generator():
 @pytest.fixture(name='test_room')
 def create_test_room():
     return AbstractRoomCard("foo")
+
+
+@pytest.fixture(name='test_constructed_room')
+def create_test_constructed_room():
+    return ConstructedRoom(AbstractRoomCard("foo"), Frigid())
 
 
 @pytest.fixture(name='tile_a')

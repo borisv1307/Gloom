@@ -37,3 +37,6 @@ class ConstructedRoom(AbstractRoomCard):
 
     def get_trap_indicators(self):
         return self.monster_card.get_trap_indicators()
+
+    def get_monster_card_name(self):
+        return self.monster_card.get_monster_card_name()

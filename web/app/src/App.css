@@ -42,6 +42,33 @@ h1 {
     width: 49%;
 }
 
+.roomButtonComponent{
+    width:60%;
+    position:absolute
+}
+
+.buttonsDiv{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 25%;
+}
+
+.roomButton{
+    padding: 0.8%;
+    display: none;
+}
+
+.Room img:hover{
+    /*width: 50%;*/
+    /*margin-left: 0%;*/
+    transform: scale(var(--card-scale-on-zoom-size));
+}
+
+.Room img{
+    height: 8%;
+    width: 15%;
+}
+
 .item-table {
     background-color: #9E9E9E;
     vertical-align: top;

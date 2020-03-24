@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {GridGenerator, Layout, Hexagon, Text, Pattern, HexUtils, HexGrid} from 'react-hexgrid';
 import './EntityLayout.css';
-import axios from 'axios'
 
-const USER_SERVICE_URL = 'http://0.0.0.0:5000/start';
 
 const text = {
     character: "Character",
@@ -73,39 +71,12 @@ class EntityLayout extends Component {
 
         this.state = {
             hexagons, hexagons2, isFetching: false,
-            JSONdata: {
-                "0": {
-                    "name": "Den",
-                    "tiles": {
-                        "0": {
-                            "x": 0,
-                            "y": 0,
-                            "z": 0,
-                            "value": "monster"
-                        },
-                    }
-                }
-            },
+            JSONdata: this.props.jsonData,
             image: image,
             text: text
         };
     }
 
-    componentWillMount() {
-        this.fetchHexagons();
-    }
-
-    fetchHexagons() {
-        this.setState({...this.state, isFetching: true});
-        axios.get(USER_SERVICE_URL)
-            .then(response => {
-                this.setState({JSONdata: response.data, isFetching: false})
-                // console.log("First room = " + response.data[0].name)
-            })
-            .catch(e => {
-                this.setState({...this.state, isFetching: false});
-            });
-    }
 
     parseHexagons() {
         const data = this.state.JSONdata;
