@@ -85,11 +85,11 @@ class Perks extends Component {
         return (
             <div class='attack-modifier'>
                 <div>PERKS:</div>
-                <ul>
+                <p>
                     {this.state.perks.map((perk, iter) => (
                         this.renderToggleablePerk(perk, iter)
                     ))}
-                </ul>
+                </p>
                 <button type={"submit"} onClick={() => this.submit()}>
                     submit
                 </button>
