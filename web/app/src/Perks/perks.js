@@ -8,7 +8,6 @@ class Perks extends Component {
         super(props);
         this.state = {
             "cards": AttackModifierDeck.initial_deck,
-            "character": HARDCODED_CHARACTER,
             "perks": PerksData[this.props.characterName],
             "enabled_perks": [],
             "showModifiers": false
