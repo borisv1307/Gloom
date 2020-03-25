@@ -6,11 +6,10 @@ import AttackModifierDeck from './AttackModifierDeck.json';
 class Perks extends Component {
     constructor(props) {
         super(props);
-        const HARDCODED_CHARACTER = "Brute";
         this.state = {
             "cards": AttackModifierDeck.initial_deck,
             "character": HARDCODED_CHARACTER,
-            "perks": PerksData[HARDCODED_CHARACTER],
+            "perks": PerksData[this.props.characterName],
             "enabled_perks": [],
             "showModifiers": false
         };
