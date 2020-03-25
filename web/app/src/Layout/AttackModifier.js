@@ -22,7 +22,7 @@ class AttackModifier extends Component {
                     "isHidden": false
                 },
                 "deck": {
-                    "cards": ["0", "0", "0", "0", "0", "0", "+1", "+1", "+1", "+1", "+1", "-1", "-1", "-1", "-1", "-1", "+2", "-2", "2x", "Null"],
+                    "cards": this.props.cards,
                     "isHidden": true
                 },
                 "init_deck": {

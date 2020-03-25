@@ -2,7 +2,7 @@ import './PlayingCards.css'
 import React, {Component} from "react";
 import Popup from "reactjs-popup";
 import BRUTE from '../bruteAbilityCardimages';
-import AttackModifier from "./AttackModifier";
+import Perks from "../Perks/perks";
 
 let selectedImages;
 selectedImages = [];
@@ -224,7 +224,7 @@ class PlayingCards extends Component {
                       {cards.discardPile}
                   </div>
 
-			  <AttackModifier/>
+			  <Perks/>
 
 			  <div className="lost-cards-pile" style={{flexDirection: "column", textAlign: "top" }}
 				 onDragOver={(event)=>this.onDragOver(event)}
