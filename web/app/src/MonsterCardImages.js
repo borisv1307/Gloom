@@ -102,5 +102,5 @@ const MonsterCardImages =
             src: wild
         }
 
-    ]
+    ];
 export default MonsterCardImages;

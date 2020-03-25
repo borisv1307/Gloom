@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import App from './App';
 import background from './characterImages/characterselectionbackground.jpg'
 import spellweaver from './characterImages/spellweaver.jpg'
 import brute from './characterImages/brute.jpg'
@@ -27,50 +26,54 @@ import CharacterAbilityCardSelection from './characterAbilityCardSelection'
 const CharacterBox = (props) => {
 
     function displayCharacterSelected() {
-      ReactDOM.render(<CharacterAbilityCardSelection characterName={props.characterName} characterCardHand={props.characterCardHand}/>, document.getElementById('root'));
+        ReactDOM.render(<CharacterAbilityCardSelection characterName={props.characterName}
+                                                       characterCardHand={props.characterCardHand}/>, document.getElementById('root'));
     }
+
     return <div className="characterBox">
-    <h2>{props.characterName}</h2>
-    <img alt={''} className='tier2' src={props.charImg} onClick={() => displayCharacterSelected()}/>
+        <h2>{props.characterName}</h2>
+        <img alt={''} className='tier2' src={props.charImg} onClick={() => displayCharacterSelected()}/>
     </div>
-}
+};
 
-const CharacterContainer = (props) =>{
+const CharacterContainer = (props) => {
 
-        return(
-            <div style={{display:'flex',
-                justifyContent:'space-evenly'}}>
-                   <CharacterBox
-                       characterName={props.character1Name}
-                       charImg={props.character1Image}
-                       characterCardHand={props.character1CardHand}/>
-                   <CharacterBox
-                       characterName={props.character2Name}
-                       charImg={props.character2Image}
-                       characterCardHand={props.character2CardHand}/>
-                   <CharacterBox
-                       characterName={props.character3Name}
-                       charImg={props.character3Image}
-                       characterCardHand={props.character3CardHand}/>
-                   <CharacterBox
-                       characterName={props.character4Name}
-                       charImg={props.character4Image}
-                       characterCardHand={props.character4CardHand}/>
-                   <CharacterBox
-                       characterName={props.character5Name}
-                       charImg={props.character5Image}
-                       characterCardHand={props.character5CardHand}/>
-                   <CharacterBox
-                       characterName={props.character6Name}
-                       charImg={props.character6Image}
-                       characterCardHand={props.character6CardHand}/>
-            </div>
-        )
-}
+    return (
+        <div style={{
+            display: 'flex',
+            justifyContent: 'space-evenly'
+        }}>
+            <CharacterBox
+                characterName={props.character1Name}
+                charImg={props.character1Image}
+                characterCardHand={props.character1CardHand}/>
+            <CharacterBox
+                characterName={props.character2Name}
+                charImg={props.character2Image}
+                characterCardHand={props.character2CardHand}/>
+            <CharacterBox
+                characterName={props.character3Name}
+                charImg={props.character3Image}
+                characterCardHand={props.character3CardHand}/>
+            <CharacterBox
+                characterName={props.character4Name}
+                charImg={props.character4Image}
+                characterCardHand={props.character4CardHand}/>
+            <CharacterBox
+                characterName={props.character5Name}
+                charImg={props.character5Image}
+                characterCardHand={props.character5CardHand}/>
+            <CharacterBox
+                characterName={props.character6Name}
+                charImg={props.character6Image}
+                characterCardHand={props.character6CardHand}/>
+        </div>
+    )
+};
 
-class GreyBox extends Component{
+class GreyBox extends Component {
     render() {
-        return(
+        return (
             <div className='greyBox'>
                 <CharacterContainer
                     character1Name={'Brute'}

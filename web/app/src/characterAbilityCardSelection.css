@@ -1,62 +1,64 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 .root {
-  padding: 20px 0;
+    padding: 20px 0;
 }
 
 .content {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .header {
-  text-align: center;
-  color: #000000;
-  font-weight: 500;
-  display: block;
-  width: 100%;
+    text-align: center;
+    color: #000000;
+    font-weight: 500;
+    display: block;
+    width: 100%;
 }
 
 
 .characterAbilityBox {
-  transition: all 0.1s ease-out;
-  width: 150px;
-  height: 200px;
-  /*border: 1px solid rgb(194, 5, 115);*/
-  background: rgb(134, 27, 24);
-  margin: 12px 6px;
-  overflow: hidden;
+    transition: all 0.1s ease-out;
+    width: 150px;
+    height: 200px;
+    /*border: 1px solid rgb(194, 5, 115);*/
+    background: rgb(134, 27, 24);
+    margin: 12px 6px;
+    overflow: hidden;
 }
 
-.characterAbilityBoxSelected{
-  width: 100px;
-  height: 150px;
-  background: rgb(134, 27, 24);
-  margin: 12px 6px;
-  overflow: hidden;
-  /*opacity: 80%;*/
-  /*animation: hueRotate 2s infinite;*/
+.characterAbilityBoxSelected {
+    width: 100px;
+    height: 150px;
+    background: rgb(134, 27, 24);
+    margin: 12px 6px;
+    overflow: hidden;
+    /*opacity: 80%;*/
+    /*animation: hueRotate 2s infinite;*/
 }
 
 .characterAbilityBoxSelected img {
-  /*transition: all 0.3s ease-out;*/
-  width: 100%;
-  height: 100%;
-  object-fit: initial;
-  cursor: auto;
-  filter: grayscale(100%);
+    /*transition: all 0.3s ease-out;*/
+    width: 100%;
+    height: 100%;
+    object-fit: initial;
+    cursor: auto;
+    filter: grayscale(100%);
 
-  /*opacity: 80%;*/
+    /*opacity: 80%;*/
 }
 
 /*.characterAbilityBoxSelected:hover*/
@@ -66,70 +68,68 @@ code {
 /*}*/
 
 .characterAbilityBox h2 {
-  transition: all 0.3s ease-out;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  font-style: italic;
-  font: caption;
-  height: 5px;
+    transition: all 0.3s ease-out;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-style: italic;
+    font: caption;
+    height: 5px;
 }
 
 .characterAbilityBox img {
-  transition: all 0.3s ease-out;
-  width: 100%;
-  height: 100%;
-  object-fit: initial;
-  cursor: auto;
+    transition: all 0.3s ease-out;
+    width: 100%;
+    height: 100%;
+    object-fit: initial;
+    cursor: auto;
 }
 
-.characterAbilityBox:hover
-{
-  /*animation: hueRotate 2s infinite;*/
-  transform: scale(1.5);
+.characterAbilityBox:hover {
+    /*animation: hueRotate 2s infinite;*/
+    transform: scale(1.5);
 }
 
-.PlayButtonEnabled{
-  color: white;
-  border-radius: 4px;
-  height: 40px;
-  width: 10%;
-  align-self: center;
-  background: rgb(28, 184, 65); /* this is a green */
-  border: rgb(28, 184, 65);
+.PlayButtonEnabled {
+    color: white;
+    border-radius: 4px;
+    height: 40px;
+    width: 10%;
+    align-self: center;
+    background: rgb(28, 184, 65); /* this is a green */
+    border: rgb(28, 184, 65);
 }
 
-.BackButton{
+.BackButton {
 
-  align-self: center;
-  height: 3%;
-  width: 3%;
+    align-self: center;
+    height: 3%;
+    width: 3%;
 }
 
-.BackButton img{
+.BackButton img {
 
-  -webkit-transition: -webkit-transform 0.8s ease-in-out;
-  transition: transform 0.8s ease-in-out;
-  align-self: center;
-  height: 100%;
-  width: 100%;
+    -webkit-transition: -webkit-transform 0.8s ease-in-out;
+    transition: transform 0.8s ease-in-out;
+    align-self: center;
+    height: 100%;
+    width: 100%;
 
 }
 
-.BackButton img:hover
-{
-  /*animation: 2s infinite;*/
-  /*transform: scale(2);*/
-  -webkit-transform: rotate(360deg);
-  transform: rotate(360deg);
+.BackButton img:hover {
+    /*animation: 2s infinite;*/
+    /*transform: scale(2);*/
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
 }
 
-.PlayButtonDisabled{
-  filter: grayscale(100%);
-  color: white;
-  border-radius: 4px;
-  height: 40px;
-  width: 10%;
-  align-self: center;
-  background: rgb(28, 184, 65); /* this is a green */
-  border: rgb(28, 184, 65);
+.PlayButtonDisabled {
+    filter: grayscale(100%);
+    color: white;
+    border-radius: 4px;
+    height: 40px;
+    width: 10%;
+    align-self: center;
+    background: rgb(28, 184, 65); /* this is a green */
+    border: rgb(28, 184, 65);
 }

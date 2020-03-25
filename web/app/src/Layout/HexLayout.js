@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {GridGenerator, Layout, Hexagon, Text, Pattern, HexUtils} from 'react-hexgrid';
+import {GridGenerator, Hexagon, HexUtils, Layout, Pattern, Text} from 'react-hexgrid';
 import './HexLayout.css';
 import axios from 'axios'
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {GridGenerator, Layout, Hexagon, Text, Pattern, HexUtils, HexGrid} from 'react-hexgrid';
+import {GridGenerator, Hexagon, HexGrid, HexUtils, Layout, Pattern, Text} from 'react-hexgrid';
 import './EntityLayout.css';
 
 

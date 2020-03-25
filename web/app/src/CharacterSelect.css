@@ -1,86 +1,87 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 .root {
-  padding: 20px 0;
+    padding: 20px 0;
 }
 
 .content {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .header {
-  text-align: center;
-  color: #000000;
-  font-weight: 500;
-  display: block;
-  width: 100%;
+    text-align: center;
+    color: #000000;
+    font-weight: 500;
+    display: block;
+    width: 100%;
 }
 
 
 .characterBox {
-  transition: all 0.1s ease-out;
-  width: 10em;
-  height: 15em;
-  /*border: 1px solid rgb(194, 5, 115);*/
-  background: rgb(134, 27, 24);
-  margin: 1em 1em;
-  overflow: hidden;
+    transition: all 0.1s ease-out;
+    width: 10em;
+    height: 15em;
+    /*border: 1px solid rgb(194, 5, 115);*/
+    background: rgb(134, 27, 24);
+    margin: 1em 1em;
+    overflow: hidden;
 }
 
 .characterBox h2 {
-  transition: all 0.3s ease-out;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  font-style: italic;
-  font: caption;
-  height: 0.5em;
+    transition: all 0.3s ease-out;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-style: italic;
+    font: caption;
+    height: 0.5em;
 }
 
 .characterBox:hover h2 {
-  color: rgb(191, 255, 241);
+    color: rgb(191, 255, 241);
 }
 
 .characterBox img {
-  transition: all 0.3s ease-out;
-  width: 100%;
-  height: 90%;
-  object-fit: initial;
-  cursor: auto;
+    transition: all 0.3s ease-out;
+    width: 100%;
+    height: 90%;
+    object-fit: initial;
+    cursor: auto;
 }
 
-.characterBox img.tier2:hover
-{
-  animation: hueRotate 2s infinite;
-  transform: scale(1.05);
+.characterBox img.tier2:hover {
+    animation: hueRotate 2s infinite;
+    transform: scale(1.05);
 }
 
 @keyframes hueRotate {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-  50% {
-    filter: hue-rotate(260deg) grayscale(100%);
-  }
-  100% {
-    filter: hue-rotate(0deg);
-  }
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(260deg) grayscale(100%);
+    }
+    100% {
+        filter: hue-rotate(0deg);
+    }
 }
 
 .selectedBox {
-  border: 1em solid rgb(24, 240, 255) !important;
+    border: 1em solid rgb(24, 240, 255) !important;
 }
 
-.greyBox{
-  height: 100%;
+.greyBox {
+    height: 100%;
 }

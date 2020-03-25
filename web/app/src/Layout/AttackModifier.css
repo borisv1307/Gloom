@@ -7,36 +7,36 @@
 }
 
 .attack-modifier {
-  position: absolute;
-  width: 10%;
-  height: 80%;
-  bottom: 20%;
-  right: 10%;
-  background-color: #7be3f6;
-  color: black;
-  font-weight: bold;
+    position: absolute;
+    width: 10%;
+    height: 80%;
+    bottom: 20%;
+    right: 10%;
+    background-color: #7be3f6;
+    color: black;
+    font-weight: bold;
     text-transform: uppercase;
-  border-left: 2px dotted red;
-  vertical-align: text-top;
-  flex-wrap: wrap;
+    border-left: 2px dotted red;
+    vertical-align: text-top;
+    flex-wrap: wrap;
 }
 
 .attack-deck {
-  background-color: #7be3f6;
-  margin: 5px auto;
-  font-size: 10px;
+    background-color: #7be3f6;
+    margin: 5px auto;
+    font-size: 10px;
 
 }
 
 .attack-card {
-  background-color: #9a2132;
-  display: inline-block;
-  font-weight: bold;
-  width: 40px;
-  margin: 5px auto;
-  font-size: 10px;
-  padding: 5px;
-  color: #CCCCCC;
+    background-color: #9a2132;
+    display: inline-block;
+    font-weight: bold;
+    width: 40px;
+    margin: 5px auto;
+    font-size: 10px;
+    padding: 5px;
+    color: #CCCCCC;
 }
 
 .button-pull-card {
@@ -103,23 +103,23 @@
     width: 100%;
     text-align: center;
     opacity: 0;
-    -webkit-transition: .4s,opacity .6s;
-    -moz-transition: .4s,opacity .6s;
-    -o-transition: .4s,opacity .6s;
-    transition: .4s,opacity .6s;
+    -webkit-transition: .4s, opacity .6s;
+    -moz-transition: .4s, opacity .6s;
+    -o-transition: .4s, opacity .6s;
+    transition: .4s, opacity .6s;
 }
 
 .attack-card:before {
     display: inline-block;
     content: attr(card-hover);
-    -webkit-transform: translate(150%,0);
-    -moz-transform: translate(150%,0);
-    -ms-transform: translate(150%,0);
-    -o-transform: translate(150%,0);
-    transform: translate(150%,0);
+    -webkit-transform: translate(150%, 0);
+    -moz-transform: translate(150%, 0);
+    -ms-transform: translate(150%, 0);
+    -o-transform: translate(150%, 0);
+    transform: translate(150%, 0);
 }
 
-.attack-card:hover span{
+.attack-card:hover span {
     opacity: 0;
     display: inline-block;
     -webkit-transform: scale(0.3);
@@ -129,15 +129,15 @@
     transform: scale(0.3);
 }
 
-.attack-card:hover:before{
+.attack-card:hover:before {
     opacity: 1;
     display: inline-block;
     width: -moz-max-content;
-    -webkit-transform: translate(0,0);
-    -moz-transform: translate(0,0);
-    -ms-transform: translate(0,0);
-    -o-transform: translate(0,0);
-    transform: translate(0,0);
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
     -webkit-transition-delay: .4s;
     -moz-transition-delay: .4s;
     -o-transition-delay: .4s;
@@ -145,16 +145,16 @@
 }
 
 .bless-and-curse {
-  position: absolute;
-  width: 10%;
-  height: 23%;
-  bottom: 50%;
-  right: 0;
-  font-weight: bold;
-  background-color: #71CFFF;
-  border-left: 2px dotted red;
-  vertical-align: text-top;
-  color: black;
+    position: absolute;
+    width: 10%;
+    height: 23%;
+    bottom: 50%;
+    right: 0;
+    font-weight: bold;
+    background-color: #71CFFF;
+    border-left: 2px dotted red;
+    vertical-align: text-top;
+    color: black;
 }
 
 .button-plus-minus {

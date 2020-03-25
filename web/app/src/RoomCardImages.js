@@ -102,5 +102,5 @@ const RoomCardImages =
             src: tunnel
         }
 
-    ]
+    ];
 export default RoomCardImages;

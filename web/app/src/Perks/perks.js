@@ -120,6 +120,6 @@ const ToggleablePerk = props => (
         </input>
         <label>{props.description}</label>
     </div>
-)
+);
 
 export default Perks;
