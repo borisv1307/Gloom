@@ -147,32 +147,28 @@
 
 .bless-and-curse {
   position: absolute;
-  width: 7%;
-  height: 17%;
-  bottom: 30%;
+  width: 10%;
+  height: 15%;
+  bottom: 25%;
   right: 20%;
-
-
-
   font-weight: bold;
   background-color: #71CFFF;
   border-left: 2px dotted red;
   vertical-align: text-top;
   color: black;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .button-minus {
     position: relative;
     font-weight: bold;
     right: 0;
-    height: 50px;
 }
-/*.button-minus:hover {
+.button-minus:hover {
     font-weight: bold;
     background-color: black;
     color: #CCCCCC;
-}*/
+}
 .button-minus:disabled {
     font-weight: bold;
     background-color: #777777;
@@ -182,14 +178,14 @@
     position: relative;
     font-weight: bold;
     left: 0;
-    height: 50px;
 }
-/*.button-plus:hover {
+
+.button-plus:hover {
     font-weight: bold;
     background-color: black;
     color: #CCCCCC;
-    padding: 5px;
-}*/
+}
+
 .button-plus:disabled {
     font-weight: bold;
     background-color: #777777;
@@ -203,6 +199,5 @@
 
 .discard-attack-modifier-deck {
     overflow-y: scroll;
-    height: 65%;
-
+    height: 60%;
 }
