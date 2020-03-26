@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import './itemSelection.css'
 import itemList from './itemsList.js';
 import { Multiselect } from 'multiselect-react-dropdown';
-import ReactDOM from "react-dom";
-import App from "./App";
-import Items from "./items";
 
 class ItemSelection extends Component {
 	constructor(props) {

@@ -3,6 +3,7 @@ import PerksData from './perks.json';
 import AttackModifier from "../Layout/AttackModifier";
 import AttackModifierDeck from './AttackModifierDeck.json';
 
+
 class Perks extends Component {
     constructor(props) {
         super(props);

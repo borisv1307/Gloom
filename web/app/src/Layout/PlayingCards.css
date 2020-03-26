@@ -18,7 +18,7 @@
 .lost-cards-pile {
   position: absolute;
   width: 10%;
-  height: 30em;
+  height: 60%;
   bottom: 0;
   right: 0;
   background-color: #9E9E9E;
@@ -56,8 +56,8 @@
 
 .discard-pile {
   position: absolute;
-  width: 10em;
-  height: 30em;
+  width: 10%;
+  height: 60%;
   bottom: 0;
   left: 0;
   background-color: #FF0000;
@@ -68,8 +68,8 @@
 
 .attack-modifier {
   position: absolute;
-  width: 10em;
-  height: 30em;
+  width: 10%;
+  height: 60px;
   bottom: 0;
   right: 10em;
   background-color: #9a2132;
@@ -82,6 +82,7 @@
   background-color: #9a2132;
   margin: 1em auto;
   font-size: 1em;
+
 
 }
 
@@ -114,3 +115,4 @@
   top:20%;
   left:0;
 }
+

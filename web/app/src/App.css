@@ -75,7 +75,7 @@ h1 {
     position: absolute;
     top:0;
     right:0;
-    padding: 0.7em;
+    padding: 5px;
 
 }
 
@@ -86,6 +86,6 @@ h1 {
 
 td{
     border: 1px solid black;
-    padding: 0.5em;
+    padding: 3%;
     text-align: left;
 }

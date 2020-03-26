@@ -9,7 +9,7 @@
 .attack-modifier {
   position: absolute;
   width: 10%;
-  height: 75%;
+  height: 35%;
   bottom: 25%;
   right: 10%;
   background-color: #7be3f6;
@@ -20,20 +20,20 @@
   vertical-align: text-top;
   flex-wrap: wrap;
   font-size: 12px;
+
 }
 
 .attack-deck {
   background-color: #7be3f6;
   margin: 5px auto;
   font-size: 10px;
-
 }
 
 .attack-card {
   background-color: #9a2132;
   display: inline-block;
   font-weight: bold;
-  width: 40px;
+  width: 30%;
   margin: 5px auto;
   font-size: 7px;
   padding: 5px;
@@ -72,7 +72,7 @@
     position: absolute;
     right: 0;
     left: 0;
-    bottom: 7%;
+    bottom: 15%;
 }
 
 .attack-modifier-cards-left {
@@ -148,9 +148,12 @@
 .bless-and-curse {
   position: absolute;
   width: 7%;
-  height: 23%;
-  bottom: 25%;
+  height: 17%;
+  bottom: 30%;
   right: 20%;
+
+
+
   font-weight: bold;
   background-color: #71CFFF;
   border-left: 2px dotted red;
@@ -160,33 +163,34 @@
 }
 
 .button-minus {
+    position: relative;
     font-weight: bold;
     right: 0;
+    padding-top: 20%;
+    padding-bottom: 20%;
 }
-
 .button-minus:hover {
     font-weight: bold;
     background-color: black;
     color: #CCCCCC;
 }
-
 .button-minus:disabled {
     font-weight: bold;
     background-color: #777777;
     color: #CCCCCC;
 }
-
 .button-plus {
+    position: relative;
     font-weight: bold;
     left: 0;
+    padding-top: 20%;
+    padding-bottom: 20%;
 }
-
 .button-plus:hover {
     font-weight: bold;
     background-color: black;
     color: #CCCCCC;
 }
-
 .button-plus:disabled {
     font-weight: bold;
     background-color: #777777;
@@ -200,5 +204,6 @@
 
 .discard-attack-modifier-deck {
     overflow-y: scroll;
-    height: 80%;
+    height: 65%;
+
 }
