@@ -9,7 +9,7 @@
 .attack-modifier {
   position: absolute;
   width: 10%;
-  height: 75%;
+  height: 35%;
   bottom: 25%;
   right: 10%;
   background-color: #7be3f6;
@@ -20,7 +20,6 @@
   vertical-align: text-top;
   flex-wrap: wrap;
   font-size: 12px;
-    margin-right: 5%;
 
 }
 
@@ -73,7 +72,7 @@
     position: absolute;
     right: 0;
     left: 0;
-    bottom: 7%;
+    bottom: 15%;
 }
 
 .attack-modifier-cards-left {
@@ -152,7 +151,9 @@
   height: 17%;
   bottom: 30%;
   right: 20%;
-  margin-right: 10%;
+
+
+
   font-weight: bold;
   background-color: #71CFFF;
   border-left: 2px dotted red;
@@ -162,29 +163,33 @@
 }
 
 .button-minus {
+    position: relative;
     font-weight: bold;
     right: 0;
+    height: 50px;
 }
-.button-minus:hover {
+/*.button-minus:hover {
     font-weight: bold;
     background-color: black;
     color: #CCCCCC;
-}
+}*/
 .button-minus:disabled {
     font-weight: bold;
     background-color: #777777;
     color: #CCCCCC;
 }
 .button-plus {
+    position: relative;
     font-weight: bold;
     left: 0;
+    height: 50px;
 }
-.button-plus:hover {
+/*.button-plus:hover {
     font-weight: bold;
     background-color: black;
     color: #CCCCCC;
     padding: 5px;
-}
+}*/
 .button-plus:disabled {
     font-weight: bold;
     background-color: #777777;
@@ -198,5 +203,6 @@
 
 .discard-attack-modifier-deck {
     overflow-y: scroll;
-    height: 80%;
+    height: 65%;
+
 }

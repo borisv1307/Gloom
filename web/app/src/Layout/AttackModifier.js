@@ -236,13 +236,13 @@ class AttackModifier extends Component {
                 </div>
 
                 <div className="bless-and-curse">
-                <div id="bless" style={{display: 'flex', lineHeight: '40px'}}>
+                <div id="bless" style={{display: 'flex', lineHeight: '100%', padding: '10%'}}>
                     <button className="button-plus" disabled={blessLeft <= 0} onClick={() => this.onClickBlessPlus()}>+</button>
                     <text> Bless Cards Left: {blessLeft} </text>
                     <button className="button-minus" disabled={blessLeft >= 10} onClick={() => this.onClickBlessMinus()}>-</button>
                 </div>
 
-                <div id="curse" style={{display: 'flex', lineHeight: '40px'}}>
+                <div id="curse" style={{display: 'flex', lineHeight: '100%', padding: '10%'}}>
                     <button className="button-plus" disabled={curseLeft <= 0} onClick={() => this.onClickCursePlus()}>+</button>
                     <text> Curse Cards Left: {curseLeft} </text>
                     <button className="button-minus" disabled={curseLeft >= 10} onClick={() => this.onClickCurseMinus()}>-</button>
