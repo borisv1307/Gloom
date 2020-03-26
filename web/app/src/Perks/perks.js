@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PerksData from './perks.json';
 import AttackModifier from "../Layout/AttackModifier";
 import AttackModifierDeck from './AttackModifierDeck.json';
-import './perks.css'
+
 
 class Perks extends Component {
     constructor(props) {

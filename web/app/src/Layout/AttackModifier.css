@@ -20,6 +20,7 @@
   vertical-align: text-top;
   flex-wrap: wrap;
   font-size: 12px;
+    margin-right: 5%;
 
 }
 
@@ -151,7 +152,7 @@
   height: 17%;
   bottom: 30%;
   right: 20%;
-  margin-right: 12em;
+  margin-right: 10%;
   font-weight: bold;
   background-color: #71CFFF;
   border-left: 2px dotted red;
@@ -182,6 +183,7 @@
     font-weight: bold;
     background-color: black;
     color: #CCCCCC;
+    padding: 5px;
 }
 .button-plus:disabled {
     font-weight: bold;
