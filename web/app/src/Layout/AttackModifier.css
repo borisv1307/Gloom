@@ -147,7 +147,7 @@
 
 .bless-and-curse {
   position: absolute;
-  width: 10%;
+  width: 7%;
   height: 23%;
   bottom: 25%;
   right: 20%;
@@ -196,4 +196,9 @@
 .perks {
     overflow-y: scroll;
     height: 90%;
+}
+
+.discard-attack-modifier-deck {
+    overflow-y: scroll;
+    height: 80%;
 }
