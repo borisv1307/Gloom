@@ -50,7 +50,6 @@ h1 {
 .buttonsDiv{
     display: flex;
     justify-content: flex-start;
-    margin-left: 25%;
 }
 
 .roomButton{
@@ -58,9 +57,11 @@ h1 {
     display: none;
 }
 
+.Room{
+    margin-left: 5%;
+}
+
 .Room img:hover{
-    /*width: 50%;*/
-    /*margin-left: 0%;*/
     transform: scale(var(--card-scale-on-zoom-size));
 }
 
