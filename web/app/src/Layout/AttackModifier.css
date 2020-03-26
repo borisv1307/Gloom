@@ -20,13 +20,13 @@
   vertical-align: text-top;
   flex-wrap: wrap;
   font-size: 12px;
+
 }
 
 .attack-deck {
   background-color: #7be3f6;
   margin: 5px auto;
   font-size: 10px;
-
 }
 
 .attack-card {
@@ -151,6 +151,7 @@
   height: 23%;
   bottom: 25%;
   right: 20%;
+  margin-right: 10em;
   font-weight: bold;
   background-color: #71CFFF;
   border-left: 2px dotted red;
