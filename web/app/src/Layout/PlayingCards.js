@@ -164,9 +164,8 @@ class PlayingCards extends Component {
 				<div key={card.id}
 				  onDragStart = {(event) => this.onDragStart(event, card.cardName)}
 				  draggable
-				  className="cards-in-hand"
-					<img src={card.imgSrc}/>
-					style = {{backgroundImage: card.backgroundImage}}>
+				  className="cards-in-hand">
+					 <img src={card.imgSrc} style = {{backgroundImage: card.backgroundImage}}/>
 				</div>
 			  );
 			}
