@@ -2,7 +2,7 @@ import './PlayingCards.css'
 import React, {Component} from "react";
 import Popup from "reactjs-popup";
 import BRUTE from '../bruteAbilityCardimages';
-import AttackModifier from "./AttackModifier";
+import Perks from "../Perks/perks";
 
 let selectedImages;
 selectedImages = [];
@@ -164,9 +164,8 @@ class PlayingCards extends Component {
 				<div key={card.id}
 				  onDragStart = {(event) => this.onDragStart(event, card.cardName)}
 				  draggable
-				  className="cards-in-hand"
-					<img src={card.imgSrc}/>
-					style = {{backgroundImage: card.backgroundImage}}>
+				  className="cards-in-hand">
+					 <img src={card.imgSrc} style = {{backgroundImage: card.backgroundImage}}/>
 				</div>
 			  );
 			}
@@ -224,7 +223,7 @@ class PlayingCards extends Component {
                       {cards.discardPile}
                   </div>
 
-			  <AttackModifier/>
+			  <Perks characterName={this.props.characterName}/>
 
 			  <div className="lost-cards-pile" style={{flexDirection: "column", textAlign: "top" }}
 				 onDragOver={(event)=>this.onDragOver(event)}

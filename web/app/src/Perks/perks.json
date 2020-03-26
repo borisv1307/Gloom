@@ -1,0 +1,132 @@
+{
+  "Brute": [
+    {
+      "description": "Remove two -1 cards",
+      "number_times_unlockable": 1,
+      "actions": [
+        {
+          "type": "REMOVE",
+          "card": "-1"
+        },
+        {
+          "type": "REMOVE",
+          "card": "-1"
+        }
+      ]
+    },
+    {
+      "description": "Replace one -1 card with one +1 card",
+      "number_times_unlockable": 1,
+      "actions": [
+        {
+          "type": "REMOVE",
+          "card": "-1"
+        },
+        {
+          "type": "ADD",
+          "card": "+1"
+        }
+      ]
+    },
+    {
+      "description": "Add two +1 cards",
+      "number_times_unlockable": 2,
+      "actions": [
+        {
+          "type": "ADD",
+          "card": "+1"
+        },
+        {
+          "type": "ADD",
+          "card": "+1"
+        }
+      ]
+    },
+    {
+      "description": "Add one +3 cards",
+      "number_times_unlockable": 1,
+      "actions": [
+        {
+          "type": "ADD",
+          "card": "+3"
+        }
+      ]
+    },
+    {
+      "description": "Add three rolling PUSH 1 cards",
+      "number_times_unlockable": 2,
+      "actions": [
+        {
+          "type": "ADD",
+          "card": "ROLLING PUSH 1"
+        },
+        {
+          "type": "ADD",
+          "card": "ROLLING PUSH 1"
+        },
+        {
+          "type": "ADD",
+          "card": "ROLLING PUSH 1"
+        }
+      ]
+    },
+    {
+      "description": "Add two rolling PIERCE 3 cards",
+      "number_times_unlockable": 1,
+      "actions": [
+        {
+          "type": "ADD",
+          "card": "ROLLING PIERCE 3"
+        },
+        {
+          "type": "ADD",
+          "card": "ROLLING PIERCE 3"
+        }
+      ]
+    },
+    {
+      "description": "Add one rolling STUN card",
+      "number_times_unlockable": 2,
+      "actions": [
+        {
+          "type": "ADD",
+          "card": "ROLLING STUN"
+        }
+      ]
+    },
+    {
+      "description": "Add one rolling DISARM card and one rolling MUDDLE card",
+      "number_times_unlockable": 1,
+      "actions": [
+        {
+          "type": "ADD",
+          "card": "ROLLING DISARM"
+        },
+        {
+          "type": "ADD",
+          "card": "ROLLING MUDDLE"
+        }
+      ]
+    },
+    {
+      "description": "Add one ROLLING ADD TARGET card",
+      "number_times_unlockable": 2,
+      "actions": [
+        {
+          "type": "ADD",
+          "card": "ROLLING ADD TARGET"
+        }
+      ]
+    },
+    {
+      "description": "Add one +1 Shield 1, Self Card",
+      "number_times_unlockable": 2,
+      "actions": [
+        {
+          "type": "ADD",
+          "card": "+1 Shield"
+        }
+      ]
+    }
+  ]
+}

@@ -17,7 +17,7 @@
 
 .lost-cards-pile {
   position: absolute;
-  width: 10em;
+  width: 10%;
   height: 30em;
   bottom: 0;
   right: 0;
@@ -103,16 +103,6 @@
   background-color: #777777;
   border-bottom: 2px dotted red;
 }
-
-/*.cards-in-hand-pile {*/
-/*  position: absolute;*/
-/*  width: 100%;*/
-/*  height: 20%;*/
-/*  bottom: 0;*/
-/*  left: 0;*/
-/*  background-color: #777777;*/
-/*  border-bottom: 1em dotted red;*/
-/*}*/
 
 .close {
   background: #FF0000;
