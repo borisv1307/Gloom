@@ -223,7 +223,7 @@ class PlayingCards extends Component {
                       {cards.discardPile}
                   </div>
 
-			  <Perks characterName={characterName}/>
+			  <Perks characterName={this.props.characterName}/>
 
 			  <div className="lost-cards-pile" style={{flexDirection: "column", textAlign: "top" }}
 				 onDragOver={(event)=>this.onDragOver(event)}
