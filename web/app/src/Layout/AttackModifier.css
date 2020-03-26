@@ -166,13 +166,14 @@
     position: relative;
     font-weight: bold;
     right: 0;
-    height: 50px;
+    padding-top: 20%;
+    padding-bottom: 20%;
 }
-/*.button-minus:hover {
+.button-minus:hover {
     font-weight: bold;
     background-color: black;
     color: #CCCCCC;
-}*/
+}
 .button-minus:disabled {
     font-weight: bold;
     background-color: #777777;
@@ -182,14 +183,14 @@
     position: relative;
     font-weight: bold;
     left: 0;
-    height: 50px;
+    padding-top: 20%;
+    padding-bottom: 20%;
 }
-/*.button-plus:hover {
+.button-plus:hover {
     font-weight: bold;
     background-color: black;
     color: #CCCCCC;
-    padding: 5px;
-}*/
+}
 .button-plus:disabled {
     font-weight: bold;
     background-color: #777777;
