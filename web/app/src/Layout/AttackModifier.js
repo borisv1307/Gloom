@@ -211,7 +211,10 @@ class AttackModifier extends Component {
         return(
             <div>
                 <div className="attack-modifier" style={{flexDirection: "row"}}>
+                    <div className="perks">
                         {decks}
+                    </div>
+
                         <text className="text-cards-left">Cards Left: {cardsLeft}</text>
                         <button className="button-pull-card" disabled={cardsLeft <= 0} onClick={() => this.randomSelect()}>Pull Card</button>
                         <button className="button-shuffle" onClick={() => {this.resetAttackDecks();

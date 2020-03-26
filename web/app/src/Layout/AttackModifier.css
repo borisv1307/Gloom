@@ -35,7 +35,7 @@
   font-weight: bold;
   width: 40px;
   margin: 5px auto;
-  font-size: 10px;
+  font-size: 7px;
   padding: 5px;
   color: #CCCCCC;
 }
@@ -159,17 +159,35 @@
   font-size: 10px;
 }
 
-.button-plus-minus {
+.button-minus {
     font-weight: bold;
+    right: 0;
 }
 
-.button-plus-minus:hover {
+.button-minus:hover {
     font-weight: bold;
     background-color: black;
     color: #CCCCCC;
 }
 
-.button-plus-minus:disabled {
+.button-minus:disabled {
+    font-weight: bold;
+    background-color: #777777;
+    color: #CCCCCC;
+}
+
+.button-plus {
+    font-weight: bold;
+    left: 0;
+}
+
+.button-plus:hover {
+    font-weight: bold;
+    background-color: black;
+    color: #CCCCCC;
+}
+
+.button-plus:disabled {
     font-weight: bold;
     background-color: #777777;
     color: #CCCCCC;
