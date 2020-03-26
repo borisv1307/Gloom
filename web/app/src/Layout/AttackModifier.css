@@ -9,16 +9,17 @@
 .attack-modifier {
   position: absolute;
   width: 10%;
-  height: 80%;
-  bottom: 20%;
+  height: 75%;
+  bottom: 25%;
   right: 10%;
   background-color: #7be3f6;
   color: black;
   font-weight: bold;
-    text-transform: uppercase;
+  text-transform: uppercase;
   border-left: 2px dotted red;
   vertical-align: text-top;
   flex-wrap: wrap;
+  font-size: 12px;
 }
 
 .attack-deck {
@@ -79,7 +80,7 @@
 }
 
 .attack-card:hover {
-    transform: scale(1);
+    transform: scale(2);
     width: 40%;
 }
 
@@ -148,13 +149,14 @@
   position: absolute;
   width: 10%;
   height: 23%;
-  bottom: 50%;
-  right: 0;
+  bottom: 25%;
+  right: 20%;
   font-weight: bold;
   background-color: #71CFFF;
   border-left: 2px dotted red;
   vertical-align: text-top;
   color: black;
+  font-size: 10px;
 }
 
 .button-plus-minus {
@@ -171,4 +173,9 @@
     font-weight: bold;
     background-color: #777777;
     color: #CCCCCC;
+}
+
+.perks {
+    overflow-y: scroll;
+    height: 90%;
 }
