@@ -33,7 +33,7 @@
   background-color: #9a2132;
   display: inline-block;
   font-weight: bold;
-  width: 40px;
+  width: 30%;
   margin: 5px auto;
   font-size: 7px;
   padding: 5px;
@@ -148,10 +148,10 @@
 .bless-and-curse {
   position: absolute;
   width: 7%;
-  height: 23%;
-  bottom: 25%;
+  height: 17%;
+  bottom: 30%;
   right: 20%;
-  margin-right: 10em;
+  margin-right: 12em;
   font-weight: bold;
   background-color: #71CFFF;
   border-left: 2px dotted red;
@@ -164,30 +164,25 @@
     font-weight: bold;
     right: 0;
 }
-
 .button-minus:hover {
     font-weight: bold;
     background-color: black;
     color: #CCCCCC;
 }
-
 .button-minus:disabled {
     font-weight: bold;
     background-color: #777777;
     color: #CCCCCC;
 }
-
 .button-plus {
     font-weight: bold;
     left: 0;
 }
-
 .button-plus:hover {
     font-weight: bold;
     background-color: black;
     color: #CCCCCC;
 }
-
 .button-plus:disabled {
     font-weight: bold;
     background-color: #777777;
