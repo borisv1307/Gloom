@@ -17,6 +17,7 @@ function showRoomAndMonster(roomID) {
         if(i != Number(roomID)){
             document.getElementById("Room"+i).style.display = "none";
             document.getElementById("discard-pile").style.height = "30em";
+            document.getElementById("shortrestbutton").style.top = "20%";
         }
     }
 
@@ -24,11 +25,13 @@ function showRoomAndMonster(roomID) {
     {
         document.getElementById("Room"+roomID).style.display = "flex"
         document.getElementById("discard-pile").style.height = "20em";
+        document.getElementById("shortrestbutton").style.top = "50%";
     }
     else
     {
         document.getElementById("Room"+roomID).style.display = "none"
         document.getElementById("discard-pile").style.height = "30em";
+        document.getElementById("shortrestbutton").style.top = "20%";
     }
 }
 
@@ -148,6 +151,7 @@ class App extends Component {
                             onClick={() => window.location.reload(false)}>Change Character
                     </button>
                 </div>
+                <br/>
                 <br/>
                 {
                     this.state.isFetching ? <div/> : <RoomButtons jsonData={this.state.JSONdata}/>
