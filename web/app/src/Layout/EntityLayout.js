@@ -3,7 +3,6 @@ import {GridGenerator, Layout, Hexagon, Text, Pattern, HexUtils, HexGrid} from '
 import monsters from '../monsters';
 import './EntityLayout.css';
 
-//TODO: Confirm that the backend in fact sends these values in the exact format
 const text = {
     character: "Character",
     monster: "Monster",
@@ -87,8 +86,7 @@ class EntityLayout extends Component {
     }
 
     onDrop(event, source, targetProps) {
-        const {hexagons} = this.state;
-        const {parsed_hexagons} = this.state;
+        const {hexagons, parsed_hexagons} = this.state;
 
         const hexes = hexagons.map(hex => {
             if (HexUtils.equals(source.state.hex, hex)) {
@@ -125,21 +123,20 @@ class EntityLayout extends Component {
         if (!success) {
             return;
         }
-        const {hexagons} = this.state;
-        const {parsed_hexagons} = this.state;
+        const {hexagons, parsed_hexagons} = this.state;
 
         const hexes = hexagons.map(hex => {
             if (HexUtils.equals(source.state.hex, hex)) {
-                hex.text = null;
-                hex.image = null;
+                hex.text = "empty";
+                hex.image = "";
             }
             return hex;
         });
 
         const hexes2 = parsed_hexagons.map(hex2 => {
             if (HexUtils.equals(source.state.hex, hex2)) {
-                hex2.text = null;
-                hex2.image = null;
+                hex2.text = "empty";
+                hex2.image = "";
             }
             return hex2;
         });
@@ -148,15 +145,11 @@ class EntityLayout extends Component {
 
     render() {
         const {hexagons} = this.state;
-        const gameHexes = this.parseHexagons();
-
-        console.log(gameHexes);
-        console.log("--- Static Hexes Below ---");
-        console.log(hexagons);
+        let gameHexes = this.parseHexagons();
 
         return (
-            <HexGrid width={1300} height={500} viewBox="-50 -50 100 100">
-                    <Layout className="game" size={{x: 7.5, y: 7.5}} flat={true} spacing={1.0} origin={{x: -30, y: 0}}>
+            <HexGrid width={1300} height={700} viewBox="-50 -50 100 100">
+                    <Layout className="game" size={{x:5, y:5}} flat={true} spacing={1.0} origin={{x: -30, y: 0}}>
                         {
                             gameHexes.map((hex, i) => (
                                 <Hexagon
@@ -164,7 +157,7 @@ class EntityLayout extends Component {
                                     q={hex.q}
                                     r={hex.r}
                                     s={hex.s}
-                                    fill={(hex.image) ? HexUtils.getID(hex) : null} //TODO: Fix the replicated fill url issue
+                                    fill={(hex.image) ? ("parsed-" + HexUtils.getID(hex)) : null} //TODO: Fix the replicated fill url issue
                                     data={hex}
                                     onDragStart={(e, h) => this.onDragStart(e, h)}
                                     onDragEnd={(e, h, s) => this.onDragEnd(e, h, s)}
@@ -172,13 +165,13 @@ class EntityLayout extends Component {
                                     onDragOver={(e, h) => this.onDragOver(e, h)}
                                 >
                                     <Text>{hex.text}</Text>
-                                    {!!hex.image && <Pattern id={HexUtils.getID(hex)} link={hex.image}/>}
+                                    {!!hex.image && <Pattern id={"parsed-" + HexUtils.getID(hex)} link={hex.image}/>}
                                 </Hexagon>
                             ))
                         }
                     </Layout>
 
-                <Layout className="tiles" size={{x: 7.5, y: 7.5}} flat={true} spacing={1.0} origin={{x: 70, y: -10}}>
+                <Layout className="tiles" size={{x:5, y:5}} flat={true} spacing={1.0} origin={{x: 70, y: -10}}>
                     {
                         hexagons.map((hex, i) => (
                             <Hexagon
@@ -186,7 +179,7 @@ class EntityLayout extends Component {
                                 q={hex.q}
                                 r={hex.r}
                                 s={hex.s}
-                                fill={(hex.image) ? HexUtils.getID(hex) : null}
+                                fill={(hex.image) ? ("static-" + HexUtils.getID(hex)) : null}
                                 data={hex}
                                 onDragStart={(e, h) => this.onDragStart(e, h)}
                                 onDragEnd={(e, h, s) => this.onDragEnd(e, h, s)}
@@ -194,7 +187,7 @@ class EntityLayout extends Component {
                                 onDragOver={(e, h) => this.onDragOver(e, h)}
                             >
                                 <Text>{hex.text}</Text>
-                                {!!hex.image && <Pattern id={HexUtils.getID(hex)} link={hex.image}/>}
+                                {!!hex.image && <Pattern id={"static-" + HexUtils.getID(hex)} link={hex.image}/>}
                             </Hexagon>
                         ))
                     }
