@@ -3,7 +3,7 @@ import {GridGenerator, Layout, Hexagon, Text, Pattern, HexUtils, HexGrid} from '
 import monsters from '../monsters';
 import './EntityLayout.css';
 
-
+//TODO: Confirm that the backend in fact sends these values in the exact format
 const text = {
     character: "Character",
     monster: "Monster",
@@ -164,7 +164,7 @@ class EntityLayout extends Component {
                                     q={hex.q}
                                     r={hex.r}
                                     s={hex.s}
-                                    fill={(hex.image) ? HexUtils.getID(hex) : null}
+                                    fill={(hex.image) ? HexUtils.getID(hex) : null} //TODO: Fix the replicated fill url issue
                                     data={hex}
                                     onDragStart={(e, h) => this.onDragStart(e, h)}
                                     onDragEnd={(e, h, s) => this.onDragEnd(e, h, s)}
