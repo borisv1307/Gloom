@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {GridGenerator, Layout, Hexagon, Text, Pattern, HexUtils, HexGrid} from 'react-hexgrid';
+import monsters from '../monsters';
 import './EntityLayout.css';
 
 
@@ -30,53 +31,35 @@ const image = {
     dangerous: "https://img.icons8.com/color/96/000000/error.png"
 };
 
-const EntityEnum = Object.freeze({
-    character: "Character",
-    monster: "Monster",
-    wall: "Wall",
-    obstacle: "Obstacle",
-    trap: "Trap",
-    empty: "Empty",
-    hazard: "Hazardous Terrain",
-    dangerous: "Dangerous Terrain"
-});
-const EntityImageEnum = Object.freeze({
-    character: "https://img.icons8.com/color/96/000000/morty-smith.png",
-    monster: "https://img.icons8.com/color/96/000000/monster-face.png",
-    wall: "https://img.icons8.com/color/96/000000/brick-wall.png",
-    obstacle: "https://img.icons8.com/color/96/000000/roadblock.png",
-    trap: "https://img.icons8.com/color/96/000000/naval-mine.png",
-    empty: "",
-    hazard: "https://img.icons8.com/color/96/000000/self-destruct-button--v1.png",
-    dangerous: "https://img.icons8.com/color/96/000000/error.png"
-});
 
-var name_values = Object.values(EntityEnum);
-var image_values = Object.values(EntityImageEnum);
+var name_values = ["Character", "Monster", "Wall", "Obstacle", "Trap", "Empty", "Hazardous Terrain", "Dangerous Terrain"];
 
 class EntityLayout extends Component {
     constructor(props) {
         super(props);
 
         const hexagons = GridGenerator.parallelogram(-1, 0, -1, 2).map((hexagon, index) => {
+                const monster_key = name_values[index].toLowerCase();
                 return Object.assign({}, hexagon, {
                         text: name_values[index],
-                        image: image_values[index]
+                        image: monsters[monster_key]
                     }
                 );
             }
         );
 
-        const hexagons2 = GridGenerator.hexagon(1);
+        const parsed_hexagons = GridGenerator.hexagon(1);
 
         this.state = {
-            hexagons, hexagons2, isFetching: false,
-            JSONdata: this.props.jsonData,
+            hexagons, parsed_hexagons, isFetching: false,
+            JSONdata: this.props.JSONdata,
             image: image,
             text: text
         };
     }
 
+    componentWillMount() {
+    }
 
     parseHexagons() {
         const data = this.state.JSONdata;
@@ -90,35 +73,23 @@ class EntityLayout extends Component {
     generateHexagon(roomID, tileID) {
         const tile = this.state.JSONdata[roomID].tiles[tileID];
         const tile_value = tile.value;
-        const image = monsters[tile_value];
-        const text = tile_value;
-        // const tile_key = "room-" + roomID + "-tile-" + tileID;
+        const image_val = monsters[tile_value];
+        const text_val = tile_value;
         const hex_data = {q: tile.x, r: tile.y, s: tile.z, text: {text}, image: {image}};
-        // const {hexagons2} = this.state.hexagons2;
 
-        return <Hexagon
-            key={tileID}
-            q={tile.x}
-            r={tile.y}
-            s={tile.z}
-            fill={tileID}
-            image={image}
-            text={text}
-            data={hex_data}
-            onDragStart={(e, h) => this.onDragStart(e, h)}
-            onDragEnd={(e, h, s) => this.onDragEnd(e, h, s)}
-            onDrop={(e, h, t) => this.onDrop(e, h, t)}
-            onDragOver={(e, h) => this.onDragOver(e, h)}
-        >
-            <Text>{text}</Text>
-            <Pattern id={tileID} link={image} size={{x: 5, y: 5}}/>
-        </Hexagon>
-
+        return Object.assign({}, {
+            image: image_val,
+            text: text_val,
+            q: tile.x,
+            r: tile.y,
+            s: tile.z
+        });
     }
-
 
     onDrop(event, source, targetProps) {
         const {hexagons} = this.state;
+        const {parsed_hexagons} = this.state;
+
         const hexes = hexagons.map(hex => {
             if (HexUtils.equals(source.state.hex, hex)) {
                 hex.image = targetProps.data.image;
@@ -126,7 +97,15 @@ class EntityLayout extends Component {
             }
             return hex;
         });
-        this.setState({hexagons: hexes});
+
+        const hexes2 = parsed_hexagons.map(hex2 => {
+            if (HexUtils.equals(source.state.hex, hex2)) {
+                hex2.image = targetProps.data.image;
+                hex2.text = targetProps.data.text;
+            }
+            return hex2;
+        });
+        this.setState({hexagons: hexes, parsed_hexagons: hexes2});
     }
 
     onDragStart(event, source) {
@@ -136,14 +115,8 @@ class EntityLayout extends Component {
     }
 
     onDragOver(event, source) {
-        const blockedHexes = this.state.hexagons.filter(h => h.blocked);
-        const blocked = blockedHexes.find(blockedHex => {
-            return HexUtils.equals(source.state.hex, blockedHex);
-        });
-        console.log(source.props);
         const {text} = source.props;
-
-        if (!blocked && !text) {
+        if (!text) {
             event.preventDefault();
         }
     }
@@ -153,6 +126,7 @@ class EntityLayout extends Component {
             return;
         }
         const {hexagons} = this.state;
+        const {parsed_hexagons} = this.state;
 
         const hexes = hexagons.map(hex => {
             if (HexUtils.equals(source.state.hex, hex)) {
@@ -161,21 +135,50 @@ class EntityLayout extends Component {
             }
             return hex;
         });
-        this.setState({hexagons: hexes});
+
+        const hexes2 = parsed_hexagons.map(hex2 => {
+            if (HexUtils.equals(source.state.hex, hex2)) {
+                hex2.text = null;
+                hex2.image = null;
+            }
+            return hex2;
+        });
+        this.setState({hexagons: hexes, parsed_hexagons: hexes2});
     }
 
     render() {
         const {hexagons} = this.state;
         const gameHexes = this.parseHexagons();
-        // map function needs to somehow have a sense of what {hexagons} state is and append the newly generated hexagon
+
+        console.log(gameHexes);
+        console.log("--- Static Hexes Below ---");
+        console.log(hexagons);
+
         return (
             <HexGrid width={1300} height={500} viewBox="-50 -50 100 100">
-                <Layout className="game" size={{x: 5, y: 5}} flat={true} spacing={1.0} origin={{x: -30, y: 0}}>
-                    {
-                        gameHexes
-                    }
-                </Layout>
-                <Layout className="tiles" size={{x: 10, y: 10}} flat={true} spacing={1.0} origin={{x: 60, y: -10}}>
+                    <Layout className="game" size={{x: 7.5, y: 7.5}} flat={true} spacing={1.0} origin={{x: -30, y: 0}}>
+                        {
+                            gameHexes.map((hex, i) => (
+                                <Hexagon
+                                    key={i}
+                                    q={hex.q}
+                                    r={hex.r}
+                                    s={hex.s}
+                                    fill={(hex.image) ? HexUtils.getID(hex) : null}
+                                    data={hex}
+                                    onDragStart={(e, h) => this.onDragStart(e, h)}
+                                    onDragEnd={(e, h, s) => this.onDragEnd(e, h, s)}
+                                    onDrop={(e, h, t) => this.onDrop(e, h, t)}
+                                    onDragOver={(e, h) => this.onDragOver(e, h)}
+                                >
+                                    <Text>{hex.text}</Text>
+                                    {!!hex.image && <Pattern id={HexUtils.getID(hex)} link={hex.image}/>}
+                                </Hexagon>
+                            ))
+                        }
+                    </Layout>
+
+                <Layout className="tiles" size={{x: 7.5, y: 7.5}} flat={true} spacing={1.0} origin={{x: 70, y: -10}}>
                     {
                         hexagons.map((hex, i) => (
                             <Hexagon
@@ -191,7 +194,7 @@ class EntityLayout extends Component {
                                 onDragOver={(e, h) => this.onDragOver(e, h)}
                             >
                                 <Text>{hex.text}</Text>
-                                {hex.image && <Pattern id={HexUtils.getID(hex)} link={hex.image}/>}
+                                {!!hex.image && <Pattern id={HexUtils.getID(hex)} link={hex.image}/>}
                             </Hexagon>
                         ))
                     }
