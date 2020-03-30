@@ -7,7 +7,7 @@ class DungeonCardValues(Enum):
     OBSTACLE = 'obstacle'
     TRAPS = 'trap'
     HAZARDOUS_TERRAIN = 'hazardous terrain'
-    DIFFICULT_TERRAIN = 'difficult terrain'
+    DIFFICULT_TERRAIN = 'dangerous terrain'
     WALL_LINE = 'wall line'
     EMPTY = 'empty'
     COIN = 'coin'
